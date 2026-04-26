@@ -169,7 +169,11 @@
 
   // ── SECURE FILES (OWNER) ─────────────────────────────────────
   function renderSecureFiles() {
-    const items = D.secure_files.files;
+    const today = new Date('2026-04-26');
+    const effectiveStatus = (f) =>
+      (f.status === 'uploaded' && f.expires_at && new Date(f.expires_at) < today) ? 'expired' : f.status;
+    const priorityOf = (f) => ({ missing: 0, expired: 1, pending: 2, uploaded: 3 }[effectiveStatus(f)] ?? 99);
+    const items = [...D.secure_files.files].sort((a, b) => priorityOf(a) - priorityOf(b)).slice(0, 10);
     const statusMap = {
       uploaded: 'ok',
       missing:  'warn',
@@ -178,16 +182,17 @@
     };
     $('#files-list').innerHTML = items.map(f => {
       const exp = f.expires_at ? `expires ${fmtDate(f.expires_at)}` : 'no expiry';
+      const status = effectiveStatus(f);
       return `<div class="file-row">
         <div class="file-icon" data-type="${f.type}">${{tax:'§',coi:'⛨',id:'#',cert:'✓',background:'⌖',payment:'$'}[f.type] || '·'}</div>
         <div class="file-meta">
           <div class="file-name">${escapeHtml(f.name)}</div>
           <div class="file-sub">${exp} · ${f.size_kb}KB</div>
         </div>
-        <span class="chip ${statusMap[f.status]||''}">${f.status.toUpperCase()}</span>
+        <span class="chip ${statusMap[status]||''}">${status.toUpperCase()}</span>
       </div>`;
     }).join('');
-    $('#files-count').textContent = `${items.length} files · ${items.filter(f=>f.status==='uploaded').length} uploaded`;
+    $('#files-count').textContent = `${items.length} files · ${items.filter(f=>effectiveStatus(f)==='uploaded').length} uploaded`;
   }
 
   // ── PRIVATE INFO (OWNER) ─────────────────────────────────────
