@@ -8,28 +8,41 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-26 (commit `05b8930`)
-**Status:** Maria Lopez Professional Profile — White Glove visual treatment fixed. Spec-compliance pass continuing.
-**Active surface:** `Maria Lopez · Professional.html` (621 lines, already mostly built by yesterday's Gmail-Claude against the canonical bundle).
+**Last session:** Claude Code · 2026-04-26 (commit `782b8d0`)
+**Status:** Maria Lopez Professional Profile — 7 deviations vs canonical bundle cleared in this session. Spec-compliance pass for Maria Pro is at a stopping point — Tony to eyeball before moving to next surface.
+**Active surface:** `Maria Lopez · Professional.html` (driven by `scripts/render-professional.js` + `data/professional-data.js`).
 
-**Canonical bundle:** `reference/claude-design-bundles/professional-maria-lopez/` (78 files: 1 README + 10 JSONs in `/data/` + 9 spec MDs in `/specs/` + 58 assets). Pushed in commit `a4caa0f`.
+**Canonical bundle:** `reference/claude-design-bundles/professional-maria-lopez/` (78 files: 1 README + 10 JSONs in `/data/` + 9 spec MDs in `/specs/` + 58 assets). Imported in commit `a4caa0f`.
 
-**What just shipped (commit `05b8930`):**
-- `.rev-card.wg` violet override removed → WG reviews now inherit normal `.rev-card` chrome per `specs/WHITE-GLOVE-VISUAL.md` ("WG reviews ... sit alongside non-WG reviews with normal chrome")
-- `.rev-logo.wg` violet→indigo gradient replaced with neutral glass + amber `◇` glyph (`--wg-primary` `#F59E0B` dark / `#D97706` light)
-- `.rev-logo.wg` `font-weight:800` reduced to `700` (README validation: Outfit Black not licensed)
-- Renderer `scripts/render-professional.js:287` already emits the `◇` glyph; no markup change needed
+**Bootstrap prompt for new Claude Design sessions:** `CLAUDE-DESIGN-PROMPT.md` at repo root. Tony pastes that block into any new Claude Design session in either account; it self-onboards.
+
+**Deviations fixed this session (do not re-flag — re-import files first):**
+
+| # | Commit | What changed |
+|---|---|---|
+| 1 | `05b8930` | `.rev-card.wg` violet → spec-compliant neutral chrome; `.rev-logo.wg` violet/indigo gradient → neutral + amber `◇` glyph; `font-weight:800` → 700 |
+| 2 | `465cfda` | `renderAbout()` 3 hardcoded ad-libbed paragraphs → verbatim Professor-voice prose from `COPY-BLOCKS.md § 1` |
+| 3 | `3199f58` | `renderActiveApp()` Body-Shop-FANUC-WG-Spartanburg fabrication → canonical Acme Robotics / Ford Rouge palletizer (Standard tier) per `COPY-BLOCKS.md § 1` |
+| 4 | `55878a8` | `renderWatchers()` hardcoded 4-entry `fakeWatchers` array → derived from `D.watchers.recent` (8 canonical entries) with name-→-logo lookup + relative-time formatter |
+| 5 | (= #3 — duplicate flag from stale snapshot) | n/a |
+| 6 | `782b8d0` | `renderPortfolio()` 6 fabricated items → derived from `D.portfolio_links` (7 entries with real URLs); `href="#"` → real URL with `target="_blank"` |
+| 7 | `782b8d0` | `renderAdmin()` hardcoded tile values + fake `tony.wallace 2026-04-22` signature + invented free-text → all derived from `D.admin_notes` + `D.two_factor_enabled`; signature dropped (no canonical signer in data) |
 
 **Earlier drift cleared (do not re-introduce):**
-- Claude.ai (this account's sister) had built `Feed Home — Variations.html` + 5 supporting JSX files in its sandbox that did NOT exist in yesterday's Gmail-Claude project. Per CEO directive, those were freelance content and have been discarded — DO NOT recreate them from descriptions.
+- The @automateamerica.com Claude account had built `Feed Home — Variations.html` + 5 supporting JSX files in its sandbox that did NOT exist in yesterday's Gmail-account project. Per CEO directive, those were freelance content and have been discarded.
 
 **Open questions for Tony:**
-- Eyeball the WG review card (Maria's `Body Shop Cell 14` and `[White Glove Contract]` rows in `professional.json:304-312`) in dark + light mode after pulling. If amber-on-neutral reads correctly, mark `[checkpoint]` and we move to the next gap.
+- Eyeball `Maria Lopez · Professional.html` in browser, both `data-role="visitor"` and `data-role="owner"` and `data-role="admin"`, both light + dark themes. Confirm: WG review card chrome neutral, amber `◇` glyph visible; bio reads first-person Professor voice; active-application card says Acme Robotics / Ford Rouge palletizer; watchers list shows 8 entries; portfolio shows 7 entries with hostnames as source labels; admin-only section shows the canonical free-text note (no fake signature).
+- If all good → mark `[checkpoint]` and proceed to Customer Profile (Rebecca Chen) next per bundle README sequencing.
+
+**Bundle internal inconsistencies (flagged, NOT auto-fixed — Tony to resolve):**
+- `COPY-BLOCKS.md § 1` says interview is Tuesday April 28 at 3:00 PM EST. `professional.json:413` says `interview_scheduled: 2026-04-26T15:00:00-04:00`. Active-app card uses COPY-BLOCKS prose (per fix #3) — JSON value contradicts but isn't read by that surface.
+- `COPY-BLOCKS.md § 1` admin-note prose is longer (adds "Zero disputes lifetime. Charter member of Body-in-White Specialists group; lead engineer in Detroit Plant business group.") than `professional.json:442` `free_text_admin_note`. Renderer reads the shorter JSON version.
 
 **Next session should:**
-1. Pull latest (`git pull origin main`).
-2. If continuing the spec-compliance pass for Maria Pro: read the remaining 3 unread specs (`SECTIONS.md`, `POPOUTS.md`, `COPY-BLOCKS.md`) and diff against `Maria Lopez · Professional.html` for additional deviations. Make targeted edits like the WG fix above — surgical, not full rerenders.
-3. If pivoting to other surfaces per bundle README sequence: Customer Profile (Rebecca Chen) is next, then Business / Acme Robotics, etc.
+1. **CLAUDE CODE (this account):** `git pull origin main`. Re-read this CURRENT STATE block. Wait for Tony's next directive.
+2. **CLAUDE DESIGN (either Claude.ai account):** if it's a fresh chat, paste `CLAUDE-DESIGN-PROMPT.md` block (Tony has it). If continuing: `github_get_tree` on `feed-design-system` main, compare latest SHA to your last-known SHA, and `github_import_files` for any path that changed since.
+3. If Tony approves the Maria Pro checkpoint, the next surface is Customer Profile · Rebecca Chen / Ford Rouge per bundle `README.md` sequencing. Read `data/customer.json` + `Customer Profile.html` + `Rebecca Chen · Customer.html` and diff against the same spec set.
 4. Always update this `CURRENT STATE` block before pushing.
 
 ---
