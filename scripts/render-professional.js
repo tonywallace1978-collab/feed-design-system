@@ -437,19 +437,11 @@
         <circle cx="140" cy="110" r="95" fill="url(#rad-g)" stroke="rgba(99,102,241,0.40)" stroke-dasharray="3 4"/>
         <circle cx="140" cy="110" r="60" fill="none" stroke="rgba(99,102,241,0.30)" stroke-dasharray="2 4"/>
         <circle cx="140" cy="110" r="30" fill="none" stroke="rgba(99,102,241,0.25)" stroke-dasharray="2 4"/>
-        <!-- nearby cities -->
-        <g font-family="JetBrains Mono" font-size="9" fill="rgba(255,255,255,0.55)">
-          <circle cx="98"  cy="92"  r="2" fill="#A5B4FC"/><text x="103" y="91">Ann Arbor</text>
-          <circle cx="170" cy="135" r="2" fill="#A5B4FC"/><text x="175" y="138">Toledo</text>
-          <circle cx="58"  cy="152" r="2" fill="#A5B4FC"/><text x="63"  y="155">Lansing</text>
-          <circle cx="200" cy="65"  r="2" fill="#A5B4FC"/><text x="205" y="68">Saginaw</text>
-          <circle cx="220" cy="170" r="2" fill="#A5B4FC"/><text x="180" y="178">Cleveland</text>
-        </g>
         <!-- home pin -->
         <g>
           <circle cx="140" cy="110" r="6" fill="#34D399"/>
           <circle cx="140" cy="110" r="11" fill="none" stroke="#34D399" stroke-opacity="0.6"/>
-          <text x="148" y="113" font-family="Outfit" font-size="11" font-weight="600" fill="#fff">Detroit</text>
+          <text x="148" y="113" font-family="Outfit" font-size="11" font-weight="600" fill="#fff">${escapeHtml(L.city)}</text>
         </g>
       </svg>
     `;
