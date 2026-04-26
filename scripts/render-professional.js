@@ -268,12 +268,6 @@
       const tierOrder = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3, Bronze: 4 };
       return (tierOrder[a.tier]??99) - (tierOrder[b.tier]??99);
     });
-    // Locked placeholders (showcase)
-    const locked = [
-      { name: 'Reach Engineer',    category: 'Reach' },
-      { name: 'Decade Veteran',    category: 'Tenure' },
-      { name: 'Diamond Endorser',  category: 'Endorser' },
-    ];
     $('#badges-list').innerHTML =
       earned.map(b => `
         <div class="badge-stack" title="${escapeHtml(b.criterion)}">
@@ -281,17 +275,8 @@
           <div class="badge-label">${escapeHtml(b.name)}</div>
           <div class="badge-tier">${b.tier.toUpperCase()}</div>
         </div>
-      `).join('') +
-      locked.map(b => `
-        <div class="badge-stack locked" title="Not yet earned">
-          <div class="badge-img badge-locked-shape">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 1 1 8 0v4"/></svg>
-          </div>
-          <div class="badge-label">${escapeHtml(b.name)}</div>
-          <div class="badge-tier locked">LOCKED</div>
-        </div>
       `).join('');
-    $('#badges-count').textContent = `${earned.length} earned · ${locked.length} locked`;
+    $('#badges-count').textContent = `${earned.length} earned`;
   }
 
   // ── SKILLS ───────────────────────────────────────────────────
