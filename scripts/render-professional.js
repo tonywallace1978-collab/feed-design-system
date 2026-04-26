@@ -475,17 +475,20 @@
   }
 
   // ── PORTFOLIO ────────────────────────────────────────────────
+  // Driven by D.portfolio_links (7 entries) per specs/SECTIONS.md § 1 right-col Portfolio.
+  // kind → icon (video ▶ · code ⌘ · talk ◎ · doc §). Source label = URL hostname.
   function renderPortfolio() {
-    const items = [
-      { kind: 'video', title: 'FANUC R-30iB cell programming walkthrough',  src: 'YouTube · 8:24', icon: '▶' },
-      { kind: 'code',  title: 'Studio 5000 style guide (Acme team standard)', src: 'GitHub · 412 stars', icon: '⌘' },
-      { kind: 'talk',  title: 'TÜV functional safety: lessons from 12 retrofits', src: 'ISA Detroit · 2025', icon: '◎' },
-      { kind: 'doc',   title: 'Body-in-white commissioning checklist',       src: 'PDF · 38 pages', icon: '§' },
-      { kind: 'video', title: 'Live-line PLC migration: Stellantis Sterling',src: 'YouTube · 12:40', icon: '▶' },
-      { kind: 'code',  title: 'TIA Portal V18 templates (open-sourced)',     src: 'GitHub · 188 stars', icon: '⌘' },
-    ];
+    const iconFor = { video: '▶', code: '⌘', talk: '◎', doc: '§' };
+    const hostFor = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } };
+    const items = (D.portfolio_links || []).map(p => ({
+      kind:  p.kind,
+      title: p.title,
+      url:   p.url,
+      src:   hostFor(p.url),
+      icon:  iconFor[p.kind] || '·'
+    }));
     $('#port-list').innerHTML = items.map(p => `
-      <a class="port-card" href="#">
+      <a class="port-card" href="${escapeHtml(p.url)}" target="_blank" rel="noopener">
         <div class="port-icon">${p.icon}</div>
         <div class="port-meta">
           <div class="port-title">${escapeHtml(p.title)}</div>
@@ -499,18 +502,20 @@
   // ── ADMIN NOTES ──────────────────────────────────────────────
   function renderAdmin() {
     $('#admin-meta').innerHTML = `
+      <!-- Tiles + note driven by D.admin_notes per specs/ROLE-OVERRIDES.md "admin role".
+           Free-text note is verbatim from professional.json; fake signature dropped (no canonical signer in data). -->
       <div class="admin-grid">
-        <div class="admin-tile"><div class="kpi-label">TRUST SCORE</div><div class="kpi-val" style="color:#34D399">98</div></div>
-        <div class="admin-tile"><div class="kpi-label">KYC STATUS</div><div class="kpi-val" style="font-size:18px;color:#34D399">VERIFIED</div></div>
-        <div class="admin-tile"><div class="kpi-label">DISPUTES</div><div class="kpi-val">0</div></div>
-        <div class="admin-tile"><div class="kpi-label">FLAGS</div><div class="kpi-val">0</div></div>
-        <div class="admin-tile"><div class="kpi-label">2FA</div><div class="kpi-val" style="font-size:18px;color:#34D399">ON</div></div>
-        <div class="admin-tile"><div class="kpi-label">TIER OVERRIDE</div><div class="kpi-val" style="font-size:18px">—</div></div>
+        <div class="admin-tile"><div class="kpi-label">TRUST SCORE</div><div class="kpi-val" style="color:#34D399">${(D.admin_notes||{}).trust_score ?? '—'}</div></div>
+        <div class="admin-tile"><div class="kpi-label">KYC STATUS</div><div class="kpi-val" style="font-size:18px;color:#34D399">${(D.admin_notes||{}).background_check_status === 'PASSED' ? 'VERIFIED' : 'PENDING'}</div></div>
+        <div class="admin-tile"><div class="kpi-label">DISPUTES</div><div class="kpi-val">${(D.admin_notes||{}).contract_disputes_lifetime ?? 0}</div></div>
+        <div class="admin-tile"><div class="kpi-label">FLAGS</div><div class="kpi-val">${(((D.admin_notes||{}).warnings)||[]).length}</div></div>
+        <div class="admin-tile"><div class="kpi-label">2FA</div><div class="kpi-val" style="font-size:18px;color:#34D399">${D.two_factor_enabled ? 'ON' : 'OFF'}</div></div>
+        <div class="admin-tile"><div class="kpi-label">TIER OVERRIDE</div><div class="kpi-val" style="font-size:18px">${escapeHtml((D.admin_notes||{}).tier_override || '—')}</div></div>
       </div>
       <div class="admin-note">
-        <div class="kpi-label">ADMIN NOTE · last edit by tony.wallace 2026-04-22</div>
+        <div class="kpi-label">ADMIN NOTE</div>
         <p style="margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--glass-text-secondary)">
-          Top-tier contractor. Cleared for any white-glove tier-1 OEM engagement. Pre-approved emergency-rate billing. Direct line for anomalous activity: ops@automate-america.com. No moderation history.
+          ${escapeHtml((D.admin_notes||{}).free_text_admin_note || '')}
         </p>
       </div>
       <div class="cta-row" style="margin-top:13px">
