@@ -148,6 +148,9 @@
   .bg-meta { flex:1; min-width:0; }
   .bg-name { font-family:'Outfit'; font-weight:600; font-size:13px; color:var(--glass-text-primary); }
   .bg-sub { font-size:11px; color:var(--glass-text-tertiary); margin-top:1px; font-weight:500; }
+  .bg-more { width:100%; margin-top:8px; padding:10px 12px; background:rgba(255,255,255,0.04); border:1px dashed rgba(255,255,255,0.10); border-radius:10px; color:var(--glass-text-secondary); font-size:12px; font-weight:500; cursor:pointer; transition:background 120ms, color 120ms; }
+  .bg-more:hover { background:rgba(255,255,255,0.08); color:var(--glass-text-primary); }
+  :root[data-theme="light"] .bg-more { background:rgba(0,0,0,0.03); border-color:rgba(0,0,0,0.10); }
 
   /* Files */
   .file-row { display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.04); }

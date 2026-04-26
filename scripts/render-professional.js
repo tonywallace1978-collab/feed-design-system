@@ -152,7 +152,9 @@
 
   // ── BUSINESS GROUPS ──────────────────────────────────────────
   function renderGroups() {
-    $('#groups-list').innerHTML = D.business_groups.map(g => `
+    const top = D.business_groups.slice(0, 3);
+    const overflow = D.business_groups.length - top.length;
+    $('#groups-list').innerHTML = top.map(g => `
       <div class="bg-row">
         <div class="bg-mark" style="background:${g.logo_color}">${escapeHtml(g.name.split(' ').map(w=>w[0]).slice(0,2).join(''))}</div>
         <div class="bg-meta">
@@ -161,7 +163,7 @@
         </div>
         <button class="gbtn gbtn-secondary sm">View</button>
       </div>
-    `).join('');
+    `).join('') + (overflow > 0 ? `<button class="bg-more">+ ${overflow} more</button>` : '');
     $('#groups-count').textContent = D.business_groups.length + ' groups';
   }
 
