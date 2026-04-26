@@ -92,6 +92,10 @@
   function renderAvailability() {
     const a = D.availability;
     $('#avail-status').innerHTML = `<span class="live-dot"></span>${escapeHtml(a.status)}`;
+    if (a.status_color) {
+      const dot = $('#avail-status .live-dot');
+      if (dot) dot.classList.add('live-dot-' + a.status_color);
+    }
     $('#avail-next').textContent = fmtDate(a.next_available_date);
     $('#avail-cap').textContent = a.weekly_capacity_hours + ' hrs / wk';
     const flags = [];
@@ -99,6 +103,13 @@
     if (a.willing_weekends) flags.push('Weekends OK');
     if (!a.willing_nightshift) flags.push('No nights');
     $('#avail-flags').innerHTML = flags.map(f=>`<span class="chip">${f}</span>`).join('');
+    if (a.calendar_url) {
+      const cta = $('#avail-cta');
+      if (cta) {
+        cta.setAttribute('href', a.calendar_url);
+        cta.parentElement.style.display = '';
+      }
+    }
   }
 
   // ── RATES ────────────────────────────────────────────────────
