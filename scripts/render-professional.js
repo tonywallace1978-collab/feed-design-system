@@ -282,10 +282,10 @@
   // ── SKILLS ───────────────────────────────────────────────────
   function renderSkills() {
     $('#skills-list').innerHTML = D.skills_certified.map(s => `
-      <div class="skill-row${s.primary?' primary':''}">
+      <div class="skill-row">
         <div class="skill-logo"><img src="${s.logo}" alt="${escapeHtml(s.manufacturer)}" /></div>
         <div class="skill-meta">
-          <div class="skill-name">${escapeHtml(s.manufacturer)} ${s.primary?'<span class="chip accent" style="font-size:9px">PRIMARY</span>':''}</div>
+          <div class="skill-name">${escapeHtml(s.manufacturer)}</div>
           <div class="skill-models">${escapeHtml(s.models)}</div>
           ${s.certifications.length ? `<div class="skill-certs">${s.certifications.map(c=>`<span class="chip">${escapeHtml(c)}</span>`).join('')}</div>` : ''}
         </div>
