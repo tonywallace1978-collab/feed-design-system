@@ -8,8 +8,8 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-26 (commit `99898d7`)
-**Status:** Maria Lopez Professional Profile — 9 deviations vs canonical bundle cleared. Hero KPI strip now surfaces all quick_stats fields (was dropping `lifetime_billings_usd`, `rating_count`, `active_contracts`). Spec-compliance pass for Maria Pro continues — Tony to eyeball before moving to next surface.
+**Last session:** Claude Code · 2026-04-26 (commit `79df735`)
+**Status:** Maria Lopez Professional Profile — 10 deviations vs canonical bundle cleared. Engagement-terms surface (renderRates) now currency-aware and surfaces `minimum_engagement_hours` + `rate_negotiable`. Spec-compliance pass for Maria Pro continues — Tony to eyeball before moving to next surface.
 **Active surface:** `Maria Lopez · Professional.html` (driven by `scripts/render-professional.js` + `data/professional-data.js`).
 
 **Canonical bundle:** `reference/claude-design-bundles/professional-maria-lopez/` (78 files: 1 README + 10 JSONs in `/data/` + 9 spec MDs in `/specs/` + 58 assets). Imported in commit `a4caa0f`.
@@ -29,6 +29,7 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 | 7 | `782b8d0` | `renderAdmin()` hardcoded tile values + fake `tony.wallace 2026-04-22` signature + invented free-text → all derived from `D.admin_notes` + `D.two_factor_enabled`; signature dropped (no canonical signer in data) |
 | 8 | `c7bfb67` | `renderConnections()` literal `+14`/`+41` deltas → derived from new `quick_stats.connections_growth_30d` / `_quarter` (Path A — added fields to bundle JSON + runtime data with values matching prior visual) |
 | 9 | `99898d7` | `renderHero()` quick-stats strip dropped 3 of 11 canonical fields → 6-tile layout surfacing `lifetime_billings_usd` ($1.68M, the credibility metric named verbatim in admin note), `rating_count` (47 reviews sub-label on Rating tile), `active_contracts` (1 active sub-label on Contracts tile); `.hero-stats` grid `repeat(5,1fr)` → `repeat(6,1fr)` |
+| 10 | `79df735` | `renderRates()` dropped `minimum_engagement_hours` (8) + `rate_negotiable` (true) and hardcoded `salary_band_currency` via shared `fmtMoney`; added local `fmtBandMoney` (currency-aware), `#rate-eng` now textContent `"<preferred_engagement> · 8 hr minimum · negotiable"` |
 
 **Earlier drift cleared (do not re-introduce):**
 - The @automateamerica.com Claude account had built `Feed Home — Variations.html` + 5 supporting JSX files in its sandbox that did NOT exist in yesterday's Gmail-account project. Per CEO directive, those were freelance content and have been discarded.
@@ -40,6 +41,7 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 **Bundle internal inconsistencies (flagged, NOT auto-fixed — Tony to resolve):**
 - `COPY-BLOCKS.md § 1` says interview is Tuesday April 28 at 3:00 PM EST. `professional.json:413` says `interview_scheduled: 2026-04-26T15:00:00-04:00`. Active-app card uses COPY-BLOCKS prose (per fix #3) — JSON value contradicts but isn't read by that surface.
 - `COPY-BLOCKS.md § 1` admin-note prose is longer (adds "Zero disputes lifetime. Charter member of Body-in-White Specialists group; lead engineer in Detroit Plant business group.") than `professional.json:442` `free_text_admin_note`. Renderer reads the shorter JSON version.
+- `professional.json` `rates` block has BOTH `currency: "USD"` and `salary_band_currency: "USD"` — duplicate fields. One should be canonical, the other dropped. Renderer (post #10) prefers `salary_band_currency`, falls back to `currency`.
 
 **Next session should:**
 1. **CLAUDE CODE (this account):** `git pull origin main`. Re-read this CURRENT STATE block. Wait for Tony's next directive.
