@@ -8,20 +8,29 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-26 (updating state on behalf of Claude.ai's WIP)
-**Status:** Active design work in progress on Feed Home — Variations.
-**Active surface:** `Feed Home — Variations.html` (3 directions: A dense/scannable · B editorial/hero-led · C rail+spotlight+radar) + supporting `variations/shared.jsx`, `variations/variation-a.jsx`, `variations/variation-b.jsx`, `variations/variation-c.jsx`, `design-canvas.jsx`.
+**Last session:** Claude Code · 2026-04-26 (commit `05b8930`)
+**Status:** Maria Lopez Professional Profile — White Glove visual treatment fixed. Spec-compliance pass continuing.
+**Active surface:** `Maria Lopez · Professional.html` (621 lines, already mostly built by yesterday's Gmail-Claude against the canonical bundle).
 
-⚠️ **WIP NOT YET IN REPO.** Claude.ai built these files locally in its sandbox but reports its GitHub connector is read-only and could not push. They MUST be pushed before any session (this account or the other) can review or extend the work. Two paths to push:
-  1. **Preferred:** Claude.ai retries via its `mcp__github__create_or_update_file` / `push_files` tools — most Claude.ai connectors can write, the read-only assumption is likely wrong. Try one file first to confirm.
-  2. **Fallback:** Claude.ai dumps each file's contents inline in chat → Tony pastes into Claude Code → Claude Code commits + pushes.
+**Canonical bundle:** `reference/claude-design-bundles/professional-maria-lopez/` (78 files: 1 README + 10 JSONs in `/data/` + 9 spec MDs in `/specs/` + 58 assets). Pushed in commit `a4caa0f`.
 
-Already-applied fix in WIP: Variation A's header `.row-meta` had a wrap collision with the H1; resolved via flex-column + `white-space: nowrap` on the meta line.
+**What just shipped (commit `05b8930`):**
+- `.rev-card.wg` violet override removed → WG reviews now inherit normal `.rev-card` chrome per `specs/WHITE-GLOVE-VISUAL.md` ("WG reviews ... sit alongside non-WG reviews with normal chrome")
+- `.rev-logo.wg` violet→indigo gradient replaced with neutral glass + amber `◇` glyph (`--wg-primary` `#F59E0B` dark / `#D97706` light)
+- `.rev-logo.wg` `font-weight:800` reduced to `700` (README validation: Outfit Black not licensed)
+- Renderer `scripts/render-professional.js:287` already emits the `◇` glyph; no markup change needed
+
+**Earlier drift cleared (do not re-introduce):**
+- Claude.ai (this account's sister) had built `Feed Home — Variations.html` + 5 supporting JSX files in its sandbox that did NOT exist in yesterday's Gmail-Claude project. Per CEO directive, those were freelance content and have been discarded — DO NOT recreate them from descriptions.
 
 **Open questions for Tony:**
-- Which of A/B/C is the direction to pursue (or do we need additional variations)?
+- Eyeball the WG review card (Maria's `Body Shop Cell 14` and `[White Glove Contract]` rows in `professional.json:304-312`) in dark + light mode after pulling. If amber-on-neutral reads correctly, mark `[checkpoint]` and we move to the next gap.
 
-**Next session should:** if WIP is now in the repo (check for `Feed Home — Variations.html` at root), open it in a browser, review all three directions side-by-side, and wait for Tony's pick. If WIP is STILL not in the repo, push it via path #1 or #2 above before doing anything else.
+**Next session should:**
+1. Pull latest (`git pull origin main`).
+2. If continuing the spec-compliance pass for Maria Pro: read the remaining 3 unread specs (`SECTIONS.md`, `POPOUTS.md`, `COPY-BLOCKS.md`) and diff against `Maria Lopez · Professional.html` for additional deviations. Make targeted edits like the WG fix above — surgical, not full rerenders.
+3. If pivoting to other surfaces per bundle README sequence: Customer Profile (Rebecca Chen) is next, then Business / Acme Robotics, etc.
+4. Always update this `CURRENT STATE` block before pushing.
 
 ---
 
