@@ -458,7 +458,7 @@
   // ── ENDORSEMENTS ─────────────────────────────────────────────
   function renderEndorsements() {
     const all = D.endorsements;
-    const top = all.slice(0, 12);
+    const top = all.slice(0, 7);
     // group by skill
     const bySkill = {};
     all.forEach(e => { (bySkill[e.skill] ||= []).push(e); });
