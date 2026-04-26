@@ -8,8 +8,8 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-26 (commit `782b8d0`)
-**Status:** Maria Lopez Professional Profile — 7 deviations vs canonical bundle cleared in this session. Spec-compliance pass for Maria Pro is at a stopping point — Tony to eyeball before moving to next surface.
+**Last session:** Claude Code · 2026-04-26 (commit `99898d7`)
+**Status:** Maria Lopez Professional Profile — 9 deviations vs canonical bundle cleared. Hero KPI strip now surfaces all quick_stats fields (was dropping `lifetime_billings_usd`, `rating_count`, `active_contracts`). Spec-compliance pass for Maria Pro continues — Tony to eyeball before moving to next surface.
 **Active surface:** `Maria Lopez · Professional.html` (driven by `scripts/render-professional.js` + `data/professional-data.js`).
 
 **Canonical bundle:** `reference/claude-design-bundles/professional-maria-lopez/` (78 files: 1 README + 10 JSONs in `/data/` + 9 spec MDs in `/specs/` + 58 assets). Imported in commit `a4caa0f`.
@@ -27,6 +27,8 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 | 5 | (= #3 — duplicate flag from stale snapshot) | n/a |
 | 6 | `782b8d0` | `renderPortfolio()` 6 fabricated items → derived from `D.portfolio_links` (7 entries with real URLs); `href="#"` → real URL with `target="_blank"` |
 | 7 | `782b8d0` | `renderAdmin()` hardcoded tile values + fake `tony.wallace 2026-04-22` signature + invented free-text → all derived from `D.admin_notes` + `D.two_factor_enabled`; signature dropped (no canonical signer in data) |
+| 8 | `c7bfb67` | `renderConnections()` literal `+14`/`+41` deltas → derived from new `quick_stats.connections_growth_30d` / `_quarter` (Path A — added fields to bundle JSON + runtime data with values matching prior visual) |
+| 9 | `99898d7` | `renderHero()` quick-stats strip dropped 3 of 11 canonical fields → 6-tile layout surfacing `lifetime_billings_usd` ($1.68M, the credibility metric named verbatim in admin note), `rating_count` (47 reviews sub-label on Rating tile), `active_contracts` (1 active sub-label on Contracts tile); `.hero-stats` grid `repeat(5,1fr)` → `repeat(6,1fr)` |
 
 **Earlier drift cleared (do not re-introduce):**
 - The @automateamerica.com Claude account had built `Feed Home — Variations.html` + 5 supporting JSX files in its sandbox that did NOT exist in yesterday's Gmail-account project. Per CEO directive, those were freelance content and have been discarded.
