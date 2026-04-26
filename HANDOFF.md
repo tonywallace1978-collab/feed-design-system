@@ -8,8 +8,10 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-26 (commit `e6da38f`)
-**Status:** Maria Lopez Professional Profile — 11 deviations vs canonical bundle cleared. Availability section now surfaces the cal.com booking CTA (was the largest behavioral gap — visitors had no way to act on "Available Now") and respects status_color for the live-dot variant. Spec-compliance pass for Maria Pro continues — Tony to eyeball before moving to next surface.
+**Last session:** Claude Code · 2026-04-26 (commit `6002701`)
+**Status:** Maria Lopez Professional Profile — 12 deviations vs canonical bundle cleared. renderBadges fabricated 3 hardcoded "locked" badges with off-spec category names ("Reach Engineer", "Decade Veteran", "Diamond Endorser") — stripped strictly-subtractively (Option A: showcase shows only earned; progression-tease deferred as product decision). Spec-compliance pass for Maria Pro continues — Tony to eyeball before moving to next surface.
+
+**⚠️ Claude Design re-import drift:** Claude Design's #12 deviation report arrived numbered "#8" — its post-#7 re-imports haven't been taking. Symptoms: numbering frozen at #8, list of "remaining renderer functions" doesn't reflect that renderConnections (#8 c7bfb67), renderHero KPI strip (#9), renderRates (#10), renderAvailability (#11) have shipped. Next prompt to Claude Design should re-emphasize the re-import step and ask it to re-sync its snapshot of HANDOFF + scripts/render-professional.js before flagging anything new.
 **Active surface:** `Maria Lopez · Professional.html` (driven by `scripts/render-professional.js` + `data/professional-data.js`).
 
 **Canonical bundle:** `reference/claude-design-bundles/professional-maria-lopez/` (78 files: 1 README + 10 JSONs in `/data/` + 9 spec MDs in `/specs/` + 58 assets). Imported in commit `a4caa0f`.
@@ -31,6 +33,7 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 | 9 | `99898d7` | `renderHero()` quick-stats strip dropped 3 of 11 canonical fields → 6-tile layout surfacing `lifetime_billings_usd` ($1.68M, the credibility metric named verbatim in admin note), `rating_count` (47 reviews sub-label on Rating tile), `active_contracts` (1 active sub-label on Contracts tile); `.hero-stats` grid `repeat(5,1fr)` → `repeat(6,1fr)` |
 | 10 | `79df735` | `renderRates()` dropped `minimum_engagement_hours` (8) + `rate_negotiable` (true) and hardcoded `salary_band_currency` via shared `fmtMoney`; added local `fmtBandMoney` (currency-aware), `#rate-eng` now textContent `"<preferred_engagement> · 8 hr minimum · negotiable"` |
 | 11 | `e6da38f` | `renderAvailability()` dropped `calendar_url` (the cal.com booking CTA — biggest behavioral fidelity gap) + `status_color` (live-dot was hardcoded green); added `<a id="avail-cta">` (statically in HTML, hidden by default, JS reveals via setAttribute + display); `.live-dot.live-dot-success/-warning/-neutral` CSS variants + `pulse-warn` keyframes; classList.add('live-dot-' + status_color) to apply variant. No new innerHTML lines (security hook avoided) |
+| 12 | `6002701` | `renderBadges()` fabricated 3 hardcoded "locked" badges (`Reach Engineer/Reach`, `Decade Veteran/Tenure`, `Diamond Endorser/Endorser`) — "Reach" not in `BADGE-THRESHOLDS.md`, "Decade Veteran" not in Tenure ladder. Stripped strictly-subtractively (Option A): deleted locked array, deleted `+ locked.map(...).join('')` chain, footer textContent now `"${earned.length} earned"` (was "X earned · 3 locked"). Net -18 lines, no bundle/HTML/CSS change. (Claude Design called this #8 from a stale snapshot.) |
 
 **Earlier drift cleared (do not re-introduce):**
 - The @automateamerica.com Claude account had built `Feed Home — Variations.html` + 5 supporting JSX files in its sandbox that did NOT exist in yesterday's Gmail-account project. Per CEO directive, those were freelance content and have been discarded.
