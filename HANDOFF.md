@@ -8,11 +8,20 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-26
-**Status:** Initial import from `Feed Home — Liquid Glass mockup.zip` (164 files). Repo and handoff protocol established.
-**Active surface:** none — Tony to assign next surface
-**Open questions for Tony:** none
-**Next session should:** wait for Tony's assignment OR diff against the sister Claude account's version of these files if Tony has dropped them anywhere reachable.
+**Last session:** Claude Code · 2026-04-26 (updating state on behalf of Claude.ai's WIP)
+**Status:** Active design work in progress on Feed Home — Variations.
+**Active surface:** `Feed Home — Variations.html` (3 directions: A dense/scannable · B editorial/hero-led · C rail+spotlight+radar) + supporting `variations/shared.jsx`, `variations/variation-a.jsx`, `variations/variation-b.jsx`, `variations/variation-c.jsx`, `design-canvas.jsx`.
+
+⚠️ **WIP NOT YET IN REPO.** Claude.ai built these files locally in its sandbox but reports its GitHub connector is read-only and could not push. They MUST be pushed before any session (this account or the other) can review or extend the work. Two paths to push:
+  1. **Preferred:** Claude.ai retries via its `mcp__github__create_or_update_file` / `push_files` tools — most Claude.ai connectors can write, the read-only assumption is likely wrong. Try one file first to confirm.
+  2. **Fallback:** Claude.ai dumps each file's contents inline in chat → Tony pastes into Claude Code → Claude Code commits + pushes.
+
+Already-applied fix in WIP: Variation A's header `.row-meta` had a wrap collision with the H1; resolved via flex-column + `white-space: nowrap` on the meta line.
+
+**Open questions for Tony:**
+- Which of A/B/C is the direction to pursue (or do we need additional variations)?
+
+**Next session should:** if WIP is now in the repo (check for `Feed Home — Variations.html` at root), open it in a browser, review all three directions side-by-side, and wait for Tony's pick. If WIP is STILL not in the repo, push it via path #1 or #2 above before doing anything else.
 
 ---
 
