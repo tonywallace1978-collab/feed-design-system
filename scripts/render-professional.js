@@ -53,15 +53,19 @@
     ).join('');
 
     // quick stats row
+    const fmtCompactMoney = (n) => n >= 1_000_000
+      ? '$' + (n / 1_000_000).toFixed(2).replace(/\.?0+$/, '') + 'M'
+      : '$' + Math.round(n / 1000) + 'K';
     const stats = [
-      { l: 'Yrs exp',     v: s.years_experience },
-      { l: 'Rating',      v: s.rating_avg.toFixed(2) },
-      { l: 'Contracts',   v: s.completed_contracts },
-      { l: 'Endorsements',v: s.endorsements_count },
-      { l: 'Connections', v: s.connections_count },
+      { l: 'Yrs exp',      v: s.years_experience },
+      { l: 'Rating',       v: s.rating_avg.toFixed(2) + ' ★', sub: s.rating_count + ' reviews' },
+      { l: 'Contracts',    v: s.completed_contracts, sub: s.active_contracts + ' active' },
+      { l: 'Endorsements', v: s.endorsements_count },
+      { l: 'Connections',  v: s.connections_count },
+      { l: 'Lifetime',     v: fmtCompactMoney(s.lifetime_billings_usd) },
     ];
     $('#hero-stats').innerHTML = stats.map(s =>
-      `<div class="stat-tile"><div class="kpi-val">${s.v}</div><div class="kpi-label">${s.l}</div></div>`
+      `<div class="stat-tile"><div class="kpi-val">${s.v}</div><div class="kpi-label">${s.l}${s.sub ? ` &middot; <span style="opacity:.7">${s.sub}</span>` : ''}</div></div>`
     ).join('');
 
     $('#hero-strength-bar').style.width = s.profile_strength_pct + '%';
