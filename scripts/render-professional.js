@@ -115,10 +115,10 @@
 
   // ── CONNECTIONS ──────────────────────────────────────────────
   function renderConnections() {
-    const c = D.quick_stats;
-    $('#conn-total').textContent = c.connections_count.toLocaleString();
-    $('#conn-month').textContent = '+' + 14;
-    $('#conn-quarter').textContent = '+' + 41;
+    const c = D.quick_stats || {};
+    $('#conn-total').textContent = (c.connections_count || 0).toLocaleString();
+    $('#conn-month').textContent   = '+' + (c.connections_growth_30d ?? 0);
+    $('#conn-quarter').textContent = '+' + (c.connections_growth_quarter ?? 0);
   }
 
   // ── BUSINESS AFFILIATION ─────────────────────────────────────

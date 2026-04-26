@@ -83,6 +83,8 @@ window.PROFESSIONAL_DATA = {
     "active_contracts": 1,
     "endorsements_count": 28,
     "connections_count": 412,
+    "connections_growth_30d": 14,
+    "connections_growth_quarter": 41,
     "lifetime_billings_usd": 1684000,
     "profile_strength_pct": 96
   },
