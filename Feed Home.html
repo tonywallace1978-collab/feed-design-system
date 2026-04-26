@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Automate America — Feed</title>
+<link rel="stylesheet" href="tokens/glass-design-tokens.css" />
+<link rel="stylesheet" href="styles/glass.css" />
+<style>
+  /* page-specific */
+  .container-header { display: flex; align-items: center; justify-content: space-between; padding: 21px 34px 0; gap: 13px; flex-wrap: wrap; }
+  .container-header h1 { font-family: 'Outfit'; font-weight: 600; font-size: 26px; letter-spacing: -0.015em; margin: 0; color: var(--glass-text-primary); }
+  .feed-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 21px; padding: 21px; }
+  @media (max-width: 1100px) { .feed-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 760px) { .feed-grid { grid-template-columns: 1fr; padding: 13px; } }
+  .card-head { display: flex; align-items: flex-start; gap: 13px; }
+  .card-head .who { flex: 1; min-width: 0; }
+  .rate-block { display: flex; align-items: baseline; gap: 8px; margin: 13px 0 8px; }
+  .rate { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; color: #fff; line-height: 1; }
+  :root[data-theme="light"] .rate { color: #0a0a14; }
+  .rate-unit { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--glass-text-tertiary); }
+  .device-cluster { display: flex; align-items: flex-start; gap: 34px; margin: 34px auto 0; padding: 0 34px; flex-wrap: wrap; justify-content: center; }
+  .device-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.10em; color: var(--glass-text-tertiary); margin-bottom: 13px; padding-left: 8px; }
+  .iphone-frame .glass-card { padding: 13px; border-radius: 16px; }
+  .iphone-frame .card-title { font-size: 16px; }
+  .iphone-frame .card-sub { font-size: 13px; }
+  .iphone-frame .gbtn { min-height: 34px; padding: 7px 14px; font-size: 13px; }
+  .iphone-frame .rate { font-size: 22px; }
+  .iphone-dock { position: absolute; bottom: 21px; left: 21px; right: 21px; z-index: 4; display: flex; align-items: center; justify-content: space-around; padding: 13px 16px; border-radius: 24px; background: rgba(15,15,35,0.40); -webkit-backdrop-filter: blur(28px) saturate(180%); backdrop-filter: blur(28px) saturate(180%); border: 1px solid rgba(255,255,255,0.10); box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.20), 0 12px 32px rgba(0,0,0,0.40); }
+  :root[data-theme="light"] .iphone-dock { background: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.55); box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 12px 32px rgba(15,15,35,0.18); }
+  .iphone-dock button { border: 0; background: transparent; color: var(--glass-text-secondary); cursor: pointer; padding: 6px; border-radius: 10px; display: grid; place-items: center; }
+  .iphone-dock button.active { color: var(--glass-text-primary); }
+  .iphone-frame .iphone-content { padding-bottom: 100px; }
+  .kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 13px; margin-top: 13px; }
+  @media (max-width: 760px) { .device-cluster { display: none; } }
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="shell-wide">
+
+    <section class="glass-container">
+      <div class="container-header">
+        <div>
+          <h1>Today on the floor</h1>
+          <div class="row-meta" style="margin-top: 6px;"><span class="live-dot"></span><span>3 new contracts since 06:00 EST · Detroit metro</span></div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="gbtn-secondary gbtn sm" type="button">Filters</button>
+          <button class="gbtn sm" type="button">+ Post job</button>
+        </div>
+      </div>
+
+      <div class="feed-grid">
+
+        <!-- 1. LIVE CONTRACT -->
+        <article class="glass-card hoverable card-pad">
+          <div class="card-tag live"><span class="dot"></span>Live contract · 4h left to apply</div>
+          <div class="card-head">
+            <div class="logo-tile md-72 indigo">AR</div>
+            <div class="who">
+              <h3 class="card-title">PLC programmer · Robotic palletizer commissioning</h3>
+              <p class="card-sub">Acme Robotics · Detroit, MI</p>
+            </div>
+          </div>
+          <div class="rate-block"><span class="rate">$148.50</span><span class="rate-unit">/ hr · 4-week onsite</span></div>
+          <div class="chip-row" style="margin-top: 8px;">
+            <span class="chip">ROCKWELL CONTROLOGIX</span>
+            <span class="chip">ISA-S88</span>
+            <span class="chip ok">TÜV CERTIFIED</span>
+          </div>
+          <div class="row-meta" style="margin-top: 13px;">
+            <div class="avatars">
+              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces')"></div>
+              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=80&h=80&fit=crop&crop=faces')"></div>
+              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces')"></div>
+              <div class="a more">+9</div>
+            </div>
+            <span>12 applicants</span>
+          </div>
+          <div class="cta-row" style="margin-top: 21px;">
+            <button class="gbtn gbtn-connect" type="button">Connect</button>
+            <button class="gbtn-secondary gbtn" type="button">Message</button>
+          </div>
+        </article>
+
+        <!-- 2. KPI TILE -->
+        <article class="glass-card hoverable card-pad">
+          <div class="card-tag"><span class="dot"></span>This quarter · Q2 2026</div>
+          <h3 class="card-title">Network performance</h3>
+          <div class="kpi-grid">
+            <div><div class="kpi-label">Paid out</div><div class="kpi-val">$2.4M</div><div class="kpi-delta">▲ 11.2%</div></div>
+            <div><div class="kpi-label">Timesheets</div><div class="kpi-val" style="color:#C7D2FE;">8,412</div><div class="kpi-delta">▲ 4.6%</div></div>
+            <div><div class="kpi-label">On-time</div><div class="kpi-val" style="color:#FCD34D;">96.3%</div><div class="kpi-delta">▲ 1.1pt</div></div>
+          </div>
+          <div class="spark" aria-hidden="true" style="margin-top: 13px;">
+            <div class="b" style="height:30%"></div><div class="b" style="height:45%"></div><div class="b" style="height:38%"></div>
+            <div class="b" style="height:62%"></div><div class="b" style="height:55%"></div><div class="b" style="height:78%"></div>
+            <div class="b" style="height:70%"></div><div class="b" style="height:88%"></div><div class="b" style="height:82%"></div>
+            <div class="b" style="height:95%"></div><div class="b" style="height:90%"></div><div class="b" style="height:100%"></div>
+          </div>
+          <div class="row-meta" style="margin-top: 13px;"><span>vs. Q1 2026</span><span class="sep">·</span><span>Updated 06:14 EST</span></div>
+        </article>
+
+        <!-- 3. PROFESSIONAL PROFILE -->
+        <article class="glass-card hoverable card-pad">
+          <div class="card-tag" style="color:#FCD34D;"><span class="dot" style="background:#FBBF24"></span>Professional · Verified</div>
+          <div class="card-head">
+            <!-- TODO: replace with real user photo -->
+            <div class="photo photo-72" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=faces')"></div>
+            <div class="who">
+              <h3 class="card-title">Maria Lopez</h3>
+              <p class="card-sub">Senior Controls Engineer · Detroit, MI</p>
+              <div class="row-meta" style="margin-top: 6px;"><span>9 yr exp</span><span class="sep">·</span><span>★ 4.96</span><span class="sep">·</span><span>34 contracts</span></div>
+            </div>
+          </div>
+          <!-- 5 achievement badges -->
+          <div class="badge-row" style="margin-top: 13px; justify-content: space-between;">
+            <div class="badge-stack">
+              <div class="badge-80 emerald" title="Verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+              <div class="badge-label">Verified</div>
+            </div>
+            <div class="badge-stack">
+              <div class="badge-80" title="Top 1% Hourly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M5 9l7-7 7 7"/></svg></div>
+              <div class="badge-label">Top 1% rate</div>
+            </div>
+            <div class="badge-stack">
+              <div class="badge-80 indigo" title="On-time 96%+"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+              <div class="badge-label">On-time 96%</div>
+            </div>
+            <div class="badge-stack">
+              <div class="badge-80 silver" title="Multi-disciplinary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/></svg></div>
+              <div class="badge-label">Multi-disc</div>
+            </div>
+            <div class="badge-stack">
+              <div class="badge-80 rose" title="Decade Veteran"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18l7-4 7 4V3z"/></svg></div>
+              <div class="badge-label">10-yr vet</div>
+            </div>
+          </div>
+          <div class="chip-row" style="margin-top: 13px;">
+            <span class="chip">SIEMENS</span><span class="chip">ALLEN-BRADLEY</span><span class="chip">FANUC</span>
+          </div>
+          <div class="cta-row" style="margin-top: 21px;">
+            <a href="Professional Profile.html" class="gbtn">Endorse</a>
+            <a href="Professional Profile.html" class="gbtn-secondary gbtn">View profile</a>
+          </div>
+        </article>
+
+        <!-- 4. COMPLETED WORK -->
+        <article class="glass-card hoverable card-pad">
+          <div class="card-tag" style="color:#A5B4FC"><span class="dot" style="background:#818CF8"></span>Completed work · 2 days ago</div>
+          <div class="card-head">
+            <div class="logo-tile md-72 amber">CR</div>
+            <div class="who">
+              <h3 class="card-title">Cedar Rapids Mill modernization</h3>
+              <p class="card-sub">Rockwell ControlLogix migration · 14-week project</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-top: 13px;">
+            <div><div class="kpi-label">On-time</div><div class="kpi-val">96.3%</div></div>
+            <div><div class="kpi-label">Rating</div><div class="kpi-val stars" style="font-size: 22px;">★★★★★</div></div>
+          </div>
+          <div class="row-meta" style="margin-top: 13px;"><span>Lead: J. Reyes</span><span class="sep">·</span><span>Crew of 4</span><span class="sep">·</span><span>$312k value</span></div>
+          <div class="cta-row" style="margin-top: 21px;">
+            <button class="gbtn-secondary gbtn" type="button">Save</button>
+            <button class="gbtn-secondary gbtn" type="button">View report</button>
+          </div>
+        </article>
+
+        <!-- 5. CUSTOMER PROFILE -->
+        <article class="glass-card hoverable card-pad">
+          <div class="card-tag" style="color:#7DD3FC"><span class="dot" style="background:#38BDF8"></span>Customer · Tier 1 manufacturer</div>
+          <div class="card-head">
+            <div class="logo-tile md-72 sky">F</div>
+            <div class="who">
+              <h3 class="card-title">Ford Rouge Complex</h3>
+              <p class="card-sub">Dearborn, MI · Automotive assembly</p>
+              <div class="row-meta" style="margin-top: 6px;"><span>47 active contracts</span><span class="sep">·</span><span>Avg $142/hr</span></div>
+            </div>
+          </div>
+          <div class="chip-row" style="margin-top: 13px;">
+            <span class="chip">ASSEMBLY</span><span class="chip">BODY-IN-WHITE</span><span class="chip">PAINT SHOP</span><span class="chip accent">HIRING NOW</span>
+          </div>
+          <div class="cta-row" style="margin-top: 21px;">
+            <a href="Customer Profile.html" class="gbtn">Apply</a>
+            <a href="Customer Profile.html" class="gbtn-secondary gbtn">Follow</a>
+          </div>
+        </article>
+
+        <!-- 6. BUSINESS GROUP -->
+        <article class="glass-card hoverable card-pad">
+          <div class="card-tag" style="color:#FBCFE8"><span class="dot" style="background:#F472B6"></span>Business group · Regional</div>
+          <div class="card-head">
+            <div class="logo-tile md-72 rose">GL</div>
+            <div class="who">
+              <h3 class="card-title">Great Lakes Automation Network</h3>
+              <p class="card-sub">Detroit · Cleveland · Chicago · Milwaukee</p>
+              <div class="row-meta" style="margin-top: 6px;"><span>138 members</span><span class="sep">·</span><span>12 open contracts</span></div>
+            </div>
+          </div>
+          <div class="row-meta" style="margin-top: 13px;">
+            <div class="avatars">
+              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=faces')"></div>
+              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=faces')"></div>
+              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1521119989659-a83eee488004?w=80&h=80&fit=crop&crop=faces')"></div>
+              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=faces')"></div>
+              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1463453091185-61582044d556?w=80&h=80&fit=crop&crop=faces')"></div>
+              <div class="a more">+133</div>
+            </div>
+          </div>
+          <div class="cta-row" style="margin-top: 21px;">
+            <a href="Business Group.html" class="gbtn">Join</a>
+            <a href="Business Group.html" class="gbtn-secondary gbtn">Browse</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Mobile preview -->
+    <div class="device-cluster">
+      <div>
+        <div class="device-label">Mobile · 375 × 760</div>
+        <div class="iphone-frame">
+          <div class="iphone-screen">
+            <div class="iphone-wp dark"></div>
+            <div class="iphone-wp light"></div>
+            <div class="iphone-notch"></div>
+            <div class="iphone-status">
+              <span>9:41</span>
+              <div style="display:flex;gap:5px;align-items:center;">
+                <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><path d="M1 7h2v3H1zM5 5h2v5H5zM9 3h2v7H9zM13 1h2v9h-2z"/></svg>
+                <svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x="0.5" y="0.5" width="18" height="10" rx="2.5" stroke="currentColor"/><rect x="2" y="2" width="14" height="7" rx="1" fill="currentColor"/><rect x="19" y="3.5" width="2" height="4" rx="0.5" fill="currentColor"/></svg>
+              </div>
+            </div>
+            <div class="iphone-content">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0 8px;">
+                <div>
+                  <div style="font-family:'Outfit';font-weight:700;font-size:22px;color:var(--glass-text-primary);letter-spacing:-0.02em;">Feed</div>
+                  <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);margin-top:2px;"><span class="live-dot"></span>3 new today</div>
+                </div>
+                <div class="avatar-circle" style="width:32px;height:32px;background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces');"></div>
+              </div>
+              <article class="glass-card">
+                <div class="card-tag live" style="margin-bottom:8px;"><span class="dot"></span>Live · 4h left</div>
+                <div style="display:flex;gap:10px;align-items:flex-start;">
+                  <div class="logo-tile sm-48 indigo">AR</div>
+                  <div style="flex:1;min-width:0;">
+                    <h3 class="card-title">PLC programmer</h3>
+                    <p class="card-sub">Acme Robotics · Detroit</p>
+                  </div>
+                </div>
+                <div class="rate-block" style="margin:10px 0 6px;"><span class="rate">$148.50</span><span class="rate-unit">/ hr</span></div>
+                <div class="chip-row" style="margin-top:8px;"><span class="chip">ROCKWELL</span><span class="chip">ISA-S88</span></div>
+                <div class="cta-row" style="margin-top:13px;"><button class="gbtn gbtn-connect">Connect</button><button class="gbtn-secondary gbtn">Message</button></div>
+              </article>
+              <article class="glass-card">
+                <div class="card-tag" style="margin-bottom:8px;"><span class="dot"></span>Q2 2026</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                  <div><div class="kpi-label">Paid</div><div class="kpi-val" style="font-size:18px;">$2.4M</div></div>
+                  <div><div class="kpi-label">Sheets</div><div class="kpi-val" style="font-size:18px;color:#C7D2FE;">8,412</div></div>
+                  <div><div class="kpi-label">On-time</div><div class="kpi-val" style="font-size:18px;color:#FCD34D;">96.3%</div></div>
+                </div>
+              </article>
+              <article class="glass-card">
+                <div class="card-tag" style="color:#FCD34D;margin-bottom:8px;"><span class="dot" style="background:#FBBF24"></span>Professional</div>
+                <div style="display:flex;gap:10px;align-items:flex-start;">
+                  <div class="photo photo-48" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces')"></div>
+                  <div style="flex:1;min-width:0;">
+                    <h3 class="card-title">Maria Lopez</h3>
+                    <p class="card-sub">Senior Controls Eng · Detroit</p>
+                  </div>
+                </div>
+                <div class="cta-row" style="margin-top:10px;"><button class="gbtn">Endorse</button><button class="gbtn-secondary gbtn">Connect</button></div>
+              </article>
+              <article class="glass-card">
+                <div class="card-tag" style="color:#7DD3FC;margin-bottom:8px;"><span class="dot" style="background:#38BDF8"></span>Customer</div>
+                <div style="display:flex;gap:10px;align-items:flex-start;">
+                  <div class="logo-tile sm-48 sky">F</div>
+                  <div style="flex:1;min-width:0;"><h3 class="card-title">Ford Rouge</h3><p class="card-sub">Dearborn · 47 active</p></div>
+                </div>
+                <div class="cta-row" style="margin-top:10px;"><button class="gbtn">Apply</button></div>
+              </article>
+            </div>
+            <div class="iphone-dock">
+              <button class="active" aria-label="Feed"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></button>
+              <button aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+              <button aria-label="Post"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></button>
+              <button aria-label="Messages"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></button>
+              <button aria-label="Profile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="foot">Liquid Glass · Automate America · CEO design laws 1–11 honored · Toggle theme top-right</footer>
+  </div>
+</main>
+
+<script src="scripts/glass-shell.js" data-active="feed"></script>
+</body>
+</html>

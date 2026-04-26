@@ -1,0 +1,164 @@
+{
+  "$schema": "Automate America — Hourly Contract · WHITE GLOVE tier (max-data reference fixture)",
+  "$source": "Composite fictional record. Anonymous-bid white-glove hourly contract.",
+  "$rendered_for": "Claude Design — Hourly Contract White Glove prototype",
+  "$version": "1.0",
+  "$last_updated": "2026-04-25",
+  "$tier_explanation": "White Glove = anonymous-bid, NDA-on-bid, premium tier. Customer name + plant location hidden until application is shortlisted. Premium fee paid by customer. Per CEO P678B.",
+
+  "contract_id": 28139,
+  "contract_uuid": "01HZX9P4M2K7HOURLY28139WG",
+  "type": "hourly",
+  "tier": "White Glove",
+  "white_glove": true,
+  "anonymous_until_shortlist": true,
+  "status": "Live",
+  "posted_at": "2026-04-19T09:00:00Z",
+  "closes_at": "2026-05-03T17:00:00-04:00",
+  "applicants_must_sign_nda": true,
+  "boosted": true,
+
+  "header": {
+    "title": "Body Shop FANUC Retrofit — Cell 14",
+    "title_anonymous": "Body Shop FANUC Retrofit — Cell 14 (anonymous Tier-1 OEM)",
+    "company_name_visible_post_shortlist": "Ford Rouge Complex",
+    "company_id_revealed_post_shortlist": 4471,
+    "company_logo_visible_post_shortlist": "../assets/logos/ford-motor-company.png",
+    "industry": "Automotive · Body-in-White",
+    "city_anonymous": "Detroit metro · MI",
+    "city_revealed_post_shortlist": "Dearborn",
+    "state": "MI",
+    "country": "United States",
+    "remote_eligible": false,
+    "remote_label": "Onsite",
+    "duration_label": "6-week onsite engagement",
+    "headline_rate": "$165 / hr · 4-hour minimum invoice"
+  },
+
+  "ctas_visitor": [
+    { "id": "apply-with-nda", "label": "Apply (signs NDA)", "kind": "primary",   "icon": "diamond" },
+    { "id": "save",            "label": "Save",              "kind": "secondary", "icon": "bookmark" },
+    { "id": "share",           "label": "Share",             "kind": "secondary", "icon": "share" },
+    { "id": "ask-question",    "label": "Ask a question",     "kind": "tertiary",  "icon": "envelope" }
+  ],
+
+  "compensation": {
+    "rate_default_usd": 165.00,
+    "rate_unit": "hour",
+    "rate_emergency_usd": 215.00,
+    "rate_minimum_invoice_hours": 4,
+    "white_glove_premium_pct": 30,
+    "rate_disclosed": true,
+    "currency": "USD",
+    "expense_reimbursement": ["Travel ≥50 mi", "Lodging if onsite >7d", "Per diem $85/d"],
+    "billing_cycle": "weekly",
+    "payment_terms": "Net 14 via AA platform",
+    "invoice_template": "AA-standard hourly W-9 with timesheet attestation"
+  },
+
+  "scope_summary": [
+    "Replace 12 FANUC R-2000iC welding robots with R-2000iD in Body Shop Cell 14.",
+    "Migrate cell PLC from ControlLogix v20 to v34 with all safety logic.",
+    "Re-teach 240 weld points on the new arms; validate cycle time within 1.5% of baseline.",
+    "Hand back to Production with full documentation and 2-shift production warranty.",
+    "Project window is 6 weeks fixed (May 4 – Jun 12). Cell shutdown is 11 days within that window."
+  ],
+
+  "deliverables": [
+    "Updated Studio 5000 program (.ACD + text export) with full IEC-61131-3 documentation.",
+    "FANUC TPP backups for all 12 robots, plus Roboguide simulation file.",
+    "I/O list reconciled to as-built (Excel + CSV).",
+    "Cycle-time validation report (target ≥98.5% baseline).",
+    "Safety validation per ANSI/RIA R15.06 + plant Functional Safety review.",
+    "Knowledge-transfer session with the plant controls team (4 hrs minimum)."
+  ],
+
+  "requirements_must_have": [
+    "5+ years FANUC R-30iB / R-30iD programming, plus iRVision integration.",
+    "Allen-Bradley ControlLogix v34 + Studio 5000 fluency.",
+    "Functional Safety SIL-2 minimum.",
+    "OSHA-10 or OSHA-30 (cards verified at NDA-sign).",
+    "Body-in-White OEM commissioning experience (Detroit-3 or BMW or Toyota).",
+    "Available for 11-day shutdown window (continuous on-site, weekend included)."
+  ],
+
+  "requirements_nice_to_have": [
+    "TÜV Functional Safety Engineer certification.",
+    "FANUC iRVision certification.",
+    "Spanish bilingual (line crew is mixed-language).",
+    "Prior Cell 14 experience (rare — a few candidates only)."
+  ],
+
+  "interview_process": [
+    { "step": 1, "name": "NDA + application review",           "duration": "1–2 days",  "owner": "AA White Glove Concierge" },
+    { "step": 2, "name": "Technical phone screen",              "duration": "45 min",    "owner": "Plant Eng Manager (revealed post-NDA)" },
+    { "step": 3, "name": "Take-home: weld point teach plan",    "duration": "4 hrs",     "owner": "Solo · Roboguide simulation" },
+    { "step": 4, "name": "Onsite walk-through (NDA in force)",  "duration": "3 hrs",     "owner": "Plant tour + 2-person panel" },
+    { "step": 5, "name": "References + offer",                  "duration": "2–3 days",  "owner": "Hiring Manager" }
+  ],
+
+  "white_glove_features": [
+    { "label": "Customer identity hidden",     "detail": "Customer name and plant location hidden until applicant shortlisted and NDA signed." },
+    { "label": "NDA on application",            "detail": "All applicants must sign a 2-year mutual NDA at application." },
+    { "label": "Premium concierge",             "detail": "AA White Glove Concierge owns scheduling, doc routing, payment, and dispute escalation." },
+    { "label": "Higher visibility",             "detail": "Boosted to top of feed for 7 days. 30% premium reflected in customer fee, not contractor rate." },
+    { "label": "Anonymous reviews",             "detail": "Both sides leave reviews after completion; customer + contractor names hidden in public review text." },
+    { "label": "Guaranteed payment",            "detail": "AA escrows 1 week of contracted hours up front; releases weekly per timesheet attestation." }
+  ],
+
+  "company_brief_anonymous": {
+    "$visibility": "pre_nda",
+    "industry": "Automotive · Body-in-White",
+    "size_label": "Tier-1 OEM · 5,000+ at this site",
+    "city_label": "Detroit metro · MI",
+    "rating": 4.6,
+    "review_count": 184,
+    "tagline": "Tier-1 OEM. White-glove engagement under NDA."
+  },
+
+  "company_brief_revealed": {
+    "$visibility": "post_nda_or_shortlist",
+    "logo": "../assets/logos/ford-motor-company.png",
+    "name": "Ford Rouge Complex",
+    "city": "Dearborn, MI",
+    "tagline": "The historic and active manufacturing flagship of Ford Motor Company.",
+    "rating": 4.6,
+    "review_count": 184
+  },
+
+  "stats": {
+    "applicants": 18,
+    "applicants_post_nda": 11,
+    "shortlisted": 4,
+    "interview_scheduled": 0,
+    "views_total": 587,
+    "saves_total": 47,
+    "boosted": true,
+    "match_score_for_viewer": 94
+  },
+
+  "compliance_required": [
+    { "label": "Mutual NDA · 2-yr",                "auto_signed_at_application": true },
+    { "label": "OSHA-10 or OSHA-30 card",          "verified_at_application": true },
+    { "label": "COI · GL $2M, WC per state",       "verified_pre_first_day": true },
+    { "label": "Background check · 7-yr",          "verified_pre_first_day": true },
+    { "label": "Drug screen · 5-panel",            "verified_pre_first_day": true },
+    { "label": "Site-specific orientation · 2 hr", "completed_first_day": true }
+  ],
+
+  "applicant_panel": {
+    "$visibility": "owner_only",
+    "summary": { "applied": 18, "nda_signed": 11, "shortlisted": 4, "interview_scheduled": 0, "rejected": 2 },
+    "rows": [
+      { "applicant_name": "Maria Lopez",   "applicant_id": 38291, "rating": 4.96, "match": 96, "applied_at": "2026-04-22", "nda_signed_at": "2026-04-22", "status": "Shortlisted",  "rate_proposed": 165 },
+      { "applicant_name": "Karen Mitchell","applicant_id": 39102, "rating": 4.88, "match": 92, "applied_at": "2026-04-21", "nda_signed_at": "2026-04-21", "status": "Shortlisted",  "rate_proposed": 168 },
+      { "applicant_name": "Tony Rivera",   "applicant_id": 40117, "rating": 4.91, "match": 88, "applied_at": "2026-04-20", "nda_signed_at": "2026-04-20", "status": "Reviewed",     "rate_proposed": 175 }
+    ]
+  },
+
+  "similar_contracts": [
+    { "id": 28140, "title": "PLC programmer · Robotic palletizer commissioning",  "company": "Acme Robotics",       "rate": 148.50, "tier": "Standard"     },
+    { "id": 28200, "title": "Lake Orion line refresh · 4-week onsite",              "company": "[Anonymous Tier-1]",  "rate": 158.00, "tier": "White Glove"   },
+    { "id": 28311, "title": "Sterling Heights paint shop migration",                "company": "Stellantis",          "rate": 155.00, "tier": "Standard"     }
+  ]
+}

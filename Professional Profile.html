@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Maria Lopez · Senior Controls Engineer · Automate America</title>
+<link rel="stylesheet" href="tokens/glass-design-tokens.css" />
+<link rel="stylesheet" href="styles/glass.css" />
+<style>
+  .hero { display: grid; grid-template-columns: 144px 1fr auto; gap: 21px; align-items: center; padding: 34px; }
+  @media (max-width: 760px) { .hero { grid-template-columns: 1fr; text-align: center; } .hero .who { text-align: center; } }
+  .hero h1 { font-family: 'Outfit'; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; }
+  .hero .title { font-family: 'Outfit'; font-weight: 500; font-size: 18px; color: var(--glass-text-secondary); margin-top: 4px; }
+  .hero .meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--glass-text-tertiary); margin-top: 8px; }
+  .hero-rate { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 32px; color: #C7D2FE; letter-spacing: -0.02em; line-height: 1; }
+  .hero-rate .u { font-size: 14px; color: var(--glass-text-tertiary); font-weight: 500; }
+  .grid-main { display: grid; grid-template-columns: 1fr 360px; gap: 21px; padding: 0 21px 21px; }
+  @media (max-width: 1100px) { .grid-main { grid-template-columns: 1fr; } }
+  .stack { display: flex; flex-direction: column; gap: 21px; }
+  .pad { padding: 21px; }
+  .h3 { font-family: 'Outfit'; font-weight: 600; font-size: 18px; margin: 0 0 13px; letter-spacing: -0.005em; }
+  .timeline-item { display: grid; grid-template-columns: 72px 1fr auto; gap: 13px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  :root[data-theme="light"] .timeline-item { border-bottom-color: rgba(15,15,35,0.06); }
+  .timeline-item:last-child { border-bottom: 0; }
+  .tname { font-family: 'Outfit'; font-weight: 600; font-size: 15px; }
+  .tcompany { font-family: 'Outfit'; font-size: 13px; color: var(--glass-text-secondary); }
+  .tdates { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--glass-text-tertiary); }
+  .review { padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  :root[data-theme="light"] .review { border-bottom-color: rgba(15,15,35,0.06); }
+  .review:last-child { border-bottom: 0; }
+  .review-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .review-q { font-family: 'Outfit'; font-size: 14px; color: var(--glass-text-secondary); line-height: 1.5; }
+  .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; }
+  .cal-day { aspect-ratio: 1; border-radius: 6px; background: rgba(255,255,255,0.04); display: grid; place-items: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--glass-text-tertiary); }
+  :root[data-theme="light"] .cal-day { background: rgba(15,15,35,0.04); }
+  .cal-day.busy { background: rgba(245, 158, 11, 0.30); color: #fef3c7; }
+  .cal-day.open { background: rgba(16, 185, 129, 0.30); color: #d1fae5; }
+  :root[data-theme="light"] .cal-day.busy { color: #78350F; }
+  :root[data-theme="light"] .cal-day.open { color: #064E3B; }
+  .cal-head { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--glass-text-tertiary); text-align: center; padding: 4px 0; }
+  .logo-row { display: flex; flex-wrap: wrap; gap: 13px; }
+  .endorse-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  :root[data-theme="light"] .endorse-row { border-bottom-color: rgba(15,15,35,0.06); }
+  .endorse-row:last-child { border-bottom: 0; }
+  .cert-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-family: 'Outfit'; font-size: 14px; }
+  .cert-item .exp { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--glass-text-tertiary); }
+  .cert-item.expiring .exp { color: #FCD34D; }
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="shell-wide" style="padding-top: 21px;">
+
+    <!-- HERO -->
+    <section class="glass-container">
+      <div class="hero">
+        <!-- TODO: replace with real user photo -->
+        <div class="photo photo-144" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=600&fit=crop&crop=faces')"></div>
+        <div class="who">
+          <h1>Maria Lopez</h1>
+          <div class="title">Senior Controls Engineer · 9 yr exp</div>
+          <div class="meta">Detroit, MI · Available May 2026 · Responds in &lt; 4h</div>
+          <div class="chip-row" style="margin-top: 13px;">
+            <span class="chip ok">VERIFIED W-9</span>
+            <span class="chip ok">COI ON FILE</span>
+            <span class="chip">ENGLISH · ESPAÑOL</span>
+            <span class="chip accent">★ 4.96 · 34 contracts</span>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <div class="hero-rate">$148.50 <span class="u">/ hr</span></div>
+          <div class="cta-row" style="margin-top: 13px; justify-content: flex-end;">
+            <button class="gbtn gbtn-connect">Connect</button>
+            <button class="gbtn">Endorse</button>
+            <button class="gbtn-secondary gbtn">Message</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BADGES STRIP -->
+      <div class="pad" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="badge-row" style="justify-content: space-around;">
+          <div class="badge-stack">
+            <div class="badge-80 emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <div class="badge-label">Verified</div>
+          </div>
+          <div class="badge-stack">
+            <div class="badge-80"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M5 9l7-7 7 7"/></svg></div>
+            <div class="badge-label">Top 1% rate</div>
+          </div>
+          <div class="badge-stack">
+            <div class="badge-80 indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div class="badge-label">On-time 96%</div>
+          </div>
+          <div class="badge-stack">
+            <div class="badge-80 silver"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/></svg></div>
+            <div class="badge-label">Multi-disciplinary</div>
+          </div>
+          <div class="badge-stack">
+            <div class="badge-80 rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18l7-4 7 4V3z"/></svg></div>
+            <div class="badge-label">Decade veteran</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN GRID -->
+    <div class="grid-main" style="margin-top: 21px;">
+      <div class="stack">
+
+        <!-- Bio -->
+        <div class="glass-card pad">
+          <div class="h3">About</div>
+          <p style="font-family:'Outfit';font-size:15px;line-height:1.6;color:var(--glass-text-secondary);margin:0;">Senior controls engineer with nine years on the floor across automotive, food &amp; beverage, and consumer-goods plants. Specialize in Siemens-to-Rockwell migrations, ISA-S88 batch logic, and safety retrofits. Have led 34 commissioning projects from greenfield to brownfield. Detroit-based, willing to travel anywhere in the Great Lakes region for projects 4 weeks or longer.</p>
+        </div>
+
+        <!-- Skills + Certs -->
+        <div class="glass-card pad">
+          <div class="h3">Primary skill manufacturers</div>
+          <div class="logo-row">
+            <div class="logo-tile md-72 sky" title="Siemens">SIE</div>
+            <div class="logo-tile md-72 rose" title="Allen-Bradley">A·B</div>
+            <div class="logo-tile md-72 amber" title="Fanuc">FAN</div>
+            <div class="logo-tile md-72 indigo" title="Rockwell">RW</div>
+            <div class="logo-tile md-72 teal" title="Beckhoff">BHF</div>
+            <div class="logo-tile md-72 violet" title="ABB">ABB</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="h3">Certifications</div>
+          <div>
+            <div class="cert-item"><span>ISA-S88 Batch Control</span><span class="exp">Issued 2021 · No expiry</span></div>
+            <div class="cert-item"><span>TÜV Functional Safety Engineer</span><span class="exp">Renewed 2024 · Expires 2028</span></div>
+            <div class="cert-item expiring"><span>OSHA-30 Construction</span><span class="exp">⚠ Expires Aug 2026</span></div>
+            <div class="cert-item"><span>IPC-A-610 Specialist</span><span class="exp">Issued 2022 · No expiry</span></div>
+            <div class="cert-item expiring"><span>Siemens TIA Portal V18 Pro</span><span class="exp">⚠ Expires Jun 2026</span></div>
+          </div>
+        </div>
+
+        <!-- Experience timeline -->
+        <div class="glass-card pad">
+          <div class="h3">Experience · 9 years</div>
+          <div>
+            <div class="timeline-item">
+              <div class="logo-tile md-72 indigo">AR</div>
+              <div>
+                <div class="tname">Lead Controls Engineer</div>
+                <div class="tcompany">Acme Robotics — Detroit, MI</div>
+                <div class="tcompany" style="margin-top:4px;color:var(--glass-text-tertiary);font-size:12px;">PLC programming, robotic palletizer commissioning · 8 contracts</div>
+              </div>
+              <div class="tdates">2023 — present</div>
+            </div>
+            <div class="timeline-item">
+              <div class="logo-tile md-72 sky">F</div>
+              <div>
+                <div class="tname">Controls Engineer III</div>
+                <div class="tcompany">Ford Rouge Complex — Dearborn, MI</div>
+                <div class="tcompany" style="margin-top:4px;color:var(--glass-text-tertiary);font-size:12px;">Body-in-white line modernization · 11 contracts</div>
+              </div>
+              <div class="tdates">2020 — 2023</div>
+            </div>
+            <div class="timeline-item">
+              <div class="logo-tile md-72 amber">CR</div>
+              <div>
+                <div class="tname">Controls Engineer II</div>
+                <div class="tcompany">Cedar Rapids Mill — Cedar Rapids, IA</div>
+                <div class="tcompany" style="margin-top:4px;color:var(--glass-text-tertiary);font-size:12px;">Rockwell ControlLogix migration · 9 contracts</div>
+              </div>
+              <div class="tdates">2018 — 2020</div>
+            </div>
+            <div class="timeline-item">
+              <div class="logo-tile md-72 teal">SI</div>
+              <div>
+                <div class="tname">Junior Controls Engineer</div>
+                <div class="tcompany">Siemens Industrial Solutions — Pittsburgh, PA</div>
+                <div class="tcompany" style="margin-top:4px;color:var(--glass-text-tertiary);font-size:12px;">TIA Portal projects · 6 contracts</div>
+              </div>
+              <div class="tdates">2017 — 2018</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="glass-card pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;">
+            <div class="h3" style="margin:0;">Reviews · 4.96 ★ · 34 contracts</div>
+            <span class="stars" style="font-size:18px;">★★★★★</span>
+          </div>
+          <div>
+            <div class="review">
+              <div class="review-head">
+                <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces')"></div>
+                <div>
+                  <div style="font-family:'Outfit';font-weight:600;font-size:14px;">J. Reyes · Senior Eng</div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">Acme Robotics · Mar 2026 · ★★★★★</div>
+                </div>
+              </div>
+              <div class="review-q">Maria led the Acme palletizer commissioning ahead of schedule. Clean code, calm under pressure when the safety panel failed inspection on day three — root-caused it inside the hour. Will hire again.</div>
+            </div>
+            <div class="review">
+              <div class="review-head">
+                <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces')"></div>
+                <div>
+                  <div style="font-family:'Outfit';font-weight:600;font-size:14px;">M. Singh · Plant Manager</div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">Ford Rouge · Feb 2026 · ★★★★★</div>
+                </div>
+              </div>
+              <div class="review-q">Two-week BIW retrofit, zero overtime, zero scope creep. Walked our staff engineers through the new logic before she left so we could maintain it ourselves.</div>
+            </div>
+            <div class="review">
+              <div class="review-head">
+                <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=200&fit=crop&crop=faces')"></div>
+                <div>
+                  <div style="font-family:'Outfit';font-weight:600;font-size:14px;">B. Lin · Operations Director</div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">Cedar Rapids Mill · Nov 2025 · ★★★★★</div>
+                </div>
+              </div>
+              <div class="review-q">Migrated 14 cells from PLC-5 to ControlLogix without a single missed shift. Documentation handoff was the cleanest I have seen in 22 years.</div>
+            </div>
+          </div>
+          <div class="cta-row" style="margin-top:13px;"><button class="gbtn-secondary gbtn sm">All 34 reviews</button></div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="stack">
+
+        <!-- Availability calendar -->
+        <div class="glass-card pad">
+          <div class="h3">Availability · May 2026</div>
+          <div class="calendar">
+            <div class="cal-head">M</div><div class="cal-head">T</div><div class="cal-head">W</div><div class="cal-head">T</div><div class="cal-head">F</div><div class="cal-head">S</div><div class="cal-head">S</div>
+            <div class="cal-day busy">28</div><div class="cal-day busy">29</div><div class="cal-day busy">30</div><div class="cal-day open">1</div><div class="cal-day open">2</div><div class="cal-day"></div><div class="cal-day"></div>
+            <div class="cal-day open">5</div><div class="cal-day open">6</div><div class="cal-day open">7</div><div class="cal-day open">8</div><div class="cal-day open">9</div><div class="cal-day"></div><div class="cal-day"></div>
+            <div class="cal-day open">12</div><div class="cal-day open">13</div><div class="cal-day busy">14</div><div class="cal-day busy">15</div><div class="cal-day busy">16</div><div class="cal-day"></div><div class="cal-day"></div>
+            <div class="cal-day busy">19</div><div class="cal-day busy">20</div><div class="cal-day busy">21</div><div class="cal-day open">22</div><div class="cal-day open">23</div><div class="cal-day"></div><div class="cal-day"></div>
+            <div class="cal-day open">26</div><div class="cal-day open">27</div><div class="cal-day open">28</div><div class="cal-day open">29</div><div class="cal-day open">30</div><div class="cal-day"></div><div class="cal-day"></div>
+          </div>
+          <div class="row-meta" style="margin-top:13px;justify-content:space-around;">
+            <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:rgba(16,185,129,0.5);vertical-align:middle;margin-right:4px;"></span>Open</span>
+            <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:rgba(245,158,11,0.5);vertical-align:middle;margin-right:4px;"></span>Booked</span>
+          </div>
+          <div class="cta-row" style="margin-top:13px;"><button class="gbtn">Book a window</button></div>
+        </div>
+
+        <!-- Endorsements -->
+        <div class="glass-card pad">
+          <div class="h3">Top endorsements · 47</div>
+          <div class="endorse-row">
+            <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop&crop=faces')"></div>
+            <div style="flex:1;"><div style="font-size:13px;font-family:'Outfit';font-weight:600;">D. Kowalski</div><div style="font-size:11px;color:var(--glass-text-tertiary);font-family:'JetBrains Mono',monospace;">PLC programming · 12 endorsers</div></div>
+          </div>
+          <div class="endorse-row">
+            <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=faces')"></div>
+            <div style="flex:1;"><div style="font-size:13px;font-family:'Outfit';font-weight:600;">S. Khoury</div><div style="font-size:11px;color:var(--glass-text-tertiary);font-family:'JetBrains Mono',monospace;">Safety retrofits · 9 endorsers</div></div>
+          </div>
+          <div class="endorse-row">
+            <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=faces')"></div>
+            <div style="flex:1;"><div style="font-size:13px;font-family:'Outfit';font-weight:600;">N. Park</div><div style="font-size:11px;color:var(--glass-text-tertiary);font-family:'JetBrains Mono',monospace;">Commissioning · 8 endorsers</div></div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="glass-card pad">
+          <div class="h3">Education</div>
+          <div style="display:flex;gap:10px;align-items:center;padding:6px 0;">
+            <div class="logo-tile md-72 indigo" style="width:48px;height:48px;border-radius:12px;font-size:14px;">UM</div>
+            <div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:14px;">B.S. Electrical Engineering</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">University of Michigan · 2017</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:6px 0;">
+            <div class="logo-tile md-72 amber" style="width:48px;height:48px;border-radius:12px;font-size:14px;">DC</div>
+            <div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:14px;">A.A.S. Industrial Automation</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">Detroit Community College · 2015</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Equipment owned -->
+        <div class="glass-card pad">
+          <div class="h3">Equipment owned</div>
+          <div class="chip-row">
+            <span class="chip">FLUKE 87V DMM</span>
+            <span class="chip">SIEMENS PG/PC LAPTOP</span>
+            <span class="chip">RSLOGIX 5000 LICENSE</span>
+            <span class="chip">TIA PORTAL V18</span>
+            <span class="chip">FANUC TEACH PENDANT</span>
+            <span class="chip">SAFETY-RATED LOTO KIT</span>
+          </div>
+        </div>
+
+        <!-- Portfolio -->
+        <div class="glass-card pad">
+          <div class="h3">Portfolio &amp; links</div>
+          <div class="row-meta" style="flex-direction:column;align-items:flex-start;gap:6px;">
+            <span>📄 maria-lopez-cv.pdf</span>
+            <span>🔗 github.com/marialopez-controls</span>
+            <span>🔗 linkedin.com/in/maria-lopez-controls</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="foot">Liquid Glass · Automate America · Professional profile · Maria Lopez</footer>
+  </div>
+</main>
+<script src="scripts/glass-shell.js" data-active="pro"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dashboard · Maria Lopez · Automate America</title>
+<link rel="stylesheet" href="tokens/glass-design-tokens.css" />
+<link rel="stylesheet" href="styles/glass.css" />
+<style>
+  .greet { padding: 34px 34px 21px; display: flex; align-items: center; justify-content: space-between; gap: 21px; flex-wrap: wrap; }
+  .greet h1 { font-family: 'Outfit'; font-weight: 700; font-size: 32px; letter-spacing: -0.02em; margin: 0; }
+  .greet .sub { font-family: 'Outfit'; font-size: 15px; color: var(--glass-text-secondary); margin-top: 4px; }
+  .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; padding: 0 21px 21px; }
+  @media (max-width: 760px) { .kpi-strip { grid-template-columns: 1fr 1fr; } }
+  .kpi-card { padding: 21px; }
+  .grid-main { display: grid; grid-template-columns: 1fr 360px; gap: 21px; padding: 0 21px 21px; }
+  @media (max-width: 1100px) { .grid-main { grid-template-columns: 1fr; } }
+  .stack { display: flex; flex-direction: column; gap: 21px; }
+  .pad { padding: 21px; }
+  .h3 { font-family: 'Outfit'; font-weight: 600; font-size: 18px; margin: 0 0 13px; letter-spacing: -0.005em; }
+  .row { display: grid; grid-template-columns: 48px 1fr auto auto; gap: 13px; align-items: center; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  :root[data-theme="light"] .row { border-bottom-color: rgba(15,15,35,0.06); }
+  .row:last-child { border-bottom: 0; }
+  .row .nm { font-family: 'Outfit'; font-weight: 600; font-size: 14px; }
+  .row .sm { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--glass-text-tertiary); margin-top: 2px; }
+  .row .rt { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; color: #C7D2FE; }
+  .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 13px; }
+  .pill-row button { padding: 6px 12px; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); color: var(--glass-text-secondary); font-family: 'Outfit'; font-size: 12px; font-weight: 500; cursor: pointer; }
+  .pill-row button.active { background: rgba(99,102,241,0.20); border-color: rgba(99,102,241,0.35); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.25); }
+  :root[data-theme="light"] .pill-row button { background: rgba(15,15,35,0.05); border-color: rgba(15,15,35,0.10); }
+  :root[data-theme="light"] .pill-row button.active { color: #1E1B4B; }
+  .earn-bars { display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px; align-items: end; height: 140px; padding: 13px 0; }
+  .earn-bars .b { background: linear-gradient(to top, rgba(99,102,241,0.50), rgba(99,102,241,0.85)); border-radius: 4px 4px 0 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.30); }
+  .earn-bars .b.now { background: linear-gradient(to top, rgba(245,158,11,0.55), rgba(245,158,11,0.95)); }
+  .earn-labels { display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--glass-text-tertiary); text-align: center; }
+  .alert { padding: 13px; border-radius: 13px; background: rgba(245,158,11,0.10); border: 1px solid rgba(245,158,11,0.25); display: flex; gap: 10px; align-items: flex-start; }
+  .alert-dot { width: 24px; height: 24px; border-radius: 50%; background: rgba(245,158,11,0.30); display: grid; place-items: center; flex-shrink: 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.30); }
+  .ts-row { display: grid; grid-template-columns: 1fr auto auto auto; gap: 13px; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: 'Outfit'; font-size: 13px; }
+  :root[data-theme="light"] .ts-row { border-bottom-color: rgba(15,15,35,0.06); }
+  .ts-row:last-child { border-bottom: 0; }
+  .status-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .status-pill.paid { background: rgba(16,185,129,0.18); color: #A7F3D0; }
+  .status-pill.pending { background: rgba(245,158,11,0.18); color: #FCD34D; }
+  .status-pill.draft { background: rgba(255,255,255,0.08); color: var(--glass-text-tertiary); }
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="shell-wide" style="padding-top:21px;">
+
+    <section class="glass-container">
+      <div class="greet">
+        <div style="display:flex;gap:13px;align-items:center;">
+          <div class="photo photo-72" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=faces')"></div>
+          <div>
+            <h1>Good morning, Maria</h1>
+            <div class="sub">3 timesheets need approval · Acme palletizer commissioning starts Monday</div>
+          </div>
+        </div>
+        <div class="cta-row">
+          <button class="gbtn gbtn-connect">+ New timesheet</button>
+          <button class="gbtn">Browse contracts</button>
+        </div>
+      </div>
+
+      <div class="kpi-strip">
+        <div class="glass-card kpi-card">
+          <div class="kpi-label">Earned this month</div>
+          <div class="kpi-val" style="color:#A7F3D0;">$18,420</div>
+          <div class="kpi-delta">▲ 12.3% vs Mar</div>
+        </div>
+        <div class="glass-card kpi-card">
+          <div class="kpi-label">Pending invoices</div>
+          <div class="kpi-val" style="color:#FCD34D;">$6,240</div>
+          <div class="kpi-delta">2 invoices · Net-15</div>
+        </div>
+        <div class="glass-card kpi-card">
+          <div class="kpi-label">Hours this week</div>
+          <div class="kpi-val" style="color:#C7D2FE;">38.5</div>
+          <div class="kpi-delta">Of 40 logged</div>
+        </div>
+        <div class="glass-card kpi-card">
+          <div class="kpi-label">Profile views</div>
+          <div class="kpi-val">142</div>
+          <div class="kpi-delta">▲ 24 this week</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-main" style="margin-top:21px;">
+      <div class="stack">
+
+        <!-- Earnings chart -->
+        <div class="glass-card pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <div class="h3" style="margin:0;">Earnings · last 12 weeks</div>
+            <div class="pill-row" style="margin:0;"><button>4w</button><button class="active">12w</button><button>YTD</button><button>All</button></div>
+          </div>
+          <div class="earn-bars">
+            <div class="b" style="height:32%"></div>
+            <div class="b" style="height:48%"></div>
+            <div class="b" style="height:42%"></div>
+            <div class="b" style="height:55%"></div>
+            <div class="b" style="height:38%"></div>
+            <div class="b" style="height:62%"></div>
+            <div class="b" style="height:70%"></div>
+            <div class="b" style="height:58%"></div>
+            <div class="b" style="height:75%"></div>
+            <div class="b" style="height:82%"></div>
+            <div class="b" style="height:78%"></div>
+            <div class="b now" style="height:96%"></div>
+          </div>
+          <div class="earn-labels">
+            <span>W6</span><span>W7</span><span>W8</span><span>W9</span><span>W10</span><span>W11</span>
+            <span>W12</span><span>W13</span><span>W14</span><span>W15</span><span>W16</span><span>W17</span>
+          </div>
+          <div class="row-meta" style="margin-top:13px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px;color:#fff;">$48,230</span>
+            <span class="sep">·</span>
+            <span>12-week total</span>
+            <span class="sep">·</span>
+            <span style="color:#A7F3D0;">▲ 22% vs prior 12</span>
+          </div>
+        </div>
+
+        <!-- Active contracts -->
+        <div class="glass-card pad">
+          <div class="h3">My active contracts · 3</div>
+          <div class="row">
+            <div class="logo-tile sm-48 indigo">AR</div>
+            <div><div class="nm">PLC programmer · Robotic palletizer</div><div class="sm">Acme Robotics · Detroit · Starts May 5 · 4 weeks</div></div>
+            <div class="rt">$148.50/hr</div>
+            <span class="status-pill paid">SIGNED</span>
+          </div>
+          <div class="row">
+            <div class="logo-tile sm-48 sky">F</div>
+            <div><div class="nm">Body-in-white retrofit · phase 2</div><div class="sm">Ford Rouge · Dearborn · In progress · Week 3 of 6</div></div>
+            <div class="rt">$142.00/hr</div>
+            <span class="status-pill paid">ACTIVE</span>
+          </div>
+          <div class="row">
+            <div class="logo-tile sm-48 amber">CR</div>
+            <div><div class="nm">Documentation handoff</div><div class="sm">Cedar Rapids Mill · Remote · Final week</div></div>
+            <div class="rt">$95.00/hr</div>
+            <span class="status-pill pending">REVIEW</span>
+          </div>
+        </div>
+
+        <!-- Timesheets -->
+        <div class="glass-card pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;">
+            <div class="h3" style="margin:0;">Recent timesheets</div>
+            <div class="pill-row" style="margin:0;"><button class="active">All</button><button>Pending</button><button>Paid</button></div>
+          </div>
+          <div class="ts-row">
+            <span>Week of Apr 21 · Ford Rouge · 38.5 h</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:#C7D2FE;">$5,467</span>
+            <span class="status-pill pending">PENDING</span>
+            <button class="gbtn-secondary gbtn sm">Review</button>
+          </div>
+          <div class="ts-row">
+            <span>Week of Apr 14 · Ford Rouge · 40 h</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:#C7D2FE;">$5,680</span>
+            <span class="status-pill paid">PAID</span>
+            <button class="gbtn-secondary gbtn sm">Open</button>
+          </div>
+          <div class="ts-row">
+            <span>Week of Apr 7 · Cedar Rapids · 24 h</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:#C7D2FE;">$2,280</span>
+            <span class="status-pill paid">PAID</span>
+            <button class="gbtn-secondary gbtn sm">Open</button>
+          </div>
+          <div class="ts-row">
+            <span>Week of Mar 31 · Ford Rouge · 40 h</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:#C7D2FE;">$5,680</span>
+            <span class="status-pill paid">PAID</span>
+            <button class="gbtn-secondary gbtn sm">Open</button>
+          </div>
+          <div class="ts-row">
+            <span>Week of Apr 28 · Acme Robotics · draft</span>
+            <span style="font-family:'JetBrains Mono',monospace;color:var(--glass-text-tertiary);">— —</span>
+            <span class="status-pill draft">DRAFT</span>
+            <button class="gbtn-secondary gbtn sm">Continue</button>
+          </div>
+        </div>
+
+        <!-- Recommended contracts -->
+        <div class="glass-card pad">
+          <div class="h3">Matched to your skills · 6 new this week</div>
+          <div class="row">
+            <div class="logo-tile sm-48 amber">SF</div>
+            <div><div class="nm">Safety system retrofit lead</div><div class="sm">Ford Rouge · 8-week · TÜV ✓ matched · 4 applicants</div></div>
+            <div class="rt">$162/hr</div>
+            <button class="gbtn sm">Apply</button>
+          </div>
+          <div class="row">
+            <div class="logo-tile sm-48 violet">DM</div>
+            <div><div class="nm">SCADA migration · Wonderware → Ignition</div><div class="sm">Ford Rouge · 16-week hybrid · Inductive cert needed</div></div>
+            <div class="rt">$172/hr</div>
+            <button class="gbtn sm">Apply</button>
+          </div>
+          <div class="row">
+            <div class="logo-tile sm-48 teal">VS</div>
+            <div><div class="nm">Vision system tuner</div><div class="sm">Acme Robotics · 6-week onsite Lima OH</div></div>
+            <div class="rt">$140/hr</div>
+            <button class="gbtn sm">Apply</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="stack">
+
+        <!-- Action items -->
+        <div class="glass-card pad">
+          <div class="h3">Needs your attention</div>
+          <div class="alert" style="margin-bottom:8px;">
+            <div class="alert-dot">⚠</div>
+            <div style="flex:1;">
+              <div style="font-family:'Outfit';font-weight:600;font-size:14px;">OSHA-30 expires in 89 days</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);margin-top:2px;">Renew before Aug 12 to avoid losing eligibility</div>
+              <button class="gbtn sm" style="margin-top:8px;">Renew now</button>
+            </div>
+          </div>
+          <div class="alert" style="margin-bottom:8px;">
+            <div class="alert-dot">⚠</div>
+            <div style="flex:1;">
+              <div style="font-family:'Outfit';font-weight:600;font-size:14px;">Siemens TIA Portal V18 cert · expires 42 days</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);margin-top:2px;">$240 · 4-hour online refresher</div>
+              <button class="gbtn sm" style="margin-top:8px;">Schedule</button>
+            </div>
+          </div>
+          <div class="alert" style="background:rgba(99,102,241,0.10);border-color:rgba(99,102,241,0.25);">
+            <div class="alert-dot" style="background:rgba(99,102,241,0.30);">i</div>
+            <div style="flex:1;">
+              <div style="font-family:'Outfit';font-weight:600;font-size:14px;">Acme palletizer · pre-job kickoff</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);margin-top:2px;">Monday May 5 · 7:30 AM EST · Detroit site</div>
+              <button class="gbtn sm" style="margin-top:8px;">Add to calendar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile completeness -->
+        <div class="glass-card pad">
+          <div class="h3">Profile · 92% complete</div>
+          <div style="height:8px;border-radius:4px;background:rgba(255,255,255,0.08);overflow:hidden;box-shadow:inset 0 1px 0 rgba(0,0,0,0.20);">
+            <div style="height:100%;width:92%;background:linear-gradient(90deg, rgba(99,102,241,0.85), rgba(167,139,250,0.85));box-shadow:inset 0 1px 0 rgba(255,255,255,0.30);"></div>
+          </div>
+          <div style="margin-top:13px;font-family:'Outfit';font-size:13px;color:var(--glass-text-secondary);line-height:1.6;">
+            <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>✓ Photo &amp; bio</span><span style="color:#A7F3D0;">Done</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>✓ Skills &amp; certifications</span><span style="color:#A7F3D0;">Done</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>✓ W-9 on file</span><span style="color:#A7F3D0;">Done</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>○ Add 2 portfolio samples</span><span style="color:#FCD34D;">+5%</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>○ Connect LinkedIn</span><span style="color:#FCD34D;">+3%</span></div>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="glass-card pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;">
+            <div class="h3" style="margin:0;">Messages · 3 unread</div>
+            <button class="gbtn-secondary gbtn sm">Inbox</button>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1521119989659-a83eee488004?w=200&h=200&fit=crop&crop=faces');position:relative;">
+            </div>
+            <div style="flex:1;min-width:0;"><div style="font-family:'Outfit';font-weight:600;font-size:13px;">Paul Whitfield</div><div style="font-family:'Outfit';font-size:12px;color:var(--glass-text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Confirmed your Mon 7:30 kickoff — gate 4…</div></div>
+            <span style="width:8px;height:8px;border-radius:50%;background:#6366F1;"></span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces');"></div>
+            <div style="flex:1;min-width:0;"><div style="font-family:'Outfit';font-weight:600;font-size:13px;">M. Singh · Ford</div><div style="font-family:'Outfit';font-size:12px;color:var(--glass-text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Approved your Apr 14 timesheet — paid…</div></div>
+            <span style="width:8px;height:8px;border-radius:50%;background:#6366F1;"></span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;padding:10px 0;">
+            <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=faces');"></div>
+            <div style="flex:1;min-width:0;"><div style="font-family:'Outfit';font-weight:600;font-size:13px;">Nina Park</div><div style="font-family:'Outfit';font-size:12px;color:var(--glass-text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Re: TIA Portal cyclic OB stall — try…</div></div>
+            <span style="width:8px;height:8px;border-radius:50%;background:#6366F1;"></span>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div class="glass-card pad">
+          <div class="h3">Quick links</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <a href="Professional Profile.html" class="gbtn-secondary gbtn sm" style="text-decoration:none;text-align:center;">My profile</a>
+            <a href="Feed Home.html" class="gbtn-secondary gbtn sm" style="text-decoration:none;text-align:center;">Feed</a>
+            <a href="Customer Profile.html" class="gbtn-secondary gbtn sm" style="text-decoration:none;text-align:center;">Customers</a>
+            <a href="Business Group.html" class="gbtn-secondary gbtn sm" style="text-decoration:none;text-align:center;">My groups</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="foot">Liquid Glass · Signed in as Maria Lopez · Last sync 06:14 EST</footer>
+  </div>
+</main>
+<script src="scripts/glass-shell.js" data-active="dashboard"></script>
+</body>
+</html>

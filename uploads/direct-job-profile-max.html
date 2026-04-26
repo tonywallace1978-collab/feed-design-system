@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEED — Direct Job Profile (Maximum Data — Salaried Branch)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════
+           CSS TOKENS — Canonical from profile-advanced.html
+           Fibonacci spacing · Golden ratio typography · Glass system
+           ═══════════════════════════════════════════════════════ */
+        :root {
+            --space-xs:5px;--space-sm:8px;--space-md:13px;--space-lg:21px;--space-xl:34px;--space-2xl:55px;--space-3xl:89px;
+            --size-icon-sm:34px;--size-icon:55px;--size-avatar:89px;--size-avatar-lg:160px;
+            --radius-sm:8px;--radius-md:13px;--radius-lg:21px;--radius-xl:34px;
+            --font-xs:11px;--font-sm:13px;--font-base:16px;--font-lg:21px;--font-xl:26px;--font-2xl:34px;--font-3xl:42px;
+            --primary:#6366F1;--primary-light:#818CF8;--primary-dark:#4F46E5;--primary-glow:rgba(99,102,241,0.35);
+            --secondary:#EC4899;--accent:#14B8A6;--success:#10B981;--warning:#F59E0B;--danger:#EF4444;
+            --surface-glass:rgba(12,10,30,0.38);--surface-glass-hover:rgba(18,16,40,0.48);--surface-glass-strong:rgba(8,6,22,0.75);
+            --border-glass:rgba(255,255,255,0.07);--border-glass-hover:rgba(255,255,255,0.12);
+            --text-primary:#F5F5F7;--text-secondary:#A1A1AA;--text-tertiary:#636370;--text-accent:var(--primary-light);
+            --tier-diamond:#B9F2FF;--tier-platinum:#E5E4E2;--tier-gold:#FFD700;--tier-silver:#C0C0C0;--tier-bronze:#CD7F32;
+        }
+
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{overflow-x:hidden;max-width:100vw}
+        body{font-family:'Outfit',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:var(--text-primary);line-height:1.618;-webkit-font-smoothing:antialiased;min-height:100vh;background:#060418}
+
+        /* ═══ WALLPAPER ═══ */
+        .wallpaper{position:fixed;inset:0;z-index:0;
+            background:
+                radial-gradient(ellipse at 70% 20%,rgba(99,102,241,0.15) 0%,transparent 50%),
+                radial-gradient(ellipse at 25% 60%,rgba(20,184,166,0.12) 0%,transparent 45%),
+                radial-gradient(ellipse at 55% 90%,rgba(236,72,153,0.05) 0%,transparent 40%),
+                linear-gradient(170deg,#0a0818 0%,#0d0b26 35%,#080620 65%,#060418 100%)}
+        .wallpaper-scrim{position:fixed;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,4,18,.30) 0%,rgba(6,4,18,.12) 20%,rgba(6,4,18,.08) 40%,rgba(6,4,18,.20) 70%,rgba(6,4,18,.55) 100%);pointer-events:none}
+
+        /* ═══ FEED LAYER ═══ */
+        .feed-layer{position:relative;z-index:2;min-height:100vh;padding-top:80px;overflow:hidden}
+        .feed-backdrop{position:relative;background:linear-gradient(180deg,transparent 0px,rgba(6,4,18,.25) 40px,rgba(6,4,18,.40) 120px,rgba(6,4,18,.55) 300px);padding-top:var(--space-2xl);padding-bottom:var(--space-3xl)}
+        .container{max-width:1400px;margin:0 auto;padding:0 var(--space-xl);overflow:hidden}
+
+        /* ═══ GLASS CARD ═══ */
+        .glass-card{background:var(--surface-glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border-glass);border-radius:var(--radius-xl);padding:var(--space-xl);margin-bottom:var(--space-lg);transition:all .35s;position:relative;overflow:hidden}
+        .glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06) 30%,rgba(255,255,255,.06) 70%,transparent)}
+        .glass-card:hover{background:var(--surface-glass-hover);border-color:var(--border-glass-hover);box-shadow:0 8px 40px rgba(0,0,0,.25)}
+
+        /* ═══ GRID ═══ */
+        .profile-grid{display:grid;grid-template-columns:380px minmax(0,1fr);gap:var(--space-xl);align-items:start}
+        .left-column,.right-column{display:flex;flex-direction:column;min-width:0}
+
+        /* ═══ DIRECT JOB TYPE BADGE ═══ */
+        .job-type-badge{display:inline-flex;align-items:center;gap:var(--space-sm);padding:var(--space-xs) var(--space-lg);background:linear-gradient(135deg,rgba(20,184,166,0.12),rgba(16,185,129,0.08));border:1px solid rgba(20,184,166,0.30);border-radius:100px;font-size:var(--font-sm);font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:var(--space-xl)}
+
+        /* ═══ HERO CARD ═══ */
+        .hero-card{text-align:center;padding:var(--space-2xl) var(--space-xl)}
+
+        /* Company logo */
+        .company-logo{width:160px;height:160px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-xl);box-shadow:0 8px 32px rgba(0,0,0,.4);position:relative;overflow:hidden;background:#1a365d}
+        .company-logo::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.15) 0%,transparent 50%);pointer-events:none}
+        .company-logo .logo-text{font-family:'Outfit',sans-serif;font-weight:900;font-size:18px;color:#fff;text-align:center;line-height:1.3;letter-spacing:1px}
+        .company-logo .logo-subtext{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.6);display:block;margin-top:4px;letter-spacing:2px}
+
+        .company-name{font-size:var(--font-lg);font-weight:600;color:var(--text-secondary);margin-bottom:var(--space-sm)}
+        .job-title{font-size:var(--font-2xl);font-weight:800;color:var(--text-primary);margin-bottom:var(--space-md);letter-spacing:-0.5px;line-height:1.2}
+
+        /* Occupation pill */
+        .occ-tag{display:inline-flex;padding:3px 12px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);border-radius:100px;font-size:var(--font-xs);color:var(--primary-light);font-weight:500;margin-bottom:var(--space-lg)}
+
+        /* Employment type */
+        .employment-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 14px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.18);border-radius:100px;font-size:var(--font-sm);color:var(--success);font-weight:600;margin-bottom:var(--space-md)}
+
+        /* Date row */
+        .date-row{display:flex;align-items:center;justify-content:center;gap:var(--space-sm);font-size:var(--font-sm);color:var(--text-secondary);margin-bottom:var(--space-xs)}
+        .date-label{color:var(--text-tertiary);font-weight:500;text-transform:uppercase;letter-spacing:0.5px;font-size:var(--font-xs)}
+        .date-value{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text-primary)}
+
+        /* ═══ APPLY CTA — Pattern B (Animated Gradient Shimmer) ═══ */
+        .cta-apply{
+            background:linear-gradient(90deg,#0d9488 0%,var(--accent) 20%,#34d399 40%,#6ee7b7 50%,#34d399 60%,var(--accent) 80%,#0d9488 100%);
+            background-size:200% 100%;
+            animation:gradient-shimmer 2.8s ease-in-out infinite;
+            color:#fff;padding:var(--space-lg) var(--space-xl);border:none;border-radius:var(--radius-md);
+            font-family:'Outfit',sans-serif;font-size:var(--font-lg);font-weight:800;cursor:pointer;
+            box-shadow:0 6px 24px rgba(20,184,166,.45),inset 0 1px 0 rgba(255,255,255,.20);
+            transition:transform .2s,box-shadow .2s;width:100%;text-transform:uppercase;letter-spacing:1.5px;
+            margin-top:var(--space-xl);margin-bottom:var(--space-lg)}
+        .cta-apply:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 36px rgba(20,184,166,.60),inset 0 1px 0 rgba(255,255,255,.25)}
+        @keyframes gradient-shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+
+        /* Salary display */
+        .salary-display{padding:var(--space-lg) 0;border-top:1px solid var(--border-glass);margin-top:var(--space-md);text-align:center}
+        .salary-amount{font-size:var(--font-2xl);font-weight:900;color:var(--success);font-family:'JetBrains Mono',monospace;letter-spacing:-1px}
+        .salary-period{font-size:var(--font-sm);color:var(--text-tertiary);font-weight:500;margin-top:2px}
+        .salary-type{font-size:var(--font-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px;margin-top:var(--space-sm)}
+
+        /* Skills row */
+        .skills-row{display:flex;justify-content:center;gap:var(--space-xl);padding:var(--space-lg) 0}
+        .skill-item{text-align:center}
+        .skill-name{font-size:var(--font-xs);color:var(--text-secondary);margin-top:var(--space-sm);font-weight:500}
+        .skill-model{font-size:var(--font-xs);color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+        .mfr-logo{border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 4px 16px rgba(0,0,0,.3);position:relative;overflow:hidden}
+        .mfr-logo::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.15) 0%,transparent 50%);pointer-events:none}
+        .mfr-logo.ab{width:80px;height:80px;background:#c8102e;border-radius:var(--radius-md)}
+        .mfr-logo.ab .logo-text{font-family:'Outfit',sans-serif;font-weight:700;font-size:10px;color:#fff;text-align:center;line-height:1.3;text-transform:uppercase;letter-spacing:0.5px}
+        .mfr-logo.siemens{width:80px;height:80px;background:#009999;border-radius:var(--radius-md)}
+        .mfr-logo.siemens .logo-text{font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;color:#fff;letter-spacing:1.5px}
+        .mfr-logo.rockwell{width:80px;height:80px;background:#d32f2f;border-radius:var(--radius-md)}
+        .mfr-logo.rockwell .logo-text{font-family:'Outfit',sans-serif;font-weight:700;font-size:10px;color:#fff;text-align:center;line-height:1.2;text-transform:uppercase;letter-spacing:0.3px}
+
+        /* Location */
+        .location-row{display:flex;align-items:center;justify-content:center;gap:var(--space-sm);font-size:var(--font-base);color:var(--text-secondary)}
+        .flag-svg{width:22px;height:15px;border-radius:2px;vertical-align:middle}
+        .hybrid-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.18);border-radius:100px;font-size:var(--font-xs);color:var(--primary-light);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-top:var(--space-sm)}
+        .travel-note{font-size:var(--font-xs);color:var(--text-tertiary);margin-top:var(--space-sm)}
+
+        /* ═══ CTA STACK ═══ */
+        .cta-stack{display:flex;flex-direction:column;gap:var(--space-md)}
+        .cta-primary{background:linear-gradient(180deg,var(--primary-light),var(--primary) 50%,var(--primary-dark));color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-base);font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(99,102,241,.4),inset 0 1px 0 rgba(255,255,255,.15);transition:all .2s;text-align:center}
+        .cta-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 24px rgba(99,102,241,.5)}
+        .cta-outline{background:transparent;color:var(--text-secondary);border:1px solid var(--border-glass);padding:var(--space-md) var(--space-xl);border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:var(--space-sm);text-align:center}
+        .cta-outline:hover{background:rgba(255,255,255,.04);border-color:var(--border-glass-hover);color:var(--text-primary)}
+
+        /* ═══ SECTION TITLE ═══ */
+        .section-title{font-size:var(--font-lg);font-weight:700;margin-bottom:var(--space-lg);display:flex;align-items:center;gap:var(--space-sm)}
+        .section-title::before{content:'';width:4px;height:22px;background:linear-gradient(180deg,var(--primary),var(--primary-dark));border-radius:2px;flex-shrink:0}
+        .section-count{font-size:var(--font-base);color:var(--text-accent);font-weight:700;margin-left:4px;font-family:'JetBrains Mono',monospace}
+
+        /* ═══ JOB DESCRIPTION ═══ */
+        .job-desc-text{font-size:var(--font-base);color:var(--text-secondary);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+        .job-desc-text.expanded{-webkit-line-clamp:unset;display:block}
+        .read-more{display:inline-flex;align-items:center;gap:4px;color:var(--text-accent);font-size:var(--font-sm);font-weight:600;cursor:pointer;margin-top:var(--space-md);background:none;border:none;font-family:'Outfit',sans-serif;transition:color .2s}
+        .read-more:hover{color:var(--primary-light)}
+
+        /* ═══ DETAILS GRID ═══ */
+        .details-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-md)}
+        .detail-cell{text-align:center;padding:var(--space-md);background:rgba(255,255,255,0.02);border:1px solid var(--border-glass);border-radius:var(--radius-md)}
+        .detail-val{font-size:var(--font-lg);font-weight:800;color:var(--text-primary);font-family:'JetBrains Mono',monospace}
+        .detail-lbl{font-size:var(--font-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+
+        /* ═══ BENEFITS SECTION ═══ */
+        .benefits-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-md)}
+        .benefit-item{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md);background:rgba(16,185,129,0.03);border:1px solid rgba(16,185,129,0.08);border-radius:var(--radius-md)}
+        .benefit-icon{width:34px;height:34px;border-radius:var(--radius-sm);background:rgba(16,185,129,0.10);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:var(--success)}
+        .benefit-name{font-size:var(--font-sm);font-weight:600;color:var(--text-primary)}
+        .benefit-detail{font-size:var(--font-xs);color:var(--text-tertiary)}
+
+        /* ═══ QUESTION ITEMS ═══ */
+        .question-item{padding:var(--space-md) 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .question-item:last-child{border-bottom:none}
+        .question-num{font-family:'JetBrains Mono',monospace;font-size:var(--font-xs);color:var(--primary-light);font-weight:700;margin-bottom:4px;letter-spacing:0.5px}
+        .question-text{font-size:var(--font-sm);color:var(--text-secondary);line-height:1.6}
+
+        /* ═══ FOLD CONTROL ═══ */
+        .fold-trigger{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:var(--space-sm) 0;margin-top:var(--space-sm)}
+        .fold-indicator{font-size:var(--font-xs);color:var(--text-accent);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:4px;transition:color .2s}
+        .fold-indicator:hover{color:var(--primary-light)}
+        .section-hidden{display:none;animation:fadeIn .3s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+        /* ═══ ELIGIBILITY ═══ */
+        .eligibility-item{display:flex;align-items:flex-start;gap:var(--space-md);padding:var(--space-md) 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .eligibility-item:last-child{border-bottom:none}
+        .elig-badge{flex-shrink:0;padding:2px 10px;border-radius:4px;font-size:var(--font-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+        .elig-badge.yes{background:rgba(16,185,129,0.12);color:var(--success);border:1px solid rgba(16,185,129,0.20)}
+        .elig-text{font-size:var(--font-sm);color:var(--text-secondary);line-height:1.5}
+
+        /* ═══ PROCEDURES TEXT ═══ */
+        .procedures-text{font-size:var(--font-sm);color:var(--text-secondary);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .procedures-text.expanded{-webkit-line-clamp:unset;display:block}
+
+        /* ═══ SECTION SUBTITLE ═══ */
+        .sub-title{font-size:var(--font-base);font-weight:700;color:var(--text-secondary);margin-bottom:var(--space-md);text-transform:uppercase;letter-spacing:0.5px}
+
+        /* ═══ SECURITY / LANGUAGES ═══ */
+        .sec-lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg)}
+        .sec-item{display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-sm) 0;font-size:var(--font-sm)}
+        .sec-icon{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+        .sec-icon.required{background:rgba(16,185,129,0.12);color:var(--success)}
+        .sec-icon.preferred{background:rgba(245,158,11,0.12);color:var(--warning)}
+        .sec-label{color:var(--text-secondary)}
+        .sec-badge{font-size:var(--font-xs);padding:1px 8px;border-radius:4px;font-weight:600;margin-left:auto}
+        .sec-badge.req{background:rgba(16,185,129,0.10);color:var(--success)}
+        .sec-badge.pref{background:rgba(245,158,11,0.10);color:var(--warning)}
+
+        /* ═══ COMPANY INFO ═══ */
+        .company-info-row{display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-sm) 0;font-size:var(--font-sm);color:var(--text-secondary)}
+        .company-info-icon{color:var(--text-tertiary);width:16px;text-align:center;flex-shrink:0}
+        .company-info-val{color:var(--text-primary);font-weight:500}
+
+        /* ═══ ENTRANCE ANIMATIONS ═══ */
+        .glass-card{animation:card-enter .5s ease both}
+        .left-column .glass-card:nth-child(1){animation-delay:.05s}
+        .left-column .glass-card:nth-child(2){animation-delay:.10s}
+        .left-column .glass-card:nth-child(3){animation-delay:.15s}
+        .left-column .glass-card:nth-child(4){animation-delay:.20s}
+        .left-column .glass-card:nth-child(5){animation-delay:.25s}
+        .right-column .glass-card:nth-child(1){animation-delay:.08s}
+        .right-column .glass-card:nth-child(2){animation-delay:.13s}
+        .right-column .glass-card:nth-child(3){animation-delay:.18s}
+        .right-column .glass-card:nth-child(4){animation-delay:.23s}
+        .right-column .glass-card:nth-child(5){animation-delay:.28s}
+        .right-column .glass-card:nth-child(6){animation-delay:.33s}
+        .right-column .glass-card:nth-child(7){animation-delay:.38s}
+        @keyframes card-enter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+        /* ═══ RESPONSIVE ═══ */
+        @media(max-width:860px){
+            .profile-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+            .details-grid{grid-template-columns:repeat(2,1fr)}
+            .sec-lang-grid{grid-template-columns:1fr}
+            .benefits-grid{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wallpaper"></div>
+    <div class="wallpaper-scrim"></div>
+
+    <div class="feed-layer">
+        <div class="feed-backdrop">
+            <div class="container">
+                <div class="profile-grid">
+
+                    <!-- ═══════════════════════════════════════════
+                         LEFT COLUMN (380px)
+                         Direct Job — Company visible (not anonymous)
+                         ═══════════════════════════════════════════ -->
+                    <div class="left-column">
+
+                        <!-- HERO CARD -->
+                        <div class="glass-card hero-card">
+                            <!-- Direct Job type badge -->
+                            <div class="job-type-badge">
+                                <span>&#9654;</span>
+                                <span>Direct Job</span>
+                            </div>
+
+                            <!-- Company Logo (visible — not anonymous) -->
+                            <div class="company-logo">
+                                <span class="logo-text">AXIOM<br>CONTROLS<span class="logo-subtext">EST. 1997</span></span>
+                            </div>
+
+                            <!-- Company Name -->
+                            <div class="company-name">Axiom Controls Inc.</div>
+
+                            <!-- Job Title -->
+                            <div class="job-title">Senior PLC Programmer</div>
+
+                            <!-- Occupation -->
+                            <span class="occ-tag">Controls Engineer</span>
+
+                            <!-- Employment Type -->
+                            <div>
+                                <span class="employment-badge">
+                                    <span style="font-size:8px">&#9679;</span> Full-time
+                                </span>
+                            </div>
+
+                            <!-- Start Date -->
+                            <div class="date-row" style="margin-top:var(--space-md)">
+                                <span class="date-label">Start</span>
+                                <span class="date-value">Jun 2, 2026</span>
+                            </div>
+
+                            <!-- APPLY FOR DIRECT JOB — Pattern B Shimmer (teal variant) -->
+                            <button class="cta-apply">Apply for Direct Job</button>
+
+                            <!-- Salary Display -->
+                            <div class="salary-display">
+                                <div class="salary-amount">$95,000 - $125,000</div>
+                                <div class="salary-period">per year</div>
+                                <div class="salary-type">Salaried Position</div>
+                            </div>
+                        </div>
+
+                        <!-- REQUIRED SKILLS (80px logos per D2) -->
+                        <div class="glass-card">
+                            <div class="section-title">Required Skills</div>
+                            <div class="skills-row">
+                                <div class="skill-item">
+                                    <div class="mfr-logo ab">
+                                        <span class="logo-text">Allen<br>Bradley</span>
+                                    </div>
+                                    <div class="skill-name">ControlLogix</div>
+                                    <div class="skill-model">L8x Series</div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="mfr-logo siemens">
+                                        <span class="logo-text">SIEMENS</span>
+                                    </div>
+                                    <div class="skill-name">TIA Portal</div>
+                                    <div class="skill-model">V18</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LOCATION -->
+                        <div class="glass-card" style="text-align:center">
+                            <div class="location-row">
+                                <span style="color:var(--text-tertiary);font-size:14px">&#9673;</span>
+                                <span>Grand Rapids, Michigan</span>
+                                <svg class="flag-svg" viewBox="0 0 22 15" width="22" height="15" style="flex-shrink:0">
+                                    <rect width="22" height="15" fill="#B22234"/>
+                                    <rect y="1.15" width="22" height="1.15" fill="#fff"/>
+                                    <rect y="3.46" width="22" height="1.15" fill="#fff"/>
+                                    <rect y="5.77" width="22" height="1.15" fill="#fff"/>
+                                    <rect y="8.08" width="22" height="1.15" fill="#fff"/>
+                                    <rect y="10.38" width="22" height="1.15" fill="#fff"/>
+                                    <rect y="12.69" width="22" height="1.15" fill="#fff"/>
+                                    <rect width="8.8" height="8.08" fill="#3C3B6E"/>
+                                </svg>
+                            </div>
+                            <div class="hybrid-badge">
+                                <span style="font-size:8px">&#9679;</span> Hybrid
+                            </div>
+                            <div class="travel-note">15% travel expected</div>
+                        </div>
+
+                        <!-- COMPANY CONTACT -->
+                        <div class="glass-card">
+                            <div class="section-title">Company Info</div>
+                            <div class="company-info-row">
+                                <span class="company-info-icon">&#9993;</span>
+                                <span>careers@axiomcontrols.com</span>
+                            </div>
+                            <div class="company-info-row">
+                                <span class="company-info-icon">&#9742;</span>
+                                <span class="company-info-val">(616) 555-0147</span>
+                            </div>
+                            <div class="company-info-row">
+                                <span class="company-info-icon">&#9737;</span>
+                                <span>axiomcontrols.com</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA STACK -->
+                        <div class="cta-stack">
+                            <button class="cta-primary">Post Your Direct Job Now</button>
+                            <button class="cta-outline">
+                                <span>&#8599;</span> Share Job
+                            </button>
+                        </div>
+
+                    </div><!-- /left-column -->
+
+
+                    <!-- ═══════════════════════════════════════════
+                         RIGHT COLUMN (fluid)
+                         Direct Job — with Benefits section
+                         ═══════════════════════════════════════════ -->
+                    <div class="right-column">
+
+                        <!-- JOB DESCRIPTION -->
+                        <div class="glass-card">
+                            <div class="section-title">Job Description</div>
+                            <div class="job-desc-text" id="jobDesc">
+                                Axiom Controls Inc. is seeking a Senior PLC Programmer to join our expanding automation team in Grand Rapids, Michigan. In this role, you will design, develop, and commission PLC-based control systems for industrial automation projects across automotive, food processing, and pharmaceutical manufacturing sectors. You will lead the programming effort on multi-vendor platforms including Allen-Bradley ControlLogix, Siemens S7-1500/TIA Portal, and Rockwell Automation safety systems. Responsibilities include developing structured text and ladder logic programs from P&amp;ID and electrical schematics, integrating HMI/SCADA systems (FactoryTalk, WinCC), configuring industrial networks (EtherNet/IP, PROFINET, Modbus TCP), performing FAT/SAT testing, and providing on-site commissioning support. This is a permanent W-2 position with full benefits, reporting to the Director of Engineering.
+                            </div>
+                            <button class="read-more" onclick="toggleJobDesc()">
+                                <span id="jobDescToggle">Read full description &#9656;</span>
+                            </button>
+                        </div>
+
+                        <!-- DETAILS GRID -->
+                        <div class="glass-card">
+                            <div class="section-title">Details</div>
+                            <div class="details-grid">
+                                <div class="detail-cell">
+                                    <div class="detail-val">1</div>
+                                    <div class="detail-lbl">Position</div>
+                                </div>
+                                <div class="detail-cell">
+                                    <div class="detail-val" style="font-size:var(--font-base)">Days</div>
+                                    <div class="detail-lbl">Shift</div>
+                                </div>
+                                <div class="detail-cell">
+                                    <div class="detail-val" style="font-size:var(--font-base)">W-2</div>
+                                    <div class="detail-lbl">Employment</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BENEFITS SECTION (Direct Job only — per DIRECT-JOB-SPEC.md) -->
+                        <div class="glass-card">
+                            <div class="section-title">Benefits</div>
+                            <div class="benefits-grid">
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">+</div>
+                                    <div>
+                                        <div class="benefit-name">Health Insurance</div>
+                                        <div class="benefit-detail">Medical, includes family coverage</div>
+                                    </div>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">+</div>
+                                    <div>
+                                        <div class="benefit-name">Dental Insurance</div>
+                                        <div class="benefit-detail">Full dental coverage</div>
+                                    </div>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">+</div>
+                                    <div>
+                                        <div class="benefit-name">Vision Insurance</div>
+                                        <div class="benefit-detail">Annual eye exam + frames</div>
+                                    </div>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">+</div>
+                                    <div>
+                                        <div class="benefit-name">401(k) Retirement</div>
+                                        <div class="benefit-detail">4% employer match</div>
+                                    </div>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">+</div>
+                                    <div>
+                                        <div class="benefit-name">Paid Time Off</div>
+                                        <div class="benefit-detail">15 days per year</div>
+                                    </div>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">+</div>
+                                    <div>
+                                        <div class="benefit-name">Tuition Reimbursement</div>
+                                        <div class="benefit-detail">Up to $5,250/year</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- INTERVIEW QUESTIONS (Tier 3 — show 2 of 5) -->
+                        <div class="glass-card">
+                            <div class="section-title">Interview Questions <span class="section-count">(5)</span></div>
+                            <div class="question-item">
+                                <div class="question-num">Q1</div>
+                                <div class="question-text">Describe a complex multi-PLC system you programmed from scratch. What was the architecture and how did you handle inter-controller communication?</div>
+                            </div>
+                            <div class="question-item">
+                                <div class="question-num">Q2</div>
+                                <div class="question-text">How do you approach structured text programming versus ladder logic? When do you choose one over the other?</div>
+                            </div>
+                            <div class="section-hidden" id="interviewHidden">
+                                <div class="question-item">
+                                    <div class="question-num">Q3</div>
+                                    <div class="question-text">Walk us through your process for commissioning a new automated line, from FAT through SAT to production handoff.</div>
+                                </div>
+                                <div class="question-item">
+                                    <div class="question-num">Q4</div>
+                                    <div class="question-text">What is your experience with safety-rated control systems (SIL/PLe) and how do you validate safety logic?</div>
+                                </div>
+                                <div class="question-item">
+                                    <div class="question-num">Q5</div>
+                                    <div class="question-text">Tell us about a time you had to troubleshoot a production-down situation remotely. What tools and approach did you use?</div>
+                                </div>
+                            </div>
+                            <div class="fold-trigger" onclick="toggleFold('interviewHidden', this)">
+                                <span class="fold-indicator">&#9656; Show All (5)</span>
+                            </div>
+                        </div>
+
+                        <!-- ELIGIBILITY CRITERIA (Tier 3 — show 2 of 3) -->
+                        <div class="glass-card">
+                            <div class="section-title">Eligibility Criteria <span class="section-count">(3)</span></div>
+                            <div class="eligibility-item">
+                                <span class="elig-badge yes">Yes</span>
+                                <span class="elig-text">Must hold a Bachelor's degree in Electrical Engineering, Controls Engineering, or related field (or equivalent experience)</span>
+                            </div>
+                            <div class="eligibility-item">
+                                <span class="elig-badge yes">Yes</span>
+                                <span class="elig-text">Must have 5+ years of PLC programming experience in an industrial automation environment</span>
+                            </div>
+                            <div class="section-hidden" id="eligibilityHidden">
+                                <div class="eligibility-item">
+                                    <span class="elig-badge yes">Yes</span>
+                                    <span class="elig-text">Must be legally authorized to work in the United States</span>
+                                </div>
+                            </div>
+                            <div class="fold-trigger" onclick="toggleFold('eligibilityHidden', this)">
+                                <span class="fold-indicator">&#9656; Show All (3)</span>
+                            </div>
+                        </div>
+
+                        <!-- PROCEDURES & POLICIES (Tier 3 — collapsed text) -->
+                        <div class="glass-card">
+                            <div class="section-title">Workplace Policies</div>
+                            <div class="procedures-text" id="procText">
+                                Axiom Controls maintains an open, collaborative engineering environment with flexible core hours (9 AM - 3 PM required, flex outside). All engineers participate in weekly design reviews and monthly lunch-and-learns. Remote work available 2 days per week after 90-day onboarding period. Company provides all necessary software licenses (Studio 5000, TIA Portal, FactoryTalk), a company laptop, and a $1,500 annual professional development budget for conferences and certifications. Travel to customer sites (estimated 15% of time) includes full expense coverage per company travel policy.
+                            </div>
+                            <button class="read-more" onclick="toggleProcedures()">
+                                <span id="procToggle">Read full policies &#9656;</span>
+                            </button>
+                        </div>
+
+                        <!-- SECURITY REQUIREMENTS / LANGUAGES -->
+                        <div class="glass-card">
+                            <div class="sec-lang-grid">
+                                <div>
+                                    <div class="sub-title">Requirements</div>
+                                    <div class="sec-item">
+                                        <div class="sec-icon required">&#10003;</div>
+                                        <span class="sec-label">Background Check</span>
+                                        <span class="sec-badge req">Required</span>
+                                    </div>
+                                    <div class="sec-item">
+                                        <div class="sec-icon required">&#10003;</div>
+                                        <span class="sec-label">Valid Driver's License</span>
+                                        <span class="sec-badge req">Required</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="sub-title">Languages</div>
+                                    <div class="sec-item">
+                                        <div class="sec-icon required">&#10003;</div>
+                                        <span class="sec-label">English</span>
+                                        <span class="sec-badge req">Required</span>
+                                    </div>
+                                    <div class="sec-item">
+                                        <div class="sec-icon preferred">&#9675;</div>
+                                        <span class="sec-label">German</span>
+                                        <span class="sec-badge pref">Preferred</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /right-column -->
+
+                </div><!-- /profile-grid -->
+            </div><!-- /container -->
+        </div><!-- /feed-backdrop -->
+    </div><!-- /feed-layer -->
+
+    <!-- ═══ INTERACTION SCRIPTS ═══ -->
+    <script>
+        function toggleJobDesc() {
+            var el = document.getElementById('jobDesc');
+            var toggle = document.getElementById('jobDescToggle');
+            if (el.classList.contains('expanded')) {
+                el.classList.remove('expanded');
+                toggle.textContent = 'Read full description \u25B8';
+            } else {
+                el.classList.add('expanded');
+                toggle.textContent = 'Collapse \u25BE';
+            }
+        }
+
+        function toggleProcedures() {
+            var el = document.getElementById('procText');
+            var toggle = document.getElementById('procToggle');
+            if (el.classList.contains('expanded')) {
+                el.classList.remove('expanded');
+                toggle.textContent = 'Read full policies \u25B8';
+            } else {
+                el.classList.add('expanded');
+                toggle.textContent = 'Collapse \u25BE';
+            }
+        }
+
+        function toggleFold(hiddenId, triggerEl) {
+            var hidden = document.getElementById(hiddenId);
+            var indicator = triggerEl.querySelector('.fold-indicator');
+            if (hidden.style.display === 'none' || hidden.style.display === '') {
+                hidden.style.display = 'block';
+                indicator.textContent = '\u25BE Collapse';
+            } else {
+                hidden.style.display = 'none';
+                var parentCard = triggerEl.closest('.glass-card');
+                var totalItems = parentCard.querySelectorAll('.question-item, .eligibility-item').length;
+                indicator.textContent = '\u25B8 Show All (' + totalItems + ')';
+            }
+        }
+    </script>
+
+</body>
+</html>

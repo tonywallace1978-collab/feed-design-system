@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Great Lakes Automation Network · Group · Automate America</title>
+<link rel="stylesheet" href="tokens/glass-design-tokens.css" />
+<link rel="stylesheet" href="styles/glass.css" />
+<style>
+  .hero { display: grid; grid-template-columns: 144px 1fr auto; gap: 21px; align-items: center; padding: 34px; }
+  @media (max-width: 760px) { .hero { grid-template-columns: 1fr; } }
+  .hero h1 { font-family: 'Outfit'; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; }
+  .hero .title { font-family: 'Outfit'; font-weight: 500; font-size: 18px; color: var(--glass-text-secondary); margin-top: 4px; }
+  .hero .meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--glass-text-tertiary); margin-top: 8px; }
+  .grid-main { display: grid; grid-template-columns: 1fr 360px; gap: 21px; padding: 0 21px 21px; }
+  @media (max-width: 1100px) { .grid-main { grid-template-columns: 1fr; } }
+  .stack { display: flex; flex-direction: column; gap: 21px; }
+  .pad { padding: 21px; }
+  .h3 { font-family: 'Outfit'; font-weight: 600; font-size: 18px; margin: 0 0 13px; letter-spacing: -0.005em; }
+  .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; padding: 21px; border-top: 1px solid rgba(255,255,255,0.06); }
+  :root[data-theme="light"] .kpi-strip { border-top-color: rgba(15,15,35,0.06); }
+  @media (max-width: 760px) { .kpi-strip { grid-template-columns: 1fr 1fr; } }
+  .post { padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  :root[data-theme="light"] .post { border-bottom-color: rgba(15,15,35,0.06); }
+  .post:last-child { border-bottom: 0; }
+  .post-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .post-body { font-family: 'Outfit'; font-size: 14px; line-height: 1.55; color: var(--glass-text-secondary); }
+  .post-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--glass-text-tertiary); margin-top: 8px; display: flex; gap: 16px; }
+  .event-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 13px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.06); align-items: center; }
+  :root[data-theme="light"] .event-item { border-bottom-color: rgba(15,15,35,0.06); }
+  .event-item:last-child { border-bottom: 0; }
+  .date-tile { background: rgba(99,102,241,0.18); border: 1px solid rgba(99,102,241,0.30); border-radius: 10px; text-align: center; padding: 6px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.20); }
+  .date-tile .m { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #C7D2FE; text-transform: uppercase; }
+  .date-tile .d { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; color: #fff; line-height: 1; }
+  :root[data-theme="light"] .date-tile .d { color: #1E1B4B; }
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="shell-wide" style="padding-top:21px;">
+
+    <section class="glass-container">
+      <div class="hero">
+        <div class="logo-tile" style="width:144px;height:144px;border-radius:24px;font-size:36px;background:linear-gradient(135deg, rgba(244,114,182,0.30), rgba(190,24,93,0.30));border-color:rgba(244,114,182,0.40);">GL</div>
+        <div>
+          <h1>Great Lakes Automation Network</h1>
+          <div class="title">Regional business group · Founded 2019</div>
+          <div class="meta">Detroit · Cleveland · Chicago · Milwaukee · Indianapolis</div>
+          <div class="chip-row" style="margin-top:13px;">
+            <span class="chip ok">VERIFIED GROUP</span>
+            <span class="chip">REGIONAL</span>
+            <span class="chip accent">★ 4.88 · MEMBER RATING</span>
+            <span class="chip">MEETS QUARTERLY</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:32px;color:#FBCFE8;letter-spacing:-0.02em;line-height:1;">138</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--glass-text-tertiary);margin-top:4px;">MEMBERS</div>
+          <div class="cta-row" style="margin-top:13px;justify-content:flex-end;">
+            <button class="gbtn gbtn-connect">Join</button>
+            <button class="gbtn">Follow</button>
+            <button class="gbtn-secondary gbtn">Browse</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-strip">
+        <div><div class="kpi-label">Members</div><div class="kpi-val">138</div><div class="kpi-delta">▲ 9 this month</div></div>
+        <div><div class="kpi-label">Open contracts</div><div class="kpi-val" style="color:#C7D2FE;">12</div><div class="kpi-delta">Across 8 customers</div></div>
+        <div><div class="kpi-label">Upcoming events</div><div class="kpi-val" style="color:#FCD34D;">4</div><div class="kpi-delta">Next: May 2</div></div>
+        <div><div class="kpi-label">Discussion posts</div><div class="kpi-val" style="color:#A7F3D0;">2,341</div><div class="kpi-delta">All-time</div></div>
+      </div>
+    </section>
+
+    <div class="grid-main" style="margin-top:21px;">
+      <div class="stack">
+
+        <div class="glass-card pad">
+          <div class="h3">About this group</div>
+          <p style="font-family:'Outfit';font-size:15px;line-height:1.6;color:var(--glass-text-secondary);margin:0;">A peer network of industrial automation engineers, integrators, and plant managers working across the five-state Great Lakes region. We share contracts, swap site tips, run quarterly meetups in rotating cities, and keep a referrals list for short-notice work. Membership is reviewed quarterly. We do not allow recruiters or sales pitches in the feed.</p>
+        </div>
+
+        <!-- Discussion feed -->
+        <div class="glass-card pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;">
+            <div class="h3" style="margin:0;">Discussion</div>
+            <button class="gbtn sm">+ New post</button>
+          </div>
+
+          <div class="post">
+            <div class="post-head">
+              <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces')"></div>
+              <div>
+                <div style="font-family:'Outfit';font-weight:600;font-size:14px;">Maria Lopez</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">Senior Controls Eng · 2h ago</div>
+              </div>
+            </div>
+            <div class="post-body">Anyone running TIA Portal V18 against an S7-1500R redundant pair seen the cyclic interrupt OB stall after firmware 3.0.3? Customer's plant is convinced it's our code; I'm convinced it's the firmware. Looking for a second pair of eyes.</div>
+            <div class="post-meta"><span>↑ 23 helpful</span><span>💬 11 replies</span><span># siemens · # tia-portal</span></div>
+          </div>
+
+          <div class="post">
+            <div class="post-head">
+              <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1521119989659-a83eee488004?w=200&h=200&fit=crop&crop=faces')"></div>
+              <div>
+                <div style="font-family:'Outfit';font-weight:600;font-size:14px;">Paul Whitfield</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">Acme Robotics · CEO · 6h ago</div>
+              </div>
+            </div>
+            <div class="post-body">We have 3 short-notice palletizer commissioning slots opening up in Detroit the week of May 12. Need TÜV-certified controls engineers, $148–$165/hr depending on cell complexity. DM me if interested — first come, first served, no recruiters please.</div>
+            <div class="post-meta"><span>↑ 41 helpful</span><span>💬 18 replies</span><span># detroit · # contracts</span></div>
+          </div>
+
+          <div class="post">
+            <div class="post-head">
+              <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=faces')"></div>
+              <div>
+                <div style="font-family:'Outfit';font-weight:600;font-size:14px;">Nina Park</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">Independent · 1d ago</div>
+              </div>
+            </div>
+            <div class="post-body">PSA: OSHA Region 5 inspectors are spot-checking LOTO programs in Milwaukee &amp; Madison plants this quarter. If your COI is more than 90 days old, refresh it now — two members have been turned away at the gate this month.</div>
+            <div class="post-meta"><span>↑ 89 helpful · pinned</span><span>💬 24 replies</span><span># safety · # osha</span></div>
+          </div>
+
+          <div class="post">
+            <div class="post-head">
+              <div class="photo photo-32" style="background-image:url('https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=200&fit=crop&crop=faces')"></div>
+              <div>
+                <div style="font-family:'Outfit';font-weight:600;font-size:14px;">Ben Carter</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">Acme Robotics · 2d ago</div>
+              </div>
+            </div>
+            <div class="post-body">Recap from last week's Cleveland meetup: 47 people showed, half of them new. The Ignition / Wonderware migration roundtable went 90 minutes overtime. Slides + audio uploaded to the Resources tab.</div>
+            <div class="post-meta"><span>↑ 56 helpful</span><span>💬 9 replies</span><span># meetups · # cleveland</span></div>
+          </div>
+
+          <div class="cta-row" style="margin-top:13px;"><button class="gbtn-secondary gbtn sm">Load 2,337 more posts</button></div>
+        </div>
+
+        <!-- Featured members -->
+        <div class="glass-card pad">
+          <div class="h3">Featured members · top contributors this quarter</div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:13px;">
+            <div style="text-align:center;">
+              <div class="photo photo-72" style="margin:0 auto;background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=faces')"></div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:13px;margin-top:8px;">M. Lopez</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);">87 helpful</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="photo photo-72" style="margin:0 auto;background-image:url('https://images.unsplash.com/photo-1521119989659-a83eee488004?w=300&h=300&fit=crop&crop=faces')"></div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:13px;margin-top:8px;">P. Whitfield</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);">74 helpful</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="photo photo-72" style="margin:0 auto;background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=faces')"></div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:13px;margin-top:8px;">N. Park</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);">68 helpful</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="photo photo-72" style="margin:0 auto;background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&h=300&fit=crop&crop=faces')"></div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:13px;margin-top:8px;">D. Kowalski</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);">52 helpful</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="photo photo-72" style="margin:0 auto;background-image:url('https://images.unsplash.com/photo-1463453091185-61582044d556?w=300&h=300&fit=crop&crop=faces')"></div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:13px;margin-top:8px;">B. Carter</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);">48 helpful</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="stack">
+
+        <!-- Group badges -->
+        <div class="glass-card pad">
+          <div class="h3">Group badges</div>
+          <div class="badge-row" style="justify-content:space-around;">
+            <div class="badge-stack">
+              <div class="badge-80 emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+              <div class="badge-label">Verified group</div>
+            </div>
+            <div class="badge-stack">
+              <div class="badge-80 rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="badge-label">100+ members</div>
+            </div>
+            <div class="badge-stack">
+              <div class="badge-80 indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
+              <div class="badge-label">5-state network</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming events -->
+        <div class="glass-card pad">
+          <div class="h3">Upcoming events</div>
+          <div class="event-item">
+            <div class="date-tile"><div class="m">May</div><div class="d">02</div></div>
+            <div><div style="font-family:'Outfit';font-weight:600;font-size:14px;">Detroit meetup · Q2</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">6:30 PM · Acme Robotics HQ · 47 going</div></div>
+            <button class="gbtn sm">RSVP</button>
+          </div>
+          <div class="event-item">
+            <div class="date-tile"><div class="m">May</div><div class="d">15</div></div>
+            <div><div style="font-family:'Outfit';font-weight:600;font-size:14px;">TÜV functional safety webinar</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">12:00 PM · Online · 89 going</div></div>
+            <button class="gbtn sm">RSVP</button>
+          </div>
+          <div class="event-item">
+            <div class="date-tile"><div class="m">Jun</div><div class="d">08</div></div>
+            <div><div style="font-family:'Outfit';font-weight:600;font-size:14px;">Cleveland plant tour · GE Lighting</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">9 AM · Bring steel-toes · 24 going</div></div>
+            <button class="gbtn sm">RSVP</button>
+          </div>
+          <div class="event-item">
+            <div class="date-tile"><div class="m">Jul</div><div class="d">19</div></div>
+            <div><div style="font-family:'Outfit';font-weight:600;font-size:14px;">Annual cookout · Belle Isle</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">Family welcome · 112 going</div></div>
+            <button class="gbtn sm">RSVP</button>
+          </div>
+        </div>
+
+        <!-- Channels -->
+        <div class="glass-card pad">
+          <div class="h3">Channels</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);font-family:'Outfit';font-size:13px;"><span># general</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">2,341 posts</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);font-family:'Outfit';font-size:13px;"><span># contracts</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">418 posts</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);font-family:'Outfit';font-size:13px;"><span># siemens</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">312 posts</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);font-family:'Outfit';font-size:13px;"><span># rockwell</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">287 posts</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);font-family:'Outfit';font-size:13px;"><span># safety</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">198 posts</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);font-family:'Outfit';font-size:13px;"><span># meetups</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--glass-text-tertiary);">142 posts</span></div>
+          </div>
+        </div>
+
+        <!-- Group rules -->
+        <div class="glass-card pad">
+          <div class="h3">Group rules</div>
+          <ol style="font-family:'Outfit';font-size:13px;color:var(--glass-text-secondary);line-height:1.6;padding-left:20px;margin:0;">
+            <li>Engineers and operators only — no recruiters.</li>
+            <li>Be specific. Real numbers, real plants, real failures.</li>
+            <li>No client names without consent.</li>
+            <li>Help when you can. Pay it forward.</li>
+            <li>Quarterly attendance encouraged, not required.</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="foot">Liquid Glass · Business group · Great Lakes Automation Network</footer>
+  </div>
+</main>
+<script src="scripts/glass-shell.js" data-active="group"></script>
+</body>
+</html>

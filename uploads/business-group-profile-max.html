@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sure Controls Division — Business Group Profile | Automate America</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   CANONICAL DESIGN SYSTEM — from profile-advanced.html
+   Fibonacci spacing, golden-ratio typography, glass cards
+   ═══════════════════════════════════════════════════════════ */
+:root {
+    /* Fibonacci Spacing */
+    --space-xs:  5px;
+    --space-sm:  8px;
+    --space-md:  13px;
+    --space-lg:  21px;
+    --space-xl:  34px;
+    --space-2xl: 55px;
+    --space-3xl: 89px;
+
+    /* Icon + Avatar Sizes */
+    --size-icon-sm:   34px;
+    --size-icon:      55px;
+    --size-avatar:    89px;
+    --size-avatar-lg: 160px;
+
+    /* Radius Scale (Fibonacci) */
+    --radius-sm: 8px;
+    --radius-md: 13px;
+    --radius-lg: 21px;
+    --radius-xl: 34px;
+
+    /* Font Scale */
+    --font-xs:   11px;
+    --font-sm:   13px;
+    --font-base: 16px;
+    --font-lg:   21px;
+    --font-xl:   26px;
+    --font-2xl:  34px;
+    --font-3xl:  42px;
+
+    /* Color Tokens */
+    --primary:       #6366F1;
+    --primary-light: #818CF8;
+    --primary-dark:  #4F46E5;
+    --primary-glow:  rgba(99,102,241,0.35);
+    --secondary:     #EC4899;
+    --accent:        #14B8A6;
+    --success:       #10B981;
+    --warning:       #F59E0B;
+    --danger:        #EF4444;
+
+    /* Glass Surfaces */
+    --surface-glass:        rgba(12,10,30,0.38);
+    --surface-glass-hover:  rgba(18,16,40,0.48);
+    --surface-glass-strong: rgba(8,6,22,0.75);
+    --border-glass:         rgba(255,255,255,0.07);
+    --border-glass-hover:   rgba(255,255,255,0.12);
+
+    /* Text */
+    --text-primary:   #F5F5F7;
+    --text-secondary: #A1A1AA;
+    --text-tertiary:  #636370;
+    --text-accent:    var(--primary-light);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.618;
+    color: var(--text-primary);
+    background: #060412;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Wallpaper — stationary dark with teal accent for BG profiles */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(ellipse 80% 60% at 25% 35%, rgba(20,184,166,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 75% 65%, rgba(99,102,241,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 90% 80% at 50% 50%, rgba(12,10,30,1) 0%, #060412 100%);
+}
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.4;
+}
+
+/* Page wrapper */
+.page-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+}
+
+/* Profile type indicator bar — teal for BG */
+.profile-type-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-sm) var(--space-lg);
+    background: rgba(20,184,166,0.06);
+    border: 1px solid rgba(20,184,166,0.12);
+    border-radius: var(--radius-md);
+    font-size: var(--font-xs);
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+.profile-type-bar .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(20,184,166,0.5);
+}
+
+/* ═══ TWO-COLUMN GRID (D7) ═══ */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 380px minmax(0, 1fr);
+    gap: var(--space-xl);
+    align-items: start;
+}
+
+.left-column { display: flex; flex-direction: column; gap: var(--space-lg); }
+.right-column { display: flex; flex-direction: column; gap: var(--space-lg); }
+
+/* ═══ GLASS CARD ═══ */
+.glass-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.06) 30%, rgba(255,255,255,.06) 70%, transparent);
+}
+.glass-card:hover {
+    background: var(--surface-glass-hover);
+    border-color: var(--border-glass-hover);
+    box-shadow: 0 8px 40px rgba(0,0,0,.25);
+}
+
+/* ═══ HERO CARD — BG teal accent ═══ */
+.hero-card {
+    text-align: center;
+    padding: var(--space-2xl) var(--space-xl);
+    border: 1px solid rgba(20,184,166,0.15);
+    background: rgba(20,184,166,0.03);
+}
+.photo-wrap {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto var(--space-lg);
+    position: relative;
+}
+.photo-glow {
+    position: absolute;
+    inset: -6px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--accent), rgba(20,184,166,0.3));
+    animation: heroGlow 4s ease-in-out infinite alternate;
+}
+@keyframes heroGlow {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.04); }
+}
+.photo-glow-mask {
+    position: absolute;
+    inset: 2px;
+    border-radius: calc(var(--radius-xl) - 2px);
+    background: #060412;
+}
+.bg-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: var(--radius-xl);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.bg-logo svg { width: 100%; height: 100%; }
+
+.verified-check {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(20,184,166,0.4);
+}
+
+.profile-name {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    margin-bottom: var(--space-xs);
+    letter-spacing: -0.5px;
+}
+.profile-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--font-xs);
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: var(--space-md);
+}
+.location-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+.flag-svg {
+    width: 22px;
+    height: 15px;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+
+/* BG specialty tags */
+.occ-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+}
+.occ-tag {
+    font-size: var(--font-xs);
+    padding: 3px 10px;
+    border-radius: 100px;
+    border: 1px solid rgba(20,184,166,0.15);
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Quick Stats */
+.quick-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(20,184,166,0.1);
+}
+.stat-cell { text-align: center; }
+.stat-val {
+    font-size: var(--font-xl);
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+}
+.stat-val.green { color: var(--success); }
+.stat-val.teal { color: var(--accent); }
+.stat-lbl {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+/* ═══ CTAs ═══ */
+.cta-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+.cta-primary {
+    background: linear-gradient(180deg, var(--primary-light), var(--primary) 50%, var(--primary-dark));
+    color: #fff;
+    padding: var(--space-md) var(--space-xl);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--font-base);
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(99,102,241,.4), inset 0 1px 0 rgba(255,255,255,.15);
+    transition: all .2s;
+    width: 100%;
+}
+.cta-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(99,102,241,.5);
+}
+.cta-connect {
+    background: linear-gradient(180deg, #a78bfa, #7c3aed 50%, #6d28d9);
+    color: #fff;
+    padding: var(--space-md) var(--space-xl);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--font-base);
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(124,58,237,.4), inset 0 1px 0 rgba(255,255,255,.15);
+    transition: all .2s;
+    width: 100%;
+    animation: connectGlow 3s ease-in-out infinite;
+}
+@keyframes connectGlow {
+    0%, 100% { box-shadow: 0 4px 16px rgba(124,58,237,.3), inset 0 1px 0 rgba(255,255,255,.15); }
+    50% { box-shadow: 0 4px 24px rgba(124,58,237,.6), 0 0 40px rgba(124,58,237,.2), inset 0 1px 0 rgba(255,255,255,.2); }
+}
+.cta-connect:hover { transform: translateY(-2px) scale(1.02); }
+.cta-outline {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: var(--space-md) var(--space-xl);
+    border: 1px solid var(--border-glass-hover);
+    border-radius: var(--radius-md);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+.cta-outline:hover {
+    background: rgba(255,255,255,.04);
+    border-color: rgba(255,255,255,.2);
+    color: var(--text-primary);
+}
+
+/* ═══ SECTION TITLES ═══ */
+.section-title {
+    font-size: var(--font-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+.section-count {
+    font-size: var(--font-sm);
+    color: var(--text-tertiary);
+    font-weight: 400;
+}
+
+/* ═══ PARENT COMPANY CARD ═══ */
+.biz-card {
+    border: 1px solid rgba(99,102,241,0.12);
+    background: rgba(99,102,241,0.03);
+}
+.biz-card::before {
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,.08) 30%, rgba(99,102,241,.08) 70%, transparent);
+}
+.biz-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+.biz-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,.3);
+}
+.biz-logo svg { width: 100%; height: 100%; }
+.biz-name { font-size: var(--font-lg); font-weight: 700; }
+.biz-class {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.view-company-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: rgba(99,102,241,0.08);
+    border: 1px solid rgba(99,102,241,0.15);
+    border-radius: var(--radius-md);
+    color: var(--primary-light);
+    font-weight: 600;
+    font-size: var(--font-sm);
+    text-decoration: none;
+    transition: all .2s;
+    cursor: pointer;
+}
+.view-company-link:hover {
+    background: rgba(99,102,241,0.12);
+    border-color: rgba(99,102,241,0.25);
+}
+
+/* ═══ ACTIVITY TABLE ═══ */
+.activity-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-sm);
+}
+.activity-table th {
+    text-align: right;
+    color: var(--text-tertiary);
+    font-weight: 600;
+    font-size: var(--font-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: var(--space-xs) var(--space-sm);
+}
+.activity-table th:first-child { text-align: left; }
+.activity-table td {
+    padding: var(--space-sm);
+    border-bottom: 1px solid var(--border-glass);
+}
+.activity-table td:first-child { font-weight: 600; }
+.ct-open { text-align: right; color: var(--success); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.ct-ongoing { text-align: right; color: var(--warning); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.ct-closed { text-align: right; color: var(--text-tertiary); font-family: 'JetBrains Mono', monospace; }
+.activity-anon-note {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    font-style: italic;
+    margin-top: var(--space-sm);
+}
+
+/* ═══ CONTACT / DETAIL ROWS ═══ */
+.biz-detail-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    padding: var(--space-xs) 0;
+}
+.biz-detail-icon {
+    width: 16px;
+    text-align: center;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+}
+
+/* ═══ PRIVATE / OWNER-ONLY ═══ */
+.private-card {
+    border: 1px dashed rgba(239,68,68,0.2);
+    background: rgba(239,68,68,0.03);
+}
+.private-card::before { display: none; }
+.owner-only-label {
+    display: inline-block;
+    font-size: 9px;
+    padding: 2px 6px;
+    background: rgba(239,68,68,0.1);
+    color: var(--danger);
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    margin-left: var(--space-sm);
+}
+
+/* ═══ BADGE SHOWCASE — BG teal accent ═══ */
+.badge-showcase {
+    background: var(--surface-glass);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(20,184,166,0.1);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+}
+.badge-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(20,184,166,.08) 30%, rgba(20,184,166,.08) 70%, transparent);
+}
+.badge-showcase-title {
+    font-size: var(--font-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: var(--space-lg);
+}
+.badge-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+.badge-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 72px;
+}
+.badge-frame {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.badge-frame svg { width: 48px; height: 48px; }
+.badge-tier-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.badge-tier-label.bronze { color: #CD7F32; }
+.badge-tier-label.silver { color: #C0C0C0; }
+.badge-tier-label.gold { color: #FFD700; }
+.badge-tier-label.platinum { color: #E5E4E2; text-shadow: 0 0 6px rgba(229,228,226,0.3); }
+.badge-tier-label.diamond { color: #B9F2FF; text-shadow: 0 0 8px rgba(185,242,255,0.4); }
+.badge-name {
+    font-size: 9px;
+    color: var(--text-tertiary);
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* ═══ TEAM MEMBERS ═══ */
+.bg-section-label {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+.bg-member-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+.bg-member-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    transition: all .2s;
+    cursor: pointer;
+}
+.bg-member-row:hover { background: rgba(255,255,255,.03); }
+.bg-member-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(20,184,166,0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+.bg-member-info { flex: 1; min-width: 0; }
+.bg-member-name { font-size: var(--font-sm); font-weight: 600; }
+.bg-member-role { font-size: var(--font-xs); color: var(--text-tertiary); }
+.bg-member-stats {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+.bg-member-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+}
+.bg-member-avail {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.bg-member-avail.available { background: rgba(16,185,129,0.1); color: var(--success); }
+.bg-member-avail.on-contract { background: rgba(245,158,11,0.08); color: var(--warning); }
+.bg-member-avail.unavailable { background: rgba(239,68,68,0.08); color: var(--danger); }
+.bg-member-date {
+    font-size: 9px;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+    font-style: italic;
+}
+.bg-member-actions {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+}
+.btn-sm {
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    transition: all .2s;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.btn-sm.request { background: rgba(99,102,241,0.15); color: var(--primary-light); }
+.btn-sm.request:hover { background: rgba(99,102,241,0.25); }
+.btn-sm.view-pro { background: rgba(255,255,255,0.06); color: var(--text-secondary); }
+.btn-sm.view-pro:hover { background: rgba(255,255,255,0.1); }
+.btn-sm.connect-sm { background: rgba(124,58,237,0.12); color: #a78bfa; }
+.btn-sm.connect-sm:hover { background: rgba(124,58,237,0.2); }
+.btn-sm.watch-sm { background: rgba(255,255,255,0.04); color: var(--text-tertiary); }
+.btn-sm.watch-sm:hover { background: rgba(255,255,255,0.08); }
+
+/* Admin row */
+.bg-group-admin {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(99,102,241,0.04);
+    border: 1px solid rgba(99,102,241,0.1);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+}
+.admin-badge {
+    font-size: var(--font-xs);
+    padding: 2px 8px;
+    background: rgba(99,102,241,0.12);
+    color: var(--primary-light);
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+.bg-group-admin .bg-member-avatar {
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 12px rgba(99,102,241,.3);
+    width: 40px;
+    height: 40px;
+}
+
+/* Apply All button */
+.apply-all-btn {
+    width: 100%;
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-lg);
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.15);
+    border-radius: var(--radius-md);
+    color: var(--success);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--font-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all .2s;
+}
+.apply-all-btn:hover {
+    background: rgba(16,185,129,0.15);
+    border-color: rgba(16,185,129,0.25);
+}
+.apply-all-btn span { font-weight: 400; opacity: 0.7; }
+
+/* ═══ SERVICE PARTNERS (carousel cards) ═══ */
+.carousel-wrap { position: relative; }
+.carousel-track {
+    display: flex;
+    gap: var(--space-md);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: var(--space-xs) 0;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--surface-glass-strong);
+    border: 1px solid var(--border-glass-hover);
+    color: var(--text-primary);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all .2s;
+}
+.carousel-arrow:hover {
+    background: rgba(20,184,166,0.15);
+    border-color: rgba(20,184,166,0.3);
+}
+.carousel-arrow.left { left: -16px; }
+.carousel-arrow.right { right: -16px; }
+
+.team-card {
+    min-width: 120px;
+    scroll-snap-align: start;
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-md);
+    text-align: center;
+    transition: all .2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.team-card:hover {
+    border-color: var(--border-glass-hover);
+    transform: translateY(-2px);
+}
+.team-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto var(--space-md);
+    display: block;
+    box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(20,184,166,0.15));
+}
+.team-name { font-size: var(--font-sm); font-weight: 700; }
+.team-occ { font-size: var(--font-xs); color: var(--text-tertiary); }
+.team-avail {
+    font-size: 10px;
+    margin-top: var(--space-xs);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    display: inline-block;
+}
+.team-avail.available { background: rgba(16,185,129,0.1); color: var(--success); }
+.team-avail.unavailable { background: rgba(245,158,11,0.08); color: var(--warning); }
+
+/* Partner card (square avatar) */
+.partner-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: var(--font-xs);
+    font-weight: 700;
+    text-align: center;
+    margin: 0 auto var(--space-md);
+}
+
+/* ═══ ABOUT TEXT ═══ */
+.about-text {
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* ═══ FACILITIES ═══ */
+.facility-carousel-card {
+    min-width: 200px;
+    scroll-snap-align: start;
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    text-align: center;
+    transition: all .2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.facility-carousel-card:hover {
+    border-color: var(--border-glass-hover);
+    transform: translateY(-2px);
+}
+.facility-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin: 0 auto var(--space-sm);
+    box-shadow: 0 4px 16px rgba(0,0,0,.3);
+}
+.facility-logo svg { width: 100%; height: 100%; }
+.facility-name { font-size: var(--font-sm); font-weight: 700; }
+.facility-loc { font-size: var(--font-xs); color: var(--text-tertiary); }
+
+/* ═══ ACTIVE CONTRACTS ═══ */
+.contract-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--border-glass);
+    transition: background .2s;
+    cursor: pointer;
+}
+.contract-item:last-child { border-bottom: none; }
+.contract-item:hover { background: rgba(255,255,255,.02); }
+.contract-title { font-size: var(--font-sm); font-weight: 600; }
+.contract-detail { font-size: var(--font-xs); color: var(--text-tertiary); margin-top: 2px; }
+.contract-status {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+.contract-status.active { background: rgba(245,158,11,0.1); color: var(--warning); }
+.contract-status.wg { background: rgba(99,102,241,0.08); color: var(--primary-light); font-style: italic; }
+
+/* ═══ KPI GRID ═══ */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+.kpi-card {
+    padding: var(--space-lg);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+.kpi-val {
+    font-size: var(--font-xl);
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+}
+.kpi-val.green { color: var(--success); }
+.kpi-val.teal { color: var(--accent); }
+.kpi-val.gold { color: var(--warning); }
+.kpi-lbl {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: var(--space-xs);
+}
+
+/* ═══ FOLD INDICATOR (D15) ═══ */
+.fold-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    margin-top: var(--space-md);
+    cursor: pointer;
+    color: var(--text-tertiary);
+    font-size: var(--font-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color .2s;
+}
+.fold-indicator:hover { color: var(--accent); }
+
+/* ═══ EDIT TOOLBAR ═══ */
+.edit-toolbar {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px dashed rgba(255,255,255,0.06);
+}
+.edit-btn {
+    font-size: var(--font-xs);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-sm);
+    border: 1px dashed rgba(255,255,255,0.1);
+    background: transparent;
+    color: var(--text-tertiary);
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all .2s;
+}
+.edit-btn:hover {
+    background: rgba(20,184,166,0.08);
+    border-color: rgba(20,184,166,0.2);
+    color: var(--accent);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 860px) {
+    .profile-grid { grid-template-columns: 1fr; }
+    .page-wrap { padding: var(--space-lg); }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+    <!-- Profile type bar -->
+    <div class="profile-type-bar">
+        <span class="dot"></span>
+        Business Group Profile &mdash; Max Data View (All Sections Populated)
+    </div>
+
+    <div class="profile-grid">
+
+        <!-- ═══════════════════════════════════════════════
+             LEFT COLUMN (380px)
+             ═══════════════════════════════════════════════ -->
+        <div class="left-column">
+
+            <!-- HERO CARD -->
+            <div class="glass-card hero-card">
+                <div class="photo-wrap">
+                    <div class="photo-glow"></div>
+                    <div class="photo-glow-mask"></div>
+                    <div class="bg-logo">
+                        <svg viewBox="0 0 120 120">
+                            <rect fill="#0d3d3d" width="120" height="120" rx="21"/>
+                            <text x="60" y="38" text-anchor="middle" font-size="10" font-weight="800" fill="#14B8A6">SURE</text>
+                            <text x="60" y="55" text-anchor="middle" font-size="9" font-weight="600" fill="#A1A1AA">CONTROLS</text>
+                            <text x="60" y="72" text-anchor="middle" font-size="8" font-weight="600" fill="#636370">DIVISION</text>
+                            <rect x="30" y="82" width="60" height="2" rx="1" fill="#14B8A6" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <div class="verified-check">&#10003;</div>
+                </div>
+                <h1 class="profile-name">Sure Controls Division</h1>
+                <div class="profile-subtitle">Business Group</div>
+                <div class="location-row">
+                    <svg class="flag-svg" viewBox="0 0 22 15"><rect width="22" height="15" fill="#B22234" rx="2"/><rect y="1.15" width="22" height="1.15" fill="#fff"/><rect y="3.46" width="22" height="1.15" fill="#fff"/><rect y="5.77" width="22" height="1.15" fill="#fff"/><rect y="8.08" width="22" height="1.15" fill="#fff"/><rect y="10.38" width="22" height="1.15" fill="#fff"/><rect y="12.69" width="22" height="1.15" fill="#fff"/><rect width="9" height="8.08" fill="#3C3B6E"/></svg>
+                    Sterling Heights, Michigan
+                </div>
+                <div class="occ-tags">
+                    <span class="occ-tag">PLC Controls</span>
+                    <span class="occ-tag">Robot Programming</span>
+                    <span class="occ-tag">Vision Systems</span>
+                </div>
+                <div class="quick-stats">
+                    <div class="stat-cell"><div class="stat-val teal">12</div><div class="stat-lbl">Members</div></div>
+                    <div class="stat-cell"><div class="stat-val">5</div><div class="stat-lbl">Partners</div></div>
+                    <div class="stat-cell"><div class="stat-val green">38</div><div class="stat-lbl">Contracts</div></div>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="glass-card cta-stack">
+                <button class="cta-primary">Post a Work Request</button>
+                <button class="cta-connect">+ Connect</button>
+                <button class="cta-outline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    Watch Group
+                </button>
+                <button class="cta-outline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                    Share Group Profile
+                </button>
+            </div>
+
+            <!-- PARENT COMPANY -->
+            <div class="glass-card biz-card">
+                <h2 class="section-title">Parent Company</h2>
+                <div class="biz-header">
+                    <div class="biz-logo">
+                        <svg viewBox="0 0 56 56">
+                            <rect fill="#0f1a3d" width="56" height="56" rx="13"/>
+                            <text x="28" y="24" text-anchor="middle" font-size="7" font-weight="800" fill="#818CF8">DOMINION</text>
+                            <text x="28" y="35" text-anchor="middle" font-size="5" fill="#A1A1AA">MFG GROUP</text>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="biz-name">Dominion Manufacturing Group</div>
+                        <div class="biz-class">Systems Integrator</div>
+                    </div>
+                </div>
+                <div class="view-company-link">View Company Profile &rarr;</div>
+            </div>
+
+            <!-- ACTIVITY -->
+            <div class="glass-card">
+                <h2 class="section-title">Activity</h2>
+                <table class="activity-table">
+                    <thead><tr><th></th><th>Open</th><th>Ongoing</th><th>Closed</th></tr></thead>
+                    <tbody>
+                        <tr><td>Jobs</td><td class="ct-open">2</td><td class="ct-ongoing">1</td><td class="ct-closed">14</td></tr>
+                        <tr><td>Contracts</td><td class="ct-open">1</td><td class="ct-ongoing">3</td><td class="ct-closed">34</td></tr>
+                        <tr><td>RFQs</td><td class="ct-open">0</td><td class="ct-ongoing">1</td><td class="ct-closed">4</td></tr>
+                    </tbody>
+                </table>
+                <div class="activity-anon-note">* Anonymous postings show counts only</div>
+            </div>
+
+            <!-- GROUP SETTINGS (owner only) -->
+            <div class="glass-card private-card">
+                <h2 class="section-title" style="margin-bottom:var(--space-md)">Group Settings <span class="owner-only-label">Owner Only</span></h2>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#128100;</span> Admin: Robert Kessler</div>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#9993;</span> rkessler@dominionmfg.com</div>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#128222;</span> (586) 555-0341</div>
+                <div style="margin-top:var(--space-lg)">
+                    <button class="cta-outline" style="width:100%">&#9998; Manage Group Settings</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             RIGHT COLUMN (fluid)
+             ═══════════════════════════════════════════════ -->
+        <div class="right-column">
+
+            <!-- GROUP ACHIEVEMENT BADGES (D5) -->
+            <div class="badge-showcase">
+                <div class="badge-showcase-title">Group Achievement Badges &mdash; Service Partner</div>
+                <div class="badge-grid">
+                    <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0d3d3d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">CON</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Contracts</span></div>
+                    <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0d3d3d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#E5E4E2" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">HRS</text></svg></div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Hours</span></div>
+                    <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0d3d3d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">CUST</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Customers</span></div>
+                    <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0d3d3d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#C0C0C0" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">EARN</text></svg></div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Earnings</span></div>
+                    <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0d3d3d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">TEAM</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Team</span></div>
+                    <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0d3d3d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#C0C0C0" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">RAT</text></svg></div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Rating</span></div>
+                    <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0d3d3d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">TEN</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Tenure</span></div>
+                    <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0d3d3d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#CD7F32" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">UTIL</text></svg></div><span class="badge-tier-label bronze">Bronze</span><span class="badge-name">Utilization</span></div>
+                    <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0d3d3d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#CD7F32" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">GROW</text></svg></div><span class="badge-tier-label bronze">Bronze</span><span class="badge-name">Growth</span></div>
+                </div>
+            </div>
+
+            <!-- TEAM MEMBERS (12 members) -->
+            <div class="glass-card">
+                <h2 class="section-title">Team Members <span class="section-count">(12)</span></h2>
+
+                <!-- Admin -->
+                <div class="bg-group-admin">
+                    <div class="bg-member-avatar" style="font-size:14px;background:linear-gradient(135deg,#4F46E5,#7c3aed);">RK</div>
+                    <div class="bg-member-info">
+                        <div class="bg-member-name">Robert Kessler</div>
+                        <div class="bg-member-role">Controls Division Manager</div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                        <span class="admin-badge">Group Admin</span>
+                        <div class="bg-member-actions"><button class="btn-sm connect-sm">Connect</button><button class="btn-sm watch-sm">Watch</button></div>
+                    </div>
+                </div>
+
+                <!-- Available Contractors -->
+                <div class="bg-section-label">Available Contractors (5)</div>
+                <div class="bg-member-list">
+                    <div class="bg-member-row">
+                        <div class="bg-member-avatar">JM</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Jake Morrison</div>
+                            <div class="bg-member-role">FANUC Robot Programmer</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">1</strong> Open</span><span><strong style="color:var(--warning)">0</strong> Ongoing</span><span>18 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail available">Available Now</span>
+                            <div class="bg-member-actions"><button class="btn-sm request">Request</button><button class="btn-sm view-pro">Profile</button></div>
+                            <div class="bg-member-actions"><button class="btn-sm connect-sm">Connect</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                    <div class="bg-member-row">
+                        <div class="bg-member-avatar">MC</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Marcus Chen</div>
+                            <div class="bg-member-role">Allen-Bradley PLC Programmer</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">0</strong> Open</span><span><strong style="color:var(--warning)">0</strong> Ongoing</span><span>12 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail available">Available Now</span>
+                            <div class="bg-member-actions"><button class="btn-sm request">Request</button><button class="btn-sm view-pro">Profile</button></div>
+                            <div class="bg-member-actions"><button class="btn-sm connect-sm">Connect</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                    <div class="bg-member-row">
+                        <div class="bg-member-avatar">AR</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Alicia Reyes</div>
+                            <div class="bg-member-role">HMI / SCADA Engineer</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">2</strong> Open</span><span><strong style="color:var(--warning)">0</strong> Ongoing</span><span>9 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail available">Available Now</span>
+                            <div class="bg-member-actions"><button class="btn-sm request">Request</button><button class="btn-sm view-pro">Profile</button></div>
+                            <div class="bg-member-actions"><button class="btn-sm connect-sm">Connect</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                    <div class="bg-member-row">
+                        <div class="bg-member-avatar">TB</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Tyler Brooks</div>
+                            <div class="bg-member-role">Cognex Vision Specialist</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">0</strong> Open</span><span><strong style="color:var(--warning)">0</strong> Ongoing</span><span>6 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail available">Available Now</span>
+                            <div class="bg-member-actions"><button class="btn-sm request">Request</button><button class="btn-sm view-pro">Profile</button></div>
+                            <div class="bg-member-actions"><button class="btn-sm connect-sm">Connect</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                    <div class="bg-member-row">
+                        <div class="bg-member-avatar">NP</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Nina Patel</div>
+                            <div class="bg-member-role">Siemens TIA Portal Engineer</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">1</strong> Open</span><span><strong style="color:var(--warning)">0</strong> Ongoing</span><span>4 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail available">Available Now</span>
+                            <div class="bg-member-actions"><button class="btn-sm request">Request</button><button class="btn-sm view-pro">Profile</button></div>
+                            <div class="bg-member-actions"><button class="btn-sm connect-sm">Connect</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="apply-all-btn">Apply All Available Professionals <span>(5 available)</span></button>
+
+                <!-- On Contract -->
+                <div class="bg-section-label" style="margin-top:var(--space-lg)">On Contract (4)</div>
+                <div class="bg-member-list">
+                    <div class="bg-member-row">
+                        <div class="bg-member-avatar">LP</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Lisa Park</div>
+                            <div class="bg-member-role">Vision Systems Specialist</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">0</strong> Open</span><span><strong style="color:var(--warning)">2</strong> Ongoing</span><span>15 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail on-contract">On Contract</span>
+                            <div class="bg-member-date">Available ~May 12</div>
+                            <div class="bg-member-actions"><button class="btn-sm view-pro">Profile</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                    <div class="bg-member-row">
+                        <div class="bg-member-avatar">DS</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Derek Simmons</div>
+                            <div class="bg-member-role">PLC / HMI Programmer</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">0</strong> Open</span><span><strong style="color:var(--warning)">1</strong> Ongoing</span><span>22 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail on-contract">On Contract</span>
+                            <div class="bg-member-date">Available ~Jun 1</div>
+                            <div class="bg-member-actions"><button class="btn-sm view-pro">Profile</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                    <div class="bg-member-row">
+                        <div class="bg-member-avatar">KW</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Karen Whitfield</div>
+                            <div class="bg-member-role">ABB Robot Programmer</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">0</strong> Open</span><span><strong style="color:var(--warning)">1</strong> Ongoing</span><span>11 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail on-contract">On Contract</span>
+                            <div class="bg-member-date">Available ~May 28</div>
+                            <div class="bg-member-actions"><button class="btn-sm view-pro">Profile</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                    <div class="bg-member-row">
+                        <div class="bg-member-avatar">RG</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Raj Gupta</div>
+                            <div class="bg-member-role">Safety Systems Engineer</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">0</strong> Open</span><span><strong style="color:var(--warning)">1</strong> Ongoing</span><span>8 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail on-contract">On Contract</span>
+                            <div class="bg-member-date">Available ~Apr 30</div>
+                            <div class="bg-member-actions"><button class="btn-sm view-pro">Profile</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unavailable -->
+                <div class="bg-section-label" style="margin-top:var(--space-lg)">Unavailable (2)</div>
+                <div class="bg-member-list">
+                    <div class="bg-member-row" style="opacity:.5">
+                        <div class="bg-member-avatar">VH</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Victor Huang</div>
+                            <div class="bg-member-role">Welding Engineer</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">0</strong> Open</span><span><strong style="color:var(--warning)">0</strong> Ongoing</span><span>14 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail unavailable">Not Available</span>
+                            <div class="bg-member-date">No date set</div>
+                            <div class="bg-member-actions"><button class="btn-sm view-pro">Profile</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                    <div class="bg-member-row" style="opacity:.5">
+                        <div class="bg-member-avatar">TN</div>
+                        <div class="bg-member-info">
+                            <div class="bg-member-name">Tanya Novak</div>
+                            <div class="bg-member-role">Maintenance Technician</div>
+                            <div class="bg-member-stats"><span><strong style="color:var(--success)">0</strong> Open</span><span><strong style="color:var(--warning)">0</strong> Ongoing</span><span>7 Closed</span></div>
+                        </div>
+                        <div class="bg-member-right">
+                            <span class="bg-member-avail unavailable">Not Available</span>
+                            <div class="bg-member-date">No date set</div>
+                            <div class="bg-member-actions"><button class="btn-sm view-pro">Profile</button><button class="btn-sm watch-sm">Watch</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edit-toolbar">
+                    <button class="edit-btn">+ Add Member</button>
+                    <button class="edit-btn">&#128465; Remove</button>
+                </div>
+            </div>
+
+            <!-- SERVICE PARTNERS -->
+            <div class="glass-card">
+                <h2 class="section-title">Service Partners <span class="section-count">(5)</span></h2>
+                <div class="carousel-wrap">
+                    <div class="carousel-track">
+                        <div class="team-card"><div class="partner-avatar" style="background:#1a6bb5">R&amp;E Auto</div><div class="team-name">R&amp;E Automated</div><div class="team-occ">Service Company</div></div>
+                        <div class="team-card"><div class="partner-avatar" style="background:#2d5ca6">Jacobs</div><div class="team-name">Jacobs Contracting</div><div class="team-occ">Service Company</div></div>
+                        <div class="team-card"><div class="partner-avatar" style="background:#003366">Concept</div><div class="team-name">Concept Systems</div><div class="team-occ">Integrator</div></div>
+                        <div class="team-card"><div class="partner-avatar" style="background:#1a3a6b">Axiom</div><div class="team-name">Axiom Controls</div><div class="team-occ">Service Company</div></div>
+                        <div class="team-card"><div class="partner-avatar" style="background:#0d3d3d">MPI</div><div class="team-name">Michigan Process</div><div class="team-occ">Integrator</div></div>
+                    </div>
+                </div>
+                <div class="edit-toolbar">
+                    <button class="edit-btn">+ Invite Partner</button>
+                    <button class="edit-btn">&#128465; Remove</button>
+                </div>
+            </div>
+
+            <!-- ABOUT THIS GROUP -->
+            <div class="glass-card">
+                <h2 class="section-title">About This Group</h2>
+                <p class="about-text">Sure Controls Division is the PLC and robot programming arm of Dominion Manufacturing Group, headquartered in Sterling Heights, Michigan. We specialize in Allen-Bradley ControlLogix, FANUC and ABB robotic systems, Cognex vision integration, and Siemens TIA Portal development for automotive body shop, paint, and assembly applications. Our team of 12 has delivered 38 contracts across General Motors, Ford, Stellantis, Toyota, and BMW facilities in Michigan, Ohio, Indiana, and Kentucky. We maintain a 98% on-time delivery rate and a 4.7-star average rating from customers.</p>
+                <div class="edit-toolbar">
+                    <button class="edit-btn">&#9998; Edit About</button>
+                </div>
+            </div>
+
+            <!-- ACTIVE CONTRACTS -->
+            <div class="glass-card">
+                <h2 class="section-title">Active Contracts <span class="section-count">(3)</span></h2>
+                <div class="contract-item">
+                    <div>
+                        <div class="contract-title">FANUC R-2000iC Body Shop Programmer</div>
+                        <div class="contract-detail">General Motors &middot; Lake Orion, MI &middot; 12 wks &middot; $52/hr &middot; Lisa Park assigned</div>
+                    </div>
+                    <span class="contract-status wg">White Glove</span>
+                </div>
+                <div class="contract-item">
+                    <div>
+                        <div class="contract-title">Allen-Bradley PLC Migration &mdash; Line 7</div>
+                        <div class="contract-detail">Ford Motor Co. &middot; Dearborn, MI &middot; 8 wks &middot; $58/hr &middot; Derek Simmons assigned</div>
+                    </div>
+                    <span class="contract-status wg">White Glove</span>
+                </div>
+                <div class="contract-item">
+                    <div>
+                        <div class="contract-title">Cognex Vision Calibration &amp; Robot Guidance</div>
+                        <div class="contract-detail">Stellantis &middot; Sterling Heights, MI &middot; 6 wks &middot; $62/hr &middot; Karen Whitfield assigned</div>
+                    </div>
+                    <span class="contract-status wg">White Glove</span>
+                </div>
+            </div>
+
+            <!-- PERFORMANCE KPIs -->
+            <div class="glass-card">
+                <h2 class="section-title">Performance KPIs</h2>
+                <div class="kpi-grid">
+                    <div class="kpi-card"><div class="kpi-val">14,280</div><div class="kpi-lbl">Total Hours</div></div>
+                    <div class="kpi-card"><div class="kpi-val gold">4.7</div><div class="kpi-lbl">Avg Rating</div></div>
+                    <div class="kpi-card"><div class="kpi-val green">87%</div><div class="kpi-lbl">Utilization</div></div>
+                    <div class="kpi-card"><div class="kpi-val teal">38</div><div class="kpi-lbl">Contracts Done</div></div>
+                    <div class="kpi-card"><div class="kpi-val green">98%</div><div class="kpi-lbl">On-Time</div></div>
+                    <div class="kpi-card"><div class="kpi-val">$2.1M</div><div class="kpi-lbl">Revenue</div></div>
+                </div>
+            </div>
+
+            <!-- POSTED WORK BY BG -->
+            <div class="glass-card">
+                <h2 class="section-title">Posted Work <span class="section-count">(2 active)</span></h2>
+                <div class="contract-item">
+                    <div>
+                        <div class="contract-title">Siemens S7-1500 Migration Engineer</div>
+                        <div class="contract-detail">Standard Contract &middot; Sterling Heights, MI &middot; 10 wks &middot; $55/hr base</div>
+                    </div>
+                    <span class="contract-status active">Open</span>
+                </div>
+                <div class="contract-item">
+                    <div>
+                        <div class="contract-title">ABB Robot Programmer &mdash; Paint Division</div>
+                        <div class="contract-detail">WG Contract &middot; Flat Rock, MI &middot; 16 wks &middot; $60/hr base</div>
+                    </div>
+                    <span class="contract-status active">Open</span>
+                </div>
+            </div>
+
+            <!-- FACILITIES -->
+            <div class="glass-card">
+                <h2 class="section-title">Facilities <span class="section-count">(3)</span></h2>
+                <div class="carousel-wrap">
+                    <div class="carousel-track">
+                        <div class="facility-carousel-card">
+                            <div class="facility-logo"><svg viewBox="0 0 64 64"><rect fill="#0170CE" width="64" height="64" rx="8"/><text x="32" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#fff">GM</text></svg></div>
+                            <div class="facility-name">GM &mdash; Orion Assembly</div>
+                            <div class="facility-loc">Lake Orion, MI</div>
+                        </div>
+                        <div class="facility-carousel-card">
+                            <div class="facility-logo"><svg viewBox="0 0 64 64"><rect fill="#003478" width="64" height="64" rx="8"/><text x="32" y="40" text-anchor="middle" font-size="18" fill="#fff" font-style="italic">Ford</text></svg></div>
+                            <div class="facility-name">Ford &mdash; Dearborn Truck</div>
+                            <div class="facility-loc">Dearborn, MI</div>
+                        </div>
+                        <div class="facility-carousel-card">
+                            <div class="facility-logo"><svg viewBox="0 0 64 64"><rect fill="#2d2d2d" width="64" height="64" rx="8"/><text x="32" y="28" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">STELLANTIS</text><text x="32" y="42" text-anchor="middle" font-size="6" fill="#aaa">Sterling Heights</text></svg></div>
+                            <div class="facility-name">SHAP &mdash; Stellantis</div>
+                            <div class="facility-loc">Sterling Heights, MI</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="edit-toolbar">
+                    <button class="edit-btn">+ Add Facility</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

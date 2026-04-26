@@ -1,0 +1,128 @@
+{
+  "$schema": "Automate America — Admin Dashboard (platform staff home)",
+  "$source": "Composite fictional record. The dashboard a logged-in platform admin sees.",
+  "$rendered_for": "Claude Design — Admin Dashboard prototype",
+  "$version": "1.0",
+  "$last_updated": "2026-04-25",
+  "$visibility_default": "admin_only",
+
+  "viewer": {
+    "user_id": 1,
+    "display_name": "Tony Wallace",
+    "first_name": "Tony",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+    "role_label": "Platform Owner / Super Admin",
+    "current_time_local": "08:42 EST",
+    "greeting": "Good morning, Tony"
+  },
+
+  "platform_kpi_strip": [
+    { "id": "kpi-1", "label": "Total users",            "value": "11,247", "trend": "+184 (7d)", "icon": "users",      "color": "primary" },
+    { "id": "kpi-2", "label": "Active contracts",       "value": "412",    "trend": "+38 (7d)",  "icon": "briefcase",  "color": "success" },
+    { "id": "kpi-3", "label": "GMV (YTD 2026)",         "value": "$22.4M", "trend": "+24%",       "icon": "dollar",     "color": "success" },
+    { "id": "kpi-4", "label": "P0 / P1 bugs open",      "value": "27",     "trend": "+9 (7d)",    "icon": "alert",      "color": "danger"  },
+    { "id": "kpi-5", "label": "Pending moderation",     "value": "14",     "trend": "+3 (24h)",   "icon": "shield",     "color": "warning" },
+    { "id": "kpi-6", "label": "Disputes open",          "value": "3",      "trend": "0 (7d)",     "icon": "scale",      "color": "warning" },
+    { "id": "kpi-7", "label": "Payments pending review","value": "8",      "trend": "+2 (24h)",   "icon": "credit-card","color": "info"    }
+  ],
+
+  "moderation_queue": {
+    "section_title": "Moderation queue",
+    "filters": [
+      { "id": "user_signups",       "label": "User signups",         "count": 7 },
+      { "id": "company_signups",    "label": "Company signups",      "count": 3 },
+      { "id": "content_reports",    "label": "Content reports",      "count": 2 },
+      { "id": "review_disputes",    "label": "Review disputes",      "count": 1 },
+      { "id": "profile_edits",      "label": "Profile edit reviews", "count": 1 }
+    ],
+    "rows": [
+      { "id": "mod-1", "kind": "user_signup",     "subject": "Daniel R. (Cleveland, OH)",       "reporter": "auto-KYC",       "reason": "Rejected ID — driver's license blurry, unreadable expiry", "submitted_at": "2026-04-25T07:11:00Z", "priority": "P2", "actions": ["Approve", "Request new doc", "Reject"] },
+      { "id": "mod-2", "kind": "company_signup",  "subject": "Apex Automation Solutions LLC",     "reporter": "auto-KYC",       "reason": "EIN mismatch with state filing",                          "submitted_at": "2026-04-25T06:42:00Z", "priority": "P2", "actions": ["Approve", "Request docs", "Reject"] },
+      { "id": "mod-3", "kind": "content_report",  "subject": "Profile bio — user 42118",           "reporter": "user 39102",      "reason": "Flagged language — possible competitor disparagement",     "submitted_at": "2026-04-24T22:08:00Z", "priority": "P1", "actions": ["Hide", "Edit", "Dismiss"] },
+      { "id": "mod-4", "kind": "review_dispute",  "subject": "Review #41882 (3-star)",             "reporter": "user 40117",      "reason": "Disputed factual accuracy of review",                       "submitted_at": "2026-04-24T19:23:00Z", "priority": "P1", "actions": ["Side with reviewer", "Side with disputer", "Request mediation"] },
+      { "id": "mod-5", "kind": "profile_edit",    "subject": "Skill claim — user 41208",           "reporter": "auto-cert-check", "reason": "Claimed 'TÜV Functional Safety' — no cert uploaded",       "submitted_at": "2026-04-24T15:55:00Z", "priority": "P3", "actions": ["Verify with user", "Remove claim", "Approve as-is"] }
+    ]
+  },
+
+  "payments_queue": {
+    "section_title": "Payments needing review",
+    "filters": [
+      { "id": "high_value",        "label": "≥$5,000",         "count": 3 },
+      { "id": "first_payment",     "label": "First payment",   "count": 2 },
+      { "id": "international",     "label": "International",   "count": 0 },
+      { "id": "flagged",           "label": "Flagged",         "count": 3 }
+    ],
+    "rows": [
+      { "id": "pay-1", "contract_id": 27184, "from": "BMW Manufacturing",   "to": "Maria Lopez",      "amount_usd": 14820, "kind": "weekly invoice",     "flagged_reason": null,                             "status": "Pending review", "submitted_at": "2026-04-25T05:00:00Z" },
+      { "id": "pay-2", "contract_id": 28140, "from": "Acme Robotics",       "to": "Tony Rivera",       "amount_usd": 6320,  "kind": "milestone",          "flagged_reason": null,                             "status": "Pending review", "submitted_at": "2026-04-24T22:00:00Z" },
+      { "id": "pay-3", "contract_id": 26989, "from": "ADM Cedar Rapids",    "to": "Acme Robotics",     "amount_usd": 78400, "kind": "fixed-bid milestone","flagged_reason": "Amount > $50K threshold",        "status": "Flagged review", "submitted_at": "2026-04-24T19:30:00Z" },
+      { "id": "pay-4", "contract_id": 28201, "from": "[White Glove]",       "to": "Karen Mitchell",   "amount_usd": 8800,  "kind": "weekly invoice",     "flagged_reason": "First payment between parties",  "status": "Flagged review", "submitted_at": "2026-04-24T17:14:00Z" }
+    ]
+  },
+
+  "disputes_open": [
+    { "id": "disp-1", "contract_id": 27991, "parties": "Stellantis ↔ Wallace Automation",  "amount_usd": 28800, "kind": "scope dispute",            "opened_at": "2026-04-22", "owner": "Andrew (legal escalation)",   "status": "Awaiting Tony review",      "priority": "P0" },
+    { "id": "disp-2", "contract_id": 28010, "parties": "ADM ↔ Acme Robotics",               "amount_usd": 5400,  "kind": "timesheet attestation",     "opened_at": "2026-04-19", "owner": "Daniel (notifications)",       "status": "Mediation scheduled 04/29", "priority": "P1" },
+    { "id": "disp-3", "contract_id": 28118, "parties": "[White Glove] ↔ Tony Rivera",       "amount_usd": 1240,  "kind": "expense reimbursement",     "opened_at": "2026-04-15", "owner": "AA WG Concierge",              "status": "Awaiting receipts",          "priority": "P2" }
+  ],
+
+  "platform_health": {
+    "feed_api": { "status": "healthy", "p99_ms": 187,  "error_rate_pct": 0.04, "uptime_30d_pct": 99.97 },
+    "ws":       { "status": "healthy", "p99_ms": 28,   "error_rate_pct": 0.00, "uptime_30d_pct": 99.99 },
+    "db":       { "status": "healthy", "p99_ms": 12,   "error_rate_pct": 0.00, "uptime_30d_pct": 99.99 },
+    "s3":       { "status": "healthy", "p99_ms": 84,   "error_rate_pct": 0.01, "uptime_30d_pct": 99.99 },
+    "sendgrid": { "status": "warning", "p99_ms": null, "error_rate_pct": 0.00, "uptime_30d_pct": 99.92, "warning": "Link Branding cert renewal due 2026-05-12" },
+    "twilio":   { "status": "healthy", "p99_ms": null, "error_rate_pct": 0.00, "uptime_30d_pct": 99.98 }
+  },
+
+  "agent_activity": {
+    "section_title": "Agent activity (24h)",
+    "rows": [
+      { "agent": "Marcus",   "role": "PM",           "last_active": "08:42 EST", "current_task": "Claude Design bundle" },
+      { "agent": "Andrew",   "role": "Security",     "last_active": "07:18 EST", "current_task": "SendGrid cert renewal prep" },
+      { "agent": "Napoleon", "role": "Deploy",       "last_active": "Yesterday", "current_task": "Awaiting Cycle A queue" },
+      { "agent": "Emily",    "role": "QA Lead",      "last_active": "Yesterday", "current_task": "228 cards on Project #6 — drain in progress" },
+      { "agent": "James",    "role": "Database",    "last_active": "Yesterday", "current_task": "Schema audit" }
+    ]
+  },
+
+  "recent_admin_actions": [
+    { "id": "log-1", "actor": "Tony",   "action": "Approved white-glove premium fee schedule",        "subject": "Platform settings",      "timestamp": "2026-04-25T07:55:00Z" },
+    { "id": "log-2", "actor": "Marcus", "action": "Queued Cycle A — 8 dev agents, 27 bugs targeted",  "subject": "Agent assignments",      "timestamp": "2026-04-25T07:30:00Z" },
+    { "id": "log-3", "actor": "Tony",   "action": "Locked Design System v1.0",                          "subject": "Claude Design project", "timestamp": "2026-04-25T06:18:00Z" },
+    { "id": "log-4", "actor": "Andrew", "action": "Rotated SendGrid API key",                            "subject": "Credentials",           "timestamp": "2026-04-22T02:25:00Z" }
+  ],
+
+  "feature_flags": {
+    "section_title": "Feature flags",
+    "rows": [
+      { "id": "flag-001", "name": "white_glove_pool",                "scope": "production", "value": "on",    "ramp_pct": 100, "owner": "Tony",   "last_changed": "2026-04-22" },
+      { "id": "flag-002", "name": "logo_automation_cron",            "scope": "production", "value": "on",    "ramp_pct": 100, "owner": "Marcus", "last_changed": "2026-04-23" },
+      { "id": "flag-003", "name": "google_places_autocomplete",      "scope": "production", "value": "on",    "ramp_pct": 100, "owner": "Sarah",  "last_changed": "2026-04-23" },
+      { "id": "flag-004", "name": "zero_click_banner",               "scope": "production", "value": "on",    "ramp_pct": 100, "owner": "Sarah",  "last_changed": "2026-04-23" },
+      { "id": "flag-005", "name": "feed_personalization_v2",         "scope": "production", "value": "off",   "ramp_pct": 0,   "owner": "Alex",   "last_changed": "2026-04-15" },
+      { "id": "flag-006", "name": "wallpaper_animations",            "scope": "staging",     "value": "on",    "ramp_pct": 100, "owner": "Sarah",  "last_changed": "2026-04-25" }
+    ]
+  },
+
+  "fraud_signals": {
+    "section_title": "Fraud / risk signals (24h)",
+    "rows": [
+      { "id": "frd-1", "kind": "duplicate_account",   "subject": "user 42118 / user 42119",     "score": 78, "first_seen": "2026-04-24T22:11:00Z", "action_recommended": "Manual review" },
+      { "id": "frd-2", "kind": "bounced_payment",     "subject": "contract 28010 weekly invoice", "score": 65, "first_seen": "2026-04-24T17:14:00Z", "action_recommended": "Hold + retry" },
+      { "id": "frd-3", "kind": "credential_stuffing", "subject": "184 failed logins from 1 IP",  "score": 92, "first_seen": "2026-04-25T03:18:00Z", "action_recommended": "Block IP + force MFA" }
+    ]
+  },
+
+  "search_command_palette": {
+    "$pattern": "global ⌘K palette",
+    "shortcuts": [
+      { "trigger": "u <user>",      "action": "Open user record" },
+      { "trigger": "c <contract>",  "action": "Open contract" },
+      { "trigger": "/<keyword>",    "action": "Search platform" },
+      { "trigger": "feature <name>","action": "Toggle / inspect flag" },
+      { "trigger": "agent <name>",  "action": "Open agent assignment" },
+      { "trigger": "deploy",        "action": "Trigger Napoleon assignment" }
+    ]
+  }
+}

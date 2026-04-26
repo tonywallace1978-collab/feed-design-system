@@ -1,0 +1,116 @@
+{
+  "$schema": "Automate America — Professional Dashboard (signed-in pro home)",
+  "$source": "Composite fictional record. The dashboard a logged-in contractor sees as their home page.",
+  "$rendered_for": "Claude Design — Pro Dashboard prototype, Maria Lopez signed-in",
+  "$version": "1.0",
+  "$last_updated": "2026-04-25",
+
+  "viewer": {
+    "user_id": 38291,
+    "display_name": "Maria Lopez",
+    "first_name": "Maria",
+    "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face",
+    "role_label": "Senior Controls Engineer",
+    "current_time_local": "08:42 EST",
+    "greeting": "Good morning, Maria"
+  },
+
+  "kpi_strip": [
+    { "id": "kpi-1", "label": "Hourly rate",         "value": "$148.50", "trend": null,        "icon": "dollar",   "color": "success" },
+    { "id": "kpi-2", "label": "Rating",              "value": "4.96 ★",   "trend": "+0.04",     "icon": "star",     "color": "warning" },
+    { "id": "kpi-3", "label": "Active applications", "value": "8",        "trend": "+2",        "icon": "briefcase","color": "info"    },
+    { "id": "kpi-4", "label": "Endorsements (Q2)",   "value": "12",       "trend": "+5",        "icon": "thumb-up", "color": "primary" },
+    { "id": "kpi-5", "label": "Profile strength",    "value": "96%",      "trend": null,        "icon": "shield",   "color": "success" }
+  ],
+
+  "today_recommended_contracts": [
+    { "id": 28140, "title": "PLC programmer · Robotic palletizer commissioning", "company": "Acme Robotics",         "company_logo": "../assets/logos/automate-america.png",  "city": "Dearborn, MI",   "rate": 148.50, "duration": "4-week onsite",  "match_score": 97, "applicants": 12, "skills_match": ["Allen-Bradley", "FANUC", "Vision"], "white_glove": false, "posted_at": "2026-04-21" },
+    { "id": 28139, "title": "Body Shop FANUC retrofit — Cell 14",                "company": "Ford Rouge Complex",    "company_logo": "../assets/logos/ford-motor-company.png", "city": "Dearborn, MI",   "rate": 165.00, "duration": "6-week onsite",  "match_score": 94, "applicants": 18, "skills_match": ["FANUC", "Body-in-White"],   "white_glove": true,  "posted_at": "2026-04-19" },
+    { "id": 28145, "title": "Senior Controls Engineer — Spartanburg",            "company": "Acme Robotics",         "company_logo": "../assets/logos/automate-america.png",  "city": "Spartanburg, SC","rate": null,    "duration": "Direct W-2",     "match_score": 88, "applicants": 18, "skills_match": ["Siemens", "Rockwell"],      "white_glove": false, "posted_at": "2026-04-18", "salary_band": "165k–195k" }
+  ],
+
+  "applications_status": {
+    "summary": { "submitted": 8, "shortlisted": 3, "offer_pending": 1, "rejected": 1, "withdrawn": 0 },
+    "rows": [
+      { "contract_id": 28140, "title": "PLC programmer · Palletizer commissioning",  "company": "Acme Robotics",         "applied_at": "2026-04-23", "status": "Shortlisted",  "interview_at": "2026-04-26T15:00:00-04:00" },
+      { "contract_id": 28139, "title": "Body Shop FANUC retrofit — Cell 14",         "company": "Ford Rouge Complex",     "applied_at": "2026-04-19", "status": "Submitted",     "interview_at": null },
+      { "contract_id": 28121, "title": "Stellantis Sterling — Phase 2",              "company": "Stellantis",             "applied_at": "2026-04-15", "status": "Offer pending", "interview_at": "2026-04-22T10:00:00-04:00" },
+      { "contract_id": 28098, "title": "Lear paint controls",                         "company": "Lear Corp",              "applied_at": "2026-04-08", "status": "Rejected",      "interview_at": null }
+    ]
+  },
+
+  "upcoming_calendar_week": {
+    "week_start": "2026-04-27",
+    "events": [
+      { "day": "Mon", "date": "2026-04-27", "title": "Pre-shift safety walk — Acme Cell 14",   "start": "06:30", "end": "07:00", "kind": "work",      "color": "primary" },
+      { "day": "Mon", "date": "2026-04-27", "title": "Commissioning — Acme Cell 14",            "start": "07:00", "end": "17:00", "kind": "work",      "color": "primary" },
+      { "day": "Tue", "date": "2026-04-28", "title": "Interview — Acme Robotics palletizer",     "start": "15:00", "end": "15:45", "kind": "interview", "color": "info"    },
+      { "day": "Wed", "date": "2026-04-29", "title": "Endorsement request from Karen M.",        "start": "12:00", "end": "12:15", "kind": "task",      "color": "warning" },
+      { "day": "Thu", "date": "2026-04-30", "title": "Submit timesheet — Acme",                  "start": "17:00", "end": "17:30", "kind": "task",      "color": "danger"  },
+      { "day": "Fri", "date": "2026-05-01", "title": "Renewal — TÜV Functional Safety",          "start": "all-day", "end": "all-day", "kind": "deadline","color": "danger"  }
+    ]
+  },
+
+  "messages_preview": [
+    { "id": "msg-1", "from": "Chris Wallace",  "from_avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=face", "preview": "Confirmed Sunday for Cell 14 commissioning — see you 06:30 prestart.", "time": "07:48", "unread": true },
+    { "id": "msg-2", "from": "Karen Mitchell", "from_avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=128&h=128&fit=crop&crop=face", "preview": "Can you endorse my Functional Safety skill? Wrapping the SC project.", "time": "Yesterday", "unread": true },
+    { "id": "msg-3", "from": "Acme Robotics",  "from_avatar": "../assets/logos/automate-america.png",                                                          "preview": "Your application for the palletizer contract is shortlisted. Interview Tuesday.", "time": "Yesterday", "unread": false }
+  ],
+
+  "earnings_this_month": {
+    "total_usd": 18420,
+    "billed_hours": 124,
+    "active_contracts": 1,
+    "completed_contracts_this_month": 0,
+    "ytd_usd": 67280,
+    "trend_vs_last_month_pct": 12.4,
+    "sparkline_weekly": [3210, 4480, 5120, 5610]
+  },
+
+  "profile_completeness": {
+    "score": 96,
+    "missing": [
+      { "field": "Direct deposit form",  "weight": 4 }
+    ],
+    "completed_recently": [
+      { "field": "Updated TÜV cert",     "completed_at": "2026-04-19" },
+      { "field": "Added 4 portfolio items", "completed_at": "2026-04-12" }
+    ]
+  },
+
+  "watchers_recent": [
+    { "id": 4471,  "name": "Ford Rouge Complex", "type": "customer", "logo": "../assets/logos/ford-motor-company.png", "since": "2026-04-21" },
+    { "id": 5589,  "name": "BMW Manufacturing",  "type": "customer", "logo": "../assets/logos/bmw.png",                "since": "2026-04-19" },
+    { "id": 1147,  "name": "Wallace Automation", "type": "company",  "logo": "../assets/logos/automate-america.png",   "since": "2026-04-17" }
+  ],
+
+  "quick_actions": [
+    { "id": "qa-apply",        "label": "Apply to a contract",   "icon": "briefcase",   "kind": "primary"   },
+    { "id": "qa-update",       "label": "Update profile",        "icon": "pencil",      "kind": "secondary" },
+    { "id": "qa-add-cert",     "label": "Add certification",     "icon": "shield",      "kind": "secondary" },
+    { "id": "qa-connect",      "label": "Find connections",      "icon": "users",       "kind": "secondary" },
+    { "id": "qa-boost",        "label": "Boost profile",         "icon": "bolt",        "kind": "boost"     },
+    { "id": "qa-timesheet",    "label": "Submit timesheet",      "icon": "clock",       "kind": "tertiary"  }
+  ],
+
+  "notifications": [
+    { "id": "n-1", "kind": "interview",   "title": "Interview Tuesday 3:00 PM with Acme Robotics",        "time": "2 hr ago",  "read": false },
+    { "id": "n-2", "kind": "endorsement", "title": "Karen Mitchell endorsed you for Functional Safety",   "time": "1 day ago", "read": false },
+    { "id": "n-3", "kind": "rate-change", "title": "Ford Rouge raised average rate to $144 (was $138)",   "time": "2 days ago","read": true },
+    { "id": "n-4", "kind": "renewal",     "title": "TÜV Functional Safety expires in 10 months",          "time": "1 week ago","read": true }
+  ],
+
+  "active_contract_summary": {
+    "contract_id": 28100,
+    "title": "Acme Cell 14 — FANUC retrofit",
+    "customer": "Ford Rouge Complex",
+    "customer_logo": "../assets/logos/ford-motor-company.png",
+    "started_at": "2026-04-22",
+    "ends_at": "2026-05-21",
+    "rate": 148.50,
+    "hours_billed_to_date": 28,
+    "hours_remaining_estimate": 132,
+    "next_milestone": "Cycle-time validation — 2026-04-29",
+    "blockers": []
+  }
+}

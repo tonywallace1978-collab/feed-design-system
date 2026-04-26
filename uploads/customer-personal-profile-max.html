@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEED Customer Personal Profile — Max Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ========== CANONICAL DESIGN TOKENS (from profile-advanced.html) ========== */
+        :root {
+            --space-xs:5px;--space-sm:8px;--space-md:13px;--space-lg:21px;--space-xl:34px;--space-2xl:55px;--space-3xl:89px;
+            --size-icon-sm:34px;--size-icon:55px;--size-avatar:89px;--size-avatar-lg:160px;
+            --radius-sm:8px;--radius-md:13px;--radius-lg:21px;--radius-xl:34px;
+            --font-xs:11px;--font-sm:13px;--font-base:16px;--font-lg:21px;--font-xl:26px;--font-2xl:34px;--font-3xl:42px;
+            --primary:#6366F1;--primary-light:#818CF8;--primary-dark:#4F46E5;--primary-glow:rgba(99,102,241,0.35);
+            --secondary:#EC4899;--accent:#14B8A6;--success:#10B981;--warning:#F59E0B;--danger:#EF4444;
+            --surface-glass:rgba(12,10,30,0.38);--surface-glass-hover:rgba(18,16,40,0.48);--surface-glass-strong:rgba(8,6,22,0.75);
+            --border-glass:rgba(255,255,255,0.07);--border-glass-hover:rgba(255,255,255,0.12);
+            --text-primary:#F5F5F7;--text-secondary:#A1A1AA;--text-tertiary:#636370;--text-accent:var(--primary-light);
+            --tier-diamond:#B9F2FF;--tier-platinum:#E5E4E2;--tier-gold:#FFD700;--tier-silver:#C0C0C0;--tier-bronze:#CD7F32;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{overflow-x:hidden;max-width:100vw}
+        body{font-family:'Outfit',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:var(--text-primary);line-height:1.618;-webkit-font-smoothing:antialiased;min-height:100vh}
+
+        /* VIEW TOGGLE */
+        .view-toggle{position:fixed;top:16px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:0;background:var(--surface-glass-strong);backdrop-filter:blur(20px);border:1px solid var(--border-glass-hover);border-radius:var(--radius-md);padding:4px;min-width:180px}
+        .view-toggle-row{display:flex;gap:4px;justify-content:center}
+        .view-btn{padding:6px 10px;border:none;border-radius:var(--radius-sm);font-family:'Outfit',sans-serif;font-size:10px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--text-tertiary);background:transparent;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;flex:1;text-align:center}
+        .view-btn.active{background:var(--primary);color:#fff}
+        .view-btn:hover:not(.active){color:var(--text-primary);background:rgba(255,255,255,.06)}
+        .view-btn.admin-btn{font-size:8px;padding:3px 6px;flex:0;color:var(--text-tertiary);opacity:.5}
+        .view-btn.admin-btn:hover{opacity:1}
+        .view-btn.admin-btn.active{opacity:1;background:var(--danger);color:#fff}
+        .owner-only,.admin-only{display:none!important}
+        body.view-self .owner-only{display:block!important}
+        body.view-self .owner-only.flex-row{display:flex!important}
+        body.view-admin .owner-only,body.view-admin .admin-only{display:block!important}
+        body.view-admin .owner-only.flex-row,body.view-admin .admin-only.flex-row{display:flex!important}
+        .visitor-only{display:block}
+        body.view-self .visitor-only,body.view-admin .visitor-only{display:none!important}
+
+        /* WALLPAPER */
+        .wallpaper{position:fixed;inset:0;z-index:0;background:linear-gradient(135deg,#0a0818 0%,#0d1127 25%,#111835 50%,#0a1020 75%,#060412 100%)}
+        .wallpaper::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(99,102,241,0.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(20,184,166,0.06) 0%,transparent 50%)}
+        .wallpaper-scrim{position:fixed;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,4,18,.35) 0%,rgba(6,4,18,.15) 20%,rgba(6,4,18,.10) 40%,rgba(6,4,18,.25) 70%,rgba(6,4,18,.6) 100%);pointer-events:none}
+
+        /* FEED */
+        .feed-layer{position:relative;z-index:2;min-height:100vh;padding-top:120px;overflow:hidden}
+        .feed-backdrop{position:relative;background:linear-gradient(180deg,transparent 0px,rgba(6,4,18,.3) 40px,rgba(6,4,18,.45) 120px,rgba(6,4,18,.6) 300px);padding-top:var(--space-3xl);padding-bottom:var(--space-3xl)}
+        .container{max-width:1400px;margin:0 auto;padding:0 var(--space-xl);overflow:hidden}
+
+        /* GLASS CARD */
+        .glass-card{background:var(--surface-glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border-glass);border-radius:var(--radius-xl);padding:var(--space-xl);margin-bottom:var(--space-lg);transition:all .35s;position:relative;overflow:hidden}
+        .glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06) 30%,rgba(255,255,255,.06) 70%,transparent)}
+        .glass-card:hover{background:var(--surface-glass-hover);border-color:var(--border-glass-hover);box-shadow:0 8px 40px rgba(0,0,0,.25)}
+
+        /* GRID */
+        .profile-grid{display:grid;grid-template-columns:380px minmax(0,1fr);gap:var(--space-xl);align-items:start}
+        .left-column,.right-column{display:flex;flex-direction:column;min-width:0}
+
+        /* HERO */
+        .hero-card{text-align:center;padding:var(--space-2xl) var(--space-xl)}
+        .hiring-pill{display:inline-flex;align-items:center;gap:var(--space-sm);padding:var(--space-xs) var(--space-lg);background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);border-radius:100px;font-size:var(--font-sm);font-weight:600;color:var(--primary-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:var(--space-xl)}
+        @keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(99,102,241,.5)}50%{transform:scale(1.15);box-shadow:0 0 0 7px rgba(99,102,241,0)}}
+        .pulse-dot{width:9px;height:9px;background:var(--primary);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+        .photo-wrap{position:relative;width:var(--size-avatar-lg);height:var(--size-avatar-lg);margin:0 auto var(--space-xl)}
+        .photo-glow{position:absolute;inset:-5px;border-radius:var(--radius-xl);background:linear-gradient(135deg,var(--secondary),#D946EF 40%,rgba(236,72,153,.3));opacity:.7}
+        .photo-glow::after{content:'';position:absolute;inset:-20px;border-radius:50%;background:radial-gradient(circle,rgba(236,72,153,.15),transparent 70%);z-index:-1}
+        .photo-glow-mask{position:absolute;inset:3px;background:rgba(6,4,18,.95);border-radius:calc(var(--radius-xl) - 2px)}
+        .profile-photo{width:100%;height:100%;border-radius:var(--radius-xl);object-fit:cover;position:relative;z-index:1}
+        .verified-check{position:absolute;bottom:-4px;right:-4px;width:32px;height:32px;background:var(--secondary);border-radius:50%;border:3px solid rgba(6,4,18,.95);display:flex;align-items:center;justify-content:center;z-index:2;font-size:14px}
+        .profile-name{font-size:var(--font-3xl);font-weight:800;letter-spacing:-.5px;margin-bottom:var(--space-xs)}
+        .customer-id{font-family:'JetBrains Mono',monospace;font-size:var(--font-sm);color:var(--text-tertiary);margin-bottom:var(--space-sm);letter-spacing:1px}
+        .role-badge{display:inline-block;padding:3px 14px;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2);border-radius:100px;font-size:var(--font-xs);font-weight:600;color:var(--secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:var(--space-md)}
+        .location-row{display:flex;align-items:center;justify-content:center;gap:var(--space-sm);font-size:var(--font-base);color:var(--text-secondary);margin-bottom:var(--space-md)}
+        .flag-svg{width:22px;height:15px;border-radius:2px}
+        .company-link{display:flex;align-items:center;justify-content:center;gap:var(--space-sm);font-size:var(--font-lg);font-weight:600;color:var(--text-accent);cursor:pointer;transition:color .2s;margin-bottom:var(--space-sm);text-decoration:none}
+        .company-link:hover{color:var(--primary-light)}
+        .company-class{font-size:var(--font-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px;margin-bottom:var(--space-lg)}
+        .quick-stats{display:flex;border-top:1px solid var(--border-glass);border-bottom:1px solid var(--border-glass);padding:var(--space-lg) 0}
+        .stat-cell{flex:1;text-align:center;position:relative}
+        .stat-cell+.stat-cell::before{content:'';position:absolute;left:0;top:15%;height:70%;width:1px;background:var(--border-glass)}
+        .stat-val{font-size:var(--font-xl);font-weight:800;letter-spacing:-.5px}
+        .stat-val.green{color:var(--success)}
+        .stat-val.pink{color:var(--secondary)}
+        .stat-lbl{font-size:var(--font-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px;font-weight:500}
+        .strength-bar-wrap{margin-top:var(--space-lg)}
+        .strength-top{display:flex;justify-content:space-between;margin-bottom:var(--space-sm);font-size:var(--font-sm)}
+        .strength-lbl{color:var(--text-tertiary);font-weight:500}
+        .strength-pct{color:var(--success);font-weight:700;font-family:'JetBrains Mono',monospace}
+        .strength-track{height:5px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden}
+        .strength-fill{height:100%;background:linear-gradient(90deg,var(--secondary),var(--primary),var(--accent));border-radius:3px;transition:width 1.5s cubic-bezier(.34,1.56,.64,1)}
+
+        /* CTAs */
+        .cta-stack{display:flex;flex-direction:column;gap:var(--space-md)}
+        .cta-primary{background:linear-gradient(180deg,var(--primary-light),var(--primary) 50%,var(--primary-dark));color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-base);font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(99,102,241,.4),inset 0 1px 0 rgba(255,255,255,.15);transition:all .2s;text-align:center}
+        .cta-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 24px rgba(99,102,241,.5)}
+        .cta-connect{background:linear-gradient(180deg,#34D399,var(--success) 50%,#059669);color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-base);font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(16,185,129,.4),inset 0 1px 0 rgba(255,255,255,.15);transition:all .2s;text-align:center}
+        .cta-connect:hover{transform:translateY(-2px) scale(1.02)}
+        @keyframes ctaGlow{0%,100%{box-shadow:0 4px 16px rgba(16,185,129,.4),inset 0 1px 0 rgba(255,255,255,.15)}50%{box-shadow:0 4px 24px rgba(16,185,129,.6),0 0 40px rgba(16,185,129,.15),inset 0 1px 0 rgba(255,255,255,.15)}}
+        .cta-connect{animation:ctaGlow 3s ease-in-out infinite}
+        .cta-outline{background:transparent;color:var(--text-secondary);border:1px solid var(--border-glass);padding:var(--space-md) var(--space-xl);border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:var(--space-sm);text-align:center}
+        .cta-outline:hover{background:rgba(255,255,255,.04);border-color:var(--border-glass-hover);color:var(--text-primary)}
+        .cta-ghost{background:rgba(255,255,255,.03);color:var(--text-secondary);border:1px dashed rgba(255,255,255,.1);padding:var(--space-md) var(--space-xl);border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:500;cursor:not-allowed;opacity:.5;display:flex;align-items:center;justify-content:center;gap:var(--space-sm)}
+        .cta-boost{background:linear-gradient(135deg,#F59E0B,#D97706);color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:var(--space-sm);text-align:center}
+        .cta-boost:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,158,11,.4)}
+        .cta-post{background:linear-gradient(180deg,#A78BFA,var(--primary) 50%,#7C3AED);color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(124,58,237,.4),inset 0 1px 0 rgba(255,255,255,.15);transition:all .2s;text-align:center}
+        .cta-post:hover{transform:translateY(-2px) scale(1.02)}
+
+        /* SECTION TITLE */
+        .section-title{font-size:var(--font-lg);font-weight:700;margin-bottom:var(--space-lg);display:flex;align-items:center;gap:var(--space-sm)}
+        .section-title::before{content:'';width:4px;height:22px;background:linear-gradient(180deg,var(--primary),var(--primary-dark));border-radius:2px;flex-shrink:0}
+        .section-count{font-size:var(--font-xl);color:var(--text-accent);font-weight:800;margin-left:8px;font-family:'JetBrains Mono',monospace;letter-spacing:-1px}
+
+        /* SPENDING GRID */
+        .spend-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-md)}
+        .spend-cell{text-align:center;padding:var(--space-lg) var(--space-md);background:rgba(236,72,153,.04);border:1px solid rgba(236,72,153,.08);border-radius:var(--radius-md);transition:all .2s;cursor:pointer}
+        .spend-cell:hover{background:rgba(236,72,153,.08);border-color:rgba(236,72,153,.15)}
+        .spend-amount{font-size:var(--font-xl);font-weight:800;color:var(--secondary);font-family:'JetBrains Mono',monospace}
+        .spend-type{font-size:var(--font-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+        /* CONNECTIONS */
+        .conn-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-md);text-align:center}
+        .conn-cell{padding:var(--space-md);background:rgba(255,255,255,.02);border-radius:var(--radius-md);cursor:pointer;transition:all .25s}
+        .conn-cell:hover{background:rgba(99,102,241,.08);transform:translateY(-2px)}
+        .conn-val{font-size:var(--font-xl);font-weight:800;color:var(--text-accent)}
+        .conn-lbl{font-size:var(--font-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.5px}
+
+        /* COMPANY CARD */
+        .biz-card{border:1px solid rgba(99,102,241,.12);background:rgba(99,102,241,.03)}
+        .biz-card::before{background:linear-gradient(90deg,transparent,rgba(99,102,241,.08) 30%,rgba(99,102,241,.08) 70%,transparent)}
+        .biz-header{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-lg)}
+        .biz-logo{width:56px;height:56px;border-radius:var(--radius-md);overflow:hidden;flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+        .biz-logo svg{width:100%;height:100%}
+        .biz-name{font-size:var(--font-lg);font-weight:700}
+        .biz-class{font-size:var(--font-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px}
+        .biz-detail-row{display:flex;align-items:center;gap:var(--space-sm);font-size:var(--font-sm);color:var(--text-secondary);padding:var(--space-xs) 0}
+        .biz-detail-icon{width:16px;text-align:center;color:var(--text-tertiary);flex-shrink:0}
+
+        /* BG CARD */
+        .bg-card{border:1px solid rgba(20,184,166,.12);background:rgba(20,184,166,.03)}
+        .bg-card::before{background:linear-gradient(90deg,transparent,rgba(20,184,166,.08) 30%,rgba(20,184,166,.08) 70%,transparent)}
+        .bg-role{font-size:var(--font-xs);padding:3px 10px;border-radius:100px;background:rgba(20,184,166,.1);color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:var(--space-md)}
+        .bg-members{display:flex;gap:0;margin-top:var(--space-md)}
+        .bg-member-avatar{width:36px;height:36px;border-radius:50%;border:2px solid rgba(6,4,18,.95);object-fit:cover;margin-left:-6px}
+        .bg-member-avatar:first-child{margin-left:0}
+        .bg-members-count{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);border:2px solid rgba(6,4,18,.95);display:flex;align-items:center;justify-content:center;font-size:var(--font-xs);font-weight:700;color:var(--text-tertiary);margin-left:-6px}
+
+        /* PRIVATE CARD */
+        .private-card{border:1px solid rgba(245,158,11,.12);background:rgba(245,158,11,.02)}
+        .private-card::before{background:linear-gradient(90deg,transparent,rgba(245,158,11,.06) 30%,rgba(245,158,11,.06) 70%,transparent)}
+        .private-label{font-size:var(--font-xs);font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--warning);margin-bottom:var(--space-sm)}
+        .private-row{display:flex;justify-content:space-between;padding:var(--space-sm) 0;font-size:var(--font-sm)}
+        .private-key{color:var(--text-tertiary)}
+        .private-val{color:var(--text-secondary);font-weight:500}
+        .masked{letter-spacing:2px}
+
+        /* WORK TABS */
+        .work-section-tabs{display:flex;gap:4px;margin-bottom:var(--space-md)}
+        .work-tab{padding:var(--space-xs) var(--space-md);border:1px solid var(--border-glass);border-radius:var(--radius-sm);background:transparent;color:var(--text-tertiary);font-family:'Outfit',sans-serif;font-size:var(--font-xs);font-weight:600;cursor:pointer;transition:all .2s}
+        .work-tab.active{background:rgba(99,102,241,.1);color:var(--primary-light);border-color:rgba(99,102,241,.2)}
+        .work-tab:hover:not(.active){color:var(--text-secondary);background:rgba(255,255,255,.03)}
+        .work-item{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md);border-bottom:1px solid rgba(255,255,255,.03);cursor:pointer;transition:background .2s}
+        .work-item:last-child{border-bottom:none}
+        .work-item:hover{background:rgba(255,255,255,.02)}
+        .work-item-logo{width:44px;height:44px;border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+        .work-item-logo svg{width:100%;height:100%}
+        .work-item-info{flex:1;min-width:0}
+        .work-item-title{font-size:var(--font-sm);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .work-item-detail{font-size:var(--font-xs);color:var(--text-tertiary)}
+        .work-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+        .work-item-status{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600}
+        .work-item-status.wg{background:rgba(236,72,153,.08);color:var(--secondary)}
+        .work-item-status.completed{background:rgba(99,102,241,.08);color:var(--primary-light)}
+        .work-item-applicants{font-size:var(--font-xs);color:var(--text-tertiary)}
+        .work-type-badge{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+        .work-type-badge.job{background:rgba(16,185,129,.1);color:var(--success)}
+        .work-type-badge.rfq{background:rgba(245,158,11,.1);color:var(--warning)}
+
+        /* HIRE HISTORY */
+        .hire-card{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md);border-bottom:1px solid rgba(255,255,255,.03);cursor:pointer;transition:all .25s}
+        .hire-card:last-child{border-bottom:none}
+        .hire-card:hover{background:rgba(255,255,255,.03);transform:translateX(4px)}
+        .hire-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+        .hire-info{flex:1;min-width:0}
+        .hire-name{font-size:var(--font-sm);font-weight:700}
+        .hire-occ{font-size:var(--font-xs);color:var(--text-tertiary)}
+        .hire-skill{font-size:var(--font-xs);color:var(--text-accent);margin-top:2px}
+        .hire-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+        .hire-status{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600}
+        .hire-status.active{background:rgba(16,185,129,.08);color:var(--success)}
+        .hire-status.completed{background:rgba(99,102,241,.08);color:var(--primary-light)}
+        .hire-dates{font-size:var(--font-xs);color:var(--text-tertiary)}
+
+        /* BG EXPANDED */
+        .bg-group-card{background:rgba(20,184,166,.02);border:1px solid rgba(20,184,166,.1);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);transition:all .3s}
+        .bg-group-card:last-child{margin-bottom:0}
+        .bg-group-card:hover{border-color:rgba(20,184,166,.2);background:rgba(20,184,166,.04)}
+        .bg-group-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-md);padding-bottom:var(--space-sm);border-bottom:1px solid rgba(20,184,166,.08)}
+        .bg-group-name{font-size:var(--font-base);font-weight:700}
+        .bg-group-meta{font-size:var(--font-xs);color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+        .bg-stat-row{display:flex;gap:var(--space-lg);font-size:var(--font-xs);color:var(--text-secondary)}
+
+        /* BADGES */
+        .badge-showcase{background:var(--surface-glass);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border-glass);border-radius:var(--radius-xl);padding:var(--space-lg) var(--space-xl);margin-bottom:var(--space-lg);position:relative;overflow:hidden}
+        .badge-showcase::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,.1) 30%,rgba(255,215,0,.1) 70%,transparent)}
+        .badge-showcase-title{font-size:var(--font-sm);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-tertiary);margin-bottom:var(--space-lg);display:flex;align-items:center;gap:var(--space-sm)}
+        .badge-showcase-title::before{content:'';width:4px;height:16px;background:linear-gradient(180deg,var(--tier-gold),var(--tier-diamond));border-radius:2px;flex-shrink:0}
+        .badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:var(--space-md)}
+        .badge-slot{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:var(--space-sm);border-radius:var(--radius-md);transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+        .badge-slot:hover{background:rgba(255,255,255,.04);transform:translateY(-4px) scale(1.05)}
+        .badge-frame{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.5))}
+        .badge-frame.diamond{background:linear-gradient(135deg,rgba(185,242,255,.15),rgba(185,242,255,.05));border:2px solid rgba(185,242,255,.3)}
+        .badge-frame.platinum{background:linear-gradient(135deg,rgba(229,228,226,.12),rgba(229,228,226,.04));border:2px solid rgba(229,228,226,.25)}
+        .badge-frame.gold{background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(255,215,0,.05));border:2px solid rgba(255,215,0,.3)}
+        .badge-frame.silver{background:linear-gradient(135deg,rgba(192,192,192,.12),rgba(192,192,192,.04));border:2px solid rgba(192,192,192,.2)}
+        .badge-tier-label{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;padding:2px 6px;border-radius:3px;background:rgba(0,0,0,.5)}
+        .badge-tier-label.diamond{color:var(--tier-diamond);border:1px solid rgba(185,242,255,.25)}
+        .badge-tier-label.platinum{color:var(--tier-platinum);border:1px solid rgba(229,228,226,.2)}
+        .badge-tier-label.gold{color:var(--tier-gold);border:1px solid rgba(255,215,0,.25)}
+        .badge-tier-label.silver{color:var(--tier-silver);border:1px solid rgba(192,192,192,.2)}
+        .badge-name{font-size:9px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.6px;font-weight:500}
+
+        /* REVIEWS */
+        .review-given-card{padding:var(--space-lg);background:rgba(255,255,255,.02);border:1px solid var(--border-glass);border-radius:var(--radius-lg);margin-bottom:var(--space-md);cursor:pointer;transition:all .3s}
+        .review-given-card:last-child{margin-bottom:0}
+        .review-given-card:hover{background:rgba(255,255,255,.04);border-color:var(--border-glass-hover);transform:translateY(-2px)}
+        .review-top{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-md)}
+        .review-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+        .review-info{flex:1}
+        .review-name{font-size:var(--font-sm);font-weight:700}
+        .review-role{font-size:var(--font-xs);color:var(--text-tertiary)}
+        .review-stars{color:var(--warning);font-size:14px;letter-spacing:1px;flex-shrink:0}
+        .review-text{font-size:var(--font-sm);color:var(--text-secondary);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+        .review-date{font-size:var(--font-xs);color:var(--text-tertiary);margin-top:var(--space-sm)}
+
+        /* WATCHED PROS */
+        .watch-card{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md);border-bottom:1px solid rgba(255,255,255,.03);cursor:pointer;transition:all .25s}
+        .watch-card:last-child{border-bottom:none}
+        .watch-card:hover{background:rgba(255,255,255,.03)}
+        .watch-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+        .watch-info{flex:1;min-width:0}
+        .watch-name{font-size:var(--font-sm);font-weight:700}
+        .watch-occ{font-size:var(--font-xs);color:var(--text-tertiary)}
+        .watch-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+        .watch-avail{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600}
+        .watch-avail.available{background:rgba(16,185,129,.1);color:var(--success)}
+        .watch-avail.on-contract{background:rgba(245,158,11,.08);color:var(--warning)}
+        .watch-prefs{font-size:9px;color:var(--text-tertiary);margin-top:2px}
+
+        /* FULLSCREEN MODAL (pre-rendered content) */
+        .fullscreen-modal{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.9);backdrop-filter:blur(24px);opacity:0;pointer-events:none;transition:opacity .35s;overflow-y:auto}
+        .fullscreen-modal.active{opacity:1;pointer-events:all}
+        .modal-inner{max-width:800px;width:92%;margin:60px auto;background:linear-gradient(180deg,rgba(20,16,50,.97),rgba(10,8,30,.99));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-xl);padding:var(--space-2xl);transform:translateY(30px);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+        .fullscreen-modal.active .modal-inner{transform:translateY(0)}
+        .modal-close{position:fixed;top:20px;right:20px;width:48px;height:48px;background:var(--surface-glass-strong);border:1px solid var(--border-glass-hover);border-radius:50%;color:var(--text-primary);font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10001;transition:all .2s}
+        .modal-close:hover{background:var(--danger);border-color:var(--danger)}
+        .modal-header{display:flex;align-items:center;gap:var(--space-lg);margin-bottom:var(--space-xl)}
+        .modal-logo{width:80px;height:80px;border-radius:var(--radius-lg);overflow:hidden;flex-shrink:0;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+        .modal-logo svg{width:100%;height:100%}
+        .modal-title{font-size:var(--font-2xl);font-weight:800}
+        .modal-subtitle{font-size:var(--font-base);color:var(--text-secondary)}
+        .modal-field{margin-bottom:var(--space-xl)}
+        .modal-label{font-size:var(--font-xs);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-tertiary);margin-bottom:var(--space-sm)}
+        .modal-value{font-size:var(--font-lg);font-weight:600}
+        .modal-value-text{font-size:var(--font-base);font-weight:400;color:var(--text-secondary);line-height:1.8}
+        .modal-stars{color:var(--warning);font-size:var(--font-xl);letter-spacing:3px}
+
+        /* ANIMATIONS */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+        .glass-card,.badge-showcase{animation:fadeUp .5s ease-out both}
+        .glass-card:nth-child(2){animation-delay:.1s}
+        .glass-card:nth-child(3){animation-delay:.15s}
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            .profile-grid{grid-template-columns:1fr}
+            .left-column{order:1}
+            .right-column{order:2}
+        }
+    </style>
+</head>
+<body class="view-self">
+
+    <!-- VIEW TOGGLE -->
+    <div class="view-toggle">
+        <div class="view-toggle-row">
+            <button class="view-btn perspective" data-view="visitor">Visitor</button>
+            <button class="view-btn perspective active" data-view="self">Self</button>
+            <button class="view-btn admin-btn" data-view="admin">Admin</button>
+        </div>
+    </div>
+
+    <div class="wallpaper"></div>
+    <div class="wallpaper-scrim"></div>
+
+    <!-- PRE-RENDERED MODALS -->
+    <div class="fullscreen-modal" id="modal-fanuc">
+        <button class="modal-close" data-close="modal-fanuc">&times;</button>
+        <div class="modal-inner">
+            <div class="modal-header">
+                <div class="modal-logo"><svg viewBox="0 0 80 80"><rect width="80" height="80" rx="21" fill="#FFE000"/><text x="40" y="52" fill="#333" font-size="28" font-weight="900" text-anchor="middle" font-family="Outfit">F</text></svg></div>
+                <div><div class="modal-title">FANUC R-2000iC Robot Programmer</div><div class="modal-subtitle">White Glove Hourly Contract &bull; WG-4821</div></div>
+            </div>
+            <div class="modal-field"><div class="modal-label">Location</div><div class="modal-value">Detroit, MI &bull; On-site</div></div>
+            <div class="modal-field"><div class="modal-label">Duration</div><div class="modal-value">12 weeks starting May 1, 2026</div></div>
+            <div class="modal-field"><div class="modal-label">Rate Range</div><div class="modal-value" style="color:var(--success)">$52 &ndash; $78/hr</div></div>
+            <div class="modal-field"><div class="modal-label">Applicants</div><div class="modal-value">3 applicants &bull; 1 shortlisted</div></div>
+            <div class="modal-field"><div class="modal-label">Description</div><div class="modal-value-text">Seeking an experienced FANUC robot programmer for R-2000iC series integration at our Detroit automotive assembly facility. Must have 5+ years programming experience with FANUC TP and Karel languages. Project involves integrating 8 new welding cells with existing conveyor systems. Candidate must be comfortable working in an active production environment with strict safety protocols.</div></div>
+        </div>
+    </div>
+
+    <div class="fullscreen-modal" id="modal-marcus-review">
+        <button class="modal-close" data-close="modal-marcus-review">&times;</button>
+        <div class="modal-inner">
+            <div class="modal-header">
+                <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:0 6px 24px rgba(0,0,0,.4)"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+                <div><div class="modal-title">Review for Marcus Chen</div><div class="modal-subtitle">Robot Programmer &bull; FANUC R-2000iC</div></div>
+            </div>
+            <div class="modal-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="modal-field" style="margin-top:var(--space-lg)"><div class="modal-value-text">Marcus is an outstanding FANUC programmer. His expertise with the R-2000iC series is exceptional &mdash; he integrated 8 welding cells ahead of schedule and under budget. His KAREL programming skills are among the best I have seen in 12 years of manufacturing automation. He communicates clearly with floor personnel, follows all safety protocols meticulously, and documented every program change thoroughly. Would absolutely hire again for any FANUC project.</div></div>
+            <div style="font-size:13px;color:var(--text-tertiary)">Reviewed April 8, 2026 &bull; Contract WG-4821</div>
+        </div>
+    </div>
+
+    <div class="fullscreen-modal" id="modal-marcus-hire">
+        <button class="modal-close" data-close="modal-marcus-hire">&times;</button>
+        <div class="modal-inner">
+            <div class="modal-header">
+                <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:0 6px 24px rgba(0,0,0,.4)"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+                <div><div class="modal-title">Marcus Chen</div><div class="modal-subtitle">Robot Programmer &bull; FANUC Specialist</div></div>
+            </div>
+            <div class="modal-field"><div class="modal-label">Contract</div><div class="modal-value">FANUC R-2000iC Robot Programmer (WG-4821)</div></div>
+            <div class="modal-field"><div class="modal-label">Duration</div><div class="modal-value">Mar 2026 &ndash; Present &bull; 6 weeks active</div></div>
+            <div class="modal-field"><div class="modal-label">Rate</div><div class="modal-value" style="color:var(--success)">$68/hr base &bull; $102/hr OT</div></div>
+            <div class="modal-field"><div class="modal-label">Performance</div><div style="color:var(--warning);font-size:21px;letter-spacing:3px">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
+        </div>
+    </div>
+
+    <div class="fullscreen-modal" id="modal-badge-contracts">
+        <button class="modal-close" data-close="modal-badge-contracts">&times;</button>
+        <div class="modal-inner" style="max-width:440px;text-align:center">
+            <div class="badge-frame diamond" style="width:120px;height:120px;font-size:52px;margin:0 auto var(--space-lg)">&#x1F4DD;</div>
+            <div style="font-size:var(--font-2xl);font-weight:800;margin-bottom:var(--space-sm)">Contracts</div>
+            <div class="badge-tier-label diamond" style="font-size:var(--font-sm);display:inline-block;margin-bottom:var(--space-lg)">Diamond</div>
+            <div style="font-size:var(--font-base);color:var(--text-secondary)">12 contracts posted. Top 1% of customers on the platform. Awarded for posting 10+ contracts through Automate America.</div>
+        </div>
+    </div>
+
+    <!-- FEED -->
+    <div class="feed-layer"><div class="feed-backdrop"><div class="container">
+    <div class="profile-grid">
+
+        <!-- ==================== LEFT COLUMN ==================== -->
+        <div class="left-column">
+
+            <!-- HERO CARD -->
+            <div class="glass-card hero-card">
+                <div class="hiring-pill"><div class="pulse-dot"></div><span>Actively Hiring</span></div>
+                <div class="photo-wrap">
+                    <div class="photo-glow"></div>
+                    <div class="photo-glow-mask"></div>
+                    <img class="profile-photo" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=320&h=320&fit=crop&crop=face" alt="Rebecca">
+                    <div class="verified-check">&#10003;</div>
+                </div>
+                <h1 class="profile-name">Rebecca</h1>
+                <div class="customer-id">#AA-C-12847</div>
+                <div class="role-badge">Customer</div>
+                <div class="location-row">
+                    <span>Chicago, Illinois</span>
+                    <svg class="flag-svg" viewBox="0 0 60 40"><rect fill="#B22234" width="60" height="40"/><rect fill="#fff" y="3" width="60" height="3"/><rect fill="#fff" y="9" width="60" height="3"/><rect fill="#fff" y="15" width="60" height="3"/><rect fill="#fff" y="21" width="60" height="3"/><rect fill="#fff" y="27" width="60" height="3"/><rect fill="#fff" y="33" width="60" height="3"/><rect fill="#3C3B6E" width="24" height="21"/></svg>
+                    <span>US Citizen</span>
+                </div>
+                <a class="company-link"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#4F46E5"/><text x="12" y="16" fill="white" font-size="11" font-weight="bold" text-anchor="middle" font-family="Outfit">PA</text></svg> Precision Automation Group</a>
+                <div class="company-class">Systems Integrator</div>
+                <div class="quick-stats">
+                    <div class="stat-cell"><div class="stat-val pink">12</div><div class="stat-lbl">Contracts</div></div>
+                    <div class="stat-cell"><div class="stat-val" style="color:var(--accent)">8</div><div class="stat-lbl">Hired</div></div>
+                    <div class="stat-cell"><div class="stat-val green">$1.2M</div><div class="stat-lbl">Spend</div></div>
+                </div>
+                <div class="strength-bar-wrap owner-only">
+                    <div class="strength-top"><span class="strength-lbl">Profile Strength</span><span class="strength-pct">94%</span></div>
+                    <div class="strength-track"><div class="strength-fill" style="width:94%"></div></div>
+                </div>
+            </div>
+
+            <!-- VISITOR CTAs -->
+            <div class="glass-card cta-stack visitor-only">
+                <button class="cta-connect">Connect</button>
+                <button class="cta-outline">Watch</button>
+                <button class="cta-ghost">Message (connect first)</button>
+                <button class="cta-outline">Share</button>
+            </div>
+
+            <!-- OWNER CTAs -->
+            <div class="glass-card cta-stack owner-only">
+                <button class="cta-post">Post Your Contract Now</button>
+                <button class="cta-primary">Post Direct Job</button>
+                <button class="cta-outline">Post RFQ</button>
+                <button class="cta-boost">Boost Profile &mdash; $50/wk</button>
+            </div>
+
+            <!-- SPENDING SUMMARY -->
+            <div class="glass-card">
+                <div class="section-title">Spending Summary</div>
+                <div class="spend-grid">
+                    <div class="spend-cell"><div class="spend-amount">$1.25M</div><div class="spend-type">Total Spend</div></div>
+                    <div class="spend-cell"><div class="spend-amount">5</div><div class="spend-type">Active</div></div>
+                    <div class="spend-cell"><div class="spend-amount">$104K</div><div class="spend-type">Avg Value</div></div>
+                    <div class="spend-cell"><div class="spend-amount">18,420</div><div class="spend-type">Hours Paid</div></div>
+                </div>
+            </div>
+
+            <!-- CONNECTIONS -->
+            <div class="glass-card">
+                <div class="section-title">Connections</div>
+                <div class="conn-row">
+                    <div class="conn-cell"><div class="conn-val">47</div><div class="conn-lbl">Pros</div></div>
+                    <div class="conn-cell"><div class="conn-val">12</div><div class="conn-lbl">Watching</div></div>
+                    <div class="conn-cell"><div class="conn-val">8</div><div class="conn-lbl">Companies</div></div>
+                </div>
+            </div>
+
+            <!-- COMPANY CARD -->
+            <div class="glass-card biz-card">
+                <div class="biz-header">
+                    <div class="biz-logo"><svg viewBox="0 0 56 56"><rect width="56" height="56" rx="13" fill="#4F46E5"/><text x="28" y="35" fill="white" font-size="18" font-weight="bold" text-anchor="middle" font-family="Outfit">PAG</text></svg></div>
+                    <div><div class="biz-name">Precision Automation Group</div><div class="biz-class">Systems Integrator</div></div>
+                </div>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#x1F4CD;</span> Chicago, IL &bull; Detroit, MI &bull; Cleveland, OH</div>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#x1F465;</span> 48 employees &bull; Est. 2014</div>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#x1F3ED;</span> Automotive, Aerospace, Pharmaceutical</div>
+                <div class="biz-detail-row admin-only"><span class="biz-detail-icon">&#x1F4E7;</span> rebecca@precisionauto.com</div>
+                <div class="biz-detail-row admin-only"><span class="biz-detail-icon">&#x1F4DE;</span> (312) 555-0847</div>
+            </div>
+
+            <!-- BG SUMMARY -->
+            <div class="glass-card bg-card">
+                <div class="bg-role">Admin &mdash; 3 Business Groups</div>
+                <div style="font-size:var(--font-sm);font-weight:600;margin-bottom:var(--space-sm)">Precision Midwest Division</div>
+                <div style="font-size:var(--font-xs);color:var(--text-tertiary);margin-bottom:var(--space-sm)">12 members &bull; 4 active contracts</div>
+                <div class="bg-members">
+                    <img class="bg-member-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=72&h=72&fit=crop&crop=face" alt="">
+                    <img class="bg-member-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=72&h=72&fit=crop&crop=face" alt="">
+                    <img class="bg-member-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=72&h=72&fit=crop&crop=face" alt="">
+                    <img class="bg-member-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=72&h=72&fit=crop&crop=face" alt="">
+                    <div class="bg-members-count">+8</div>
+                </div>
+            </div>
+
+            <!-- ADMIN: PRIVATE INFO -->
+            <div class="glass-card private-card admin-only">
+                <div class="private-label">Admin Only &mdash; Account Details</div>
+                <div class="private-row"><span class="private-key">Email</span><span class="private-val">rebecca@precisionauto.com</span></div>
+                <div class="private-row"><span class="private-key">Phone</span><span class="private-val">(312) 555-0847</span></div>
+                <div class="private-row"><span class="private-key">Registered</span><span class="private-val">March 14, 2022</span></div>
+                <div class="private-row"><span class="private-key">Last Login</span><span class="private-val">April 14, 2026 &mdash; 2:38 PM</span></div>
+                <div class="private-row"><span class="private-key">Payment</span><span class="private-val">Net 30 &bull; ACH</span></div>
+                <div class="private-row"><span class="private-key">AP Contact</span><span class="private-val">Linda Park &mdash; lpark@precisionauto.com</span></div>
+                <div class="private-row"><span class="private-key">Billing</span><span class="private-val masked">****-****-****-4821</span></div>
+            </div>
+        </div>
+
+        <!-- ==================== RIGHT COLUMN ==================== -->
+        <div class="right-column">
+
+            <!-- POSTED WORK -->
+            <div class="glass-card">
+                <div class="section-title">Posted Work <span class="section-count">12</span></div>
+                <div class="work-section-tabs">
+                    <button class="work-tab active" data-tab="active">Active (5)</button>
+                    <button class="work-tab" data-tab="completed">Completed (7)</button>
+                </div>
+                <div id="work-active">
+                    <div class="work-item" data-modal="modal-fanuc">
+                        <div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#FFE000"/><text x="22" y="28" fill="#333" font-size="16" font-weight="900" text-anchor="middle" font-family="Outfit">F</text></svg></div>
+                        <div class="work-item-info"><div class="work-item-title">FANUC R-2000iC Robot Programmer</div><div class="work-item-detail">Detroit, MI &bull; 12 weeks &bull; $52-78/hr</div></div>
+                        <div class="work-item-right"><div class="work-item-status wg">WG</div><div class="work-item-applicants">3 applicants</div></div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#E4002B"/><text x="22" y="28" fill="white" font-size="14" font-weight="900" text-anchor="middle" font-family="Outfit">AB</text></svg></div>
+                        <div class="work-item-info"><div class="work-item-title">Allen-Bradley ControlLogix L83E PLC Tech</div><div class="work-item-detail">Chicago, IL &bull; 8 weeks &bull; $48-72/hr</div></div>
+                        <div class="work-item-right"><div class="work-item-status wg">WG</div><div class="work-item-applicants">7 applicants</div></div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#009999"/><text x="22" y="28" fill="white" font-size="12" font-weight="900" text-anchor="middle" font-family="Outfit">SIE</text></svg></div>
+                        <div class="work-item-info"><div class="work-item-title">Siemens S7-1500 Controls Engineer</div><div class="work-item-detail">Cleveland, OH &bull; 16 weeks &bull; $55-82/hr</div></div>
+                        <div class="work-item-right"><div class="work-item-status wg">WG</div><div class="work-item-applicants">2 applicants</div></div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#4F46E5"/><text x="22" y="28" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="Outfit">PAG</text></svg></div>
+                        <div class="work-item-info"><div class="work-item-title">Maintenance Supervisor</div><div class="work-item-detail">Chicago, IL &bull; Full-time &bull; $95K-115K</div></div>
+                        <div class="work-item-right"><span class="work-type-badge job">Job</span><div class="work-item-applicants">5 applicants</div></div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#4F46E5"/><text x="22" y="28" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="Outfit">PAG</text></svg></div>
+                        <div class="work-item-info"><div class="work-item-title">Full Plant Automation Retrofit</div><div class="work-item-detail">Detroit Facility &bull; Est. $750K</div></div>
+                        <div class="work-item-right"><span class="work-type-badge rfq">RFQ</span><div class="work-item-applicants">2 quotes</div></div>
+                    </div>
+                </div>
+                <div id="work-completed" style="display:none">
+                    <div class="work-item"><div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#FFE000"/><text x="22" y="28" fill="#333" font-size="16" font-weight="900" text-anchor="middle" font-family="Outfit">F</text></svg></div><div class="work-item-info"><div class="work-item-title">FANUC LR Mate 200iD Setup</div><div class="work-item-detail">Detroit, MI &bull; 8 weeks &bull; Completed Jan 2026</div></div><div class="work-item-right"><div class="work-item-status completed">Done</div></div></div>
+                    <div class="work-item"><div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#E4002B"/><text x="22" y="28" fill="white" font-size="14" font-weight="900" text-anchor="middle" font-family="Outfit">AB</text></svg></div><div class="work-item-info"><div class="work-item-title">ControlLogix Migration &mdash; Line 4</div><div class="work-item-detail">Chicago, IL &bull; 6 weeks &bull; Completed Nov 2025</div></div><div class="work-item-right"><div class="work-item-status completed">Done</div></div></div>
+                    <div class="work-item"><div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#FF0000"/><text x="22" y="28" fill="white" font-size="12" font-weight="900" text-anchor="middle" font-family="Outfit">ABB</text></svg></div><div class="work-item-info"><div class="work-item-title">ABB IRB 6700 Cell Integration</div><div class="work-item-detail">Cleveland, OH &bull; 10 weeks &bull; Completed Sep 2025</div></div><div class="work-item-right"><div class="work-item-status completed">Done</div></div></div>
+                    <div class="work-item"><div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#1428A0"/><text x="22" y="28" fill="white" font-size="10" font-weight="900" text-anchor="middle" font-family="Outfit">COG</text></svg></div><div class="work-item-info"><div class="work-item-title">Cognex Vision System Calibration</div><div class="work-item-detail">Detroit, MI &bull; 4 weeks &bull; Completed Jul 2025</div></div><div class="work-item-right"><div class="work-item-status completed">Done</div></div></div>
+                    <div class="work-item"><div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#009999"/><text x="22" y="28" fill="white" font-size="12" font-weight="900" text-anchor="middle" font-family="Outfit">SIE</text></svg></div><div class="work-item-info"><div class="work-item-title">Siemens HMI Panel Upgrade</div><div class="work-item-detail">Chicago, IL &bull; 3 weeks &bull; Completed May 2025</div></div><div class="work-item-right"><div class="work-item-status completed">Done</div></div></div>
+                    <div class="work-item"><div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#FFE000"/><text x="22" y="28" fill="#333" font-size="16" font-weight="900" text-anchor="middle" font-family="Outfit">F</text></svg></div><div class="work-item-info"><div class="work-item-title">FANUC Arc Welding Cell &mdash; Line 2</div><div class="work-item-detail">Detroit, MI &bull; 14 weeks &bull; Completed Feb 2025</div></div><div class="work-item-right"><div class="work-item-status completed">Done</div></div></div>
+                    <div class="work-item"><div class="work-item-logo"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="8" fill="#E4002B"/><text x="22" y="28" fill="white" font-size="14" font-weight="900" text-anchor="middle" font-family="Outfit">AB</text></svg></div><div class="work-item-info"><div class="work-item-title">PLC-5 to ControlLogix Conversion</div><div class="work-item-detail">Cleveland, OH &bull; 12 weeks &bull; Completed Oct 2024</div></div><div class="work-item-right"><div class="work-item-status completed">Done</div></div></div>
+                </div>
+            </div>
+
+            <!-- HIRING HISTORY -->
+            <div class="glass-card">
+                <div class="section-title">Hiring History <span class="section-count">8</span></div>
+                <div class="hire-card" data-modal="modal-marcus-hire"><img class="hire-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face" alt=""><div class="hire-info"><div class="hire-name">Marcus Chen</div><div class="hire-occ">Robot Programmer</div><div class="hire-skill">FANUC R-2000iC &bull; WG-4821</div></div><div class="hire-right"><div class="hire-status active">Active</div><div class="hire-dates">Mar 2026 &ndash; Present</div></div></div>
+                <div class="hire-card"><img class="hire-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&crop=face" alt=""><div class="hire-info"><div class="hire-name">David Park</div><div class="hire-occ">PLC Programmer</div><div class="hire-skill">Allen-Bradley L83E &bull; WG-4822</div></div><div class="hire-right"><div class="hire-status active">Active</div><div class="hire-dates">Feb 2026 &ndash; Present</div></div></div>
+                <div class="hire-card"><img class="hire-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop&crop=face" alt=""><div class="hire-info"><div class="hire-name">Sarah Williams</div><div class="hire-occ">Controls Engineer</div><div class="hire-skill">Siemens S7-1500 &bull; WG-4823</div></div><div class="hire-right"><div class="hire-status active">Active</div><div class="hire-dates">Jan 2026 &ndash; Present</div></div></div>
+                <div class="hire-card"><img class="hire-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop&crop=face" alt=""><div class="hire-info"><div class="hire-name">James Mitchell</div><div class="hire-occ">Vision Systems Tech</div><div class="hire-skill">Cognex In-Sight &bull; Completed</div></div><div class="hire-right"><div class="hire-status completed">Done</div><div class="hire-dates">May &ndash; Jul 2025</div></div></div>
+                <div class="hire-card"><img class="hire-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=face" alt=""><div class="hire-info"><div class="hire-name">Maria Garcia</div><div class="hire-occ">Maintenance Engineer</div><div class="hire-skill">ABB IRB 6700 &bull; Completed</div></div><div class="hire-right"><div class="hire-status completed">Done</div><div class="hire-dates">Jun &ndash; Sep 2025</div></div></div>
+                <div style="text-align:center;padding-top:var(--space-md)"><span style="font-size:var(--font-xs);color:var(--text-tertiary);cursor:pointer">Show 3 more hired professionals</span></div>
+            </div>
+
+            <!-- BUSINESS GROUPS -->
+            <div class="glass-card">
+                <div class="section-title">Business Groups <span class="section-count">3</span></div>
+                <div class="bg-group-card"><div class="bg-group-header"><div class="bg-group-name">Precision Midwest Division</div><div class="bg-group-meta">Admin &bull; 12 members</div></div><div class="bg-stat-row"><span>4 active contracts</span><span>$820K billed</span><span>4.8 avg rating</span></div></div>
+                <div class="bg-group-card"><div class="bg-group-header"><div class="bg-group-name">Axiom Alliance</div><div class="bg-group-meta">Member &bull; 8 members</div></div><div class="bg-stat-row"><span>2 active contracts</span><span>$340K billed</span><span>4.6 avg rating</span></div></div>
+                <div class="bg-group-card"><div class="bg-group-header"><div class="bg-group-name">Great Lakes Controls Network</div><div class="bg-group-meta">Admin &bull; 6 members</div></div><div class="bg-stat-row"><span>1 active contract</span><span>$180K billed</span><span>4.9 avg rating</span></div></div>
+            </div>
+
+            <!-- CUSTOMER ACHIEVEMENT BADGES -->
+            <div class="badge-showcase">
+                <div class="badge-showcase-title">Customer Achievement Badges</div>
+                <div class="badge-grid">
+                    <div class="badge-slot" data-modal="modal-badge-contracts"><div class="badge-frame diamond">&#x1F4DD;</div><span class="badge-tier-label diamond">Diamond</span><span class="badge-name">Contracts</span></div>
+                    <div class="badge-slot"><div class="badge-frame diamond">&#x1F91D;</div><span class="badge-tier-label diamond">Diamond</span><span class="badge-name">Hired</span></div>
+                    <div class="badge-slot"><div class="badge-frame diamond">&#x1F4B0;</div><span class="badge-tier-label diamond">Diamond</span><span class="badge-name">Spend</span></div>
+                    <div class="badge-slot"><div class="badge-frame platinum">&#x2705;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Approval</span></div>
+                    <div class="badge-slot"><div class="badge-frame platinum">&#x23F0;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Hours</span></div>
+                    <div class="badge-slot"><div class="badge-frame platinum">&#x1F4B3;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Payment</span></div>
+                    <div class="badge-slot"><div class="badge-frame platinum">&#x1F3C5;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Tenure</span></div>
+                    <div class="badge-slot"><div class="badge-frame gold">&#x1F4E5;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Applicants</span></div>
+                    <div class="badge-slot"><div class="badge-frame gold">&#x1F4C4;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Expense</span></div>
+                    <div class="badge-slot"><div class="badge-frame gold">&#x1F4BC;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Jobs</span></div>
+                    <div class="badge-slot"><div class="badge-frame gold">&#x1F504;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Rehire</span></div>
+                    <div class="badge-slot"><div class="badge-frame silver">&#x1F465;</div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Group</span></div>
+                    <div class="badge-slot"><div class="badge-frame silver">&#x1F4CB;</div><span class="badge-tier-label silver">Silver</span><span class="badge-name">RFQ</span></div>
+                    <div class="badge-slot"><div class="badge-frame silver">&#x2B50;</div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Reviews</span></div>
+                </div>
+            </div>
+
+            <!-- REVIEWS GIVEN -->
+            <div class="glass-card">
+                <div class="section-title">Reviews Given <span class="section-count">6</span></div>
+                <div class="review-given-card" data-modal="modal-marcus-review">
+                    <div class="review-top"><img class="review-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=88&h=88&fit=crop&crop=face" alt=""><div class="review-info"><div class="review-name">Marcus Chen</div><div class="review-role">Robot Programmer &bull; FANUC</div></div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
+                    <div class="review-text">Marcus is an outstanding FANUC programmer. His expertise with the R-2000iC series is exceptional &mdash; he integrated 8 welding cells ahead of schedule and under budget. His KAREL programming skills are among the best I have seen.</div>
+                    <div class="review-date">April 8, 2026</div>
+                </div>
+                <div class="review-given-card">
+                    <div class="review-top"><img class="review-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=88&h=88&fit=crop&crop=face" alt=""><div class="review-info"><div class="review-name">James Mitchell</div><div class="review-role">Vision Systems Tech &bull; Cognex</div></div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div></div>
+                    <div class="review-text">Great attention to detail with vision system calibration. James calibrated our Cognex In-Sight cameras across 3 inspection stations. His diagnostics approach found alignment issues our previous technician missed.</div>
+                    <div class="review-date">August 2, 2025</div>
+                </div>
+                <div class="review-given-card">
+                    <div class="review-top"><img class="review-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=88&h=88&fit=crop&crop=face" alt=""><div class="review-info"><div class="review-name">Maria Garcia</div><div class="review-role">Maintenance Engineer &bull; ABB</div></div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
+                    <div class="review-text">Maria is exceptional. She diagnosed and repaired our ABB IRB 6700 robot cells faster than the OEM support team quoted. Her preventive maintenance program reduced our unplanned downtime by 40% over the contract period.</div>
+                    <div class="review-date">October 15, 2025</div>
+                </div>
+                <div style="text-align:center;padding-top:var(--space-md)"><span style="font-size:var(--font-xs);color:var(--text-tertiary);cursor:pointer">Show 3 more reviews</span></div>
+            </div>
+
+            <!-- WATCHED PROFESSIONALS -->
+            <div class="glass-card">
+                <div class="section-title">Watched Professionals <span class="section-count">12</span></div>
+                <div class="watch-card"><img class="watch-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=88&h=88&fit=crop&crop=face" alt=""><div class="watch-info"><div class="watch-name">Alex Tanaka</div><div class="watch-occ">Robot Programmer &bull; FANUC &bull; KUKA</div></div><div class="watch-right"><div class="watch-avail available">Available</div><div class="watch-prefs">Availability + New Work</div></div></div>
+                <div class="watch-card"><img class="watch-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=88&h=88&fit=crop&crop=face" alt=""><div class="watch-info"><div class="watch-name">Lisa Patel</div><div class="watch-occ">PLC Engineer &bull; Siemens &bull; Rockwell</div></div><div class="watch-right"><div class="watch-avail on-contract">On Contract</div><div class="watch-prefs">Availability Only</div></div></div>
+                <div class="watch-card"><img class="watch-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=88&h=88&fit=crop&crop=face" alt=""><div class="watch-info"><div class="watch-name">Robert Kim</div><div class="watch-occ">Controls Architect &bull; Siemens &bull; ABB</div></div><div class="watch-right"><div class="watch-avail available">Available</div><div class="watch-prefs">All Changes</div></div></div>
+                <div style="text-align:center;padding-top:var(--space-md)"><span style="font-size:var(--font-xs);color:var(--text-tertiary);cursor:pointer">Show 9 more watched</span></div>
+            </div>
+
+        </div>
+    </div>
+    </div></div></div>
+
+    <script>
+        // View toggle
+        document.querySelectorAll('.view-btn[data-view]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var mode = this.getAttribute('data-view');
+                document.body.className = '';
+                if (mode === 'self') document.body.classList.add('view-self');
+                else if (mode === 'admin') document.body.classList.add('view-admin');
+                document.querySelectorAll('.view-btn[data-view]').forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+            });
+        });
+
+        // Work tabs
+        document.querySelectorAll('.work-tab[data-tab]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var tab = this.getAttribute('data-tab');
+                document.getElementById('work-active').style.display = tab === 'active' ? 'block' : 'none';
+                document.getElementById('work-completed').style.display = tab === 'completed' ? 'block' : 'none';
+                document.querySelectorAll('.work-tab').forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+            });
+        });
+
+        // Modal open via data-modal attribute
+        document.querySelectorAll('[data-modal]').forEach(function(el) {
+            el.addEventListener('click', function() {
+                var modalId = this.getAttribute('data-modal');
+                var modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Modal close
+        document.querySelectorAll('.modal-close[data-close]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var modalId = this.getAttribute('data-close');
+                document.getElementById(modalId).classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close modals on backdrop click
+        document.querySelectorAll('.fullscreen-modal').forEach(function(modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Escape key closes modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.fullscreen-modal.active').forEach(function(m) {
+                    m.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+{
+  "$schema": "Automate America — Direct Job (W-2 full-time posting)",
+  "$source": "Composite fictional record. Direct (W-2) posting from Ford Rouge.",
+  "$rendered_for": "Claude Design — Direct Job prototype",
+  "$version": "1.0",
+  "$last_updated": "2026-04-25",
+
+  "contract_id": 28136,
+  "contract_uuid": "01HZX9P4M2K7DIRECTJOB28136",
+  "type": "direct_w2",
+  "tier": "Standard",
+  "white_glove": false,
+  "status": "Live",
+  "posted_at": "2026-04-12T09:00:00Z",
+  "closes_at": "2026-05-15T17:00:00-04:00",
+  "boosted": false,
+
+  "header": {
+    "title": "Senior Controls Engineer — Final Assembly",
+    "company_name": "Ford Rouge Complex",
+    "company_id": 4471,
+    "company_logo": "../assets/logos/ford-motor-company.png",
+    "department": "Body-in-White / Final Assembly",
+    "city": "Dearborn",
+    "state": "MI",
+    "country": "United States",
+    "remote_eligible": false,
+    "remote_label": "Onsite",
+    "shift": "1st shift · 6:00 AM – 2:30 PM",
+    "weekly_hours": 40,
+    "overtime_eligible": true,
+    "headline_rate": "$180,000 – $235,000 / yr"
+  },
+
+  "ctas_visitor": [
+    { "id": "apply",       "label": "Apply now",           "kind": "primary",   "icon": "paper-plane" },
+    { "id": "save",        "label": "Save",                "kind": "secondary", "icon": "bookmark" },
+    { "id": "share",       "label": "Share",               "kind": "secondary", "icon": "share" },
+    { "id": "view-company","label": "View Ford Rouge",     "kind": "tertiary",  "icon": "building" },
+    { "id": "ask-question","label": "Ask a question",      "kind": "tertiary",  "icon": "envelope" }
+  ],
+
+  "compensation": {
+    "salary_min_usd": 180000,
+    "salary_max_usd": 235000,
+    "currency": "USD",
+    "pay_frequency": "biweekly",
+    "bonus_target_pct": 12,
+    "equity": null,
+    "sign_on_bonus_usd": 15000,
+    "relocation_assistance_usd": 12000,
+    "rate_disclosed": true
+  },
+
+  "benefits": {
+    "$visibility": "all",
+    "items": [
+      { "category": "Health",         "label": "Medical · BCBS PPO", "detail": "Premium 90% employer-paid, $0 deductible in-network" },
+      { "category": "Health",         "label": "Dental + Vision", "detail": "100% employer-paid premium" },
+      { "category": "Health",         "label": "HSA / FSA", "detail": "$1,500 annual employer HSA contribution" },
+      { "category": "Retirement",     "label": "401(k)", "detail": "6% match dollar-for-dollar after 60 days" },
+      { "category": "Retirement",     "label": "Pension", "detail": "Defined-benefit pension after 3 yrs vested" },
+      { "category": "Time off",       "label": "Vacation", "detail": "4 weeks PTO + 12 paid holidays + 2 floating" },
+      { "category": "Time off",       "label": "Parental leave", "detail": "16 weeks paid (primary), 8 weeks (secondary)" },
+      { "category": "Education",      "label": "Tuition", "detail": "$10K/yr tuition reimbursement (degree-aligned)" },
+      { "category": "Education",      "label": "Certifications", "detail": "100% covered for role-relevant certs (ISA, TÜV, Rockwell, Siemens)" },
+      { "category": "Other",          "label": "Vehicle", "detail": "A-plan pricing on FoMoCo vehicles for employee + family" },
+      { "category": "Other",          "label": "Onsite", "detail": "Subsidized cafeteria · onsite gym · onsite medical clinic" }
+    ]
+  },
+
+  "responsibilities": [
+    "Lead controls engineering on the F-150 final assembly line at the Rouge.",
+    "Own PLC + HMI architecture across 4 zones (180+ I/O points per zone).",
+    "Drive uptime: target 96.5%+ rolling 90-day availability, root-cause every event below 95%.",
+    "Mentor 3 junior controls engineers through commissioning of new automation cells.",
+    "Coordinate with Maintenance, Manufacturing Engineering, and Quality on any controls change.",
+    "Respond to Tier-2 escalations during 1st shift; participate in on-call rotation 1 week per 6.",
+    "Author standard work for new automation, retire legacy code, lead post-mortems."
+  ],
+
+  "requirements_must_have": [
+    "B.S. in Electrical Engineering, Controls, Mechatronics, or equivalent.",
+    "5+ years programming Allen-Bradley ControlLogix in Studio 5000.",
+    "Proven Body-in-White or final-assembly automation experience at scale (Tier-1 OEM).",
+    "Functional Safety experience (SIL-2 minimum).",
+    "OSHA-30 General Industry within 60 days of start.",
+    "Fluent English (read / write / speak).",
+    "Authorized to work in the U.S. without sponsorship now or in the future."
+  ],
+
+  "requirements_nice_to_have": [
+    "Siemens TIA Portal experience (cross-train on plant migration roadmap).",
+    "FANUC robot programming (KAREL or TPP).",
+    "Cognex or Keyence vision systems.",
+    "Functional Safety SIL-3 / TÜV-certified.",
+    "Lean Six Sigma Green or Black Belt.",
+    "Spanish bilingual."
+  ],
+
+  "interview_process": [
+    { "step": 1, "name": "Application review",  "duration": "1–2 days",  "owner": "Talent Acquisition" },
+    { "step": 2, "name": "Phone screen",         "duration": "30 min",    "owner": "Recruiter (TA)" },
+    { "step": 3, "name": "Hiring manager call",  "duration": "45 min",    "owner": "Rebecca Chen, Plant Engineering Manager" },
+    { "step": 4, "name": "Onsite panel",         "duration": "4 hours",   "owner": "Tour + 3 panel interviews + take-home" },
+    { "step": 5, "name": "Take-home exercise",   "duration": "4 hours self-paced over 1 week", "owner": "Solo · scoped controls problem" },
+    { "step": 6, "name": "Reference + offer",    "duration": "3–5 days",  "owner": "TA + Hiring Manager" }
+  ],
+
+  "interview_questions_sample": [
+    "Walk me through the worst commissioning weekend of your career and what you'd do differently.",
+    "An MTBF on a critical line drops from 96% to 91% over 30 days. Where do you start?",
+    "Show me Studio 5000 code you wrote that you're proud of — walk me through it.",
+    "Functional Safety: when do you choose dual-channel safety relays vs. a CIP-Safety controller?",
+    "How do you decide between TIA Portal and Studio 5000 on a greenfield cell?"
+  ],
+
+  "eligibility": [
+    "Must be authorized to work in the U.S.",
+    "Pre-employment background check + drug screen required (post-offer, contingent).",
+    "Pre-employment physical (mobility, vision) required.",
+    "DEA / OFAC / export-controlled compliance check required."
+  ],
+
+  "what_to_bring": [
+    "Code samples (sanitized) — Studio 5000 .ACD or text export, plus diagram.",
+    "Proof of OSHA-30 if already held.",
+    "Current resume listing every plant, OEM, and model deployed at."
+  ],
+
+  "team_summary": {
+    "team_size": 8,
+    "manager": { "name": "Rebecca Chen", "role": "Plant Engineering Manager", "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face" },
+    "peers": [
+      { "name": "Marcus Whitaker", "role": "Maintenance Lead",        "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" },
+      { "name": "Sarah Pham",      "role": "Senior Controls Engineer","avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" },
+      { "name": "James Holloway",  "role": "Director Plant Eng.",     "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" }
+    ]
+  },
+
+  "company_brief": {
+    "$visibility": "all",
+    "logo": "../assets/logos/ford-motor-company.png",
+    "name": "Ford Rouge Complex",
+    "city": "Dearborn, MI",
+    "industry": "Automotive Assembly · F-150",
+    "size_label": "7,400+ at the Rouge · 175,000+ company-wide",
+    "year_founded": 1928,
+    "tagline": "The historic and active manufacturing flagship of Ford Motor Company.",
+    "rating": 4.6,
+    "review_count": 184
+  },
+
+  "stats": {
+    "applicants": 24,
+    "shortlisted": 6,
+    "interview_scheduled": 2,
+    "views_total": 412,
+    "saves_total": 38,
+    "boosted": false,
+    "match_score_for_viewer": 91
+  },
+
+  "applicant_panel": {
+    "$visibility": "owner_only",
+    "summary": { "new": 4, "reviewed": 11, "shortlisted": 6, "interview_scheduled": 2, "rejected": 1 },
+    "rows": [
+      { "applicant_name": "Maria Lopez",      "applicant_id": 38291, "rating": 4.96, "match": 97, "applied_at": "2026-04-23", "status": "Shortlisted",  "interview_at": "2026-04-26T15:00:00-04:00" },
+      { "applicant_name": "Karen Mitchell",   "applicant_id": 39102, "rating": 4.88, "match": 90, "applied_at": "2026-04-22", "status": "Shortlisted",  "interview_at": null },
+      { "applicant_name": "Tony Rivera",      "applicant_id": 40117, "rating": 4.91, "match": 87, "applied_at": "2026-04-20", "status": "Reviewed",     "interview_at": null },
+      { "applicant_name": "Sarah Bennett",    "applicant_id": 41208, "rating": 4.85, "match": 84, "applied_at": "2026-04-18", "status": "Reviewed",     "interview_at": null }
+    ]
+  },
+
+  "similar_jobs": [
+    { "id": 28145, "title": "Senior Controls Engineer — Spartanburg",          "company": "Acme Robotics",      "rate_label": "$165k–$195k", "city": "Spartanburg, SC" },
+    { "id": 28200, "title": "Lead Controls Engineer — Lake Orion Body Shop",   "company": "General Motors",      "rate_label": "$172k–$208k", "city": "Lake Orion, MI" },
+    { "id": 28311, "title": "Sr Controls — Sterling Heights Paint",            "company": "Stellantis",          "rate_label": "$168k–$205k", "city": "Sterling Heights, MI" }
+  ],
+
+  "questions_log": [
+    { "id": "q-1", "from_anonymous_applicant": true, "question": "Is there flexibility on shift?",                "answer": "1st shift is the role. We rotate on-call only.",                       "asked_at": "2026-04-15", "answered_at": "2026-04-15" },
+    { "id": "q-2", "from_anonymous_applicant": true, "question": "What's the on-call frequency?",                  "answer": "1 week per 6, paid on-call premium $300/wk plus 2x for callouts.",       "asked_at": "2026-04-16", "answered_at": "2026-04-16" }
+  ]
+}

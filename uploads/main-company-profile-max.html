@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dominion Manufacturing Group — Company Profile | Automate America</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   CANONICAL DESIGN SYSTEM — from profile-advanced.html
+   Fibonacci spacing, golden-ratio typography, glass cards
+   ═══════════════════════════════════════════════════════════ */
+:root {
+    /* Fibonacci Spacing */
+    --space-xs:  5px;
+    --space-sm:  8px;
+    --space-md:  13px;
+    --space-lg:  21px;
+    --space-xl:  34px;
+    --space-2xl: 55px;
+    --space-3xl: 89px;
+
+    /* Icon + Avatar Sizes */
+    --size-icon-sm:   34px;
+    --size-icon:      55px;
+    --size-avatar:    89px;
+    --size-avatar-lg: 160px;
+
+    /* Radius Scale (Fibonacci) */
+    --radius-sm: 8px;
+    --radius-md: 13px;
+    --radius-lg: 21px;
+    --radius-xl: 34px;
+
+    /* Font Scale */
+    --font-xs:   11px;
+    --font-sm:   13px;
+    --font-base: 16px;
+    --font-lg:   21px;
+    --font-xl:   26px;
+    --font-2xl:  34px;
+    --font-3xl:  42px;
+
+    /* Color Tokens */
+    --primary:       #6366F1;
+    --primary-light: #818CF8;
+    --primary-dark:  #4F46E5;
+    --primary-glow:  rgba(99,102,241,0.35);
+    --secondary:     #EC4899;
+    --accent:        #14B8A6;
+    --success:       #10B981;
+    --warning:       #F59E0B;
+    --danger:        #EF4444;
+
+    /* Glass Surfaces */
+    --surface-glass:        rgba(12,10,30,0.38);
+    --surface-glass-hover:  rgba(18,16,40,0.48);
+    --surface-glass-strong: rgba(8,6,22,0.75);
+    --border-glass:         rgba(255,255,255,0.07);
+    --border-glass-hover:   rgba(255,255,255,0.12);
+
+    /* Text */
+    --text-primary:   #F5F5F7;
+    --text-secondary: #A1A1AA;
+    --text-tertiary:  #636370;
+    --text-accent:    var(--primary-light);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.618;
+    color: var(--text-primary);
+    background: #060412;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Wallpaper — stationary dark industrial gradient */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(99,102,241,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(20,184,166,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 90% 80% at 50% 50%, rgba(12,10,30,1) 0%, #060412 100%);
+}
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.4;
+}
+
+/* Page wrapper */
+.page-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+}
+
+/* Profile type indicator bar */
+.profile-type-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-sm) var(--space-lg);
+    background: rgba(99,102,241,0.06);
+    border: 1px solid rgba(99,102,241,0.12);
+    border-radius: var(--radius-md);
+    font-size: var(--font-xs);
+    color: var(--primary-light);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+.profile-type-bar .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 8px var(--primary-glow);
+}
+
+/* ═══ TWO-COLUMN GRID (D7) ═══ */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 380px minmax(0, 1fr);
+    gap: var(--space-xl);
+    align-items: start;
+}
+
+.left-column { display: flex; flex-direction: column; gap: var(--space-lg); }
+.right-column { display: flex; flex-direction: column; gap: var(--space-lg); }
+
+/* ═══ GLASS CARD ═══ */
+.glass-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.06) 30%, rgba(255,255,255,.06) 70%, transparent);
+}
+.glass-card:hover {
+    background: var(--surface-glass-hover);
+    border-color: var(--border-glass-hover);
+    box-shadow: 0 8px 40px rgba(0,0,0,.25);
+}
+
+/* ═══ HERO CARD ═══ */
+.hero-card {
+    text-align: center;
+    padding: var(--space-2xl) var(--space-xl);
+}
+.photo-wrap {
+    width: var(--size-avatar-lg);
+    height: var(--size-avatar-lg);
+    margin: 0 auto var(--space-lg);
+    position: relative;
+}
+.photo-glow {
+    position: absolute;
+    inset: -6px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--primary), rgba(99,102,241,0.3));
+    animation: heroGlow 4s ease-in-out infinite alternate;
+}
+@keyframes heroGlow {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.04); }
+}
+.photo-glow-mask {
+    position: absolute;
+    inset: 2px;
+    border-radius: calc(var(--radius-xl) - 2px);
+    background: #060412;
+}
+.company-logo {
+    width: var(--size-avatar-lg);
+    height: var(--size-avatar-lg);
+    border-radius: var(--radius-xl);
+    position: relative;
+    z-index: 1;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a2a5e 0%, #0f1a3d 100%);
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    text-align: center;
+    line-height: 1.3;
+}
+.company-logo svg {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-xl);
+}
+
+.profile-name {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    margin-bottom: var(--space-xs);
+    letter-spacing: -0.5px;
+}
+.company-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--font-xs);
+    color: var(--primary-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: var(--space-md);
+}
+.location-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+.flag-svg {
+    width: 22px;
+    height: 15px;
+    border-radius: 2px;
+    object-fit: cover;
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+.industry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+}
+.industry-tag {
+    font-size: var(--font-xs);
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(99,102,241,0.08);
+    border: 1px solid rgba(99,102,241,0.15);
+    color: var(--primary-light);
+    font-weight: 500;
+}
+
+/* Quick Stats */
+.quick-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-glass);
+}
+.stat-cell { text-align: center; }
+.stat-val {
+    font-size: var(--font-xl);
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+}
+.stat-val.green { color: var(--success); }
+.stat-val.indigo { color: var(--primary-light); }
+.stat-lbl {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+/* ═══ CTAs (D3) ═══ */
+.cta-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+.cta-primary {
+    background: linear-gradient(180deg, var(--primary-light), var(--primary) 50%, var(--primary-dark));
+    color: #fff;
+    padding: var(--space-md) var(--space-xl);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--font-base);
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(99,102,241,.4), inset 0 1px 0 rgba(255,255,255,.15);
+    transition: all .2s;
+    width: 100%;
+}
+.cta-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(99,102,241,.5);
+}
+/* Pattern C — Pulsing glow for Connect */
+.cta-connect {
+    background: linear-gradient(180deg, #a78bfa, #7c3aed 50%, #6d28d9);
+    color: #fff;
+    padding: var(--space-md) var(--space-xl);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--font-base);
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(124,58,237,.4), inset 0 1px 0 rgba(255,255,255,.15);
+    transition: all .2s;
+    width: 100%;
+    animation: connectGlow 3s ease-in-out infinite;
+}
+@keyframes connectGlow {
+    0%, 100% { box-shadow: 0 4px 16px rgba(124,58,237,.3), inset 0 1px 0 rgba(255,255,255,.15); }
+    50% { box-shadow: 0 4px 24px rgba(124,58,237,.6), 0 0 40px rgba(124,58,237,.2), inset 0 1px 0 rgba(255,255,255,.2); }
+}
+.cta-connect:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+.cta-outline {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: var(--space-md) var(--space-xl);
+    border: 1px solid var(--border-glass-hover);
+    border-radius: var(--radius-md);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+.cta-outline:hover {
+    background: rgba(255,255,255,.04);
+    border-color: rgba(255,255,255,.2);
+    color: var(--text-primary);
+}
+
+/* ═══ SECTION TITLES ═══ */
+.section-title {
+    font-size: var(--font-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+.section-count {
+    font-size: var(--font-sm);
+    color: var(--text-tertiary);
+    font-weight: 400;
+}
+
+/* ═══ CONTACT INFO ═══ */
+.biz-detail-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    padding: var(--space-xs) 0;
+}
+.biz-detail-icon {
+    width: 16px;
+    text-align: center;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+}
+
+/* Social icons */
+.biz-social {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+.social-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: all .2s;
+}
+.social-icon:hover {
+    background: rgba(99,102,241,0.1);
+    border-color: rgba(99,102,241,0.2);
+    color: var(--primary-light);
+}
+
+/* ═══ ACTIVITY TABLE ═══ */
+.activity-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-sm);
+}
+.activity-table th {
+    text-align: right;
+    color: var(--text-tertiary);
+    font-weight: 600;
+    font-size: var(--font-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: var(--space-xs) var(--space-sm);
+}
+.activity-table th:first-child { text-align: left; }
+.activity-table td {
+    padding: var(--space-sm);
+    border-bottom: 1px solid var(--border-glass);
+}
+.activity-table td:first-child { font-weight: 600; }
+.ct-open { text-align: right; color: var(--success); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.ct-ongoing { text-align: right; color: var(--warning); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.ct-closed { text-align: right; color: var(--text-tertiary); font-family: 'JetBrains Mono', monospace; }
+.activity-anon-note {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    font-style: italic;
+    margin-top: var(--space-sm);
+}
+
+/* ═══ BG SUMMARY LIST (left column) ═══ */
+.bg-summary-item {
+    padding: var(--space-md);
+    background: rgba(20,184,166,0.03);
+    border: 1px solid rgba(20,184,166,0.08);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+    cursor: pointer;
+    transition: all .2s;
+}
+.bg-summary-item:last-child { margin-bottom: 0; }
+.bg-summary-item:hover {
+    background: rgba(20,184,166,0.08);
+    border-color: rgba(20,184,166,0.15);
+}
+.bg-summary-name {
+    font-size: var(--font-sm);
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+.bg-summary-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bg-summary-stats {
+    font-size: var(--font-xs);
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.bg-summary-link {
+    font-size: var(--font-xs);
+    color: var(--accent);
+    cursor: pointer;
+}
+
+/* ═══ PRIVATE / OWNER-ONLY SECTIONS ═══ */
+.private-card {
+    border: 1px dashed rgba(239,68,68,0.2);
+    background: rgba(239,68,68,0.03);
+}
+.private-card::before { display: none; }
+.private-label {
+    font-size: var(--font-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-md);
+}
+.private-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.private-key {
+    font-size: var(--font-sm);
+    color: var(--text-tertiary);
+}
+.private-val {
+    font-size: var(--font-sm);
+    font-family: 'JetBrains Mono', monospace;
+}
+.private-val.masked { color: var(--text-tertiary); letter-spacing: 2px; }
+.file-row {
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.file-name {
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+}
+.owner-only-label {
+    display: inline-block;
+    font-size: 9px;
+    padding: 2px 6px;
+    background: rgba(239,68,68,0.1);
+    color: var(--danger);
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    margin-left: var(--space-sm);
+}
+
+/* ═══ BADGE SHOWCASE ═══ */
+.badge-showcase {
+    background: var(--surface-glass);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+}
+.badge-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.06) 30%, rgba(255,255,255,.06) 70%, transparent);
+}
+.badge-showcase-title {
+    font-size: var(--font-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary-light);
+    margin-bottom: var(--space-lg);
+}
+
+/* D5 badge aggregation — grouped by BG */
+.badge-bg-group {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-glass);
+}
+.badge-bg-group:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.badge-bg-header {
+    font-size: var(--font-xs);
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+.badge-bg-header::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+}
+.badge-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+.badge-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 72px;
+}
+.badge-frame {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.badge-frame svg {
+    width: 48px;
+    height: 48px;
+}
+.badge-tier-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.badge-tier-label.bronze { color: #CD7F32; }
+.badge-tier-label.silver { color: #C0C0C0; }
+.badge-tier-label.gold { color: #FFD700; }
+.badge-tier-label.platinum { color: #E5E4E2; text-shadow: 0 0 6px rgba(229,228,226,0.3); }
+.badge-tier-label.diamond { color: #B9F2FF; text-shadow: 0 0 8px rgba(185,242,255,0.4); }
+.badge-name {
+    font-size: 9px;
+    color: var(--text-tertiary);
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* ═══ ABOUT TEXT ═══ */
+.about-text {
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* ═══ BG GROUP CARDS (right column, detailed) ═══ */
+.bg-group-card {
+    background: rgba(20,184,166,0.02);
+    border: 1px solid rgba(20,184,166,0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    transition: all .3s;
+}
+.bg-group-card:last-child { margin-bottom: 0; }
+.bg-group-card:hover {
+    border-color: rgba(20,184,166,0.2);
+    background: rgba(20,184,166,0.04);
+}
+.bg-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid rgba(20,184,166,0.08);
+}
+.bg-group-name {
+    font-size: var(--font-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.bg-group-meta {
+    font-size: var(--font-xs);
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.bg-group-admin {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(99,102,241,0.04);
+    border: 1px solid rgba(99,102,241,0.1);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+}
+.admin-badge {
+    font-size: var(--font-xs);
+    padding: 2px 8px;
+    background: rgba(99,102,241,0.12);
+    color: var(--primary-light);
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+.bg-member-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+.bg-group-admin .bg-member-avatar {
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 12px rgba(99,102,241,.3);
+    width: 40px;
+    height: 40px;
+}
+.bg-member-info { flex: 1; min-width: 0; }
+.bg-member-name { font-size: var(--font-sm); font-weight: 600; }
+.bg-member-role { font-size: var(--font-xs); color: var(--text-tertiary); }
+
+/* Team at a glance */
+.team-glance {
+    display: flex;
+    gap: var(--space-xl);
+    padding: var(--space-md);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
+}
+.team-glance-stat { text-align: center; flex: 1; }
+.team-glance-val {
+    font-size: var(--font-xl);
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+}
+.team-glance-lbl {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Stacked avatars */
+.bg-members {
+    display: flex;
+    gap: -6px;
+    margin-top: var(--space-sm);
+}
+.bg-members .bg-member-avatar {
+    margin-left: -6px;
+}
+.bg-members .bg-member-avatar:first-child { margin-left: 0; }
+.bg-members-count {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 2px solid rgba(6,4,18,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-xs);
+    font-weight: 700;
+    color: var(--text-tertiary);
+    margin-left: -6px;
+}
+
+/* ═══ WORK HISTORY ═══ */
+.work-section-tabs {
+    display: flex;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+}
+.work-tab {
+    padding: var(--space-sm) var(--space-lg);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-tertiary);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+}
+.work-tab.active {
+    background: rgba(99,102,241,0.1);
+    border-color: rgba(99,102,241,0.2);
+    color: var(--primary-light);
+}
+.work-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--border-glass);
+    transition: background .2s;
+    cursor: pointer;
+}
+.work-item:last-child { border-bottom: none; }
+.work-item:hover { background: rgba(255,255,255,0.02); }
+.work-item-title {
+    font-size: var(--font-sm);
+    font-weight: 600;
+}
+.work-item-detail {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+.work-item-status {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+.work-item-status.ongoing { background: rgba(245,158,11,0.1); color: var(--warning); }
+.work-item-status.completed { background: rgba(16,185,129,0.08); color: var(--success); }
+.work-item-status.anonymous { background: rgba(99,102,241,0.08); color: var(--primary-light); font-style: italic; }
+
+/* ═══ HIRING STATS ═══ */
+.hiring-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+.hiring-stat-card {
+    padding: var(--space-lg);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+.hiring-stat-val {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-primary);
+}
+.hiring-stat-val.money { color: var(--success); }
+.hiring-stat-val.rating { color: var(--warning); }
+.hiring-stat-lbl {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: var(--space-xs);
+}
+
+/* ═══ REVIEW CARD ═══ */
+.review-item {
+    padding: var(--space-lg);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-md);
+}
+.review-item:last-child { margin-bottom: 0; }
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+.review-company-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.review-company-logo svg { width: 100%; height: 100%; }
+.review-author { font-size: var(--font-sm); font-weight: 600; }
+.review-role { font-size: var(--font-xs); color: var(--text-tertiary); }
+.review-stars {
+    color: var(--warning);
+    font-size: var(--font-base);
+    letter-spacing: 2px;
+    margin-left: auto;
+}
+.review-text {
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-style: italic;
+}
+
+/* ═══ SERVICES CAROUSEL ═══ */
+.carousel-wrap {
+    position: relative;
+}
+.carousel-track {
+    display: flex;
+    gap: var(--space-md);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: var(--space-xs) 0;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--surface-glass-strong);
+    border: 1px solid var(--border-glass-hover);
+    color: var(--text-primary);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all .2s;
+}
+.carousel-arrow:hover {
+    background: rgba(99,102,241,0.15);
+    border-color: rgba(99,102,241,0.3);
+}
+.carousel-arrow.left { left: -16px; }
+.carousel-arrow.right { right: -16px; }
+
+.prod-card {
+    min-width: 180px;
+    scroll-snap-align: start;
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all .2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.prod-card:hover {
+    border-color: var(--border-glass-hover);
+    transform: translateY(-2px);
+}
+.prod-img {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+.prod-name {
+    font-size: var(--font-sm);
+    font-weight: 700;
+    padding: var(--space-sm) var(--space-md) 2px;
+}
+.prod-desc {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    padding: 0 var(--space-md);
+    line-height: 1.4;
+}
+.prod-price {
+    font-size: var(--font-sm);
+    font-weight: 700;
+    color: var(--success);
+    font-family: 'JetBrains Mono', monospace;
+    padding: var(--space-sm) var(--space-md) var(--space-md);
+}
+
+/* ═══ INDUSTRIES TAGS ═══ */
+.tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+.tag {
+    font-size: var(--font-sm);
+    padding: var(--space-sm) var(--space-lg);
+    border: 1px solid var(--border-glass-hover);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    transition: all .2s;
+    cursor: pointer;
+}
+.tag:hover {
+    background: rgba(99,102,241,0.08);
+    border-color: rgba(99,102,241,0.2);
+    color: var(--primary-light);
+}
+
+/* ═══ MEDIA GRID ═══ */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+}
+.media-cell {
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .2s;
+}
+.media-cell:hover { transform: scale(1.05); }
+.media-cell img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ═══ FOLD INDICATOR (D15) ═══ */
+.fold-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    margin-top: var(--space-md);
+    cursor: pointer;
+    color: var(--text-tertiary);
+    font-size: var(--font-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color .2s;
+}
+.fold-indicator:hover { color: var(--primary-light); }
+.fold-indicator .chevron {
+    width: 16px;
+    height: 16px;
+    transition: transform .2s;
+}
+
+/* ═══ EDIT TOOLBAR (owner-only) ═══ */
+.edit-toolbar {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px dashed rgba(255,255,255,0.06);
+}
+.edit-btn {
+    font-size: var(--font-xs);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-sm);
+    border: 1px dashed rgba(255,255,255,0.1);
+    background: transparent;
+    color: var(--text-tertiary);
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all .2s;
+}
+.edit-btn:hover {
+    background: rgba(99,102,241,0.08);
+    border-color: rgba(99,102,241,0.2);
+    color: var(--primary-light);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 860px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    .page-wrap {
+        padding: var(--space-lg);
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+    <!-- Profile type bar -->
+    <div class="profile-type-bar">
+        <span class="dot"></span>
+        Company Main Profile &mdash; Max Data View (All Sections Populated)
+    </div>
+
+    <div class="profile-grid">
+
+        <!-- ═══════════════════════════════════════════════
+             LEFT COLUMN (380px)
+             ═══════════════════════════════════════════════ -->
+        <div class="left-column">
+
+            <!-- HERO CARD -->
+            <div class="glass-card hero-card">
+                <div class="photo-wrap">
+                    <div class="photo-glow"></div>
+                    <div class="photo-glow-mask"></div>
+                    <div class="company-logo">
+                        <svg viewBox="0 0 160 160">
+                            <rect fill="#0f1a3d" width="160" height="160" rx="34"/>
+                            <text x="80" y="55" text-anchor="middle" font-size="14" font-weight="800" fill="#818CF8">DOMINION</text>
+                            <text x="80" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#A1A1AA">MANUFACTURING</text>
+                            <text x="80" y="98" text-anchor="middle" font-size="10" font-weight="600" fill="#636370">GROUP</text>
+                            <rect x="45" y="108" width="70" height="2" rx="1" fill="#6366F1" opacity="0.6"/>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="profile-name">Dominion Manufacturing Group</h1>
+                <div class="company-type">Systems Integrator</div>
+                <div class="location-row">
+                    <svg class="flag-svg" viewBox="0 0 22 15"><rect width="22" height="15" fill="#B22234" rx="2"/><rect y="1.15" width="22" height="1.15" fill="#fff"/><rect y="3.46" width="22" height="1.15" fill="#fff"/><rect y="5.77" width="22" height="1.15" fill="#fff"/><rect y="8.08" width="22" height="1.15" fill="#fff"/><rect y="10.38" width="22" height="1.15" fill="#fff"/><rect y="12.69" width="22" height="1.15" fill="#fff"/><rect width="9" height="8.08" fill="#3C3B6E"/><circle cx="1.5" cy="1" r=".4" fill="#fff"/><circle cx="3" cy="1" r=".4" fill="#fff"/><circle cx="4.5" cy="1" r=".4" fill="#fff"/><circle cx="6" cy="1" r=".4" fill="#fff"/><circle cx="7.5" cy="1" r=".4" fill="#fff"/></svg>
+                    Sterling Heights, Michigan
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">Robotics</span>
+                    <span class="industry-tag">PLC / Controls</span>
+                    <span class="industry-tag">Vision Systems</span>
+                </div>
+                <div class="quick-stats">
+                    <div class="stat-cell"><div class="stat-val indigo">47</div><div class="stat-lbl">Employees</div></div>
+                    <div class="stat-cell"><div class="stat-val green">12</div><div class="stat-lbl">Active WG</div></div>
+                    <div class="stat-cell"><div class="stat-val">$8.2M</div><div class="stat-lbl">Total Spend</div></div>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="glass-card cta-stack">
+                <button class="cta-primary">Post a Work Request</button>
+                <button class="cta-connect">+ Connect</button>
+                <button class="cta-outline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    Watch Company
+                </button>
+                <button class="cta-outline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                    Share Company Profile
+                </button>
+            </div>
+
+            <!-- CONTACT INFORMATION -->
+            <div class="glass-card">
+                <h2 class="section-title">Contact Information</h2>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#127968;</span> 4500 Mound Road, Sterling Heights, MI 48314</div>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#128222;</span> (586) 555-0293</div>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#9993;</span> info@dominionmfg.com</div>
+                <div class="biz-detail-row"><span class="biz-detail-icon">&#127760;</span> dominionmfg.com</div>
+                <div class="biz-social">
+                    <div class="social-icon" title="LinkedIn">in</div>
+                    <div class="social-icon" title="YouTube">&#9658;</div>
+                    <div class="social-icon" title="Facebook">f</div>
+                </div>
+            </div>
+
+            <!-- ACTIVITY -->
+            <div class="glass-card">
+                <h2 class="section-title">Activity</h2>
+                <table class="activity-table">
+                    <thead><tr><th></th><th>Open</th><th>Ongoing</th><th>Closed</th></tr></thead>
+                    <tbody>
+                        <tr><td>Jobs</td><td class="ct-open">4</td><td class="ct-ongoing">3</td><td class="ct-closed">31</td></tr>
+                        <tr><td>Contracts</td><td class="ct-open">2</td><td class="ct-ongoing">12</td><td class="ct-closed">89</td></tr>
+                        <tr><td>RFQs</td><td class="ct-open">1</td><td class="ct-ongoing">2</td><td class="ct-closed">14</td></tr>
+                    </tbody>
+                </table>
+                <div class="activity-anon-note">* Anonymous postings show counts only</div>
+            </div>
+
+            <!-- BUSINESS GROUPS SUMMARY (left column) -->
+            <div class="glass-card" style="border-color: rgba(20,184,166,0.12); background: rgba(20,184,166,0.02);">
+                <h2 class="section-title">Business Groups <span class="section-count">(5)</span></h2>
+                <div class="bg-summary-item">
+                    <div class="bg-summary-name">Sure Controls Division</div>
+                    <div class="bg-summary-meta">
+                        <span class="bg-summary-stats">1 Admin &middot; 12 Contractors &middot; <strong style="color:var(--success)">5 Available</strong></span>
+                        <span class="bg-summary-link">View &rarr;</span>
+                    </div>
+                </div>
+                <div class="bg-summary-item">
+                    <div class="bg-summary-name">Dominion Welding &amp; Fabrication</div>
+                    <div class="bg-summary-meta">
+                        <span class="bg-summary-stats">1 Admin &middot; 8 Contractors &middot; <strong style="color:var(--success)">3 Available</strong></span>
+                        <span class="bg-summary-link">View &rarr;</span>
+                    </div>
+                </div>
+                <div class="bg-summary-item">
+                    <div class="bg-summary-name">Dominion Electrical Services</div>
+                    <div class="bg-summary-meta">
+                        <span class="bg-summary-stats">1 Admin &middot; 10 Contractors &middot; <strong style="color:var(--success)">4 Available</strong></span>
+                        <span class="bg-summary-link">View &rarr;</span>
+                    </div>
+                </div>
+                <div class="bg-summary-item">
+                    <div class="bg-summary-name">Michigan Operations</div>
+                    <div class="bg-summary-meta">
+                        <span class="bg-summary-stats">1 Admin &middot; 9 Contractors &middot; <strong style="color:var(--success)">2 Available</strong></span>
+                        <span class="bg-summary-link">View &rarr;</span>
+                    </div>
+                </div>
+                <div class="bg-summary-item">
+                    <div class="bg-summary-name">Kentucky Assembly Group</div>
+                    <div class="bg-summary-meta">
+                        <span class="bg-summary-stats">1 Admin &middot; 8 Contractors &middot; <strong style="color:var(--success)">3 Available</strong></span>
+                        <span class="bg-summary-link">View &rarr;</span>
+                    </div>
+                </div>
+                <div class="edit-toolbar">
+                    <button class="edit-btn">+ Create Group</button>
+                    <button class="edit-btn">&#9998; Manage Groups</button>
+                </div>
+            </div>
+
+            <!-- ACCOUNTING (owner only) -->
+            <div class="glass-card private-card">
+                <div class="private-label" style="color:var(--danger)">&#128200; Accounting Contacts <span class="owner-only-label">Owner Only</span></div>
+                <div class="file-row"><div class="file-name"><strong>AP:</strong>&nbsp; Sandra Novak &middot; sandra@dominionmfg.com</div></div>
+                <div class="file-row"><div class="file-name"><strong>AR:</strong>&nbsp; Michael Torres &middot; mtorres@dominionmfg.com</div></div>
+                <div class="file-row"><div class="file-name"><strong>HR:</strong>&nbsp; Patricia Simmons &middot; psimmons@dominionmfg.com</div></div>
+            </div>
+
+            <!-- BANKING (owner only) -->
+            <div class="glass-card private-card">
+                <div class="private-label" style="color:var(--danger)">&#127975; Banking Information <span class="owner-only-label">Owner Only</span></div>
+                <div class="private-row"><span class="private-key">Bank</span><span class="private-val">Comerica Bank</span></div>
+                <div class="private-row"><span class="private-key">Routing #</span><span class="private-val masked">&bull;&bull;&bull;&bull;&bull;3891</span></div>
+                <div class="private-row"><span class="private-key">Account #</span><span class="private-val masked">&bull;&bull;&bull;&bull;&bull;&bull;7204</span></div>
+            </div>
+
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             RIGHT COLUMN (fluid)
+             ═══════════════════════════════════════════════ -->
+        <div class="right-column">
+
+            <!-- ═══ COMPANY ACHIEVEMENT BADGES — AGGREGATED BY BG (D5 item 3) ═══ -->
+            <div class="badge-showcase">
+                <div class="badge-showcase-title">Company Achievement Badges &mdash; Aggregated from All Business Groups</div>
+
+                <!-- BG 1: Sure Controls Division -->
+                <div class="badge-bg-group">
+                    <div class="badge-bg-header">Sure Controls Division</div>
+                    <div class="badge-grid">
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#1a3a6b" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">CON</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Contracts</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#1a3a6b" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#E5E4E2" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">HRS</text></svg></div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Hours</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#1a3a6b" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#C0C0C0" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">RAT</text></svg></div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Rating</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#1a3a6b" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">TEAM</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Team</span></div>
+                    </div>
+                </div>
+
+                <!-- BG 2: Dominion Welding -->
+                <div class="badge-bg-group">
+                    <div class="badge-bg-header">Dominion Welding &amp; Fabrication</div>
+                    <div class="badge-grid">
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#2d1a0f" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#CD7F32" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">CON</text></svg></div><span class="badge-tier-label bronze">Bronze</span><span class="badge-name">Contracts</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#2d1a0f" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#C0C0C0" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">HRS</text></svg></div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Hours</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#2d1a0f" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#CD7F32" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">TEAM</text></svg></div><span class="badge-tier-label bronze">Bronze</span><span class="badge-name">Team</span></div>
+                    </div>
+                </div>
+
+                <!-- BG 3: Dominion Electrical -->
+                <div class="badge-bg-group">
+                    <div class="badge-bg-header">Dominion Electrical Services</div>
+                    <div class="badge-grid">
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0f2a1a" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#E5E4E2" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">HRS</text></svg></div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Hours</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0f2a1a" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">RAT</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Rating</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0f2a1a" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#C0C0C0" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">EARN</text></svg></div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Earnings</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0f2a1a" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">CON</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Contracts</span></div>
+                    </div>
+                </div>
+
+                <!-- BG 4: Michigan Operations -->
+                <div class="badge-bg-group">
+                    <div class="badge-bg-header">Michigan Operations</div>
+                    <div class="badge-grid">
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0a1a2e" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#B9F2FF" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">CON</text></svg></div><span class="badge-tier-label diamond">Diamond</span><span class="badge-name">Contracts</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0a1a2e" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">HRS</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Hours</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#0a1a2e" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#FFD700" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">TEN</text></svg></div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Tenure</span></div>
+                    </div>
+                </div>
+
+                <!-- BG 5: Kentucky Assembly -->
+                <div class="badge-bg-group">
+                    <div class="badge-bg-header">Kentucky Assembly Group</div>
+                    <div class="badge-grid">
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#1a0f2d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#C0C0C0" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">TEN</text></svg></div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Tenure</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#1a0f2d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#CD7F32" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">EARN</text></svg></div><span class="badge-tier-label bronze">Bronze</span><span class="badge-name">Earnings</span></div>
+                        <div class="badge-slot"><div class="badge-frame"><svg viewBox="0 0 48 48"><rect fill="#1a0f2d" width="48" height="48" rx="8"/><text x="24" y="20" text-anchor="middle" font-size="6" fill="#C0C0C0" font-weight="bold">&#9733;</text><text x="24" y="32" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">CON</text></svg></div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Contracts</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT -->
+            <div class="glass-card">
+                <h2 class="section-title">About</h2>
+                <p class="about-text">Dominion Manufacturing Group is a full-service systems integrator headquartered in Sterling Heights, Michigan. Founded in 2011, we specialize in robotic welding, PLC controls, vision-guided assembly, and turnkey automation solutions for automotive OEMs and Tier 1 suppliers. Our 47 engineers and technicians operate across 5 business groups spanning Michigan, Ohio, and Kentucky. We have successfully delivered over 200 automation projects for clients including General Motors, Ford, Stellantis, Toyota, BMW, and Honda, with a 97% on-time delivery rate and a 4.8-star customer rating.</p>
+                <div class="edit-toolbar">
+                    <button class="edit-btn">&#9998; Edit About</button>
+                </div>
+            </div>
+
+            <!-- SERVICES OFFERED -->
+            <div class="glass-card">
+                <h2 class="section-title">Services Offered <span class="section-count">(6)</span></h2>
+                <div class="carousel-wrap">
+                    <div class="carousel-track">
+                        <div class="prod-card"><div class="prod-img" style="background:linear-gradient(135deg,rgba(255,209,0,.15),rgba(255,102,0,.1));">&#129302;</div><div class="prod-name">Robot Programming</div><div class="prod-desc">FANUC, ABB, KUKA for welding, material handling, and assembly.</div><div class="prod-price">$95/hr</div></div>
+                        <div class="prod-card"><div class="prod-img" style="background:linear-gradient(135deg,rgba(200,16,46,.1),rgba(99,102,241,.08));">&#9889;</div><div class="prod-name">PLC Integration</div><div class="prod-desc">Allen-Bradley ControlLogix, Siemens TIA Portal, full line controls.</div><div class="prod-price">$105/hr</div></div>
+                        <div class="prod-card"><div class="prod-img" style="background:linear-gradient(135deg,rgba(0,51,102,.15),rgba(20,184,166,.08));">&#128065;</div><div class="prod-name">Vision Systems</div><div class="prod-desc">Cognex In-Sight, Keyence setup, calibration, and robot guidance.</div><div class="prod-price">$110/hr</div></div>
+                        <div class="prod-card"><div class="prod-img" style="background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(245,158,11,.08));">&#128295;</div><div class="prod-name">Emergency Support</div><div class="prod-desc">24/7 on-call. On-site within 4 hours in SE Michigan.</div><div class="prod-price">$190/hr</div></div>
+                        <div class="prod-card"><div class="prod-img" style="background:linear-gradient(135deg,rgba(236,72,153,.1),rgba(99,102,241,.08));">&#128736;</div><div class="prod-name">Turnkey Lines</div><div class="prod-desc">Complete line design, build, install, and commissioning.</div><div class="prod-price">Project</div></div>
+                        <div class="prod-card"><div class="prod-img" style="background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(20,184,166,.08));">&#127891;</div><div class="prod-name">Training</div><div class="prod-desc">On-site robot, PLC, and vision training for your team.</div><div class="prod-price">$85/hr</div></div>
+                    </div>
+                </div>
+                <div class="edit-toolbar">
+                    <button class="edit-btn">+ Add Service</button>
+                    <button class="edit-btn">&#9998; Edit</button>
+                </div>
+            </div>
+
+            <!-- POSTED WORK -->
+            <div class="glass-card">
+                <h2 class="section-title">Posted Work <span class="section-count">(6 active)</span></h2>
+                <div class="work-item">
+                    <div class="work-item-info">
+                        <div class="work-item-title">FANUC R-2000iC Programmer &mdash; Body Shop</div>
+                        <div class="work-item-detail">WG Contract &middot; Sterling Heights, MI &middot; 12 weeks &middot; $52/hr base</div>
+                    </div>
+                    <span class="work-item-status ongoing">Active</span>
+                </div>
+                <div class="work-item">
+                    <div class="work-item-info">
+                        <div class="work-item-title">Allen-Bradley PLC Migration &mdash; Assembly Line 7</div>
+                        <div class="work-item-detail">WG Contract &middot; Lake Orion, MI &middot; 8 weeks &middot; $58/hr base</div>
+                    </div>
+                    <span class="work-item-status ongoing">Active</span>
+                </div>
+                <div class="work-item">
+                    <div class="work-item-info">
+                        <div class="work-item-title">Senior Controls Engineer</div>
+                        <div class="work-item-detail">Direct Job &middot; Sterling Heights, MI &middot; $95,000-$120,000/yr</div>
+                    </div>
+                    <span class="work-item-status ongoing">Active</span>
+                </div>
+                <div class="work-item">
+                    <div class="work-item-info">
+                        <div class="work-item-title">Plant-Wide SCADA Upgrade</div>
+                        <div class="work-item-detail">RFQ &middot; Georgetown, KY &middot; Estimated $750K</div>
+                    </div>
+                    <span class="work-item-status ongoing">Active</span>
+                </div>
+                <div class="fold-indicator">
+                    <span>Show 2 more active</span>
+                    <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+                </div>
+            </div>
+
+            <!-- WORK HISTORY -->
+            <div class="glass-card">
+                <h2 class="section-title">Work History</h2>
+                <div class="work-section-tabs">
+                    <button class="work-tab active">By Our Team</button>
+                    <button class="work-tab">For Our Team</button>
+                </div>
+                <div class="team-glance" style="margin-bottom:var(--space-md)">
+                    <div class="team-glance-stat"><div class="team-glance-val">203</div><div class="team-glance-lbl">Contracts Done</div></div>
+                    <div class="team-glance-stat"><div class="team-glance-val" style="color:var(--success)">97%</div><div class="team-glance-lbl">On-Time</div></div>
+                    <div class="team-glance-stat"><div class="team-glance-val">4.8</div><div class="team-glance-lbl">Avg Rating</div></div>
+                </div>
+                <div class="work-item">
+                    <div class="work-item-info">
+                        <div class="work-item-title">Body Shop Retrofit &mdash; FANUC Programming</div>
+                        <div class="work-item-detail">For: General Motors &middot; Lake Orion, MI &middot; Ongoing</div>
+                    </div>
+                    <span class="work-item-status ongoing">Ongoing</span>
+                </div>
+                <div class="work-item">
+                    <div class="work-item-info">
+                        <div class="work-item-title" style="font-style:italic;color:var(--warning)">White Glove Contract</div>
+                        <div class="work-item-detail" style="color:var(--text-tertiary)">Anonymous Client &middot; Ongoing</div>
+                    </div>
+                    <span class="work-item-status anonymous">Anonymous</span>
+                </div>
+                <div class="work-item">
+                    <div class="work-item-info">
+                        <div class="work-item-title">PLC Migration &mdash; Assembly Line 4</div>
+                        <div class="work-item-detail">For: Ford Motor Company &middot; Dearborn, MI &middot; Completed Jan 2026</div>
+                    </div>
+                    <span class="work-item-status completed">Completed</span>
+                </div>
+                <div class="fold-indicator">
+                    <span>Show 200 more completed</span>
+                    <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+                </div>
+            </div>
+
+            <!-- HIRING STATISTICS -->
+            <div class="glass-card">
+                <h2 class="section-title">Hiring Statistics</h2>
+                <div class="hiring-stats-grid">
+                    <div class="hiring-stat-card">
+                        <div class="hiring-stat-val">47</div>
+                        <div class="hiring-stat-lbl">Professionals Hired</div>
+                    </div>
+                    <div class="hiring-stat-card">
+                        <div class="hiring-stat-val money">$8.2M</div>
+                        <div class="hiring-stat-lbl">Total Spend</div>
+                    </div>
+                    <div class="hiring-stat-card">
+                        <div class="hiring-stat-val">14.3</div>
+                        <div class="hiring-stat-lbl">Avg Contract (wks)</div>
+                    </div>
+                    <div class="hiring-stat-card">
+                        <div class="hiring-stat-val rating">4.8</div>
+                        <div class="hiring-stat-lbl">Avg Rating Given</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CUSTOMER REVIEWS (from professionals) -->
+            <div class="glass-card">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)">
+                    <h2 class="section-title" style="margin-bottom:0">Reviews from Professionals <span class="section-count">(39)</span></h2>
+                    <div style="display:flex;align-items:center;gap:var(--space-sm)"><span style="color:var(--warning);font-size:var(--font-lg)">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span style="font-size:var(--font-xl);font-weight:800">4.8</span></div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="review-company-logo"><svg viewBox="0 0 44 44"><rect fill="#1a6bb5" width="44" height="44" rx="8"/><text x="22" y="18" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">DIVERSE</text><text x="22" y="28" text-anchor="middle" font-size="5" fill="#8cb4ff">AUTO</text></svg></div>
+                        <div><div class="review-author">Jake Morrison</div><div class="review-role">FANUC Robot Programmer &middot; Sure Controls Division</div></div>
+                        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    </div>
+                    <div class="review-text">"Dominion runs a tight ship. Clear communication from BG admins, timesheets approved within 24 hours, and invoices always paid on time. Best customer I've worked with in 12 years."</div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="review-company-logo"><svg viewBox="0 0 44 44"><rect fill="#003478" width="44" height="44" rx="8"/><text x="22" y="27" text-anchor="middle" font-size="11" fill="#fff" font-style="italic">R&amp;E</text></svg></div>
+                        <div><div class="review-author">Sarah Bennett</div><div class="review-role">KUKA Robot Programmer &middot; Michigan Operations</div></div>
+                        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    </div>
+                    <div class="review-text">"The Kentucky Assembly team was great to work with. Safety-first culture, daily FSR process was easy, and the project manager kept everything on track."</div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="review-company-logo"><svg viewBox="0 0 44 44"><rect fill="#2d5ca6" width="44" height="44" rx="8"/><text x="22" y="18" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">AXIOM</text><text x="22" y="28" text-anchor="middle" font-size="5" fill="#8cb4ff">CTRL</text></svg></div>
+                        <div><div class="review-author">Marcus Chen</div><div class="review-role">Controls Engineer &middot; Dominion Electrical</div></div>
+                        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                    </div>
+                    <div class="review-text">"Solid contracts, fair rates. The only reason for 4 stars is that the Sterling Heights facility parking lot is a nightmare during shift change."</div>
+                </div>
+                <div class="fold-indicator">
+                    <span>Show 36 more reviews</span>
+                    <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+                </div>
+            </div>
+
+            <!-- INDUSTRIES SERVED -->
+            <div class="glass-card">
+                <h2 class="section-title">Industries Served</h2>
+                <div class="tags-row">
+                    <span class="tag">&#128663; Automotive</span>
+                    <span class="tag">&#9992;&#65039; Aerospace</span>
+                    <span class="tag">&#128267; Battery / EV</span>
+                    <span class="tag">&#127981; Heavy Manufacturing</span>
+                    <span class="tag">&#128138; Pharmaceutical</span>
+                    <span class="tag">&#9881;&#65039; Defense</span>
+                </div>
+            </div>
+
+            <!-- IMAGES & VIDEOS -->
+            <div class="glass-card">
+                <h2 class="section-title">Images &amp; Videos <span class="section-count">(6)</span></h2>
+                <div class="media-grid">
+                    <div class="media-cell" style="background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(20,184,166,.08));display:flex;align-items:center;justify-content:center;font-size:28px;">&#129302;</div>
+                    <div class="media-cell" style="background:linear-gradient(135deg,rgba(200,16,46,.08),rgba(245,158,11,.06));display:flex;align-items:center;justify-content:center;font-size:28px;">&#9889;</div>
+                    <div class="media-cell" style="background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(99,102,241,.06));display:flex;align-items:center;justify-content:center;font-size:28px;">&#128065;</div>
+                    <div class="media-cell" style="background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(245,158,11,.06));display:flex;align-items:center;justify-content:center;font-size:28px;">&#127981;</div>
+                    <div class="media-cell" style="background:linear-gradient(135deg,rgba(20,184,166,.08),rgba(99,102,241,.06));display:flex;align-items:center;justify-content:center;font-size:28px;">&#128736;</div>
+                    <div class="media-cell" style="background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(239,68,68,.06));display:flex;align-items:center;justify-content:center;font-size:28px;">&#127891;</div>
+                </div>
+                <div class="edit-toolbar">
+                    <button class="edit-btn">+ Upload</button>
+                    <button class="edit-btn">&#128465; Remove</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

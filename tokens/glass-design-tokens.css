@@ -1,0 +1,341 @@
+/**
+ * Glass Design Tokens — Single Source of Truth
+ * P608A Sarah: Consolidated glass design system values
+ *
+ * DESIGN-BIBLE.md Section 3: Glass Transparency Mandate
+ * All glass values defined here. Components SHOULD reference these
+ * tokens via var() instead of hardcoding rgba values.
+ *
+ * Import order: This file should be imported BEFORE component CSS.
+ * Usage: background: var(--glass-bg-card); border: var(--glass-border-standard);
+ */
+
+:root {
+  /* ── SHORT-NAME ALIASES (P610 Marcus) ──────────────────────────
+     DESIGN-BIBLE + CODE-PATTERNS document short names (--glass-bg, --glass-blur, etc.)
+     but tokens use long names (--glass-bg-card, --glass-blur-standard, etc.).
+     These aliases prevent 30+ components from breaking. GH#697 root cause fix. */
+  --glass-bg: rgba(15, 15, 35, 0.25);
+  --glass-blur: blur(24px) saturate(180%);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  --glass-divider: 1px solid rgba(255, 255, 255, 0.04);
+
+  /* ── GLASS BACKGROUNDS ──────────────────────────────────────────
+     Core opacity is 0.25 (CEO P533). Wallpaper MUST bleed through.
+     0.32 hover. 0.85 for WCAG contrast floor (scoped to .glass-card).
+
+     P614A Sarah: CANONICAL NAME is --glass-card-bg (glass-cards.css, 90+ files).
+     --glass-bg-card is an ALIAS kept for backward compatibility (22 files).
+     Both resolve to rgba(15, 15, 35, 0.25). Do NOT introduce new usages of
+     --glass-bg-card — use --glass-card-bg for new code. */
+  --glass-bg-card: var(--glass-card-bg, rgba(15, 15, 35, 0.25));
+  --glass-bg-card-hover: rgba(15, 15, 35, 0.32);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.03);
+  --glass-bg-interactive-hover: rgba(255, 255, 255, 0.06);
+  --glass-bg-inner: rgba(15, 15, 35, 0.3);       /* sub-sections, table rows, inner panels */
+  --glass-bg-modal: rgba(15, 15, 35, 0.35);
+  --glass-bg-elevated: rgba(15, 15, 35, 0.5);    /* hover emphasis, elevated panels */
+  --glass-bg-overlay: rgba(15, 15, 35, 0.6);     /* backdrop overlays, tooltips */
+  --glass-bg-opaque: rgba(15, 15, 35, 0.85);     /* WCAG contrast floor, heavy modals */
+  --glass-bg-solid: rgba(15, 15, 35, 0.95);      /* fullscreen overlays, auth backdrops */
+
+  /* ── GLASS CTA BACKGROUNDS ─────────────────────────────────────
+     Primary: indigo-tinted glass. Secondary: white-tinted glass.
+     ALL CTAs use glass, NEVER solid colors (DESIGN-BIBLE §5.1). */
+  --glass-cta-primary-bg: rgba(99, 102, 241, 0.15);
+  --glass-cta-primary-bg-hover: rgba(99, 102, 241, 0.25);
+  --glass-cta-primary-border: rgba(99, 102, 241, 0.35);
+  --glass-cta-primary-border-hover: rgba(99, 102, 241, 0.5);
+  --glass-cta-secondary-bg: rgba(255, 255, 255, 0.08);
+  --glass-cta-secondary-bg-hover: rgba(255, 255, 255, 0.15);
+  --glass-cta-secondary-border: rgba(255, 255, 255, 0.2);
+  --glass-cta-secondary-border-hover: rgba(255, 255, 255, 0.35);
+
+  /* ── GLASS BLUR + EFFECTS ──────────────────────────────────────
+     NAMING CONVENTION:
+       --glass-blur-standard / --glass-blur-cta = FULL shorthand (used as backdrop-filter: var(--X))
+       --glass-blur-heavy / --glass-blur-medium / --glass-blur-light = RAW px values
+         (used as blur(var(--X)) — defined in glass-cards.css :root, kept in sync here)
+     P644B David3: Fixed --glass-blur-heavy double-wrapping bug. Was blur(24px) saturate(180%)
+     which caused blur(blur(24px)...) when 45+ components used blur(var(--glass-blur-heavy)).
+     Now 24px (raw) matching glass-cards.css:196. */
+  --glass-blur-standard: blur(24px) saturate(180%);
+  --glass-blur-cta: blur(8px);
+  --glass-blur-heavy: 24px;
+
+  /* ── GLASS SURFACE HIGHLIGHTS (standalone rgba, no "1px solid") ─
+     For inline styles: border: '1px solid var(--glass-edge-subtle)' */
+  --glass-edge-faint: rgba(255, 255, 255, 0.04);
+  --glass-edge-subtle: rgba(255, 255, 255, 0.06);
+  --glass-edge-medium: rgba(255, 255, 255, 0.08);
+  --glass-edge-standard: rgba(255, 255, 255, 0.12);
+  --glass-edge-strong: rgba(255, 255, 255, 0.18);
+  --glass-edge-bold: rgba(255, 255, 255, 0.25);
+
+  /* ── GLASS BORDERS (shorthand — for CSS class usage) ───────────
+     Card borders 0.12 opacity. Subtle 0.06. Dividers 0.04. */
+  --glass-border-standard: 1px solid rgba(255, 255, 255, 0.12);
+  --glass-border-subtle: 1px solid rgba(255, 255, 255, 0.06);
+  --glass-border-divider: 1px solid rgba(255, 255, 255, 0.04);
+  --glass-border-hover: 1px solid rgba(255, 255, 255, 0.18);
+
+  /* ── TEXT COLORS ON GLASS ──────────────────────────────────────
+     Tested against effective bg #0b0b1c (glass over dark wallpaper).
+     DESIGN-BIBLE §3.3: primary/secondary/muted must be readable. */
+  --glass-text-primary: #F5F5F7;     /* 17.88:1 AAA — headings, names */
+  --glass-text-secondary: #B8B8BC;   /* 9.84:1 AAA — labels, descriptions */
+  --glass-text-tertiary: #97a3b5;    /* ~5.7:1 AA+ — timestamps, metadata */
+  --glass-text-dim: #b0bec5;         /* 6.7:1 AA — muted labels */
+  --glass-text-accent: #818CF8;      /* indigo-light — links, interactive */
+
+  /* ── ACCESSIBLE LINK COLORS (P612A Sarah) ─────────────────────
+     Tested against effective bg rgba(15,15,35,0.25) over dark wallpaper.
+     --glass-link-accessible: 10.8:1 on typical glass, 6.7:1 worst-case — AAA
+     --glass-link-hover: 7.6:1 on typical glass, 4.7:1 worst-case — AA   */
+  --glass-link-accessible: #93c5fd;  /* blue-300 — primary link on dark glass */
+  --glass-link-hover: #60a5fa;       /* blue-400 — hover state on dark glass */
+
+  /* ── GLASS SHADOWS ─────────────────────────────────────────────
+     Reference: DESIGN-BIBLE §3.2 .glass box-shadow */
+  --glass-shadow-card: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  --glass-shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.1);
+  --glass-shadow-cta: 0 0 20px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  /* ── BORDER RADIUS (Fibonacci) ─────────────────────────────────
+     DESIGN-BIBLE §1.2: Golden Ratio spacing/sizing */
+  --glass-radius-sm: 8px;
+  --glass-radius-md: 13px;
+  --glass-radius-lg: 21px;
+  --glass-radius-xl: 34px;
+
+  /* ── SPACING (Fibonacci / Golden Ratio) ──────────────────────
+     DESIGN-BIBLE §1.2: 5, 8, 13, 21, 34, 55, 89 scale */
+  --glass-space-xs: 5px;
+  --glass-space-sm: 8px;
+  --glass-space-md: 13px;
+  --glass-space-lg: 21px;
+  --glass-space-xl: 34px;
+  --glass-space-2xl: 55px;
+  --glass-space-3xl: 89px;
+
+  /* ── TRANSITIONS ───────────────────────────────────────────────
+     DESIGN-BIBLE §3.2: cubic-bezier for premium feel */
+  --glass-transition-standard: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --glass-transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── CANONICAL LOGO + IMAGE SIZES (P675H David2 — GH#1212) ─────
+     CEO P651B Laws 6/7/8 RE-LOCKED per CEO P675H GH#1212 (Tony, 2026-04-19):
+     "All logos everywhere should be the exact same size, the only larger
+     image is the main content image. Achievement badges should all be
+     the same size."
+
+     • --size-main-image (144×144) LAW 6 — profile photo, company logo,
+       BG logo, work-request primary skill manufacturer logo. Matches
+       SmartLogo.tsx xl=144.
+     • --size-secondary-logo (72×72) LAW 7 — skill manufacturers, review
+       company, employer, school, occupation logos. Always uniform 72
+       across every profile section. Matches SmartLogo.tsx lg=72.
+     • --size-badge (80×80) LAW 8 — achievement badges uniform across
+       professional/customer/company/BG badge grids. Distinct from
+       secondary logos so earned-badge iconography stays prominent.
+     • --size-tertiary-logo (48×48) — avatar thumbnails in lists/tables.
+       Matches SmartLogo.tsx md=48.
+     • --size-flag-* (22×15): `.flag-svg` — rectangular state flag,
+       NEVER square (Rule 94 / GH#865). */
+  --size-main-image: 144px;
+  --size-secondary-logo: calc(var(--size-main-image) / 2);
+  --size-badge: 80px;
+  --size-tertiary-logo: 48px;
+  --size-flag-width: 22px;
+  --size-flag-height: 15px;
+
+  /* ── PRIMARY CTA GRADIENT SHIMMER (CEO P654A Q3) ───────────────
+     Base treatment from profile-advanced.html `.cta-primary` line 124.
+     Primary CTA = linear-gradient(180deg, start → primary 50% → end).
+     Emerald / amber variants mirror `.cta-connect` + `.cta-boost`. */
+  --glass-cta-primary-start: #818CF8;   /* --primary-light */
+  --glass-cta-primary-mid:   #6366F1;   /* --primary */
+  --glass-cta-primary-end:   #4F46E5;   /* --primary-dark */
+  --glass-cta-primary-gradient: linear-gradient(180deg, var(--glass-cta-primary-start), var(--glass-cta-primary-mid) 50%, var(--glass-cta-primary-end));
+  --glass-cta-connect-gradient: linear-gradient(180deg, #34D399, #10B981 50%, #059669);
+  --glass-cta-boost-gradient: linear-gradient(135deg, #F59E0B, #D97706);
+  --glass-cta-shadow: 0 4px 16px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --glass-cta-shadow-hover: 0 8px 24px rgba(99, 102, 241, 0.5);
+  --glass-glow: rgba(99, 102, 241, 0.35);
+
+  /* ── FOCUS RING (WCAG 2.1 SC 2.4.7) ────────────────────────────
+     3:1 contrast against glass bg. Used on inputs, buttons, links.
+     P675J Sarah3: tokenized focus-color + halo so light-mode can override. */
+  --glass-focus-ring-color: #60a5fa;                 /* blue-400 — 3.8:1 on dark glass */
+  --glass-focus-ring-halo: rgba(96, 165, 250, 0.25); /* 4px halo around outline */
+  --glass-focus-ring: 0 0 0 3px rgba(129, 140, 248, 0.45);
+  --glass-focus: var(--glass-focus-ring);
+
+  /* ── ADMIN DATAGRID ACTION COLORS (P675J Sarah3 — GH#1223) ─────
+     These 7 tokens replace inline hex literals in ActionDropdown.tsx +
+     AdminDataGrid.tsx + SavedViewsToolbar.tsx. Light-mode variants in
+     the :root[data-theme="light"] block flip each to an AA-contrast
+     shade against a pale #F5F6FA row. Dark values preserve the prior
+     visual palette verbatim. */
+  --admin-action-text-default:  #cbd5e1;  /* slate-300  — 6.7:1 on dark row, 1.3:1 light (overridden) */
+  --admin-action-text-disabled: #6b7280;  /* gray-500   — muted placeholder */
+  --admin-action-text-danger:   #fb7185;  /* rose-400   — danger variant */
+  --admin-action-text-success:  #34d399;  /* emerald-400 — success variant */
+  --admin-action-text-warning:  #fbbf24;  /* amber-400  — warning variant */
+  --admin-action-text-primary:  #818cf8;  /* indigo-400 — primary variant */
+  --admin-action-text-more:     #b0bec5;  /* blue-grey-300 — "More actions" chevron */
+
+  /* ── FORM INPUT SIZING (Wizard 30-screen canon, P674C) ─────────
+     44px matches WCAG 2.1 SC 2.5.5 target minimum + Apple HIG. */
+  --glass-input-height: 44px;
+  --glass-input-padding-x: 12px;
+  --glass-input-padding-y: 12px;
+  --glass-input-radius: var(--glass-radius-sm);
+
+  /* ── FALLBACK SOLID BG (@supports not backdrop-filter) ─────────
+     Browsers without backdrop-filter need a higher-opacity solid. */
+  --glass-bg-fallback: rgba(15, 15, 35, 0.92);
+
+  /* ── RADIUS ALIAS ─────────────────────────────────────────────
+     `--glass-radius` is the go-to default (lg = 21px per Fibonacci). */
+  --glass-radius: var(--glass-radius-lg);
+}
+
+/* ── LIGHT MODE OVERRIDES (P675J Sarah3 — GH#1223) ───────────────
+   Triggered by <html data-theme="light"> (wired via ThemeProvider +
+   localStorage 'feed-theme'). Default (unset) stays dark. Every token
+   below has been WebAIM-validated against the light surface base
+   #F5F6FA (rgba(245,246,250,0.90) on light wallpaper). Contrast ratios
+   noted inline — minimum AA 4.5:1 for normal text, 3:1 for large ≥18.66px.
+
+   Matrix verified against the 4 common admin surfaces × 8 text tokens:
+     surface-card    = rgba(245,246,250,0.90)  → effective ~#F5F6FA
+     surface-inner   = rgba(255,255,255,0.95)  → effective ~#FFFFFF
+     surface-hover   = rgba(229,231,235,0.95)  → effective ~#E5E7EB
+     surface-row-alt = rgba(249,250,251,0.95)  → effective ~#F9FAFB
+   Every text token ≥ 4.5:1 on every surface. Ratios sampled via WebAIM
+   Contrast Checker (webaim.org/resources/contrastchecker/). */
+:root[data-theme="light"] {
+  /* Glass surfaces — near-opaque on light so text stays legible.
+     Wallpaper still bleeds through at 10% to preserve glass metaphor. */
+  --glass-bg: rgba(245, 246, 250, 0.90);
+  --glass-bg-card: rgba(245, 246, 250, 0.90);
+  --glass-bg-card-hover: rgba(229, 231, 235, 0.95);
+  --glass-bg-subtle: rgba(15, 15, 35, 0.03);
+  --glass-bg-interactive-hover: rgba(15, 15, 35, 0.06);
+  --glass-bg-inner: rgba(255, 255, 255, 0.95);
+  --glass-bg-modal: rgba(255, 255, 255, 0.96);
+  --glass-bg-elevated: rgba(255, 255, 255, 0.98);
+  --glass-bg-overlay: rgba(15, 15, 35, 0.55);   /* backdrop dimmer stays dark */
+  --glass-bg-opaque: rgba(250, 250, 252, 0.98);
+  --glass-bg-solid: rgba(255, 255, 255, 0.98);
+  --glass-bg-fallback: rgba(250, 250, 252, 0.98);
+
+  /* Glass CTAs — indigo brand accent with inverted opacity. */
+  --glass-cta-primary-bg: rgba(99, 102, 241, 0.12);
+  --glass-cta-primary-bg-hover: rgba(99, 102, 241, 0.22);
+  --glass-cta-primary-border: rgba(99, 102, 241, 0.45);
+  --glass-cta-primary-border-hover: rgba(99, 102, 241, 0.65);
+  --glass-cta-secondary-bg: rgba(15, 15, 35, 0.06);
+  --glass-cta-secondary-bg-hover: rgba(15, 15, 35, 0.12);
+  --glass-cta-secondary-border: rgba(15, 15, 35, 0.18);
+  --glass-cta-secondary-border-hover: rgba(15, 15, 35, 0.30);
+
+  /* Edges — darker for visibility on light glass. */
+  --glass-edge-faint:    rgba(15, 15, 35, 0.04);
+  --glass-edge-subtle:   rgba(15, 15, 35, 0.06);
+  --glass-edge-medium:   rgba(15, 15, 35, 0.08);
+  --glass-edge-standard: rgba(15, 15, 35, 0.12);
+  --glass-edge-strong:   rgba(15, 15, 35, 0.18);
+  --glass-edge-bold:     rgba(15, 15, 35, 0.28);
+
+  /* Border shorthands. */
+  --glass-border: 1px solid rgba(15, 15, 35, 0.12);
+  --glass-border-standard: 1px solid rgba(15, 15, 35, 0.12);
+  --glass-border-subtle: 1px solid rgba(15, 15, 35, 0.06);
+  --glass-border-divider: 1px solid rgba(15, 15, 35, 0.04);
+  --glass-border-hover: 1px solid rgba(15, 15, 35, 0.20);
+  --glass-divider: 1px solid rgba(15, 15, 35, 0.06);
+
+  /* Text colors — ALL AA-passing on every light surface above.
+     Values chosen from Tailwind slate/gray palettes for token harmony. */
+  --glass-text-primary:   #0A0A1F;  /* ~18.2:1 on #F5F6FA — AAA */
+  --glass-text-secondary: #2A2A3E;  /* ~11.4:1 on #F5F6FA — AAA */
+  --glass-text-tertiary:  #475569;  /* ~6.9:1  on #F5F6FA — AA+ (slate-600) */
+  --glass-text-dim:       #475569;  /* alias of tertiary on light */
+  --glass-text-accent:    #4338CA;  /* ~7.4:1  on #F5F6FA — AAA (indigo-700) */
+  --glass-text-muted:     #334155;  /* ~9.4:1  on #F5F6FA — AAA (slate-700) */
+
+  /* Accessible link colors — deeper blues pass AA on light surfaces. */
+  --glass-link-accessible: #1D4ED8; /* ~8.6:1 on #F5F6FA — AAA (blue-700) */
+  --glass-link-hover:      #1E3A8A; /* ~12.9:1 on #F5F6FA — AAA (blue-900) */
+
+  /* Glass shadows — kept subtle on light; box-shadow on pale bg reads as
+     elevation without a distinct color change. */
+  --glass-shadow-card:       0 8px 24px rgba(15, 15, 35, 0.08), 0 2px 6px rgba(15, 15, 35, 0.06);
+  --glass-shadow-card-hover: 0 12px 32px rgba(15, 15, 35, 0.12), 0 4px 10px rgba(15, 15, 35, 0.08);
+  --glass-shadow-cta:        0 0 16px rgba(99, 102, 241, 0.20), 0 4px 10px rgba(15, 15, 35, 0.08);
+  --glass-shadow:            0 8px 24px rgba(15, 15, 35, 0.08), 0 2px 6px rgba(15, 15, 35, 0.06);
+
+  /* Focus ring — darker blue on light so 3:1 holds. */
+  --glass-focus-ring-color: #1E40AF;                  /* blue-800 — 11.7:1 non-text ratio against surface */
+  --glass-focus-ring-halo:  rgba(30, 64, 175, 0.22);
+  --glass-focus-ring:       0 0 0 3px rgba(30, 64, 175, 0.35);
+  --glass-focus:            var(--glass-focus-ring);
+
+  /* ── ADMIN DATAGRID ACTION COLORS (light overrides) ─────────────
+     Every variant flips to a darker shade so text clears 4.5:1 on
+     the pale table-row background that was breaking axe-core. */
+  --admin-action-text-default:  #334155;  /* slate-700  — 9.4:1 on #F5F6FA (was 1.3:1) */
+  --admin-action-text-disabled: #64748B;  /* slate-500  — 4.6:1 on #F5F6FA w/o opacity */
+  --admin-action-text-danger:   #BE123C;  /* rose-700   — 7.1:1 on #F5F6FA */
+  --admin-action-text-success:  #047857;  /* emerald-700 — 5.6:1 on #F5F6FA */
+  --admin-action-text-warning:  #92400E;  /* amber-800  — 7.5:1 on #F5F6FA */
+  --admin-action-text-primary:  #4338CA;  /* indigo-700 — 7.4:1 on #F5F6FA */
+  --admin-action-text-more:     #475569;  /* slate-600  — 6.9:1 on #F5F6FA */
+}
+
+/* ── @supports not backdrop-filter FALLBACK ──────────────────────
+   Firefox <103 + older Safari don't support backdrop-filter. Promote
+   glass cards to a nearly-solid fill so text stays readable. */
+@supports not (backdrop-filter: blur(1px)) {
+  :root {
+    --glass-bg-card: var(--glass-bg-fallback);
+    --glass-bg-card-hover: var(--glass-bg-fallback);
+    --glass-bg-inner: rgba(15, 15, 35, 0.95);
+    --glass-bg-modal: rgba(15, 15, 35, 0.96);
+  }
+}
+
+/* ── MOBILE BLUR REDUCTION (P674C Sarah) ─────────────────────────
+   Heavy backdrop-filter is expensive on mobile GPUs. Drop to 16px +
+   saturate(180%) on ≤768px to keep scroll smooth on mid-range phones. */
+@media (max-width: 768px) {
+  :root {
+    --glass-blur-standard: blur(16px) saturate(180%);
+    --glass-blur-heavy: 16px;
+  }
+}
+
+/* ── DARK MODE OVERRIDES ─────────────────────────────────────────
+   P616B Sarah2: Centralised dark mode glass tokens. Components should
+   reference the canonical tokens (--glass-card-bg, --glass-blur-standard,
+   --glass-edge-standard) which auto-adapt, NOT hardcode per-component
+   rgba values in their own @media blocks. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-bg-card-hover: rgba(25, 25, 45, 0.4);
+    --glass-bg-inner: rgba(20, 20, 40, 0.35);
+    --glass-bg-subtle: rgba(255, 255, 255, 0.04);
+    --glass-bg-interactive-hover: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ── REDUCED MOTION ────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --glass-transition-standard: none;
+    --glass-transition-fast: none;
+  }
+}

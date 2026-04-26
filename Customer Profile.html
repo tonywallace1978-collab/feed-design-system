@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ford Rouge Complex · Customer · Automate America</title>
+<link rel="stylesheet" href="tokens/glass-design-tokens.css" />
+<link rel="stylesheet" href="styles/glass.css" />
+<style>
+  .hero { display: grid; grid-template-columns: 144px 1fr auto; gap: 21px; align-items: center; padding: 34px; }
+  @media (max-width: 760px) { .hero { grid-template-columns: 1fr; } }
+  .hero h1 { font-family: 'Outfit'; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; }
+  .hero .title { font-family: 'Outfit'; font-weight: 500; font-size: 18px; color: var(--glass-text-secondary); margin-top: 4px; }
+  .hero .meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--glass-text-tertiary); margin-top: 8px; }
+  .grid-main { display: grid; grid-template-columns: 1fr 360px; gap: 21px; padding: 0 21px 21px; }
+  @media (max-width: 1100px) { .grid-main { grid-template-columns: 1fr; } }
+  .stack { display: flex; flex-direction: column; gap: 21px; }
+  .pad { padding: 21px; }
+  .h3 { font-family: 'Outfit'; font-weight: 600; font-size: 18px; margin: 0 0 13px; letter-spacing: -0.005em; }
+  .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; padding: 21px; border-top: 1px solid rgba(255,255,255,0.06); }
+  :root[data-theme="light"] .kpi-strip { border-top-color: rgba(15,15,35,0.06); }
+  @media (max-width: 760px) { .kpi-strip { grid-template-columns: 1fr 1fr; } }
+  .contract-row { display: grid; grid-template-columns: 48px 1fr auto auto; gap: 13px; align-items: center; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  :root[data-theme="light"] .contract-row { border-bottom-color: rgba(15,15,35,0.06); }
+  .contract-row:last-child { border-bottom: 0; }
+  .contract-row .nm { font-family: 'Outfit'; font-weight: 600; font-size: 14px; }
+  .contract-row .sm { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--glass-text-tertiary); margin-top: 2px; }
+  .contract-row .rt { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px; color: #C7D2FE; }
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="shell-wide" style="padding-top:21px;">
+
+    <section class="glass-container">
+      <div class="hero">
+        <div class="logo-tile" style="width:144px;height:144px;border-radius:24px;font-size:48px;background:linear-gradient(135deg, rgba(56,189,248,0.30), rgba(2,132,199,0.30));border-color:rgba(56,189,248,0.40);">F</div>
+        <div>
+          <h1>Ford Rouge Complex</h1>
+          <div class="title">Tier 1 manufacturer · Automotive assembly</div>
+          <div class="meta">Dearborn, MI · Founded 1928 · 6,000+ employees</div>
+          <div class="chip-row" style="margin-top:13px;">
+            <span class="chip ok">VERIFIED EMPLOYER</span>
+            <span class="chip ok">NET-15 PAYMENT</span>
+            <span class="chip">AUTOMOTIVE</span>
+            <span class="chip accent">★ 4.91 · 312 reviews</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:32px;color:#7DD3FC;letter-spacing:-0.02em;line-height:1;">47</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--glass-text-tertiary);margin-top:4px;">ACTIVE CONTRACTS</div>
+          <div class="cta-row" style="margin-top:13px;justify-content:flex-end;">
+            <button class="gbtn gbtn-connect">Apply</button>
+            <button class="gbtn">Follow</button>
+            <button class="gbtn-secondary gbtn">Message</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-strip">
+        <div><div class="kpi-label">Active contracts</div><div class="kpi-val">47</div><div class="kpi-delta">▲ 8 this week</div></div>
+        <div><div class="kpi-label">Avg rate</div><div class="kpi-val" style="color:#C7D2FE;">$142/hr</div><div class="kpi-delta">▲ $4 vs Q1</div></div>
+        <div><div class="kpi-label">Net pay terms</div><div class="kpi-val" style="color:#FCD34D;">15 days</div><div class="kpi-delta" style="color:var(--glass-text-tertiary);">Top 5% in MI</div></div>
+        <div><div class="kpi-label">On-time pay rate</div><div class="kpi-val" style="color:#A7F3D0;">99.2%</div><div class="kpi-delta">312 contracts</div></div>
+      </div>
+    </section>
+
+    <div class="grid-main" style="margin-top:21px;">
+      <div class="stack">
+
+        <div class="glass-card pad">
+          <div class="h3">About</div>
+          <p style="font-family:'Outfit';font-size:15px;line-height:1.6;color:var(--glass-text-secondary);margin:0;">The Ford Rouge Complex is one of the largest integrated factory complexes in the world — body-in-white, paint shop, final assembly, and stamping under one roof. We hire industrial automation engineers across PLC programming, robotic integration, conveyor controls, and safety system retrofits. Most contracts are 4 to 12 weeks onsite with 1099 or W-2 options.</p>
+        </div>
+
+        <!-- Active contracts -->
+        <div class="glass-card pad">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;">
+            <div class="h3" style="margin:0;">Active contracts · 47 open</div>
+            <div class="chip-row"><span class="chip">DETROIT METRO</span><span class="chip">REMOTE-OK · 4</span></div>
+          </div>
+          <div>
+            <div class="contract-row">
+              <div class="logo-tile sm-48 indigo">PL</div>
+              <div><div class="nm">PLC programmer · Robotic palletizer</div><div class="sm">Body-in-white · 4-week onsite · ISA-S88 · 12 applicants</div></div>
+              <div class="rt">$148.50/hr</div>
+              <button class="gbtn sm">Apply</button>
+            </div>
+            <div class="contract-row">
+              <div class="logo-tile sm-48 amber">SF</div>
+              <div><div class="nm">Safety system retrofit lead</div><div class="sm">Paint shop · 8-week onsite · TÜV cert required · 4 applicants</div></div>
+              <div class="rt">$162.00/hr</div>
+              <button class="gbtn sm">Apply</button>
+            </div>
+            <div class="contract-row">
+              <div class="logo-tile sm-48 sky">CV</div>
+              <div><div class="nm">Conveyor controls engineer</div><div class="sm">Stamping · 6-week onsite · Allen-Bradley · 9 applicants</div></div>
+              <div class="rt">$135.00/hr</div>
+              <button class="gbtn sm">Apply</button>
+            </div>
+            <div class="contract-row">
+              <div class="logo-tile sm-48 rose">RB</div>
+              <div><div class="nm">Robotic integration specialist</div><div class="sm">Final assembly · 12-week onsite · Fanuc · 7 applicants</div></div>
+              <div class="rt">$158.00/hr</div>
+              <button class="gbtn sm">Apply</button>
+            </div>
+            <div class="contract-row">
+              <div class="logo-tile sm-48 teal">VS</div>
+              <div><div class="nm">Vision system tuner</div><div class="sm">Quality lab · 3-week onsite · Cognex · 2 applicants</div></div>
+              <div class="rt">$145.00/hr</div>
+              <button class="gbtn sm">Apply</button>
+            </div>
+            <div class="contract-row">
+              <div class="logo-tile sm-48 violet">DM</div>
+              <div><div class="nm">SCADA migration · Wonderware → Ignition</div><div class="sm">Plant-wide · 16-week hybrid · Inductive Auto cert · 6 applicants</div></div>
+              <div class="rt">$172.00/hr</div>
+              <button class="gbtn sm">Apply</button>
+            </div>
+          </div>
+          <div class="cta-row" style="margin-top:13px;"><button class="gbtn-secondary gbtn sm">View all 47 contracts</button></div>
+        </div>
+
+        <!-- Engineers we've worked with -->
+        <div class="glass-card pad">
+          <div class="h3">Engineers Ford has worked with · 28</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:13px;">
+            <div style="text-align:center;">
+              <div class="photo photo-72" style="margin:0 auto;background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=faces')"></div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:13px;margin-top:8px;">M. Lopez</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);">11 contracts</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="photo photo-72" style="margin:0 auto;background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=faces')"></div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:13px;margin-top:8px;">J. Reyes</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);">9 contracts</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="photo photo-72" style="margin:0 auto;background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&h=300&fit=crop&crop=faces')"></div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:13px;margin-top:8px;">D. Kowalski</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);">7 contracts</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="photo photo-72" style="margin:0 auto;background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=faces')"></div>
+              <div style="font-family:'Outfit';font-weight:600;font-size:13px;margin-top:8px;">M. Singh</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);">6 contracts</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="stack">
+
+        <!-- Customer badges -->
+        <div class="glass-card pad">
+          <div class="h3">Customer badges</div>
+          <div class="badge-row" style="justify-content:space-around;">
+            <div class="badge-stack">
+              <div class="badge-80 emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+              <div class="badge-label">Verified</div>
+            </div>
+            <div class="badge-stack">
+              <div class="badge-80"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z"/></svg></div>
+              <div class="badge-label">Top hirer</div>
+            </div>
+            <div class="badge-stack">
+              <div class="badge-80 indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <div class="badge-label">Fast pay</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Site facilities -->
+        <div class="glass-card pad">
+          <div class="h3">Facilities &amp; areas</div>
+          <div class="chip-row">
+            <span class="chip">BODY-IN-WHITE</span>
+            <span class="chip">PAINT SHOP</span>
+            <span class="chip">FINAL ASSEMBLY</span>
+            <span class="chip">STAMPING</span>
+            <span class="chip">DEARBORN ENGINE</span>
+            <span class="chip">VISITOR CENTER</span>
+          </div>
+          <div class="divider"></div>
+          <div class="row-meta" style="flex-direction:column;align-items:flex-start;gap:8px;">
+            <span>📍 3001 Miller Rd, Dearborn, MI 48120</span>
+            <span>🅿️ Onsite parking · Badged entry</span>
+            <span>🦺 Steel-toe + safety-rated PPE required</span>
+            <span>🍽️ Cafeteria · Free shift meals</span>
+          </div>
+        </div>
+
+        <!-- Pay terms -->
+        <div class="glass-card pad">
+          <div class="h3">Pay &amp; contract terms</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;">
+            <div><div class="kpi-label">Net terms</div><div class="kpi-val" style="font-size:18px;">15 days</div></div>
+            <div><div class="kpi-label">1099 / W-2</div><div class="kpi-val" style="font-size:18px;">Both</div></div>
+            <div><div class="kpi-label">OT multiplier</div><div class="kpi-val" style="font-size:18px;">1.5×</div></div>
+            <div><div class="kpi-label">Per diem</div><div class="kpi-val" style="font-size:18px;">$165/d</div></div>
+          </div>
+        </div>
+
+        <!-- Recent reviews -->
+        <div class="glass-card pad">
+          <div class="h3">From engineers · ★ 4.91</div>
+          <div style="font-family:'Outfit';font-size:13px;color:var(--glass-text-secondary);line-height:1.5;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);">"Pays on schedule every time. Site safety is among the best I have worked." <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);margin-top:4px;">— D. Kowalski · ★★★★★</div></div>
+          <div style="font-family:'Outfit';font-size:13px;color:var(--glass-text-secondary);line-height:1.5;padding:8px 0;">"Good scope, clear specs, well-run shop. Will be back." <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--glass-text-tertiary);margin-top:4px;">— M. Lopez · ★★★★★</div></div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="foot">Liquid Glass · Customer profile · Ford Rouge Complex</footer>
+  </div>
+</main>
+<script src="scripts/glass-shell.js" data-active="customer"></script>
+</body>
+</html>

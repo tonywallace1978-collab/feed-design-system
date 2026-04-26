@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEED User Dashboard — Has Everything (Max Data)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+           DESIGN SYSTEM — copied EXACTLY from profile-advanced.html
+           ═══════════════════════════════════════════════════════════ */
+        :root {
+            --space-xs:5px;--space-sm:8px;--space-md:13px;--space-lg:21px;--space-xl:34px;--space-2xl:55px;--space-3xl:89px;
+            --size-icon-sm:34px;--size-icon:55px;--size-avatar:89px;--size-avatar-lg:160px;
+            --radius-sm:8px;--radius-md:13px;--radius-lg:21px;--radius-xl:34px;
+            --font-xs:11px;--font-sm:13px;--font-base:16px;--font-lg:21px;--font-xl:26px;--font-2xl:34px;--font-3xl:42px;
+            --primary:#6366F1;--primary-light:#818CF8;--primary-dark:#4F46E5;--primary-glow:rgba(99,102,241,0.35);
+            --secondary:#EC4899;--accent:#14B8A6;--success:#10B981;--warning:#F59E0B;--danger:#EF4444;
+            --surface-glass:rgba(12,10,30,0.38);--surface-glass-hover:rgba(18,16,40,0.48);--surface-glass-strong:rgba(8,6,22,0.75);
+            --border-glass:rgba(255,255,255,0.07);--border-glass-hover:rgba(255,255,255,0.12);
+            --text-primary:#F5F5F7;--text-secondary:#A1A1AA;--text-tertiary:#636370;--text-accent:var(--primary-light);
+            --tier-diamond:#B9F2FF;--tier-platinum:#E5E4E2;--tier-gold:#FFD700;--tier-silver:#C0C0C0;--tier-bronze:#CD7F32;
+        }
+
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{overflow-x:hidden;max-width:100vw}
+        body{font-family:'Outfit',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:var(--text-primary);line-height:1.618;-webkit-font-smoothing:antialiased;min-height:100vh;background:#08061a}
+
+        /* WALLPAPER — stationary background */
+        .wallpaper{position:fixed;inset:0;z-index:0;background:linear-gradient(135deg,#0a0820 0%,#1a1040 25%,#0d0b25 50%,#151030 75%,#08061a 100%)}
+        .wallpaper::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(99,102,241,.08),transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(236,72,153,.05),transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(20,184,166,.06),transparent 55%)}
+        .wallpaper::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.012'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+
+        /* FEED LAYER */
+        .feed-layer{position:relative;z-index:2;min-height:100vh;padding:var(--space-3xl) 0}
+        .container{max-width:1400px;margin:0 auto;padding:0 var(--space-xl)}
+
+        /* GLASS CARD — exact from profile-advanced.html */
+        .glass-card{background:var(--surface-glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border-glass);border-radius:var(--radius-xl);padding:var(--space-xl);margin-bottom:var(--space-lg);transition:all .35s;position:relative;overflow:hidden}
+        .glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06) 30%,rgba(255,255,255,.06) 70%,transparent)}
+        .glass-card:hover{background:var(--surface-glass-hover);border-color:var(--border-glass-hover);box-shadow:0 8px 40px rgba(0,0,0,.25)}
+        .glass-card-compact{padding:var(--space-lg)}
+        .glass-card-flush{padding:0;overflow:hidden}
+
+        /* SECTION TITLE */
+        .section-title{font-size:var(--font-lg);font-weight:700;margin-bottom:var(--space-lg);display:flex;align-items:center;gap:var(--space-sm)}
+        .section-title::before{content:'';width:4px;height:22px;background:linear-gradient(180deg,var(--primary),var(--primary-dark));border-radius:2px;flex-shrink:0}
+        .section-count{font-size:var(--font-xl);color:var(--text-accent);font-weight:800;margin-left:8px;font-family:'JetBrains Mono',monospace;letter-spacing:-1px}
+        .section-title.green::before{background:linear-gradient(180deg,var(--success),#059669)}
+        .section-title.amber::before{background:linear-gradient(180deg,var(--warning),#D97706)}
+        .section-title.pink::before{background:linear-gradient(180deg,var(--secondary),#DB2777)}
+        .section-title.teal::before{background:linear-gradient(180deg,var(--accent),#0D9488)}
+        .section-title.red::before{background:linear-gradient(180deg,var(--danger),#DC2626)}
+
+        /* CTAs — exact from canonical HTML */
+        .cta-primary{background:linear-gradient(180deg,var(--primary-light),var(--primary) 50%,var(--primary-dark));color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-base);font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(99,102,241,.4),inset 0 1px 0 rgba(255,255,255,.15);transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-sm)}
+        .cta-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 24px rgba(99,102,241,.5)}
+        .cta-outline{background:transparent;color:var(--text-secondary);border:1px solid var(--border-glass);padding:var(--space-md) var(--space-xl);border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:500;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-sm);text-decoration:none}
+        .cta-outline:hover{background:rgba(255,255,255,.04);border-color:var(--border-glass-hover);color:var(--text-primary)}
+        .cta-ghost{background:rgba(255,255,255,.03);color:var(--text-secondary);border:1px dashed rgba(255,255,255,.1);padding:var(--space-md) var(--space-xl);border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:500;cursor:not-allowed;opacity:.5;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-sm)}
+        .cta-connect{background:linear-gradient(180deg,#34D399,var(--success) 50%,#059669);color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-base);font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(16,185,129,.4),inset 0 1px 0 rgba(255,255,255,.15);transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-sm)}
+        .cta-connect:hover{transform:translateY(-2px) scale(1.02)}
+        .cta-boost{background:linear-gradient(135deg,#F59E0B,#D97706);color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-sm);text-decoration:none}
+        .cta-boost:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,158,11,.4)}
+        .cta-danger{background:rgba(239,68,68,.08);color:var(--danger);border:1px solid rgba(239,68,68,.15);padding:var(--space-md) var(--space-xl);border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-sm)}
+        .cta-sm{padding:var(--space-xs) var(--space-md);font-size:var(--font-xs);border-radius:var(--radius-sm)}
+
+        /* ANIMATED PRIMARY CTA — Pattern B shimmer (D3) */
+        @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+        .cta-shimmer{background:linear-gradient(90deg,var(--primary-dark),var(--primary),var(--primary-light),var(--primary),var(--primary-dark));background-size:200% 100%;animation:shimmer 3s linear infinite;color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-base);font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(99,102,241,.4);transition:transform .2s;display:inline-flex;align-items:center;gap:var(--space-sm);text-decoration:none}
+        .cta-shimmer:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 24px rgba(99,102,241,.5)}
+
+        /* ANIMATED PRIMARY CTA — Pattern C pulsing glow (D3) */
+        @keyframes glowPulse{0%,100%{box-shadow:0 4px 16px rgba(99,102,241,.4),0 0 20px rgba(99,102,241,.15)}50%{box-shadow:0 4px 24px rgba(99,102,241,.6),0 0 40px rgba(99,102,241,.25)}}
+        .cta-glow{background:linear-gradient(180deg,var(--primary-light),var(--primary) 50%,var(--primary-dark));color:#fff;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-md);font-family:'Outfit',sans-serif;font-size:var(--font-base);font-weight:700;cursor:pointer;animation:glowPulse 2.5s ease-in-out infinite;transition:transform .2s;display:inline-flex;align-items:center;gap:var(--space-sm);text-decoration:none}
+        .cta-glow:hover{transform:translateY(-2px) scale(1.02)}
+
+        /* ═══════════════════════════════════════════════════════════
+           DASHBOARD PAGE TITLE
+           ═══════════════════════════════════════════════════════════ */
+        .page-title{font-size:var(--font-3xl);font-weight:900;letter-spacing:-1px;margin-bottom:var(--space-xl);text-align:center;background:linear-gradient(135deg,var(--text-primary),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .page-subtitle{text-align:center;color:var(--text-tertiary);font-size:var(--font-base);margin-top:calc(-1 * var(--space-lg));margin-bottom:var(--space-2xl)}
+
+        /* ═══════════════════════════════════════════════════════════
+           CTA CARD ROWS (Row 1 + Row 2)
+           ═══════════════════════════════════════════════════════════ */
+        .cta-card-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-lg);margin-bottom:var(--space-lg)}
+        .cta-card{background:var(--surface-glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border-glass);border-radius:var(--radius-lg);padding:var(--space-xl) var(--space-lg);text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;text-decoration:none;color:var(--text-primary)}
+        .cta-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06) 30%,rgba(255,255,255,.06) 70%,transparent)}
+        .cta-card:hover{background:var(--surface-glass-hover);border-color:var(--border-glass-hover);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+        .cta-card-icon{font-size:var(--font-2xl);margin-bottom:var(--space-sm);display:block}
+        .cta-card-label{font-size:var(--font-sm);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+        .cta-card-count{font-family:'JetBrains Mono',monospace;font-size:var(--font-xl);font-weight:800;color:var(--text-accent);margin-top:var(--space-xs)}
+        .cta-card.highlight{border-color:rgba(99,102,241,.2);background:rgba(99,102,241,.05)}
+        .cta-card.urgent{border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.04)}
+        .cta-card.urgent .cta-card-count{color:var(--danger)}
+
+        /* ═══════════════════════════════════════════════════════════
+           PROFILE SUMMARY CARD
+           ═══════════════════════════════════════════════════════════ */
+        .profile-summary{display:grid;grid-template-columns:auto 1fr auto;gap:var(--space-xl);align-items:center}
+        .profile-photo-wrap{position:relative;width:var(--size-avatar-lg);height:var(--size-avatar-lg)}
+        .photo-glow{position:absolute;inset:-5px;border-radius:var(--radius-xl);background:linear-gradient(135deg,var(--primary),var(--primary-dark) 40%,rgba(99,102,241,.3));opacity:.7}
+        .photo-glow-mask{position:absolute;inset:3px;background:rgba(6,4,18,.95);border-radius:calc(var(--radius-xl) - 2px)}
+        .profile-photo{width:100%;height:100%;border-radius:var(--radius-xl);object-fit:cover;position:relative;z-index:1;background:linear-gradient(135deg,#2a2060,#1a1040);display:flex;align-items:center;justify-content:center;font-size:var(--font-3xl);font-weight:800;color:var(--primary-light)}
+        .verified-badge{position:absolute;bottom:-4px;right:-4px;width:32px;height:32px;background:var(--primary);border-radius:50%;border:3px solid rgba(6,4,18,.95);display:flex;align-items:center;justify-content:center;z-index:2;font-size:14px}
+        .profile-info{min-width:0}
+        .profile-name{font-size:var(--font-2xl);font-weight:800;letter-spacing:-.5px;margin-bottom:var(--space-xs)}
+        .profile-meta{font-size:var(--font-sm);color:var(--text-secondary);margin-bottom:var(--space-sm)}
+        .profile-meta a{color:var(--text-accent);text-decoration:none}
+        .profile-meta a:hover{text-decoration:underline}
+        .role-badges{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-md)}
+        .role-badge{font-size:var(--font-xs);padding:3px 12px;border-radius:100px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+        .role-badge.customer{background:rgba(99,102,241,.1);color:var(--primary-light);border:1px solid rgba(99,102,241,.2)}
+        .role-badge.company{background:rgba(236,72,153,.08);color:var(--secondary);border:1px solid rgba(236,72,153,.15)}
+        .role-badge.bg-admin{background:rgba(20,184,166,.08);color:var(--accent);border:1px solid rgba(20,184,166,.15)}
+        .role-badge.bg-member{background:rgba(245,158,11,.08);color:var(--warning);border:1px solid rgba(245,158,11,.15)}
+        .role-badge.employer{background:rgba(16,185,129,.08);color:var(--success);border:1px solid rgba(16,185,129,.15)}
+        .profile-contact{display:flex;gap:var(--space-lg);font-size:var(--font-sm);color:var(--text-tertiary)}
+        .profile-contact a{color:var(--text-secondary);text-decoration:none;display:flex;align-items:center;gap:var(--space-xs)}
+        .profile-contact a:hover{color:var(--text-accent)}
+        .profile-actions{display:flex;flex-direction:column;gap:var(--space-sm);align-items:flex-end}
+        .availability-switch{display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-sm) var(--space-lg);background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:100px;font-size:var(--font-sm);font-weight:600;color:var(--success);cursor:pointer;transition:all .2s}
+        .availability-switch .dot{width:9px;height:9px;background:var(--success);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+        @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}50%{box-shadow:0 0 0 7px rgba(16,185,129,0)}}
+
+        /* ═══════════════════════════════════════════════════════════
+           QUICK STATS (KPI bar)
+           ═══════════════════════════════════════════════════════════ */
+        .kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--space-md);margin-bottom:var(--space-lg)}
+        .kpi-card{text-align:center;padding:var(--space-lg) var(--space-md);background:var(--surface-glass);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border-glass);border-radius:var(--radius-lg);position:relative;overflow:hidden;transition:all .3s}
+        .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06) 30%,rgba(255,255,255,.06) 70%,transparent)}
+        .kpi-card:hover{border-color:var(--border-glass-hover);transform:translateY(-2px)}
+        .kpi-val{font-family:'JetBrains Mono',monospace;font-size:var(--font-xl);font-weight:800;letter-spacing:-1px}
+        .kpi-val.green{color:var(--success)}
+        .kpi-val.blue{color:var(--primary-light)}
+        .kpi-val.amber{color:var(--warning)}
+        .kpi-val.pink{color:var(--secondary)}
+        .kpi-val.teal{color:var(--accent)}
+        .kpi-lbl{font-size:var(--font-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px;font-weight:500;margin-top:var(--space-xs)}
+        .kpi-trend{font-size:9px;color:var(--success);font-weight:600;margin-top:2px}
+        .kpi-trend.down{color:var(--danger)}
+
+        /* ═══════════════════════════════════════════════════════════
+           TOGGLE BAR — Work By Me vs Work For Me
+           ═══════════════════════════════════════════════════════════ */
+        .toggle-bar{display:flex;justify-content:center;gap:4px;padding:4px;background:var(--surface-glass-strong);backdrop-filter:blur(20px);border:1px solid var(--border-glass-hover);border-radius:var(--radius-md);margin-bottom:var(--space-xl);max-width:600px;margin-left:auto;margin-right:auto}
+        .toggle-btn{flex:1;padding:var(--space-md) var(--space-xl);border:none;border-radius:var(--radius-sm);font-family:'Outfit',sans-serif;font-size:var(--font-sm);font-weight:700;cursor:pointer;transition:all .25s;color:var(--text-tertiary);background:transparent;text-transform:uppercase;letter-spacing:.5px;text-align:center}
+        .toggle-btn.active{background:var(--primary);color:#fff;box-shadow:0 4px 16px rgba(99,102,241,.3)}
+        .toggle-btn:hover:not(.active){color:var(--text-primary);background:rgba(255,255,255,.04)}
+
+        /* TOGGLE CONTENT */
+        .toggle-content{display:none}
+        .toggle-content.active{display:block}
+
+        /* ═══════════════════════════════════════════════════════════
+           GRID LAYOUT FOR DASHBOARD CONTENT
+           ═══════════════════════════════════════════════════════════ */
+        .dash-grid{display:grid;grid-template-columns:380px minmax(0,1fr);gap:var(--space-xl);align-items:start}
+        .dash-full{grid-column:1/-1}
+
+        /* ═══════════════════════════════════════════════════════════
+           CONTRACT / WORK CARDS
+           ═══════════════════════════════════════════════════════════ */
+        .contract-card{padding:var(--space-lg);background:rgba(255,255,255,.02);border:1px solid var(--border-glass);border-radius:var(--radius-lg);margin-bottom:var(--space-md);transition:all .3s;cursor:pointer}
+        .contract-card:hover{background:rgba(255,255,255,.04);border-color:var(--border-glass-hover);transform:translateY(-2px)}
+        .contract-card:last-child{margin-bottom:0}
+        .contract-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-md)}
+        .contract-type{font-size:var(--font-xs);padding:3px 10px;border-radius:100px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+        .contract-type.wg{background:rgba(99,102,241,.1);color:var(--primary-light);border:1px solid rgba(99,102,241,.15)}
+        .contract-type.std{background:rgba(255,255,255,.05);color:var(--text-secondary);border:1px solid var(--border-glass)}
+        .contract-type.job{background:rgba(236,72,153,.08);color:var(--secondary);border:1px solid rgba(236,72,153,.12)}
+        .contract-type.rfq{background:rgba(20,184,166,.08);color:var(--accent);border:1px solid rgba(20,184,166,.12)}
+        .contract-status{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;text-transform:uppercase}
+        .contract-status.ongoing{background:rgba(245,158,11,.08);color:var(--warning)}
+        .contract-status.active{background:rgba(16,185,129,.08);color:var(--success)}
+        .contract-status.completed{background:rgba(99,102,241,.08);color:var(--primary-light)}
+        .contract-status.draft{background:rgba(255,255,255,.05);color:var(--text-tertiary)}
+        .contract-status.pending{background:rgba(245,158,11,.08);color:var(--warning)}
+        .contract-status.overdue{background:rgba(239,68,68,.1);color:var(--danger);animation:flash 1.5s ease-in-out infinite}
+        @keyframes flash{0%,100%{opacity:1}50%{opacity:.5}}
+        .contract-title{font-size:var(--font-base);font-weight:700;margin-bottom:var(--space-xs)}
+        .contract-detail{font-size:var(--font-sm);color:var(--text-secondary);margin-bottom:var(--space-xs)}
+        .contract-detail span{color:var(--text-tertiary)}
+        .contract-skills{display:flex;gap:var(--space-sm);margin-top:var(--space-sm)}
+        .skill-pill{font-size:var(--font-xs);padding:2px 10px;border-radius:100px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:var(--primary-light);font-weight:500}
+        .contract-actions{display:flex;gap:var(--space-sm);margin-top:var(--space-md)}
+        .contract-rates{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-sm);margin-top:var(--space-md)}
+        .rate-cell{text-align:center;padding:var(--space-sm);background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.08);border-radius:var(--radius-sm)}
+        .rate-amount{font-family:'JetBrains Mono',monospace;font-size:var(--font-base);font-weight:800;color:var(--success)}
+        .rate-type{font-size:9px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+        /* SUB-SECTION TABS (Timesheets/Expenses/Invoices within a contract) */
+        .sub-tabs{display:flex;gap:4px;margin-top:var(--space-md);padding-top:var(--space-md);border-top:1px solid rgba(255,255,255,.04)}
+        .sub-tab{padding:var(--space-xs) var(--space-md);border:1px solid var(--border-glass);border-radius:var(--radius-sm);background:transparent;color:var(--text-tertiary);font-family:'Outfit',sans-serif;font-size:var(--font-xs);font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:4px}
+        .sub-tab.active{background:rgba(99,102,241,.1);color:var(--primary-light);border-color:rgba(99,102,241,.2)}
+        .sub-tab:hover:not(.active){color:var(--text-secondary);background:rgba(255,255,255,.03)}
+        .sub-tab-count{font-family:'JetBrains Mono',monospace;font-size:9px;padding:1px 5px;border-radius:3px;background:rgba(255,255,255,.06)}
+
+        /* STATUS ROW (within sub-sections) */
+        .status-row{display:flex;align-items:center;justify-content:space-between;padding:var(--space-sm) var(--space-md);border-bottom:1px solid rgba(255,255,255,.03);font-size:var(--font-sm)}
+        .status-row:last-child{border-bottom:none}
+        .status-label{color:var(--text-secondary)}
+        .status-value{font-family:'JetBrains Mono',monospace;font-weight:600}
+        .status-value.urgent{color:var(--danger)}
+        .status-value.pending{color:var(--warning)}
+        .status-value.good{color:var(--success)}
+
+        /* ═══════════════════════════════════════════════════════════
+           APPLICANT GRID
+           ═══════════════════════════════════════════════════════════ */
+        .applicant-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--space-md)}
+        .applicant-card{text-align:center;padding:var(--space-lg);background:rgba(255,255,255,.02);border:1px solid var(--border-glass);border-radius:var(--radius-lg);cursor:pointer;transition:all .3s}
+        .applicant-card:hover{background:rgba(255,255,255,.04);border-color:var(--border-glass-hover);transform:translateY(-3px)}
+        .applicant-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto var(--space-md);background:linear-gradient(135deg,#2a2060,#1a1040);display:flex;align-items:center;justify-content:center;font-size:var(--font-lg);font-weight:700;color:var(--primary-light);box-shadow:0 4px 16px rgba(0,0,0,.3)}
+        .applicant-name{font-size:var(--font-sm);font-weight:700;margin-bottom:2px}
+        .applicant-occ{font-size:var(--font-xs);color:var(--text-tertiary);margin-bottom:var(--space-sm)}
+        .applicant-status{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;display:inline-block}
+        .applicant-status.pending{background:rgba(245,158,11,.08);color:var(--warning)}
+        .applicant-status.shortlisted{background:rgba(99,102,241,.08);color:var(--primary-light)}
+        .applicant-status.hired{background:rgba(16,185,129,.08);color:var(--success)}
+        .applicant-status.rejected{background:rgba(239,68,68,.08);color:var(--danger)}
+        .applicant-actions{display:flex;gap:4px;margin-top:var(--space-sm);justify-content:center}
+
+        /* ═══════════════════════════════════════════════════════════
+           BADGE SHOWCASE
+           ═══════════════════════════════════════════════════════════ */
+        .badge-showcase{background:var(--surface-glass);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border-glass);border-radius:var(--radius-xl);padding:var(--space-lg) var(--space-xl);margin-bottom:var(--space-lg);position:relative;overflow:hidden}
+        .badge-showcase::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,.1) 30%,rgba(255,215,0,.1) 70%,transparent)}
+        .badge-showcase-title{font-size:var(--font-sm);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-tertiary);margin-bottom:var(--space-lg);display:flex;align-items:center;gap:var(--space-sm)}
+        .badge-showcase-title::before{content:'';width:4px;height:16px;background:linear-gradient(180deg,var(--tier-gold),var(--tier-diamond));border-radius:2px;flex-shrink:0}
+        .badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:var(--space-md)}
+        .badge-slot{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:var(--space-sm);border-radius:var(--radius-md);transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+        .badge-slot:hover{background:rgba(255,255,255,.04);transform:translateY(-4px) scale(1.05)}
+        .badge-frame{width:64px;height:64px;border-radius:var(--radius-md);background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(185,242,255,.05));display:flex;align-items:center;justify-content:center;font-size:var(--font-xl);filter:drop-shadow(0 4px 16px rgba(0,0,0,.5))}
+        .badge-tier-label{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;padding:2px 6px;border-radius:3px;background:rgba(0,0,0,.5)}
+        .badge-tier-label.diamond{color:var(--tier-diamond);border:1px solid rgba(185,242,255,.25)}
+        .badge-tier-label.platinum{color:var(--tier-platinum);border:1px solid rgba(229,228,226,.2)}
+        .badge-tier-label.gold{color:var(--tier-gold);border:1px solid rgba(255,215,0,.25)}
+        .badge-tier-label.silver{color:var(--tier-silver);border:1px solid rgba(192,192,192,.2)}
+        .badge-tier-label.bronze{color:var(--tier-bronze);border:1px solid rgba(205,127,50,.25)}
+        .badge-name{font-size:9px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.6px;font-weight:500}
+
+        /* ═══════════════════════════════════════════════════════════
+           NOTIFICATION LIST
+           ═══════════════════════════════════════════════════════════ */
+        .notification-item{display:flex;align-items:flex-start;gap:var(--space-md);padding:var(--space-md);border-bottom:1px solid rgba(255,255,255,.03);transition:background .2s}
+        .notification-item:last-child{border-bottom:none}
+        .notification-item:hover{background:rgba(255,255,255,.02)}
+        .notification-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:var(--font-base)}
+        .notification-icon.blue{background:rgba(99,102,241,.1);color:var(--primary-light)}
+        .notification-icon.green{background:rgba(16,185,129,.1);color:var(--success)}
+        .notification-icon.amber{background:rgba(245,158,11,.1);color:var(--warning)}
+        .notification-icon.pink{background:rgba(236,72,153,.08);color:var(--secondary)}
+        .notification-icon.teal{background:rgba(20,184,166,.08);color:var(--accent)}
+        .notification-body{flex:1;min-width:0}
+        .notification-text{font-size:var(--font-sm);color:var(--text-secondary);line-height:1.5}
+        .notification-text strong{color:var(--text-primary);font-weight:600}
+        .notification-time{font-size:var(--font-xs);color:var(--text-tertiary);margin-top:2px}
+        .notification-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:6px}
+
+        /* ═══════════════════════════════════════════════════════════
+           SAVED SEARCHES / WATCHED ITEMS
+           ═══════════════════════════════════════════════════════════ */
+        .list-item{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md);border-bottom:1px solid rgba(255,255,255,.03);transition:all .2s}
+        .list-item:last-child{border-bottom:none}
+        .list-item:hover{background:rgba(255,255,255,.02)}
+        .list-item-icon{width:36px;height:36px;border-radius:var(--radius-sm);background:rgba(99,102,241,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:var(--font-sm)}
+        .list-item-body{flex:1;min-width:0}
+        .list-item-title{font-size:var(--font-sm);font-weight:600}
+        .list-item-detail{font-size:var(--font-xs);color:var(--text-tertiary)}
+        .list-item-action{font-size:var(--font-xs);color:var(--text-tertiary);cursor:pointer;padding:var(--space-xs) var(--space-sm);border-radius:var(--radius-sm);transition:all .2s}
+        .list-item-action:hover{color:var(--danger);background:rgba(239,68,68,.06)}
+
+        /* ═══════════════════════════════════════════════════════════
+           EARNINGS / SPENDING CHART AREA
+           ═══════════════════════════════════════════════════════════ */
+        .chart-placeholder{height:200px;background:linear-gradient(180deg,rgba(16,185,129,.06),rgba(16,185,129,.02));border:1px solid rgba(16,185,129,.1);border-radius:var(--radius-lg);display:flex;align-items:flex-end;justify-content:space-around;padding:var(--space-lg) var(--space-md);margin-bottom:var(--space-md)}
+        .chart-placeholder.spending{background:linear-gradient(180deg,rgba(239,68,68,.06),rgba(239,68,68,.02));border-color:rgba(239,68,68,.1)}
+        .chart-bar{width:calc(100% / 12 - 8px);border-radius:var(--radius-sm) var(--radius-sm) 0 0;transition:all .3s;cursor:pointer;position:relative}
+        .chart-bar:hover{opacity:.8}
+        .chart-bar::after{content:attr(data-label);position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-size:8px;color:var(--text-tertiary);white-space:nowrap}
+
+        /* ═══════════════════════════════════════════════════════════
+           EMPLOYEE / BG CARDS
+           ═══════════════════════════════════════════════════════════ */
+        .employee-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--space-md)}
+        .employee-card{text-align:center;padding:var(--space-lg);background:rgba(255,255,255,.02);border:1px solid var(--border-glass);border-radius:var(--radius-lg);cursor:pointer;transition:all .3s}
+        .employee-card:hover{background:rgba(255,255,255,.04);transform:translateY(-3px)}
+        .employee-avatar{width:var(--size-icon);height:var(--size-icon);border-radius:50%;margin:0 auto var(--space-sm);background:linear-gradient(135deg,#2a2060,#1a1040);display:flex;align-items:center;justify-content:center;font-size:var(--font-base);font-weight:700;color:var(--primary-light)}
+        .employee-name{font-size:var(--font-sm);font-weight:600;margin-bottom:2px}
+        .employee-role{font-size:var(--font-xs);color:var(--text-tertiary)}
+        .employee-avail{font-size:10px;margin-top:var(--space-xs);padding:2px 8px;border-radius:4px;display:inline-block;font-weight:600}
+        .employee-avail.available{background:rgba(16,185,129,.1);color:var(--success)}
+        .employee-avail.on-contract{background:rgba(245,158,11,.08);color:var(--warning)}
+        .employee-avail.unavailable{background:rgba(239,68,68,.08);color:var(--danger)}
+
+        .bg-group-card{background:rgba(20,184,166,.02);border:1px solid rgba(20,184,166,.1);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-md);transition:all .3s}
+        .bg-group-card:hover{border-color:rgba(20,184,166,.2);background:rgba(20,184,166,.04)}
+        .bg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-md)}
+        .bg-name{font-size:var(--font-base);font-weight:700}
+        .bg-role-tag{font-size:var(--font-xs);padding:2px 10px;border-radius:100px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+        .bg-role-tag.admin{background:rgba(20,184,166,.1);color:var(--accent)}
+        .bg-role-tag.member{background:rgba(245,158,11,.08);color:var(--warning)}
+        .bg-stats{display:flex;gap:var(--space-lg);font-size:var(--font-sm);color:var(--text-secondary)}
+        .bg-stat-val{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--text-accent)}
+
+        /* ═══════════════════════════════════════════════════════════
+           QUICK ACTIONS BAR
+           ═══════════════════════════════════════════════════════════ */
+        .quick-actions{display:flex;flex-wrap:wrap;gap:var(--space-sm);justify-content:center;margin-bottom:var(--space-xl)}
+
+        /* ═══════════════════════════════════════════════════════════
+           MY PROFESSIONALS / PAST RELATIONSHIPS / CALENDAR
+           ═══════════════════════════════════════════════════════════ */
+        .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+        .cal-header{font-size:var(--font-xs);color:var(--text-tertiary);font-weight:600;padding:var(--space-sm) 0;text-transform:uppercase;letter-spacing:.5px}
+        .cal-day{font-size:var(--font-sm);padding:var(--space-sm);border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;color:var(--text-secondary)}
+        .cal-day:hover{background:rgba(99,102,241,.08)}
+        .cal-day.today{background:var(--primary);color:#fff;font-weight:700;border-radius:50%}
+        .cal-day.has-event{position:relative}
+        .cal-day.has-event::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--accent)}
+        .cal-day.inactive{color:var(--text-tertiary);opacity:.3}
+
+        /* SHARE DROPDOWN */
+        .share-options{display:flex;gap:var(--space-sm);flex-wrap:wrap;margin-top:var(--space-sm)}
+        .share-btn{font-size:var(--font-xs);padding:var(--space-xs) var(--space-md);border-radius:var(--radius-sm);background:rgba(255,255,255,.03);border:1px solid var(--border-glass);color:var(--text-tertiary);cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif}
+        .share-btn:hover{background:rgba(255,255,255,.06);color:var(--text-secondary)}
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            .dash-grid{grid-template-columns:1fr}
+            .cta-card-row{grid-template-columns:repeat(2,1fr)}
+            .kpi-grid{grid-template-columns:repeat(3,1fr)}
+            .profile-summary{grid-template-columns:1fr;text-align:center}
+            .role-badges{justify-content:center}
+            .profile-contact{justify-content:center}
+            .profile-actions{align-items:center}
+        }
+        @media(max-width:600px){
+            .cta-card-row{grid-template-columns:1fr 1fr}
+            .kpi-grid{grid-template-columns:repeat(2,1fr)}
+            .toggle-bar{flex-direction:column}
+            .contract-rates{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+
+<!-- WALLPAPER — stationary background -->
+<div class="wallpaper"></div>
+
+<!-- FEED LAYER — scrollable content -->
+<div class="feed-layer">
+<div class="container">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PAGE HEADER
+         ═══════════════════════════════════════════════════════════ -->
+    <h1 class="page-title">User Dashboard</h1>
+    <p class="page-subtitle">Welcome back, Heather. Here's your command center.</p>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ROW 1 — Primary CTA Cards
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="cta-card-row">
+        <a class="cta-card" href="#">
+            <span class="cta-card-icon">&#128203;</span>
+            <span class="cta-card-label">Timesheets</span>
+            <span class="cta-card-count">12</span>
+        </a>
+        <a class="cta-card urgent" href="#">
+            <span class="cta-card-icon">&#128176;</span>
+            <span class="cta-card-label">Expense Reports</span>
+            <span class="cta-card-count">3 Due</span>
+        </a>
+        <a class="cta-card" href="#">
+            <span class="cta-card-icon">&#128196;</span>
+            <span class="cta-card-label">Invoices</span>
+            <span class="cta-card-count">9</span>
+        </a>
+        <a class="cta-card" href="#">
+            <span class="cta-card-icon">&#128220;</span>
+            <span class="cta-card-label">Purchase Orders</span>
+            <span class="cta-card-count">4</span>
+        </a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ROW 2 — Secondary CTA Cards
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="cta-card-row">
+        <a class="cta-card highlight" href="#">
+            <span class="cta-card-icon">&#127970;</span>
+            <span class="cta-card-label">View as Business</span>
+        </a>
+        <a class="cta-card" href="#">
+            <span class="cta-card-icon">&#128269;</span>
+            <span class="cta-card-label">Search Work</span>
+        </a>
+        <a class="cta-card" href="#">
+            <span class="cta-card-icon">&#128101;</span>
+            <span class="cta-card-label">Search Customers</span>
+        </a>
+        <a class="cta-card" href="#">
+            <span class="cta-card-icon">&#9998;</span>
+            <span class="cta-card-label">Edit Profile</span>
+        </a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PROFILE SUMMARY CARD
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="glass-card" style="margin-bottom:var(--space-xl)">
+        <div class="profile-summary">
+            <div class="profile-photo-wrap">
+                <div class="photo-glow"></div>
+                <div class="photo-glow-mask"></div>
+                <div class="profile-photo">HM</div>
+                <div class="verified-badge">&#10003;</div>
+            </div>
+            <div class="profile-info">
+                <h2 class="profile-name">Heather Martinez</h2>
+                <div class="profile-meta">
+                    <strong>Contractor #AA-10247</strong> &middot; Detroit, Michigan &middot; <img class="flag-svg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Crect width='60' height='30' fill='%23002868'/%3E%3Cg fill='%23BF0A30'%3E%3Crect y='3.46' width='60' height='2.31'/%3E%3Crect y='8.08' width='60' height='2.31'/%3E%3Crect y='12.69' width='60' height='2.31'/%3E%3Crect y='17.31' width='60' height='2.31'/%3E%3Crect y='21.92' width='60' height='2.31'/%3E%3Crect y='26.54' width='60' height='2.31'/%3E%3C/g%3E%3Crect width='24' height='16.15' fill='%23002868'/%3E%3C/svg%3E" alt="US" style="width:22px;height:15px;border-radius:2px;vertical-align:middle">
+                </div>
+                <div class="role-badges">
+                    <span class="role-badge customer">Customer</span>
+                    <span class="role-badge company">Company Owner</span>
+                    <span class="role-badge bg-admin">BG Admin</span>
+                    <span class="role-badge bg-member">BG Member</span>
+                    <span class="role-badge employer">Employer</span>
+                </div>
+                <div class="profile-contact">
+                    <a href="mailto:hmartinez@axiomcontrols.com">&#9993; hmartinez@axiomcontrols.com</a>
+                    <a href="tel:+13135559247">&#9742; (313) 555-9247</a>
+                    <a href="#">&#128279; 247 Connections</a>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <div class="availability-switch"><span class="dot"></span> Available</div>
+                <button class="cta-boost cta-sm">&#9889; Boost My Profile</button>
+                <button class="cta-outline cta-sm" onclick="document.querySelector('.share-options').style.display=document.querySelector('.share-options').style.display==='flex'?'none':'flex'">&#8599; Share</button>
+                <div class="share-options" style="display:none">
+                    <span class="share-btn">&#128279; Copy Link</span>
+                    <span class="share-btn">&#128172; Text</span>
+                    <span class="share-btn">&#9993; Email</span>
+                    <span class="share-btn">Facebook</span>
+                    <span class="share-btn">LinkedIn</span>
+                    <span class="share-btn">WhatsApp</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         KPI GRID — Quick Stats
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-val green">$284,720</div>
+            <div class="kpi-lbl">Total Earnings</div>
+            <div class="kpi-trend">&#9650; 12% vs last year</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-val blue">7</div>
+            <div class="kpi-lbl">Active Contracts</div>
+            <div class="kpi-trend">&#9650; 2 new this month</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-val teal">4,218</div>
+            <div class="kpi-lbl">Total Hours</div>
+            <div class="kpi-trend">&#9650; 340 this quarter</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-val amber">5</div>
+            <div class="kpi-lbl">Pending Invoices</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-val pink">$412,850</div>
+            <div class="kpi-lbl">Total Spending</div>
+            <div class="kpi-trend down">&#9660; 3% vs last year</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-val green">18</div>
+            <div class="kpi-lbl">Employees</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         QUICK ACTIONS BAR
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="quick-actions">
+        <button class="cta-shimmer">&#10133; Post Contract</button>
+        <button class="cta-glow">&#10133; Post Job</button>
+        <button class="cta-primary">&#10133; Post RFQ</button>
+        <button class="cta-connect">&#128101; Add Employee</button>
+        <button class="cta-outline">&#128196; View Applications</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CENTRAL TOGGLE — Work By Me vs Work For Me
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="toggle-bar">
+        <button class="toggle-btn active" onclick="toggleView('byme')">Work By Me / My Employees</button>
+        <button class="toggle-btn" onclick="toggleView('forme')">Work For Me</button>
+    </div>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         ███ WORK BY ME / MY EMPLOYEES ███ (Customer / Employer View)
+         ═════════════════════════════════════════════════════════════════ -->
+    <div class="toggle-content active" id="byme-content">
+
+        <!-- ONGOING CONTRACTS (Customer posted, professionals working) -->
+        <div class="glass-card">
+            <div class="section-title">Ongoing Contracts <span class="section-count">3</span></div>
+
+            <!-- Contract 1 — White Glove -->
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type wg">White Glove Hourly</span>
+                    <span class="contract-status ongoing">Ongoing</span>
+                </div>
+                <div class="contract-title">Senior PLC Programmer — FANUC R-2000iC Integration</div>
+                <div class="contract-detail"><span>Occupation:</span> Robot Programmer &middot; <span>Location:</span> Detroit, MI (Onsite) &middot; <span>Duration:</span> Jan 6 - Apr 18, 2026</div>
+                <div class="contract-skills">
+                    <span class="skill-pill">FANUC R-2000iC</span>
+                    <span class="skill-pill">Allen-Bradley ControlLogix</span>
+                    <span class="skill-pill">Safety PLC</span>
+                </div>
+                <div class="contract-rates">
+                    <div class="rate-cell"><div class="rate-amount">$52/hr</div><div class="rate-type">Base (0-40)</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$78/hr</div><div class="rate-type">OT (41+)</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$104/hr</div><div class="rate-type">Sun/Holiday</div></div>
+                </div>
+                <div class="sub-tabs">
+                    <span class="sub-tab active">&#128203; Timesheets <span class="sub-tab-count">8</span></span>
+                    <span class="sub-tab">&#128176; Expenses <span class="sub-tab-count">6</span></span>
+                    <span class="sub-tab">&#128196; Invoices <span class="sub-tab-count">7</span></span>
+                    <span class="sub-tab">&#128220; POs <span class="sub-tab-count">2</span></span>
+                </div>
+                <div style="margin-top:var(--space-md)">
+                    <div class="status-row"><span class="status-label">Pending My Approval</span><span class="status-value pending">2</span></div>
+                    <div class="status-row"><span class="status-label">Approved Timesheets</span><span class="status-value good">6</span></div>
+                    <div class="status-row"><span class="status-label">Due Invoices</span><span class="status-value urgent">$4,160.00</span></div>
+                    <div class="status-row"><span class="status-label">Paid Invoices</span><span class="status-value good">$18,720.00</span></div>
+                </div>
+                <div class="contract-actions">
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                    <button class="cta-danger cta-sm">End Contract</button>
+                </div>
+            </div>
+
+            <!-- Contract 2 — Standard -->
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type std">Standard Hourly</span>
+                    <span class="contract-status ongoing">Ongoing</span>
+                </div>
+                <div class="contract-title">Electrical Controls Engineer — Siemens S7-1500</div>
+                <div class="contract-detail"><span>Occupation:</span> Controls Engineer &middot; <span>Location:</span> Toledo, OH (Onsite) &middot; <span>Duration:</span> Feb 10 - May 23, 2026</div>
+                <div class="contract-skills">
+                    <span class="skill-pill">Siemens S7-1500</span>
+                    <span class="skill-pill">TIA Portal</span>
+                </div>
+                <div class="contract-rates">
+                    <div class="rate-cell"><div class="rate-amount">$48/hr</div><div class="rate-type">Base (0-40)</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$72/hr</div><div class="rate-type">OT (41+)</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$96/hr</div><div class="rate-type">Sun/Holiday</div></div>
+                </div>
+                <div class="contract-actions">
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                    <button class="cta-danger cta-sm">End Contract</button>
+                </div>
+            </div>
+
+            <!-- Contract 3 — Completed -->
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type wg">White Glove Hourly</span>
+                    <span class="contract-status completed">Completed</span>
+                </div>
+                <div class="contract-title">ABB IRB 6700 Weld Cell Integration</div>
+                <div class="contract-detail"><span>Occupation:</span> Weld Technician &middot; <span>Location:</span> Lansing, MI &middot; <span>Completed:</span> Dec 20, 2025</div>
+                <div class="contract-skills">
+                    <span class="skill-pill">ABB IRB 6700</span>
+                    <span class="skill-pill">RobotStudio</span>
+                </div>
+                <div class="contract-actions">
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                    <button class="cta-outline cta-sm">View Record</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- APPLICANT MANAGEMENT -->
+        <div class="glass-card">
+            <div class="section-title pink">Application Management <span class="section-count">14</span></div>
+            <div class="sub-tabs" style="border-top:none;padding-top:0;margin-top:0;margin-bottom:var(--space-lg)">
+                <span class="sub-tab active">Received <span class="sub-tab-count">6</span></span>
+                <span class="sub-tab">Shortlisted <span class="sub-tab-count">3</span></span>
+                <span class="sub-tab">Offers Pending <span class="sub-tab-count">2</span></span>
+                <span class="sub-tab">Accepted <span class="sub-tab-count">2</span></span>
+                <span class="sub-tab">Rejected <span class="sub-tab-count">1</span></span>
+            </div>
+            <div class="applicant-grid">
+                <div class="applicant-card">
+                    <div class="applicant-avatar">JR</div>
+                    <div class="applicant-name">James Rodriguez</div>
+                    <div class="applicant-occ">Robot Programmer</div>
+                    <div class="applicant-status pending">Pending</div>
+                    <div class="applicant-actions">
+                        <button class="cta-primary cta-sm">Hire</button>
+                        <button class="cta-outline cta-sm">Shortlist</button>
+                    </div>
+                </div>
+                <div class="applicant-card">
+                    <div class="applicant-avatar">SC</div>
+                    <div class="applicant-name">Sarah Chen</div>
+                    <div class="applicant-occ">Controls Engineer</div>
+                    <div class="applicant-status shortlisted">Shortlisted</div>
+                    <div class="applicant-actions">
+                        <button class="cta-primary cta-sm">Hire</button>
+                        <button class="cta-outline cta-sm">View</button>
+                    </div>
+                </div>
+                <div class="applicant-card">
+                    <div class="applicant-avatar">MK</div>
+                    <div class="applicant-name">Marcus Kim</div>
+                    <div class="applicant-occ">PLC Technician</div>
+                    <div class="applicant-status pending">Pending</div>
+                    <div class="applicant-actions">
+                        <button class="cta-primary cta-sm">Hire</button>
+                        <button class="cta-outline cta-sm">Shortlist</button>
+                    </div>
+                </div>
+                <div class="applicant-card">
+                    <div class="applicant-avatar">DP</div>
+                    <div class="applicant-name">Diana Popov</div>
+                    <div class="applicant-occ">Electrical Engineer</div>
+                    <div class="applicant-status hired">Offer Sent</div>
+                    <div class="applicant-actions">
+                        <button class="cta-outline cta-sm">Retract</button>
+                    </div>
+                </div>
+                <div class="applicant-card">
+                    <div class="applicant-avatar">TW</div>
+                    <div class="applicant-name">Tyler Washington</div>
+                    <div class="applicant-occ">Weld Technician</div>
+                    <div class="applicant-status pending">Pending</div>
+                    <div class="applicant-actions">
+                        <button class="cta-primary cta-sm">Hire</button>
+                        <button class="cta-outline cta-sm">Shortlist</button>
+                    </div>
+                </div>
+                <div class="applicant-card">
+                    <div class="applicant-avatar">LN</div>
+                    <div class="applicant-name">Lisa Nguyen</div>
+                    <div class="applicant-occ">SCADA Engineer</div>
+                    <div class="applicant-status rejected">Rejected</div>
+                    <div class="applicant-actions">
+                        <button class="cta-outline cta-sm">Revert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DRAFT / PENDING / OPEN CONTRACTS -->
+        <div class="glass-card">
+            <div class="section-title amber">Contract Pipeline</div>
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type wg">White Glove Hourly</span>
+                    <span class="contract-status draft">Draft</span>
+                </div>
+                <div class="contract-title">Vision Systems Engineer — Cognex In-Sight</div>
+                <div class="contract-detail"><span>Initiated:</span> Apr 10, 2026 &middot; <span>Location:</span> Ann Arbor, MI</div>
+                <div class="contract-actions">
+                    <button class="cta-primary cta-sm">Edit Contract</button>
+                    <button class="cta-outline cta-sm">Submit for Approval</button>
+                    <button class="cta-danger cta-sm">Delete Draft</button>
+                </div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type std">Standard Hourly</span>
+                    <span class="contract-status pending">Pending Admin Approval</span>
+                </div>
+                <div class="contract-title">HMI Programmer — Rockwell FactoryTalk</div>
+                <div class="contract-detail"><span>Submitted:</span> Apr 12, 2026 &middot; <span>Location:</span> Grand Rapids, MI</div>
+                <div class="contract-actions">
+                    <button class="cta-boost cta-sm">&#9889; Boost This Contract</button>
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIRECT JOBS POSTED -->
+        <div class="glass-card">
+            <div class="section-title green">Direct In-House Jobs <span class="section-count">2</span></div>
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type job">Direct Job</span>
+                    <span class="contract-status active">Open</span>
+                </div>
+                <div class="contract-title">Senior Automation Engineer (Full-Time)</div>
+                <div class="contract-detail"><span>Occupation:</span> Automation Engineer &middot; <span>Location:</span> Detroit, MI &middot; <span>Posted:</span> Apr 8, 2026 &middot; <span>Salary:</span> $95,000 - $125,000</div>
+                <div class="contract-actions">
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                    <button class="cta-outline cta-sm">Unpublish</button>
+                    <button class="cta-boost cta-sm">&#9889; Boost This Job</button>
+                </div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type job">Direct Job</span>
+                    <span class="contract-status completed">Closed</span>
+                </div>
+                <div class="contract-title">Maintenance Technician (Full-Time)</div>
+                <div class="contract-detail"><span>Location:</span> Flint, MI &middot; <span>Closed:</span> Mar 15, 2026 &middot; <span>Employee:</span> Robert Kline</div>
+                <div class="contract-actions">
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                    <button class="cta-outline cta-sm">Request Again</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RFQ POSTED -->
+        <div class="glass-card">
+            <div class="section-title teal">RFQs Posted <span class="section-count">1</span></div>
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type rfq">RFQ</span>
+                    <span class="contract-status active">Open</span>
+                </div>
+                <div class="contract-title">Full Paint Line Automation Retrofit — $1.2M Project</div>
+                <div class="contract-detail"><span>Posted:</span> Apr 1, 2026 &middot; <span>Quotes Received:</span> 4 &middot; <span>Budget:</span> $800K - $1.5M</div>
+                <div class="contract-actions">
+                    <button class="cta-outline cta-sm">View Quotes</button>
+                    <button class="cta-boost cta-sm">&#9889; Boost ($50/wk)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROFESSIONALS REQUESTED -->
+        <div class="glass-card">
+            <div class="section-title">Professionals Requested <span class="section-count">2</span></div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status pending">Awaiting Response</span></div>
+                <div class="contract-title">Direct request to Carlos Mendez — PLC Specialist</div>
+                <div class="contract-detail"><span>Sent:</span> Apr 11, 2026 &middot; 12-week contract, $55/hr</div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status" style="background:rgba(239,68,68,.08);color:var(--danger)">Rejected</span></div>
+                <div class="contract-title">Direct request to Amy Foster — Weld Inspector</div>
+                <div class="contract-detail"><span>Rejected:</span> Apr 5, 2026 &middot; Reason: "Currently committed through Q3"</div>
+            </div>
+            <div style="text-align:center;margin-top:var(--space-lg)">
+                <button class="cta-shimmer">&#128269; Search and Request Available Professionals Now</button>
+            </div>
+        </div>
+
+        <!-- BUSINESS GROUPS -->
+        <div class="glass-card">
+            <div class="section-title teal">Business Groups <span class="section-count">3</span></div>
+            <div class="bg-group-card">
+                <div class="bg-header">
+                    <span class="bg-name">Axiom Controls Michigan</span>
+                    <span class="bg-role-tag admin">Admin</span>
+                </div>
+                <div class="bg-stats">
+                    <span><span class="bg-stat-val">12</span> Members</span>
+                    <span><span class="bg-stat-val">8</span> Active Contracts</span>
+                    <span><span class="bg-stat-val">$187K</span> YTD Revenue</span>
+                </div>
+            </div>
+            <div class="bg-group-card">
+                <div class="bg-header">
+                    <span class="bg-name">Axiom Controls Ohio</span>
+                    <span class="bg-role-tag admin">Admin</span>
+                </div>
+                <div class="bg-stats">
+                    <span><span class="bg-stat-val">6</span> Members</span>
+                    <span><span class="bg-stat-val">3</span> Active Contracts</span>
+                    <span><span class="bg-stat-val">$64K</span> YTD Revenue</span>
+                </div>
+            </div>
+            <div class="bg-group-card">
+                <div class="bg-header">
+                    <span class="bg-name">Great Lakes Automation Alliance</span>
+                    <span class="bg-role-tag member">Member</span>
+                </div>
+                <div class="bg-stats">
+                    <span><span class="bg-stat-val">45</span> Members</span>
+                    <span><span class="bg-stat-val">22</span> Active Contracts</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EMPLOYEES -->
+        <div class="glass-card">
+            <div class="section-title green">My Employees <span class="section-count">5</span></div>
+            <div class="employee-grid">
+                <div class="employee-card">
+                    <div class="employee-avatar">RK</div>
+                    <div class="employee-name">Robert Kline</div>
+                    <div class="employee-role">Maintenance Tech</div>
+                    <div class="employee-avail on-contract">On Contract</div>
+                </div>
+                <div class="employee-card">
+                    <div class="employee-avatar">AS</div>
+                    <div class="employee-name">Aisha Shah</div>
+                    <div class="employee-role">Controls Engineer</div>
+                    <div class="employee-avail available">Available</div>
+                </div>
+                <div class="employee-card">
+                    <div class="employee-avatar">JP</div>
+                    <div class="employee-name">Jason Park</div>
+                    <div class="employee-role">PLC Programmer</div>
+                    <div class="employee-avail on-contract">On Contract</div>
+                </div>
+                <div class="employee-card">
+                    <div class="employee-avatar">MC</div>
+                    <div class="employee-name">Maria Castillo</div>
+                    <div class="employee-role">Electrical Tech</div>
+                    <div class="employee-avail available">Available</div>
+                </div>
+                <div class="employee-card">
+                    <div class="employee-avatar">DT</div>
+                    <div class="employee-name">Derek Thompson</div>
+                    <div class="employee-role">Safety Inspector</div>
+                    <div class="employee-avail unavailable">Unavailable</div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:var(--space-lg)">
+                <button class="cta-connect cta-sm">&#10133; Add Professionals to My Team</button>
+            </div>
+        </div>
+
+        <!-- SPENDING SUMMARY -->
+        <div class="glass-card">
+            <div class="section-title red">Spending Summary</div>
+            <div class="chart-placeholder spending">
+                <div class="chart-bar" style="height:30%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Jan"></div>
+                <div class="chart-bar" style="height:45%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Feb"></div>
+                <div class="chart-bar" style="height:65%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Mar"></div>
+                <div class="chart-bar" style="height:80%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Apr"></div>
+                <div class="chart-bar" style="height:55%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="May"></div>
+                <div class="chart-bar" style="height:70%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Jun"></div>
+                <div class="chart-bar" style="height:90%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Jul"></div>
+                <div class="chart-bar" style="height:60%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Aug"></div>
+                <div class="chart-bar" style="height:40%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Sep"></div>
+                <div class="chart-bar" style="height:75%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Oct"></div>
+                <div class="chart-bar" style="height:50%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Nov"></div>
+                <div class="chart-bar" style="height:35%;background:linear-gradient(180deg,var(--danger),#991B1B)" data-label="Dec"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:var(--font-sm)">
+                <span style="color:var(--text-tertiary)">2025 Total</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--danger)">$412,850.00</span>
+            </div>
+        </div>
+
+        <!-- CUSTOMER BADGES -->
+        <div class="badge-showcase">
+            <div class="badge-showcase-title">Customer Achievement Badges</div>
+            <div class="badge-grid">
+                <div class="badge-slot"><div class="badge-frame">&#127942;</div><span class="badge-tier-label diamond">Diamond</span><span class="badge-name">Contracts</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128176;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Spend</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128100;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Hired</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#9200;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Hours</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#11088;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Reviews</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128257;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Rehire</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128101;</div><span class="badge-tier-label diamond">Diamond</span><span class="badge-name">Group</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128203;</div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Expense</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128188;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Jobs</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128196;</div><span class="badge-tier-label silver">Silver</span><span class="badge-name">RFQ</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128101;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Applicants</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#9989;</div><span class="badge-tier-label bronze">Bronze</span><span class="badge-name">Approval</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128181;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Payment</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128197;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Tenure</span></div>
+            </div>
+        </div>
+
+        <!-- BG BADGES -->
+        <div class="badge-showcase">
+            <div class="badge-showcase-title">Service Partner (Business Group) Badges</div>
+            <div class="badge-grid">
+                <div class="badge-slot"><div class="badge-frame">&#127942;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Contracts</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128100;</div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Customers</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128176;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Earnings</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128200;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Growth</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#9200;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Hours</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#11088;</div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Rating</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128101;</div><span class="badge-tier-label diamond">Diamond</span><span class="badge-name">Team</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128197;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Tenure</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128200;</div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Util</span></div>
+            </div>
+        </div>
+
+    </div><!-- end byme-content -->
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         ███ WORK FOR ME ███ (Professional / Contractor View)
+         ═════════════════════════════════════════════════════════════════ -->
+    <div class="toggle-content" id="forme-content">
+
+        <!-- ACTIVE CONTRACTS (I'm working on) -->
+        <div class="glass-card">
+            <div class="section-title green">Active Contracts (I'm Working On) <span class="section-count">3</span></div>
+
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type wg">White Glove Hourly</span>
+                    <span class="contract-status ongoing">Ongoing</span>
+                </div>
+                <div class="contract-title">PLC Integration — Dominion Manufacturing</div>
+                <div class="contract-detail"><span>Location:</span> Dearborn, MI (Onsite) &middot; <span>Duration:</span> Mar 1 - Jun 30, 2026</div>
+                <div class="contract-rates">
+                    <div class="rate-cell"><div class="rate-amount">$62/hr</div><div class="rate-type">Base (0-40)</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$93/hr</div><div class="rate-type">OT (41+)</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$124/hr</div><div class="rate-type">Sun/Holiday</div></div>
+                </div>
+                <div class="sub-tabs">
+                    <span class="sub-tab active">&#128203; Timesheets <span class="sub-tab-count">6</span></span>
+                    <span class="sub-tab">&#128176; Expenses <span class="sub-tab-count">5</span></span>
+                    <span class="sub-tab">&#128196; Invoices <span class="sub-tab-count">5</span></span>
+                </div>
+                <div style="margin-top:var(--space-md)">
+                    <div class="status-row"><span class="status-label">Current Timesheet</span><span class="status-value">Week of Apr 14</span></div>
+                    <div class="status-row"><span class="status-label">Due Timesheets</span><span class="status-value urgent">1 Overdue</span></div>
+                    <div class="status-row"><span class="status-label">Pending Approval</span><span class="status-value pending">2</span></div>
+                    <div class="status-row"><span class="status-label">Approved</span><span class="status-value good">3</span></div>
+                </div>
+                <div class="contract-actions">
+                    <button class="cta-primary cta-sm">Submit Timesheet</button>
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                </div>
+            </div>
+
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type wg">White Glove Hourly</span>
+                    <span class="contract-status ongoing">Ongoing</span>
+                </div>
+                <div class="contract-title">Safety System Retrofit — Stellantis Sterling Heights</div>
+                <div class="contract-detail"><span>Location:</span> Sterling Heights, MI (Onsite) &middot; <span>Duration:</span> Feb 17 - May 9, 2026</div>
+                <div class="contract-rates">
+                    <div class="rate-cell"><div class="rate-amount">$58/hr</div><div class="rate-type">Base</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$87/hr</div><div class="rate-type">OT</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$116/hr</div><div class="rate-type">Sun/Hol</div></div>
+                </div>
+                <div class="contract-actions">
+                    <button class="cta-primary cta-sm">Submit Timesheet</button>
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                </div>
+            </div>
+
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type std">Standard Hourly</span>
+                    <span class="contract-status ongoing">Ongoing</span>
+                </div>
+                <div class="contract-title">VFD Programming — Yaskawa Drives</div>
+                <div class="contract-detail"><span>Location:</span> Remote &middot; <span>Duration:</span> Apr 1 - Apr 30, 2026</div>
+                <div class="contract-actions">
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                    <button class="cta-danger cta-sm">End Contract</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- APPLICATIONS -->
+        <div class="glass-card">
+            <div class="section-title">My Applications <span class="section-count">5</span></div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status pending">Pending</span></div>
+                <div class="contract-title">Robot Technician — KUKA KR CYBERTECH</div>
+                <div class="contract-detail"><span>Applied:</span> Apr 12, 2026 &middot; Magna International, Windsor ON</div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status shortlisted" style="background:rgba(99,102,241,.08);color:var(--primary-light)">Shortlisted</span></div>
+                <div class="contract-title">Controls Commissioning — Bosch Rexroth</div>
+                <div class="contract-detail"><span>Applied:</span> Apr 8, 2026 &middot; Bosch, Charlotte NC</div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status pending">Pending</span></div>
+                <div class="contract-title">SCADA Network Engineer — Ignition Platform</div>
+                <div class="contract-detail"><span>Applied:</span> Apr 6, 2026 &middot; Remote</div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status" style="background:rgba(239,68,68,.08);color:var(--danger)">Rejected</span></div>
+                <div class="contract-title">Weld Cell Integration — Lincoln Electric</div>
+                <div class="contract-detail"><span>Applied:</span> Mar 28, 2026 &middot; Cleveland, OH</div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status" style="background:rgba(16,185,129,.08);color:var(--success)">Offer Sent</span></div>
+                <div class="contract-title">Motion Control Specialist — Beckhoff TwinCAT</div>
+                <div class="contract-detail"><span>Applied:</span> Apr 2, 2026 &middot; Minneapolis, MN &middot; $65/hr base</div>
+                <div class="contract-actions">
+                    <button class="cta-connect cta-sm">Accept Offer</button>
+                    <button class="cta-danger cta-sm">Reject Offer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- OFFERS PENDING -->
+        <div class="glass-card">
+            <div class="section-title amber">Offers Pending <span class="section-count">2</span></div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status" style="background:rgba(16,185,129,.08);color:var(--success)">Offer Received</span></div>
+                <div class="contract-title">Motion Control Specialist — Beckhoff TwinCAT</div>
+                <div class="contract-detail"><span>From:</span> Apex Automation &middot; $65/hr base &middot; 16-week contract &middot; Minneapolis, MN</div>
+                <div class="contract-actions">
+                    <button class="cta-connect cta-sm">Accept</button>
+                    <button class="cta-danger cta-sm">Reject</button>
+                </div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status" style="background:rgba(16,185,129,.08);color:var(--success)">Offer Received</span></div>
+                <div class="contract-title">Electrical Panel Build — Hoffman Enclosures</div>
+                <div class="contract-detail"><span>From:</span> Hoffman Enclosures &middot; $58/hr base &middot; 8-week contract &middot; Anoka, MN</div>
+                <div class="contract-actions">
+                    <button class="cta-connect cta-sm">Accept</button>
+                    <button class="cta-danger cta-sm">Reject</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- REQUESTS FROM CUSTOMERS -->
+        <div class="glass-card">
+            <div class="section-title">Requests From Customers <span class="section-count">2</span></div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status pending">Open Request</span></div>
+                <div class="contract-title">Direct request from Trolain Industries — PLC Migration</div>
+                <div class="contract-detail"><span>Received:</span> Apr 10, 2026 &middot; 8-week, $60/hr &middot; Toledo, OH</div>
+                <div class="contract-actions">
+                    <button class="cta-connect cta-sm">Accept</button>
+                    <button class="cta-danger cta-sm">Reject</button>
+                </div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header"><span class="contract-status" style="background:rgba(239,68,68,.08);color:var(--danger)">Rejected</span></div>
+                <div class="contract-title">Direct request from Summit Manufacturing — Panel Build</div>
+                <div class="contract-detail"><span>Rejected:</span> Apr 3, 2026 &middot; Reason: "Schedule conflict through Q2"</div>
+            </div>
+        </div>
+
+        <!-- DIRECT JOB (as professional) -->
+        <div class="glass-card">
+            <div class="section-title green">My Direct In-House Job</div>
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type job">Direct Job</span>
+                    <span class="contract-status ongoing">Ongoing</span>
+                </div>
+                <div class="contract-title">Lead Automation Engineer — Axiom Controls</div>
+                <div class="contract-detail"><span>Start:</span> Jan 15, 2024 &middot; <span>Location:</span> Detroit, MI (Onsite)</div>
+                <div class="contract-actions">
+                    <button class="cta-outline cta-sm">&#128203; Copy</button>
+                    <button class="cta-danger cta-sm">Close Job</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPLETED CONTRACTS -->
+        <div class="glass-card">
+            <div class="section-title">Completed Contracts <span class="section-count">2</span></div>
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type wg">White Glove</span>
+                    <span class="contract-status completed">Completed</span>
+                </div>
+                <div class="contract-title">Robotic Deburring Cell — FANUC LR Mate</div>
+                <div class="contract-detail"><span>Completed:</span> Feb 28, 2026 &middot; Lansing, MI &middot; 12 weeks</div>
+                <div class="contract-rates">
+                    <div class="rate-cell"><div class="rate-amount">$55/hr</div><div class="rate-type">Base</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$82.50/hr</div><div class="rate-type">OT</div></div>
+                    <div class="rate-cell"><div class="rate-amount">$110/hr</div><div class="rate-type">Sun/Hol</div></div>
+                </div>
+            </div>
+            <div class="contract-card">
+                <div class="contract-header">
+                    <span class="contract-type std">Standard</span>
+                    <span class="contract-status completed">Completed</span>
+                </div>
+                <div class="contract-title">PLC Retrofit — Allen-Bradley CompactLogix</div>
+                <div class="contract-detail"><span>Completed:</span> Jan 10, 2026 &middot; Grand Rapids, MI &middot; 6 weeks</div>
+            </div>
+        </div>
+
+        <!-- EARNINGS SUMMARY -->
+        <div class="glass-card">
+            <div class="section-title green">Earnings Summary</div>
+            <div class="chart-placeholder">
+                <div class="chart-bar" style="height:25%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Jan"></div>
+                <div class="chart-bar" style="height:40%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Feb"></div>
+                <div class="chart-bar" style="height:55%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Mar"></div>
+                <div class="chart-bar" style="height:70%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Apr"></div>
+                <div class="chart-bar" style="height:60%;background:linear-gradient(180deg,var(--success),#059669)" data-label="May"></div>
+                <div class="chart-bar" style="height:75%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Jun"></div>
+                <div class="chart-bar" style="height:85%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Jul"></div>
+                <div class="chart-bar" style="height:65%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Aug"></div>
+                <div class="chart-bar" style="height:50%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Sep"></div>
+                <div class="chart-bar" style="height:80%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Oct"></div>
+                <div class="chart-bar" style="height:90%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Nov"></div>
+                <div class="chart-bar" style="height:45%;background:linear-gradient(180deg,var(--success),#059669)" data-label="Dec"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:var(--font-sm)">
+                <span style="color:var(--text-tertiary)">2025-2026 Total Earnings</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--success)">$284,720.00</span>
+            </div>
+        </div>
+
+        <!-- PROFESSIONAL BADGES -->
+        <div class="badge-showcase">
+            <div class="badge-showcase-title">Professional Achievement Badges</div>
+            <div class="badge-grid">
+                <div class="badge-slot"><div class="badge-frame">&#128176;</div><span class="badge-tier-label diamond">Diamond</span><span class="badge-name">Earnings</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#127942;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Contracts</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#9200;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Hours</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128077;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Endorsed</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128172;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Endorser</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#11088;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Ratings</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128257;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Repeat</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128221;</div><span class="badge-tier-label silver">Silver</span><span class="badge-name">Reviewer</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128295;</div><span class="badge-tier-label diamond">Diamond</span><span class="badge-name">Skills</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128100;</div><span class="badge-tier-label gold">Gold</span><span class="badge-name">Profile</span></div>
+                <div class="badge-slot"><div class="badge-frame">&#128197;</div><span class="badge-tier-label platinum">Platinum</span><span class="badge-name">Tenure</span></div>
+            </div>
+        </div>
+
+    </div><!-- end forme-content -->
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         ███ ALWAYS-VISIBLE SECTIONS (below toggle) ███
+         ═════════════════════════════════════════════════════════════════ -->
+
+    <!-- NOTIFICATIONS -->
+    <div class="glass-card" style="margin-top:var(--space-xl)">
+        <div class="section-title amber">Recent Notifications <span class="section-count">5</span></div>
+        <div class="notification-item">
+            <div class="notification-dot"></div>
+            <div class="notification-icon blue">&#128203;</div>
+            <div class="notification-body">
+                <div class="notification-text"><strong>James Rodriguez</strong> submitted a timesheet for the FANUC R-2000iC contract.</div>
+                <div class="notification-time">12 minutes ago</div>
+            </div>
+        </div>
+        <div class="notification-item">
+            <div class="notification-dot"></div>
+            <div class="notification-icon green">&#128176;</div>
+            <div class="notification-body">
+                <div class="notification-text">Invoice <strong>#INV-2026-0847</strong> has been paid. Amount: <strong>$4,160.00</strong></div>
+                <div class="notification-time">2 hours ago</div>
+            </div>
+        </div>
+        <div class="notification-item">
+            <div class="notification-icon pink">&#128101;</div>
+            <div class="notification-body">
+                <div class="notification-text"><strong>Sarah Chen</strong> sent you a connection request.</div>
+                <div class="notification-time">5 hours ago</div>
+            </div>
+        </div>
+        <div class="notification-item">
+            <div class="notification-icon amber">&#127942;</div>
+            <div class="notification-body">
+                <div class="notification-text">You earned a new badge: <strong>Diamond Contracts</strong>!</div>
+                <div class="notification-time">Yesterday</div>
+            </div>
+        </div>
+        <div class="notification-item">
+            <div class="notification-icon teal">&#128269;</div>
+            <div class="notification-body">
+                <div class="notification-text"><strong>3 new contracts</strong> match your saved search "FANUC Michigan".</div>
+                <div class="notification-time">2 days ago</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SAVED SEARCHES + WATCHED ITEMS (side by side) -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg)">
+        <div class="glass-card">
+            <div class="section-title">Saved Searches <span class="section-count">3</span></div>
+            <div class="list-item">
+                <div class="list-item-icon">&#128269;</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">FANUC Michigan Contracts</div>
+                    <div class="list-item-detail">12 results &middot; 3 new since last check</div>
+                </div>
+                <div class="list-item-action">&#10005;</div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-icon">&#128269;</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Controls Engineers — $55+/hr</div>
+                    <div class="list-item-detail">28 results &middot; 5 new</div>
+                </div>
+                <div class="list-item-action">&#10005;</div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-icon">&#128269;</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Remote PLC Programming</div>
+                    <div class="list-item-detail">8 results &middot; 1 new</div>
+                </div>
+                <div class="list-item-action">&#10005;</div>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <div class="section-title teal">Watched Items <span class="section-count">3</span></div>
+            <div class="list-item">
+                <div class="list-item-icon" style="background:rgba(20,184,166,.06)">&#128065;</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Carlos Mendez (PLC Specialist)</div>
+                    <div class="list-item-detail">Status: Available &middot; Notify on new work</div>
+                </div>
+                <div class="list-item-action">&#10005;</div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-icon" style="background:rgba(20,184,166,.06)">&#128065;</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Dominion Manufacturing (Company)</div>
+                    <div class="list-item-detail">Notify on new contracts posted</div>
+                </div>
+                <div class="list-item-action">&#10005;</div>
+            </div>
+            <div class="list-item">
+                <div class="list-item-icon" style="background:rgba(20,184,166,.06)">&#128065;</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">ABB IRB 6700 Contracts (Skill Watch)</div>
+                    <div class="list-item-detail">2 new matches &middot; Notify on post</div>
+                </div>
+                <div class="list-item-action">&#10005;</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MY CALENDAR -->
+    <div class="glass-card">
+        <div class="section-title">My Calendar — April 2026</div>
+        <div class="calendar-grid">
+            <div class="cal-header">Sun</div><div class="cal-header">Mon</div><div class="cal-header">Tue</div><div class="cal-header">Wed</div><div class="cal-header">Thu</div><div class="cal-header">Fri</div><div class="cal-header">Sat</div>
+            <div class="cal-day inactive">29</div><div class="cal-day inactive">30</div><div class="cal-day inactive">31</div><div class="cal-day">1</div><div class="cal-day has-event">2</div><div class="cal-day">3</div><div class="cal-day">4</div>
+            <div class="cal-day">5</div><div class="cal-day has-event">6</div><div class="cal-day">7</div><div class="cal-day has-event">8</div><div class="cal-day">9</div><div class="cal-day has-event">10</div><div class="cal-day">11</div>
+            <div class="cal-day">12</div><div class="cal-day has-event">13</div><div class="cal-day today">14</div><div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day has-event">18</div>
+            <div class="cal-day">19</div><div class="cal-day has-event">20</div><div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div>
+            <div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day inactive">1</div><div class="cal-day inactive">2</div>
+        </div>
+    </div>
+
+    <!-- PAST RELATIONSHIPS (side by side) -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg)">
+        <div class="glass-card">
+            <div class="section-title">Professionals I've Hired <span class="section-count">4</span></div>
+            <div class="list-item">
+                <div class="applicant-avatar" style="width:40px;height:40px;font-size:var(--font-sm);margin:0;flex-shrink:0">RK</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Robert Kline</div>
+                    <div class="list-item-detail">Maintenance Tech &middot; 3 contracts</div>
+                </div>
+                <button class="cta-outline cta-sm" style="font-size:10px">Request Again</button>
+            </div>
+            <div class="list-item">
+                <div class="applicant-avatar" style="width:40px;height:40px;font-size:var(--font-sm);margin:0;flex-shrink:0">CM</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Carlos Mendez</div>
+                    <div class="list-item-detail">PLC Specialist &middot; 2 contracts</div>
+                </div>
+                <button class="cta-outline cta-sm" style="font-size:10px">Request Again</button>
+            </div>
+            <div class="list-item">
+                <div class="applicant-avatar" style="width:40px;height:40px;font-size:var(--font-sm);margin:0;flex-shrink:0">AF</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Amy Foster</div>
+                    <div class="list-item-detail">Weld Inspector &middot; 1 contract</div>
+                </div>
+                <button class="cta-outline cta-sm" style="font-size:10px">Request Again</button>
+            </div>
+            <div class="list-item">
+                <div class="applicant-avatar" style="width:40px;height:40px;font-size:var(--font-sm);margin:0;flex-shrink:0">TW</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Tyler Washington</div>
+                    <div class="list-item-detail">Weld Technician &middot; 1 contract</div>
+                </div>
+                <button class="cta-outline cta-sm" style="font-size:10px">Request Again</button>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <div class="section-title green">Customers Who Hired Me <span class="section-count">3</span></div>
+            <div class="list-item">
+                <div class="applicant-avatar" style="width:40px;height:40px;font-size:var(--font-sm);margin:0;flex-shrink:0;background:linear-gradient(135deg,#1a3060,#0d1a30)">DM</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Dominion Manufacturing</div>
+                    <div class="list-item-detail">4 contracts &middot; 2 currently open</div>
+                </div>
+                <button class="cta-outline cta-sm" style="font-size:10px">View Work</button>
+            </div>
+            <div class="list-item">
+                <div class="applicant-avatar" style="width:40px;height:40px;font-size:var(--font-sm);margin:0;flex-shrink:0;background:linear-gradient(135deg,#1a3060,#0d1a30)">TI</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Trolain Industries</div>
+                    <div class="list-item-detail">2 contracts &middot; 1 completed</div>
+                </div>
+                <button class="cta-outline cta-sm" style="font-size:10px">View Work</button>
+            </div>
+            <div class="list-item">
+                <div class="applicant-avatar" style="width:40px;height:40px;font-size:var(--font-sm);margin:0;flex-shrink:0;background:linear-gradient(135deg,#1a3060,#0d1a30)">AA</div>
+                <div class="list-item-body">
+                    <div class="list-item-title">Apex Automation</div>
+                    <div class="list-item-detail">1 contract &middot; Pending offer</div>
+                </div>
+                <button class="cta-outline cta-sm" style="font-size:10px">View Work</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAT WITH ADMIN BUBBLE -->
+    <div style="position:fixed;bottom:var(--space-xl);right:var(--space-xl);z-index:9999;width:var(--size-icon);height:var(--size-icon);border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));box-shadow:0 4px 24px rgba(99,102,241,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:var(--font-xl)" title="Chat With Admin">&#128172;</div>
+
+</div><!-- end container -->
+</div><!-- end feed-layer -->
+
+<script>
+    function toggleView(view) {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.toggle-content').forEach(c => c.classList.remove('active'));
+        if (view === 'byme') {
+            document.querySelectorAll('.toggle-btn')[0].classList.add('active');
+            document.getElementById('byme-content').classList.add('active');
+        } else {
+            document.querySelectorAll('.toggle-btn')[1].classList.add('active');
+            document.getElementById('forme-content').classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>

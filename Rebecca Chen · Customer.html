@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-role="visitor">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rebecca Chen · Plant Engineering Manager · Ford Rouge</title>
+<link rel="stylesheet" href="tokens/glass-design-tokens.css" />
+<link rel="stylesheet" href="styles/glass.css" />
+<style>
+  .pro-shell { width: min(1500px, 100%); margin: 0 auto; padding: 21px 21px 80px; }
+
+  /* Role bar */
+  .role-bar { display:flex;align-items:center;gap:13px;padding:13px 21px;margin-bottom:21px;background:rgba(15,15,35,0.40);border:1px solid rgba(255,255,255,0.08);border-radius:17px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%); }
+  :root[data-theme="light"] .role-bar { background:rgba(255,255,255,0.55); border-color:rgba(255,255,255,0.6); }
+  .role-bar .lbl { font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.10em;color:var(--glass-text-secondary);text-transform:uppercase;font-weight:600; }
+  .role-tabs { display:flex;gap:4px;background:rgba(15,15,35,0.40);border:1px solid rgba(255,255,255,0.10);border-radius:999px;padding:4px; }
+  :root[data-theme="light"] .role-tabs { background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.06); }
+  .role-tabs button { padding:7px 16px;border-radius:999px;border:0;cursor:pointer;font-family:'Outfit';font-weight:600;font-size:13px;background:transparent;color:var(--glass-text-secondary); }
+  .role-tabs button.active { background:linear-gradient(135deg,#6366F1,#4F46E5);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,0.30),inset 0 -1px 0 rgba(0,0,0,0.20),0 2px 8px rgba(99,102,241,0.45); }
+  .role-bar .ctx { margin-left:auto;font-size:13px;color:var(--glass-text-secondary);font-weight:500; }
+  .role-bar .ctx strong { color:var(--glass-text-primary);font-weight:700; }
+
+  /* Visibility */
+  [data-owner-only], [data-admin-only] { display:none; }
+  :root[data-role="owner"] [data-owner-only] { display:revert; }
+  :root[data-role="admin"] [data-owner-only] { display:revert; }
+  :root[data-role="admin"] [data-admin-only] { display:revert; }
+  :root[data-role="owner"] #hero-cta-visitor, :root[data-role="admin"] #hero-cta-visitor { display:none; }
+  :root:not([data-role="owner"]):not([data-role="admin"]) #hero-cta-owner { display:none; }
+
+  /* Layout */
+  .grid-2col { display:grid;grid-template-columns:380px 1fr;gap:21px;align-items:start; }
+  @media (max-width:1100px) { .grid-2col { grid-template-columns:1fr; } }
+  .left-rail { display:flex;flex-direction:column;gap:21px; position:sticky; top:76px; }
+  @media (max-width:1100px) { .left-rail { position:static; } }
+  .right-col { display:flex;flex-direction:column;gap:34px;min-width:0; }
+
+  /* Hero */
+  .hero { padding:0;overflow:hidden; }
+  .hero-photo { width:100%;aspect-ratio:1.6/1;background-size:cover;background-position:center top;border-radius:34px 34px 0 0;position:relative; }
+  .hero-photo::after { content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(15,15,35,0.85) 100%);border-radius:34px 34px 0 0; }
+  .hero-body { padding:21px; }
+  .hero-name { font-family:'Outfit';font-weight:700;font-size:28px;line-height:1.1;color:var(--glass-text-primary);margin:0 0 4px;letter-spacing:-0.02em; }
+  .hero-pronouns { font-size:12px;color:var(--glass-text-tertiary);margin-bottom:8px;font-weight:500; }
+  .hero-title { font-family:'Outfit';font-weight:700;font-size:18px;color:var(--glass-text-primary); }
+  .hero-dept { font-size:13px;color:var(--glass-text-secondary);font-weight:500;margin-top:2px; }
+  .hero-tier { display:inline-block;margin-top:8px;padding:3px 10px;font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:0.06em;color:#0EA5E9;background:rgba(14,165,233,0.10);border:1px solid rgba(14,165,233,0.30);border-radius:999px; }
+  :root[data-theme="light"] .hero-tier { color:#0369A1;background:rgba(14,165,233,0.15);border-color:rgba(14,165,233,0.45); }
+
+  /* Company tile in hero */
+  .hero-co { display:flex;gap:12px;align-items:center;margin-top:13px;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:13px; }
+  :root[data-theme="light"] .hero-co { background:rgba(0,0,0,0.03); border-color:rgba(0,0,0,0.06); }
+  .hero-co-logo { width:50px;height:50px;border-radius:11px;background:rgba(255,255,255,0.95);padding:7px;border:1px solid rgba(255,255,255,0.20);flex-shrink:0; }
+  .hero-co-logo img { width:100%;height:100%;object-fit:contain; }
+
+  .hero-tagline { font-size:14px;line-height:1.5;color:var(--glass-text-secondary);margin-top:13px;font-weight:500;text-wrap:pretty; }
+  .hero-loc { font-size:12px;color:var(--glass-text-secondary);margin-top:11px;font-weight:500; }
+  .hero-id { font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);margin-top:4px; }
+  .hero-social { display:flex;gap:6px;margin-top:13px; }
+  .social-icon { display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10);color:var(--glass-text-secondary);text-decoration:none;transition:all 150ms; }
+  .social-icon:hover { background:rgba(99,102,241,0.18);border-color:rgba(99,102,241,0.30);color:var(--glass-text-primary);transform:translateY(-1px); }
+  :root[data-theme="light"] .social-icon { background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.06); }
+  .hero-stats { display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:21px; }
+  .stat-tile { padding:10px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:13px;text-align:center; }
+  :root[data-theme="light"] .stat-tile { background:rgba(0,0,0,0.03); border-color:rgba(0,0,0,0.06); }
+  .stat-tile .kpi-val { font-size:18px !important;font-weight:800 !important; }
+  .stat-tile .kpi-label { font-size:9px !important;margin-top:4px !important; }
+
+  .strength { margin-top:17px; }
+  .strength-track { height:6px;border-radius:3px;background:rgba(255,255,255,0.08);overflow:hidden;margin-top:6px; }
+  .strength-fill { height:100%;background:linear-gradient(90deg,#0EA5E9,#34D399);border-radius:3px;box-shadow:0 0 12px rgba(14,165,233,0.5); }
+  .hero-cta { margin-top:17px;display:flex;flex-wrap:wrap;gap:8px; }
+
+  /* Sidebar cards */
+  .side-card { padding:17px; }
+  .side-card .h { font-family:'JetBrains Mono';font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--glass-text-tertiary);font-weight:700;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between; }
+  .side-card .h .small { font-family:'Outfit';font-size:11px;color:var(--glass-text-secondary);text-transform:none;letter-spacing:0; }
+
+  /* Groups */
+  .bg-row { display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05); }
+  .bg-row:last-child { border-bottom:0; }
+  :root[data-theme="light"] .bg-row { border-color:rgba(0,0,0,0.06); }
+  .bg-mark { width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-family:'Outfit';font-weight:700;font-size:12px;color:#fff;flex-shrink:0;box-shadow:inset 0 1px 0 rgba(255,255,255,0.30),inset 0 -1px 0 rgba(0,0,0,0.15);letter-spacing:-0.02em; }
+  .bg-meta { flex:1;min-width:0; }
+  .bg-name { font-family:'Outfit';font-weight:600;font-size:13px;color:var(--glass-text-primary); }
+  .bg-sub { font-size:11px;color:var(--glass-text-tertiary);margin-top:1px;font-weight:500; }
+
+  /* Spending */
+  #spend-yrs { display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:13px; }
+  .spend-yr { padding:9px 10px;background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.16);border-radius:11px;text-align:left; }
+  .spend-yr .kpi-label { font-size:9px !important;margin-bottom:2px !important; }
+  .spend-yr .kpi-val { font-size:16px !important; }
+  .spend-bar-row { display:grid;grid-template-columns:90px 1fr 90px;gap:10px;align-items:center;padding:5px 0;font-size:11px; }
+  .spend-bar-label { font-family:'Outfit';font-weight:600;color:var(--glass-text-primary);font-size:12px; }
+  .spend-bar { height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden; }
+  .spend-fill { height:100%;background:linear-gradient(90deg,#6366F1,#A855F7);border-radius:4px;box-shadow:0 0 8px rgba(99,102,241,0.4); }
+  .spend-bar-amt { font-family:'JetBrains Mono';font-weight:700;color:var(--glass-text-primary);font-size:11px;text-align:right; }
+  #spend-tier { display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px; }
+  .spend-tier-tile { padding:11px;background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.18);border-radius:11px; }
+
+  /* Files */
+  .file-row { display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04); }
+  .file-row:last-child { border-bottom:0; }
+  :root[data-theme="light"] .file-row { border-color:rgba(0,0,0,0.05); }
+  .file-icon { width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-family:'Outfit';font-weight:700;font-size:14px;background:rgba(99,102,241,0.10);border:1px solid rgba(99,102,241,0.20);color:#A5B4FC;flex-shrink:0; }
+  .file-meta { flex:1;min-width:0; }
+  .file-name { font-family:'Outfit';font-weight:600;font-size:12px;color:var(--glass-text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+  .file-sub { font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:500; }
+
+  /* KV */
+  .kv-row { display:flex;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center;gap:10px; }
+  .kv-row:last-child { border-bottom:0; }
+  :root[data-theme="light"] .kv-row { border-color:rgba(0,0,0,0.05); }
+  .kv-key { font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;min-width:90px; }
+  .kv-val { font-family:'Outfit';font-size:12px;color:var(--glass-text-primary);font-weight:600;flex:1;min-width:0; }
+
+  /* Right column section */
+  .sec { padding:21px; }
+  .sec > .sec-h { display:flex;align-items:baseline;justify-content:space-between;margin-bottom:17px; }
+  .sec > .sec-h h2 { font-family:'Outfit';font-weight:700;font-size:22px;margin:0;color:var(--glass-text-primary);letter-spacing:-0.01em; }
+  .sec > .sec-h .meta { font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);font-weight:600; }
+
+  /* Open contracts */
+  #contracts-list { display:flex;flex-direction:column;gap:9px; }
+  .contract-row { display:grid;grid-template-columns:130px 1fr 80px auto;gap:13px;align-items:center;padding:13px 15px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;transition:all 150ms; }
+  :root[data-theme="light"] .contract-row { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .contract-row:hover { background:rgba(99,102,241,0.06);border-color:rgba(99,102,241,0.25);transform:translateY(-1px); }
+  .contract-row.wg { border-color:rgba(168,85,247,0.30);background:rgba(168,85,247,0.05); }
+  .contract-row.w2 { border-color:rgba(99,102,241,0.25);background:rgba(99,102,241,0.04); }
+  .chip-wg { display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:0.05em;padding:3px 9px;border-radius:999px;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.35);color:#E9D5FF; }
+  :root[data-theme="light"] .chip-wg { color:#7C3AED; background:rgba(168,85,247,0.10); border-color:rgba(168,85,247,0.40); }
+  .contract-title { font-family:'Outfit';font-weight:700;font-size:15px;color:var(--glass-text-primary);line-height:1.3; }
+  .contract-sub { font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);margin-top:3px;font-weight:500; }
+  .contract-applicants { text-align:center; }
+
+  /* Hire history table */
+  .hist-wrap { overflow-x:auto;margin:0 -7px; }
+  .hist-table { width:100%;border-collapse:separate;border-spacing:0;font-size:12px; }
+  .hist-table thead th { font-family:'JetBrains Mono';font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--glass-text-tertiary);font-weight:700;text-align:left;padding:9px 7px;border-bottom:1px solid rgba(255,255,255,0.10); }
+  :root[data-theme="light"] .hist-table thead th { border-color:rgba(0,0,0,0.10); }
+  .hist-table tbody td { padding:9px 7px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle; }
+  :root[data-theme="light"] .hist-table tbody td { border-color:rgba(0,0,0,0.05); }
+  .hist-row.wg td { background:rgba(168,85,247,0.04); }
+  .hist-row.wg td:first-child { border-left:3px solid rgba(168,85,247,0.50); padding-left:10px; }
+  .hist-title { font-family:'Outfit';font-weight:600;font-size:13px;color:var(--glass-text-primary); }
+  .hist-pro { font-family:'Outfit';font-weight:700;font-size:12px;color:var(--glass-text-primary); }
+  .hist-pro.anon { color:var(--glass-text-tertiary);font-style:italic; }
+  .stars { color:#FCD34D;letter-spacing:1px; }
+  .hist-table .mono { font-family:'JetBrains Mono';font-weight:600;color:var(--glass-text-secondary); }
+
+  /* Watched pros */
+  #watched-list { display:grid;grid-template-columns:1fr;gap:8px; }
+  @media (min-width:700px) { #watched-list { grid-template-columns:1fr 1fr; } }
+  .pro-card { display:grid;grid-template-columns:48px 1fr auto;gap:11px;align-items:center;padding:11px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;transition:all 150ms; }
+  :root[data-theme="light"] .pro-card { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .pro-card.avail { border-color:rgba(52,211,153,0.30); }
+  .pro-card:hover { transform:translateY(-1px);background:rgba(99,102,241,0.06); }
+  .pro-avatar { width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center;border:2px solid rgba(255,255,255,0.15);position:relative; }
+  .avail-dot { position:absolute;bottom:0;right:0;width:13px;height:13px;border-radius:50%;background:#34D399;border:2px solid var(--glass-bg-base, #0a0a14);box-shadow:0 0 8px rgba(52,211,153,0.6); }
+  .pro-name { font-family:'Outfit';font-weight:700;font-size:14px;color:var(--glass-text-primary); }
+  .pro-occ { font-size:11px;color:var(--glass-text-secondary);font-weight:600;margin-top:2px; }
+  .pro-loc { font-size:11px;color:var(--glass-text-tertiary);margin-top:2px;font-weight:500; }
+  .pro-stat { text-align:center; }
+
+  /* Reviews */
+  #reviews-list { display:grid;grid-template-columns:1fr;gap:13px; }
+  @media (min-width:700px) { #reviews-list { grid-template-columns:1fr 1fr; } }
+  .rev-card { padding:15px; }
+  .rev-head { display:flex;align-items:center;gap:11px;margin-bottom:9px;flex-wrap:wrap; }
+  .rev-pro { font-family:'Outfit';font-weight:700;font-size:13px;color:var(--glass-text-primary); }
+  .rev-date { font-size:11px;color:var(--glass-text-tertiary);margin-left:auto; }
+  .rev-text { font-size:13px;line-height:1.55;color:var(--glass-text-primary);font-weight:500;margin-bottom:9px;text-wrap:pretty; }
+  .rev-foot { font-size:11px; }
+
+  /* Badges */
+  #badges-list { display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:13px; }
+  .badge-stack { display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;transition:all 200ms; }
+  .badge-stack:hover { transform:translateY(-2px);border-color:rgba(99,102,241,0.30); }
+  :root[data-theme="light"] .badge-stack { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .badge-img { width:60px;height:60px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.25)); }
+  .badge-label { font-family:'Outfit';font-weight:600;font-size:11px !important;text-align:center;line-height:1.2;color:var(--glass-text-primary) !important; }
+  .badge-tier { font-family:'JetBrains Mono';font-size:9px;font-weight:700;letter-spacing:0.10em;color:#0EA5E9; }
+  :root[data-theme="light"] .badge-tier { color:#0369A1; }
+
+  /* Key contacts */
+  #contacts-list { display:grid;grid-template-columns:1fr;gap:8px; }
+  @media (min-width:700px) { #contacts-list { grid-template-columns:1fr 1fr; } }
+  .contact-card { display:grid;grid-template-columns:48px 1fr;gap:11px;align-items:center;padding:11px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px; }
+  :root[data-theme="light"] .contact-card { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .contact-card.primary { border-color:rgba(99,102,241,0.35);background:rgba(99,102,241,0.05); }
+  .contact-avatar { width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center;border:2px solid rgba(255,255,255,0.15); }
+  .contact-name { font-family:'Outfit';font-weight:700;font-size:14px;color:var(--glass-text-primary); }
+  .contact-role { font-size:11px;color:var(--glass-text-secondary);font-weight:600;margin-top:2px; }
+  .contact-tel { font-size:10px;color:var(--glass-text-tertiary);margin-top:3px;font-weight:500; }
+
+  /* Company brief */
+  #brief-text { font-size:15px;line-height:1.65;color:var(--glass-text-secondary);font-weight:500;text-wrap:pretty;margin-bottom:13px; }
+  #brief-photos { display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px; }
+  .facility-photo { aspect-ratio:4/3;background-size:cover;background-position:center;border-radius:11px;border:1px solid rgba(255,255,255,0.08); }
+
+  /* Admin */
+  .admin-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:13px; }
+  .admin-tile { padding:11px 13px;background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.10);border-radius:11px; }
+  :root[data-theme="light"] .admin-tile { background:rgba(255,255,255,0.50); border-color:rgba(0,0,0,0.07); }
+  .admin-note { padding:13px;background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.07);border-radius:11px; }
+  :root[data-theme="light"] .admin-note { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .sec.admin { border-color:rgba(168,85,247,0.30);background:rgba(168,85,247,0.06) !important; }
+
+  @media (max-width:600px) {
+    .pro-shell { padding:13px 13px 80px; }
+    .role-bar { flex-wrap:wrap;padding:11px 13px; }
+    .role-bar .ctx { width:100%; order:3; }
+    .hero-name { font-size:24px; }
+    .hero-stats { grid-template-columns:repeat(3,1fr); }
+    .contract-row { grid-template-columns:1fr;gap:8px; }
+    .contract-applicants { text-align:left;display:inline-flex;align-items:baseline;gap:6px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wp dark"></div>
+  <div class="wp light"></div>
+
+  <main class="app">
+    <div class="pro-shell">
+      <div class="role-bar">
+        <span class="lbl">Viewing as</span>
+        <div class="role-tabs" role="tablist">
+          <button class="active" data-role-btn="visitor">Visitor</button>
+          <button data-role-btn="owner">Owner (Rebecca)</button>
+          <button data-role-btn="admin">Admin</button>
+        </div>
+        <span class="ctx">Profile of <strong>Rebecca Chen</strong> · ID #usr-14072 · <span style="color:#34D399;">●</span> live data</span>
+      </div>
+
+      <div class="grid-2col">
+        <aside class="left-rail">
+          <!-- HERO -->
+          <section class="glass-card hero">
+            <div id="hero-photo" class="hero-photo"></div>
+            <div class="hero-body">
+              <h1 id="hero-name" class="hero-name"></h1>
+              <div id="hero-pronouns" class="hero-pronouns"></div>
+              <div id="hero-title" class="hero-title"></div>
+              <div id="hero-dept" class="hero-dept"></div>
+              <span id="hero-tier" class="hero-tier"></span>
+              <div id="hero-company" class="hero-co"></div>
+              <p id="hero-tagline" class="hero-tagline"></p>
+              <div id="hero-loc" class="hero-loc"></div>
+              <div id="hero-id" class="hero-id"></div>
+              <div id="hero-social" class="hero-social"></div>
+              <div id="hero-stats" class="hero-stats"></div>
+              <div class="strength">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                  <span class="kpi-label">PROFILE STRENGTH</span>
+                  <span id="hero-strength-pct" class="mono-700" style="font-size:13px;color:var(--glass-text-primary);"></span>
+                </div>
+                <div class="strength-track"><div id="hero-strength-bar" class="strength-fill"></div></div>
+              </div>
+              <div id="hero-cta-visitor" class="hero-cta" data-visitor-only></div>
+              <div id="hero-cta-owner" class="hero-cta" data-owner-only></div>
+            </div>
+          </section>
+
+          <!-- PREFERRED GROUPS -->
+          <section class="glass-card side-card">
+            <div class="h"><span>PREFERRED GROUPS</span><span class="small">view all</span></div>
+            <div id="groups-list"></div>
+          </section>
+
+          <!-- SPENDING (OWNER) -->
+          <section class="glass-card side-card" data-owner-only>
+            <div class="h"><span>SPENDING BREAKDOWN</span><span class="small">owner-only</span></div>
+            <div id="spend-yrs"></div>
+            <div style="font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:700;letter-spacing:0.10em;margin-bottom:8px">YTD BY TRADE</div>
+            <div id="spend-trade"></div>
+            <div style="font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:700;letter-spacing:0.10em;margin-top:13px;margin-bottom:8px">YTD BY TIER</div>
+            <div id="spend-tier"></div>
+          </section>
+
+          <!-- SECURE FILES (OWNER) -->
+          <section class="glass-card side-card" data-owner-only>
+            <div class="h"><span>SECURE FILES</span><span id="files-count" class="small"></span></div>
+            <div id="files-list"></div>
+          </section>
+
+          <!-- PRIVATE INFO (OWNER) -->
+          <section class="glass-card side-card" data-owner-only>
+            <div class="h"><span>PRIVATE INFO</span><span class="small">owner-only</span></div>
+            <div id="private-list"></div>
+          </section>
+        </aside>
+
+        <div class="right-col">
+          <!-- ADMIN -->
+          <section class="glass-card sec admin" data-admin-only>
+            <div class="sec-h">
+              <h2 style="color:#E9D5FF;">⌖ Admin Console</h2>
+              <span class="meta" style="color:#E9D5FF">admin-only · enterprise account</span>
+            </div>
+            <div id="admin-meta"></div>
+          </section>
+
+          <!-- OPEN CONTRACTS -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Open Contracts</h2>
+              <span id="contracts-count" class="meta"></span>
+            </div>
+            <div id="contracts-list"></div>
+            <div style="margin-top:13px;text-align:center;">
+              <button class="gbtn gbtn-secondary sm">View all 47 contracts →</button>
+            </div>
+          </section>
+
+          <!-- HIRE HISTORY -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Hire History</h2>
+              <span class="meta">218 lifetime · last 22 shown · sorted by date</span>
+            </div>
+            <div class="hist-wrap">
+              <table class="hist-table">
+                <thead>
+                  <tr><th>Completed</th><th>Contract</th><th>Pro</th><th>Wks</th><th>Rate</th><th style="text-align:right;">Value</th><th>Rating</th><th>—</th></tr>
+                </thead>
+                <tbody id="history-list"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- WATCHED PROS -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Watched Professionals</h2>
+              <span id="watched-count" class="meta"></span>
+            </div>
+            <div id="watched-list"></div>
+          </section>
+
+          <!-- BADGES -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Badges &amp; Verification</h2>
+              <span id="badges-count" class="meta"></span>
+            </div>
+            <div id="badges-list"></div>
+          </section>
+
+          <!-- REVIEWS LEFT -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Reviews Left for Contractors</h2>
+              <span id="reviews-count" class="meta"></span>
+            </div>
+            <div id="reviews-list"></div>
+            <div style="margin-top:13px;text-align:center;">
+              <button class="gbtn gbtn-secondary sm">View all 184 reviews</button>
+            </div>
+          </section>
+
+          <!-- KEY CONTACTS -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Key Contacts at Ford Rouge</h2>
+              <span class="meta">primary + plant directory</span>
+            </div>
+            <div id="contacts-list"></div>
+          </section>
+
+          <!-- COMPANY BRIEF -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>About Ford Rouge Complex</h2>
+              <span class="meta">facility brief</span>
+            </div>
+            <p id="brief-text"></p>
+            <div id="brief-photos"></div>
+          </section>
+        </div>
+      </div>
+
+      <p style="text-align:center;font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);margin:34px 0 0;">
+        Rebecca Chen · Plant Engineering Manager · Ford Rouge Complex · 12 sections rendered
+      </p>
+    </div>
+  </main>
+
+  <script src="data/customer-data.js"></script>
+  <script src="scripts/glass-shell.js" data-active="customer"></script>
+  <script src="scripts/render-customer.js"></script>
+</body>
+</html>
