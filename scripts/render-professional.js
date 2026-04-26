@@ -198,13 +198,39 @@
   }
 
   // ── WATCHERS (OWNER) ─────────────────────────────────────────
+  // Driven by D.watchers.recent per specs/SECTIONS.md § 1 left-rail item 10.
+  // Owner-only. Data already in professional.json (count + recent[8] with {name, type, since}).
   function renderWatchers() {
-    const fakeWatchers = [
-      { name: 'Ford Rouge Complex', logo: 'assets/logos/ford-motor-company.png', when: '2 days ago' },
-      { name: 'BMW Manufacturing',  logo: 'assets/logos/bmw.png',                 when: '5 days ago' },
-      { name: 'Stellantis',         logo: 'assets/logos/stellantis.png',          when: '1 wk ago' },
-      { name: 'General Motors',     logo: 'assets/logos/general-motors.png',      when: '2 wks ago' },
-    ];
+    const watcherLogo = (name) => {
+      const slug = String(name||'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      // Name → logo-file mapping for the few cases where slugified name doesn't match the asset filename.
+      const map = {
+        'ford-motor-company':   'ford-motor-company',
+        'bmw-manufacturing':    'bmw',
+        'acme-robotics':        'automate-america',
+        'general-motors':       'general-motors',
+        'stellantis':           'stellantis',
+        'toyota-manufacturing': 'toyota',
+        'honda-manufacturing':  'honda',
+        'magna-international':  'magna-international'
+      };
+      return 'assets/logos/' + (map[slug] || slug) + '.png';
+    };
+    const watcherRel = (iso) => {
+      const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+      if (days < 1) return 'today';
+      if (days < 7) return days + ' day' + (days === 1 ? '' : 's') + ' ago';
+      if (days < 14) return '1 wk ago';
+      if (days < 30) return Math.floor(days / 7) + ' wks ago';
+      return Math.floor(days / 30) + ' mo ago';
+    };
+    // Derived rows from canonical D.watchers.recent. Variable name kept as `fakeWatchers`
+    // for minimal-diff against the legacy block; the data is no longer fake.
+    const fakeWatchers = ((D.watchers && D.watchers.recent) || []).map(item => ({
+      name: item.name,
+      logo: watcherLogo(item.name),
+      when: watcherRel(item.since)
+    }));
     $('#watchers-list').innerHTML = fakeWatchers.map(w => `
       <div class="watcher-row">
         <div class="watcher-logo"><img src="${w.logo}" alt="" /></div>
