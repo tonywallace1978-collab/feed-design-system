@@ -272,9 +272,9 @@
   function renderAbout() {
     $('#about-tagline').textContent = D.header.tagline;
     $('#about-bio').innerHTML = `
-      <p>Senior controls engineer with nine years on the floor across automotive body-in-white, paint, final assembly, and food &amp; beverage. Specialize in FANUC and Allen-Bradley integration, Siemens-to-Rockwell migrations, ISA-S88 batch logic, and TÜV-grade functional safety retrofits.</p>
-      <p>Have led 34 commissioning projects from greenfield to brownfield. Calm under deadline, blunt on root cause. Detroit-based, willing to travel anywhere in the Great Lakes region for engagements 4 weeks or longer. Two white-glove engagements completed under NDA — both top-rated.</p>
-      <p>Mentored three junior controls engineers to independent commissioning capability. Authored my team's Rockwell Studio 5000 style guide, now adopted as company standard at Acme.</p>
+      <p>Senior Controls Engineer in Detroit. Nine years on the floor — Wayne State BSEE (Magna Cum Laude, '15), Henry Ford College AAS ('13), Magna International '15-'18, then 1099 with Acme Robotics from '18 forward. Specialty: body-in-white retrofits and high-mix vision-guided assembly for the Detroit-3 OEMs.</p>
+      <p>I write Studio 5000 and TIA Portal code that the next person can read. I ship documentation with every commissioning, not after. I retire legacy code instead of layering on it. When a cell is down at 11 PM, I'm on-site by 6 AM with a fix; I learned that habit at Magna and it's never failed me. I've trained three junior controls engineers to independent commissioning capability and authored the Acme Studio 5000 style guide.</p>
+      <p>I take engagements that respect the work — clear scope, real safety, and a customer who lets me retire bad code rather than wallpaper over it. I bid white-glove engagements through Acme; I take direct hourly work where the fit is clear. Open to 4-6 week onsite engagements within 250 miles of Detroit, plus emergency support 24/7 in SE Michigan.</p>
     `;
   }
 
