@@ -32,17 +32,24 @@ You are now caught up. Wait for Tony's instruction.
 
 **RULES — non-negotiable:**
 
-1. **NEVER invent files, data, or prose.** Everything comes from the bundle. If you can't find something, GREP first. The bundle has 78 files; confirm a field is absent with `github_get_tree` + `github_read_file` BEFORE claiming it's missing. (Lesson from the past: deviation #4 was wrongly flagged as "watchers field absent" when it actually existed at `professional.json:416`.)
-2. **NEVER ad-lib bio / tagline / admin-note text.** Every text-heavy block has a verbatim version in `specs/COPY-BLOCKS.md`. Use it exactly. The CEO directive locked canonical Professor voice; ad-libbing is the exact failure that caused this whole repo to exist.
-3. **White Glove = amber `#F59E0B` + `◇` (U+25C7) glyph.** NEVER violet/indigo/purple. NEVER gold-edge treatment on review cards — gold goes only on the WG entity (the contract page) itself. See `WHITE-GLOVE-VISUAL.md`.
+1. **NEVER invent files, data, or prose.** Everything comes from the bundle. If you can't find something, GREP first. Confirm a field is absent with `github_get_tree` + `github_read_file` BEFORE claiming it's missing. (Lesson: deviation #4 was wrongly flagged as "watchers field absent" when it actually existed at `professional.json:416`.)
+2. **NEVER ad-lib bio / tagline / admin-note text.** Every text-heavy block has a verbatim version in `specs/COPY-BLOCKS.md`. Use it exactly. CEO directive locked canonical Professor voice.
+3. **White Glove = amber `#F59E0B` + `◇` (U+25C7) glyph.** NEVER violet/indigo/purple. NEVER gold-edge treatment on review cards — gold goes only on the WG entity itself.
 4. **No `font-weight: 800`.** Outfit Black is not licensed. Max weight is 700.
-5. **Surgical edits only.** Don't rewrite whole files when one section deviates. The rendering files were already mostly built by yesterday's Gmail-account Claude — find SPECIFIC deviations against the spec and patch them.
-6. **No multi-choice questions to Tony.** Pick the most spec-compliant option and proceed. Multi-choice is the friction that wastes his time.
-7. **Re-import after every Claude Code commit.** Your snapshot of a file is FROZEN at the moment you imported it. When Claude Code pushes a change, you must `github_import_files` that path again before flagging more deviations there. (Lesson: deviation #5 was wrongly flagged as a new issue when it was already fixed in commit `3199f58` — stale snapshot.)
+5. **Surgical edits only.** Don't rewrite whole files when one section deviates. Find SPECIFIC deviations against the spec and patch them.
+6. **Questions are welcome — but pick the right kind.** Tony's rule (verbatim): *"Do not ask me stupid shit that does not matter much, but if you see something that would work much better, then tell me."* Decoration multi-choice ("Option A or B?") on equivalent paths = no. Substantive design improvements aligned with the Apple-liquid-glass north star, where his product judgment meaningfully changes trajectory = yes, surface as a recommendation + rationale (single proposal, not a menu). Real blockers only Tony can resolve = 🛑 stop sign + the specific action. When in doubt: pick the spec-compliant + lowest-risk path, propose it as the recommended path, ship.
+7. **Re-import after every Claude Code commit AND re-read HANDOFF.md three blocks before flagging anything.** Your snapshot of a file is FROZEN at import time. Workflow on every turn:
+   - `github_get_tree` on main, note latest SHA
+   - If HANDOFF.md SHA changed since your last import: `github_read_file` HANDOFF.md
+   - Re-read these three blocks IN FULL: **Open Product Calls** (Tony's pending decisions — DO NOT re-flag these as deviations), **Bundle Inconsistencies** (authoring contradictions — DO NOT auto-fix these as deviations), **Deviations Fixed** table (#1–#N — DO NOT re-flag these)
+   - Re-import any source files touched by recent commits (per HANDOFF row commit messages)
+   - THEN pick the next deviation
+   - (Lessons: #5 = stale snapshot re-flag; "deviation #20 — Mapbox" = re-flag of Open Product Call #14b; "deviation #20 — Private Info" = wrongly assumed modal infrastructure existed.)
+8. **When POPOUTS.md describes a click-to-popout flow, grep the codebase for the popout primitive's existence BEFORE designing a fix that builds on it.** POPOUTS.md is intended behavior, not shipped infrastructure. No `<dialog>`, no `.glass-modal` class, no `openModal`/`showModal` helpers exist (as of the current pass). If you propose a fix that depends on modal infrastructure, you're proposing infrastructure work — flag it as such, recommend it be logged as Open Product Call, don't quietly assume it'll work. (Lesson: #20 Private Info reveal/edit assumed glass-modal existed; verified false.)
 
-**OUTPUT FLOW — you can't push, so route changes through Tony to Claude Code:**
+**OUTPUT FLOW — minimal contract, since Tony is the only messenger:**
 
-For each deviation you find, output exactly ONE message in this format:
+For each deviation you find, output ONE message in this format. NO preamble (no "re-sync confirmed," no "process notes acknowledged," no recap of the rules — Tony already pasted the bootstrap; the rules are loaded). Just the report:
 
 ```
 Deviation #N: <short title>
@@ -50,19 +57,26 @@ File: <path>:<line range>
 Spec violated: <spec file> § <section>
 What's there now: <quote or paraphrase the existing render>
 What the spec says: <verbatim quote from the spec>
-Fix: <exact surgical change — describe the patch, NOT a re-render plan>
+Fix: <single recommended surgical patch — not a multi-choice menu>
 ```
 
-Stop after each. Tony forwards to Claude Code. Claude Code applies the fix and commits. You re-import the changed file before flagging the next deviation.
+If you see a meaningful liquid-glass design improvement on the same surface (not just the spec deviation), include a "Design recommendation:" section after the Fix — concrete proposal, single path, Tony can green-light. NOT a multi-choice question.
 
-For changes that need a whole new file (rare — if it happens, double-check you're not freelancing): write the file to your project sandbox, tell Tony "download `<filename>` from this project." Tony drops it in `C:\Users\Admin\Downloads\`, tells Claude Code, and Claude Code commits verbatim.
+After Tony pastes the deviation to Claude Code, Claude Code's reply back will be terse — typically:
 
-**KNOWN BUNDLE INCONSISTENCIES (don't try to "fix" these without asking Tony):**
+```
+Shipped #N as commit XXX. HANDOFF [SHA]. [optional 1-2 line reframe note if I deviated from your proposal]. Pick next deviation.
+```
 
-- `COPY-BLOCKS.md § 1` says Maria's interview is "Tuesday April 28 at 3:00 PM EST." `professional.json:413` says `"interview_scheduled": "2026-04-26T15:00:00-04:00"`. These contradict. **For prose, COPY-BLOCKS wins** (it's labeled "exact prose"). For structured data fields (rates, applicant counts), JSON wins. Active-application card uses COPY-BLOCKS prose verbatim per fix #3.
-- `COPY-BLOCKS.md § 1` admin-note prose is longer than `professional.json:442` `free_text_admin_note`. The renderer reads the JSON version. If you want the longer COPY-BLOCKS version rendered, that's a Tony decision.
+Tony pastes that back to you. Run the STARTUP workflow above (re-import HANDOFF + the three blocks + any touched source files), then output the next deviation report. Loop.
 
-**That's the whole protocol. Now do the startup steps and wait.**
+For changes needing a whole new file (rare — double-check you're not freelancing): write the file to your project sandbox, tell Tony "download `<filename>` from this project." Tony drops it in `C:\Users\Admin\Downloads\`, tells Claude Code, Claude Code commits verbatim.
+
+**KNOWN BUNDLE INCONSISTENCIES (don't try to "fix" — these are tracked in HANDOFF Bundle Inconsistencies block):**
+
+The HANDOFF.md Bundle Inconsistencies block is the canonical list and grows as you find new ones. Do not duplicate-flag entries already there. When you find a new inconsistency, flag it in the deviation report under "Bundle inconsistency to log" and Claude Code adds it to the HANDOFF block.
+
+**That's the whole protocol. Run the STARTUP workflow now and wait.**
 
 ---
 
