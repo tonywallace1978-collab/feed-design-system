@@ -338,6 +338,8 @@
 
   // ── EXPERIENCE ───────────────────────────────────────────────
   function renderExperience() {
+    const yrs = Math.floor(D.experience.reduce((sum, e) => sum + e.duration_months, 0) / 12);
+    $('#exp-header-meta').textContent = `${yrs}+ yrs · ${D.experience.length} ${D.experience.length === 1 ? 'company' : 'companies'}`;
     $('#exp-list').innerHTML = D.experience.map(e => `
       <div class="exp-card glass-card">
         <div class="exp-head">
