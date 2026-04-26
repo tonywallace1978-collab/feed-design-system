@@ -358,7 +358,8 @@
 
   // ── CERTIFICATIONS ───────────────────────────────────────────
   function renderCertifications() {
-    $('#certs-list').innerHTML = D.certifications.map(c => `
+    const top = D.certifications.slice(0, 7);
+    $('#certs-list').innerHTML = top.map(c => `
       <div class="cert-row${c.renewal_due_soon?' warn':''}">
         <div class="cert-mark">${escapeHtml(c.issuer.slice(0,3).toUpperCase())}</div>
         <div class="cert-meta">
