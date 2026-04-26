@@ -183,14 +183,13 @@
   // ── ACTIVE APPLICATION (OWNER) ───────────────────────────────
   function renderActiveApp() {
     $('#active-app').innerHTML = `
+      <!-- Active application — canonical, per specs/COPY-BLOCKS.md § 1 "Active application card body".
+           Contract = Acme Robotics / Ford Rouge palletizer (Standard tier, NOT White Glove).
+           Stage = Shortlisted, final-round interview April 28 3 PM. Do NOT ad-lib. -->
       <div class="card-tag live"><span class="dot"></span>APPLICATION OPEN</div>
-      <div class="card-title">Body Shop FANUC Retrofit · Cell 14</div>
-      <div class="card-sub">White Glove · Tier-1 OEM (anonymous) · Spartanburg, SC</div>
-      <div class="row-meta" style="margin-top:8px">
-        <span>Applied 4 days ago</span><span class="sep">·</span>
-        <span>NDA signed</span><span class="sep">·</span>
-        <span>Shortlist due Apr 30</span>
-      </div>
+      <div class="card-title">Acme Robotics · Ford Rouge palletizer</div>
+      <div class="card-sub">Standard hourly · Dearborn, MI</div>
+      <p class="card-sub" style="margin-top:8px;">Applied <span class="mono-700">April 23</span>. Shortlisted within <span class="mono-700">36 hours</span>. Final-round interview scheduled Tuesday <span class="mono-700">April 28 at 3:00 PM EST</span>. Match score <span class="mono-700">97%</span>.</p>
       <div class="cta-row" style="margin-top:13px">
         <button class="gbtn sm">View contract</button>
         <button class="gbtn gbtn-secondary sm">Withdraw</button>
