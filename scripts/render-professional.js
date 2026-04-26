@@ -386,8 +386,7 @@
         <div class="edu-mark">⌒</div>
         <div class="edu-meta">
           <div class="edu-degree">${escapeHtml(e.degree)}${e.concentration?` · ${escapeHtml(e.concentration)}`:''}</div>
-          <div class="edu-school">${escapeHtml(e.school)} · ${escapeHtml(e.city)}</div>
-          <div class="edu-sub mono">${e.graduated_year}${e.gpa?` · GPA ${e.gpa}`:''}${e.honors?` · ${escapeHtml(e.honors)}`:''}</div>
+          <div class="edu-school">${escapeHtml(e.school)}</div>
         </div>
       </div>
     `).join('');
