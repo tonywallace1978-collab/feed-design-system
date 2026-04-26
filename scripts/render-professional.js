@@ -313,7 +313,7 @@
     const reviews = D.reviews_received.slice(0, 5);
     $('#reviews-list').innerHTML = reviews.map(r => {
       const stars = '★★★★★☆☆'.slice(5 - r.rating, 10 - r.rating);
-      const wg = r.white_glove;
+      const wg = r.company === '[Anonymous]';
       const logo = wg ? '<div class="rev-logo wg">◇</div>' :
         (r.company_logo ? `<div class="rev-logo"><img src="${r.company_logo}" alt="${escapeHtml(r.company)}" /></div>` :
          `<div class="rev-logo placeholder">${escapeHtml(r.company.slice(0,2).toUpperCase())}</div>`);
