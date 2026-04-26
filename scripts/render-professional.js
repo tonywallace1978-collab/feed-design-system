@@ -98,11 +98,6 @@
     }
     $('#avail-next').textContent = fmtDate(a.next_available_date);
     $('#avail-cap').textContent = a.weekly_capacity_hours + ' hrs / wk';
-    const flags = [];
-    if (a.willing_overtime) flags.push('OT OK');
-    if (a.willing_weekends) flags.push('Weekends OK');
-    if (!a.willing_nightshift) flags.push('No nights');
-    $('#avail-flags').innerHTML = flags.map(f=>`<span class="chip">${f}</span>`).join('');
     if (a.calendar_url) {
       const cta = $('#avail-cta');
       if (cta) {
