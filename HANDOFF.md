@@ -8,10 +8,10 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-26 (commit `6002701`)
-**Status:** Maria Lopez Professional Profile — 12 deviations vs canonical bundle cleared. renderBadges fabricated 3 hardcoded "locked" badges with off-spec category names ("Reach Engineer", "Decade Veteran", "Diamond Endorser") — stripped strictly-subtractively (Option A: showcase shows only earned; progression-tease deferred as product decision). Spec-compliance pass for Maria Pro continues — Tony to eyeball before moving to next surface.
+**Last session:** Claude Code · 2026-04-26 (commit `5af54ba`)
+**Status:** Maria Lopez Professional Profile — 13 deviations vs canonical bundle cleared. renderEndorsements top-cut adjusted from 12 → 7 to match SECTIONS.md item 21 verbatim ("7 endorsers + skills"). Spec-compliance pass for Maria Pro continues — Tony to eyeball before moving to next surface.
 
-**⚠️ Claude Design re-import drift:** Claude Design's #12 deviation report arrived numbered "#8" — its post-#7 re-imports haven't been taking. Symptoms: numbering frozen at #8, list of "remaining renderer functions" doesn't reflect that renderConnections (#8 c7bfb67), renderHero KPI strip (#9), renderRates (#10), renderAvailability (#11) have shipped. Next prompt to Claude Design should re-emphasize the re-import step and ask it to re-sync its snapshot of HANDOFF + scripts/render-professional.js before flagging anything new.
+**Re-import drift resolved (2026-04-26 post-#12):** Claude Design re-synced after Claude Code's hard re-sync prompt — quoted all 6 verbatim post-#11 lines successfully, snapshot now at 363280e+. Claude Design's #13 was correctly numbered + grounded in SECTIONS.md verbatim. The hard re-sync prompt template (force `github_get_tree` first + quote N specific post-update lines + acknowledge the renumbering) is the working pattern when Claude Design's re-imports aren't taking — keep it on file.
 **Active surface:** `Maria Lopez · Professional.html` (driven by `scripts/render-professional.js` + `data/professional-data.js`).
 
 **Canonical bundle:** `reference/claude-design-bundles/professional-maria-lopez/` (78 files: 1 README + 10 JSONs in `/data/` + 9 spec MDs in `/specs/` + 58 assets). Imported in commit `a4caa0f`.
@@ -34,6 +34,7 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 | 10 | `79df735` | `renderRates()` dropped `minimum_engagement_hours` (8) + `rate_negotiable` (true) and hardcoded `salary_band_currency` via shared `fmtMoney`; added local `fmtBandMoney` (currency-aware), `#rate-eng` now textContent `"<preferred_engagement> · 8 hr minimum · negotiable"` |
 | 11 | `e6da38f` | `renderAvailability()` dropped `calendar_url` (the cal.com booking CTA — biggest behavioral fidelity gap) + `status_color` (live-dot was hardcoded green); added `<a id="avail-cta">` (statically in HTML, hidden by default, JS reveals via setAttribute + display); `.live-dot.live-dot-success/-warning/-neutral` CSS variants + `pulse-warn` keyframes; classList.add('live-dot-' + status_color) to apply variant. No new innerHTML lines (security hook avoided) |
 | 12 | `6002701` | `renderBadges()` fabricated 3 hardcoded "locked" badges (`Reach Engineer/Reach`, `Decade Veteran/Tenure`, `Diamond Endorser/Endorser`) — "Reach" not in `BADGE-THRESHOLDS.md`, "Decade Veteran" not in Tenure ladder. Stripped strictly-subtractively (Option A): deleted locked array, deleted `+ locked.map(...).join('')` chain, footer textContent now `"${earned.length} earned"` (was "X earned · 3 locked"). Net -18 lines, no bundle/HTML/CSS change. (Claude Design called this #8 from a stale snapshot.) |
+| 13 | `5af54ba` | `renderEndorsements()` top-cut `slice(0, 12)` → `slice(0, 7)` to match `SECTIONS.md` § 1 item 21 verbatim ("7 endorsers + skills"). Selection rule unchanged (D.endorsements is sorted newest-first, so 7 most recent). Skill chip strip + footer count still surface all 28 entries. Diff -1/+1 line. |
 
 **Earlier drift cleared (do not re-introduce):**
 - The @automateamerica.com Claude account had built `Feed Home — Variations.html` + 5 supporting JSX files in its sandbox that did NOT exist in yesterday's Gmail-account project. Per CEO directive, those were freelance content and have been discarded.
