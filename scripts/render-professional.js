@@ -110,10 +110,6 @@
   // ── RATES ────────────────────────────────────────────────────
   function renderRates() {
     const r = D.rates;
-    const cur = r.salary_band_currency || r.currency || 'USD';
-    const fmtBandMoney = (n) => cur === 'USD'
-      ? '$' + Number(n).toLocaleString('en-US')
-      : Number(n).toLocaleString() + ' ' + cur;
     const tiles = [
       { l: 'Default', v: '$' + r.hourly_default.toFixed(2), u: '/ hr' },
       { l: 'Emergency', v: '$' + r.hourly_emergency.toFixed(2), u: '/ hr' },
@@ -123,9 +119,6 @@
     $('#rate-tiles').innerHTML = tiles.map(t =>
       `<div class="rate-tile"><div class="kpi-label">${t.l}</div><div class="rate-val">${t.v}</div><div class="rate-u">${t.u}</div></div>`
     ).join('');
-    $('#rate-band').textContent = `Salary band: ${fmtBandMoney(r.salary_band_min)} – ${fmtBandMoney(r.salary_band_max)} / yr`;
-    const negSuffix = r.rate_negotiable ? ' · negotiable' : '';
-    $('#rate-eng').textContent = `${r.preferred_engagement} · ${r.minimum_engagement_hours} hr minimum${negSuffix}`;
   }
 
   // ── CONNECTIONS ──────────────────────────────────────────────
