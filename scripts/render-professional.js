@@ -147,9 +147,7 @@
     $('#aff-logo').innerHTML = `<img src="${b.company_logo}" alt="${escapeHtml(b.company_name)}" />`;
     $('#aff-name').textContent = b.company_name;
     $('#aff-role').textContent = b.company_role;
-    $('#aff-class').textContent = b.company_classification;
     $('#aff-joined').textContent = `Joined ${fmtMonthYr(b.joined_at)}`;
-    $('#aff-rate').textContent = `${b.weekly_committed_hours} hrs / wk · ${fmtMoney(b.rate_through_company)}/hr through co. · ${fmtMoney(b.rate_independent)}/hr direct`;
   }
 
   // ── BUSINESS GROUPS ──────────────────────────────────────────
