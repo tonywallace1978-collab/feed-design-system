@@ -1,0 +1,217 @@
+{
+  "$schema": "Automate America — Business Group Profile (max-data reference fixture, EXHAUSTIVE)",
+  "$source": "Composite fictional record. Standalone Business Group profile (a named group of professionals/companies operating together).",
+  "$rendered_for": "Claude Design — Business Group profile prototype, Great Lakes Automation Network",
+  "$version": "1.0",
+  "$last_updated": "2026-04-25",
+
+  "group_id": 412,
+  "group_uuid": "01HZGLAN0004BG412NETWORK1",
+  "slug": "great-lakes-automation-network",
+  "approval_status": "Approved",
+  "is_enabled": 1,
+  "is_open_membership": false,
+  "is_invite_only": true,
+  "created_at": "2021-08-22T09:00:00Z",
+  "last_active_at": "2026-04-25T07:42:00Z",
+  "tenure_years": 4,
+
+  "header": {
+    "name": "Great Lakes Automation Network",
+    "tagline": "Industrial automation talent + integrators across Detroit, Cleveland, Chicago, Milwaukee.",
+    "kind": "regional_network",
+    "founded": "2021-08-22",
+    "regional_coverage": ["Detroit, MI", "Cleveland, OH", "Chicago, IL", "Milwaukee, WI", "Grand Rapids, MI", "Toledo, OH"],
+    "headline": "138 members · 12 active group contracts · 4.7 ★",
+    "logo_color": "#6366F1"
+  },
+
+  "logo": {
+    "main_url": "../assets/logos/automate-america.png",
+    "main_url_TODO": "Replace with Great Lakes Automation Network's licensed mark",
+    "main_size_px": 144
+  },
+
+  "stats": {
+    "members_total": 138,
+    "members_available_now": 47,
+    "members_on_contract": 71,
+    "members_unavailable": 20,
+    "active_group_contracts": 12,
+    "completed_group_contracts": 188,
+    "lifetime_billings_usd": 9420000,
+    "avg_member_rating": 4.7,
+    "tenure_years": 4,
+    "open_member_positions": 6,
+    "discussion_posts_this_month": 47,
+    "events_this_year": 8,
+    "profile_strength_pct": 91
+  },
+
+  "ctas_visitor": [
+    { "id": "request-join", "label": "Request to join",       "kind": "primary",   "icon": "user-plus" },
+    { "id": "follow",       "label": "Follow group",           "kind": "secondary", "icon": "bell" },
+    { "id": "view-members", "label": "View members (138)",     "kind": "secondary", "icon": "users" },
+    { "id": "view-jobs",    "label": "View open jobs (12)",    "kind": "tertiary",  "icon": "list" }
+  ],
+  "ctas_owner": [
+    { "id": "post-contract",  "label": "Post group contract", "kind": "primary",   "icon": "plus" },
+    { "id": "manage-members", "label": "Manage members",       "kind": "secondary", "icon": "users" },
+    { "id": "approve-pending","label": "Approve pending (4)",  "kind": "secondary", "icon": "check" },
+    { "id": "edit-group",     "label": "Edit group",           "kind": "tertiary",  "icon": "pencil" }
+  ],
+  "ctas_member": [
+    { "id": "post-discussion", "label": "Start a discussion",  "kind": "primary",   "icon": "message" },
+    { "id": "view-events",     "label": "Upcoming events (3)", "kind": "secondary", "icon": "calendar" },
+    { "id": "leave-group",     "label": "Leave group",          "kind": "tertiary",  "icon": "exit" }
+  ],
+
+  "leadership": {
+    "founders": [
+      { "user_id": 1148,  "name": "Chris Wallace",  "role": "Founder + Group Admin",   "company": "Acme Robotics",       "city": "Detroit, MI",    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face", "since": "2021-08-22" },
+      { "user_id": 38291, "name": "Maria Lopez",    "role": "Co-Founder + Charter Member","company": "Acme Robotics",       "city": "Detroit, MI",    "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face", "since": "2021-08-22" }
+    ],
+    "moderators": [
+      { "user_id": 1149,  "name": "Ray Thompson",   "role": "Moderator (SC region)", "city": "Spartanburg, SC", "avatar": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face", "since": "2022-04-12" },
+      { "user_id": 1150,  "name": "Dan Kowalski",   "role": "Moderator (KY region)", "city": "Louisville, KY",  "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face", "since": "2022-09-30" }
+    ]
+  },
+
+  "members_grid": {
+    "$pagination": { "page": 1, "page_size": 20, "total": 138 },
+    "filter_options": ["Available Now", "On Contract", "Unavailable", "Featured", "All"],
+    "sort_options": ["Recently Active", "Name A-Z", "Rating High-Low", "Tenure Long-Short", "Available Soonest"],
+    "members": [
+      { "user_id": 38291, "name": "Maria Lopez",    "occupation": "Senior Controls Engineer",     "city": "Detroit, MI",      "rating": 4.96, "available": true,  "joined_at": "2021-08-22", "primary_skill": "Siemens / Rockwell / FANUC", "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face", "tier": "Diamond", "is_featured": true },
+      { "user_id": 39102, "name": "Karen Mitchell", "occupation": "Electrical Engineer",          "city": "Spartanburg, SC",  "rating": 4.88, "available": false, "joined_at": "2022-01-15", "primary_skill": "Functional Safety", "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face", "tier": "Platinum", "is_featured": false },
+      { "user_id": 40117, "name": "Tony Rivera",    "occupation": "ABB Robot Programmer",         "city": "Spartanburg, SC",  "rating": 4.91, "available": true,  "joined_at": "2022-03-04", "primary_skill": "ABB / RobotStudio", "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face", "tier": "Platinum", "is_featured": true  },
+      { "user_id": 41208, "name": "Sarah Bennett",  "occupation": "KUKA Robot Programmer",        "city": "Louisville, KY",   "rating": 4.85, "available": true,  "joined_at": "2022-09-30", "primary_skill": "KUKA / KRL",      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face", "tier": "Gold",     "is_featured": false },
+      { "user_id": 41502, "name": "Lisa Park",      "occupation": "Vision Systems Specialist",    "city": "Detroit, MI",      "rating": 4.92, "available": false, "joined_at": "2022-04-12", "primary_skill": "Cognex VisionPro", "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face", "tier": "Platinum", "is_featured": false },
+      { "user_id": 41334, "name": "Derek Simmons",  "occupation": "PLC Programmer",                "city": "Detroit, MI",      "rating": 4.79, "available": false, "joined_at": "2022-04-12", "primary_skill": "Studio 5000",     "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face", "tier": "Gold",     "is_featured": false },
+      { "user_id": 41822, "name": "Jake Morrison",  "occupation": "FANUC Robot Programmer",       "city": "Detroit, MI",      "rating": 4.87, "available": true,  "joined_at": "2022-04-12", "primary_skill": "FANUC iRVision",  "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face", "tier": "Gold",     "is_featured": false },
+      { "user_id": 41709, "name": "Alicia Reyes",   "occupation": "HMI / SCADA Engineer",          "city": "Louisville, KY",   "rating": 4.81, "available": true,  "joined_at": "2023-02-05", "primary_skill": "WinCC / FactoryTalk", "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=face", "tier": "Gold",     "is_featured": false },
+      { "user_id": 42118, "name": "Megan Torres",   "occupation": "Safety Systems Tech",           "city": "Spartanburg, SC",  "rating": 4.74, "available": false, "joined_at": "2023-04-19", "primary_skill": "TÜV Functional Safety","avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face", "tier": "Silver",   "is_featured": false },
+      { "user_id": 42301, "name": "Victor Huang",   "occupation": "Welding Engineer",              "city": "Louisville, KY",   "rating": 4.69, "available": false, "joined_at": "2023-08-25", "primary_skill": "MIG / TIG / Robotic Welding", "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face", "tier": "Silver",   "is_featured": false },
+      { "user_id": 42412, "name": "James Fuller",   "occupation": "Maintenance Tech",              "city": "Louisville, KY",   "rating": 4.71, "available": false, "joined_at": "2023-11-04", "primary_skill": "Plant maintenance",     "avatar": "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=200&h=200&fit=crop&crop=face", "tier": "Silver",   "is_featured": false },
+      { "user_id": 42588, "name": "Patrick Olivera","occupation": "Maintenance Tech",              "city": "Cleveland, OH",    "rating": 4.65, "available": true,  "joined_at": "2024-01-15", "primary_skill": "Plant maintenance",     "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face", "tier": "Bronze",   "is_featured": false }
+    ],
+    "see_more": "Showing 12 of 138. View all →"
+  },
+
+  "active_group_contracts": [
+    { "id": 28140, "title": "PLC programmer · Robotic palletizer commissioning", "customer": "Acme Robotics → Ford Rouge", "city": "Dearborn, MI",    "rate": 148.50, "applicants_from_group": 4, "duration": "4 wk",  "white_glove": false },
+    { "id": 28139, "title": "Body Shop FANUC retrofit — Cell 14",                "customer": "[White Glove · Tier-1 OEM]", "city": "Detroit metro",    "rate": 165.00, "applicants_from_group": 5, "duration": "6 wk",  "white_glove": true  },
+    { "id": 28145, "title": "Senior Controls Engineer — Spartanburg",            "customer": "Acme Robotics",              "city": "Spartanburg, SC", "rate": null,   "applicants_from_group": 7, "duration": "Direct W-2", "white_glove": false, "salary_band": "165k–195k" },
+    { "id": 28150, "title": "Vision Integration Specialist",                    "customer": "Acme Robotics → [WG]",        "city": "Detroit, MI",     "rate": 175.00, "applicants_from_group": 3, "duration": "6 wk",  "white_glove": true  },
+    { "id": 28159, "title": "Cleveland — Robot palletizer line refresh",         "customer": "Whirlpool Cleveland",         "city": "Cleveland, OH",   "rate": 148.00, "applicants_from_group": 6, "duration": "4 wk",  "white_glove": false },
+    { "id": 28162, "title": "Milwaukee — Brewery PLC migration",                 "customer": "MillerCoors",                  "city": "Milwaukee, WI",   "rate": 142.00, "applicants_from_group": 4, "duration": "8 wk",  "white_glove": false }
+  ],
+
+  "discussion_threads": [
+    { "id": "thread-1", "title": "TIA Portal V18 vs Studio 5000 V36 — anyone migrated lately?", "starter": "Maria Lopez",    "replies": 24, "views": 387, "last_reply_at": "2026-04-24T18:42:00Z", "tag": "Technical" },
+    { "id": "thread-2", "title": "Looking for FANUC iRVision Roboguide tips",                    "starter": "Jake Morrison",  "replies": 11, "views": 142, "last_reply_at": "2026-04-23T22:18:00Z", "tag": "Technical" },
+    { "id": "thread-3", "title": "Cleveland robot palletizer contract — anyone from group nearby?","starter": "Chris Wallace","replies": 8,  "views": 98,  "last_reply_at": "2026-04-23T15:31:00Z", "tag": "Contract" },
+    { "id": "thread-4", "title": "Annual May meetup in Detroit — venue ideas?",                   "starter": "Ray Thompson",   "replies": 19, "views": 256, "last_reply_at": "2026-04-22T20:09:00Z", "tag": "Event" },
+    { "id": "thread-5", "title": "Group rate share: Cognex licenses pooled?",                     "starter": "Lisa Park",      "replies": 14, "views": 188, "last_reply_at": "2026-04-22T11:47:00Z", "tag": "Resources" },
+    { "id": "thread-6", "title": "TÜV Functional Safety study group?",                            "starter": "Megan Torres",   "replies": 12, "views": 167, "last_reply_at": "2026-04-21T14:22:00Z", "tag": "Learning" },
+    { "id": "thread-7", "title": "New OSHA-30 schedule — who's renewing in Q2?",                   "starter": "James Fuller",   "replies": 9,  "views": 110, "last_reply_at": "2026-04-19T10:33:00Z", "tag": "Compliance" }
+  ],
+
+  "upcoming_events": [
+    { "id": "evt-1", "title": "Annual Detroit meetup",        "date": "2026-05-17", "city": "Detroit, MI",   "kind": "in_person",  "rsvps": 47, "max_capacity": 80,  "host": "Chris Wallace" },
+    { "id": "evt-2", "title": "TIA Portal V18 deep-dive",     "date": "2026-05-08", "city": "Online",         "kind": "virtual",     "rsvps": 32, "max_capacity": 100, "host": "Maria Lopez" },
+    { "id": "evt-3", "title": "Spartanburg shop tour at BMW", "date": "2026-06-04", "city": "Spartanburg, SC","kind": "in_person",  "rsvps": 18, "max_capacity": 25,  "host": "Ray Thompson" }
+  ],
+
+  "group_skills_heatmap": [
+    { "skill": "Siemens",            "members_with_skill": 64, "avg_years": 7.4 },
+    { "skill": "Allen-Bradley / Rockwell", "members_with_skill": 87, "avg_years": 8.1 },
+    { "skill": "FANUC",              "members_with_skill": 51, "avg_years": 6.8 },
+    { "skill": "ABB",                "members_with_skill": 22, "avg_years": 5.4 },
+    { "skill": "KUKA",               "members_with_skill": 14, "avg_years": 5.2 },
+    { "skill": "Cognex",             "members_with_skill": 19, "avg_years": 4.6 },
+    { "skill": "Functional Safety",  "members_with_skill": 38, "avg_years": 6.2 },
+    { "skill": "HMI / SCADA",        "members_with_skill": 41, "avg_years": 5.8 }
+  ],
+
+  "regional_coverage_map": {
+    "$kind": "mapbox_static_or_schematic",
+    "$rendering_note": "If Claude Design has Mapbox token, render real tile centered on Great Lakes region with member-density heatmap. Otherwise render schematic SVG with city pins + member counts.",
+    "regions": [
+      { "city": "Detroit, MI",      "lat": 42.3314, "lng": -83.0458, "members": 51 },
+      { "city": "Cleveland, OH",    "lat": 41.4993, "lng": -81.6944, "members": 24 },
+      { "city": "Chicago, IL",      "lat": 41.8781, "lng": -87.6298, "members": 28 },
+      { "city": "Milwaukee, WI",    "lat": 43.0389, "lng": -87.9065, "members": 12 },
+      { "city": "Spartanburg, SC",  "lat": 34.9495, "lng": -81.9320, "members": 9  },
+      { "city": "Louisville, KY",   "lat": 38.2527, "lng": -85.7585, "members": 14 }
+    ]
+  },
+
+  "group_certifications": [
+    { "id": "csia-network",  "name": "CSIA Network Member",                    "issued": "2022-04-22", "credential_id": "CSIA-NET-2022-441-3"  },
+    { "id": "rockwell-net",  "name": "Rockwell Recognized Network",            "issued": "2023-08-15", "credential_id": "RW-NET-2023-77192"    },
+    { "id": "iso-9001-net",  "name": "ISO 9001:2015 Network Quality Compliance","issued": "2024-11-30","credential_id": "ISO-9001-NET-2024-114"}
+  ],
+
+  "membership_prerequisites": [
+    "Approved professional or company on Automate America platform.",
+    "Average rating 4.5+ across 5+ completed contracts.",
+    "Active service in the Great Lakes region (or willing to travel within).",
+    "OSHA-10 minimum, OSHA-30 strongly preferred.",
+    "Reference from 1 existing member required for invitation."
+  ],
+
+  "member_testimonials": [
+    { "id": "tst-1", "from": "Maria Lopez",     "from_role": "Senior Controls Engineer", "from_avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=128&h=128&fit=crop&crop=face", "text": "Joined as a charter member. Group has been the single best source of high-rate referrals for me — 8 of my 34 contracts came through it. Annual meetup is worth the trip alone.", "date": "2026-03-04" },
+    { "id": "tst-2", "from": "Tony Rivera",     "from_role": "ABB Robot Programmer",     "from_avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=128&h=128&fit=crop&crop=face", "text": "Closed network of skilled controls engineers. Threads are technical and useful. Found my last 2 contracts through group referrals.", "date": "2025-11-18" },
+    { "id": "tst-3", "from": "Lisa Park",       "from_role": "Vision Systems Specialist","from_avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=128&h=128&fit=crop&crop=face", "text": "Best part is the mentor culture. Senior members actually respond to questions in the technical threads. Saved me at least 2 weeks of trial-and-error on my last vision retrofit.", "date": "2025-08-22" }
+  ],
+
+  "badges_earned": [
+    { "id": "bg-active-group-diamond","name": "Diamond Active Group",    "category": "Active Group",  "tier": "Diamond",  "earned_at": "2025-11-30", "criterion": "100+ posts/month for 12 months",          "asset": "../assets/badges/Bg-Active-Group-Diamond.png" },
+    { "id": "bg-established-platinum","name": "Platinum Established",    "category": "Established",   "tier": "Platinum", "earned_at": "2024-08-22", "criterion": "3+ years on platform with active member base","asset": "../assets/badges/Bg-Established-Platinum.png" },
+    { "id": "bg-contracts-gold",      "name": "Contract Gold",            "category": "Contracts",     "tier": "Gold",     "earned_at": "2025-04-12", "criterion": "150+ contracts routed through group",      "asset": "../assets/badges/Bg-Contracts-Gold.png" },
+    { "id": "bg-hours-gold",          "name": "Gold Hours",               "category": "Hours",         "tier": "Gold",     "earned_at": "2025-02-08", "criterion": "50K+ group member hours billed",            "asset": "../assets/badges/Bg-Hours-Gold.png" },
+    { "id": "bg-large-team-platinum", "name": "Platinum Network",         "category": "Network Size",  "tier": "Platinum", "earned_at": "2025-06-04", "criterion": "100+ active members",                       "asset": "../assets/badges/Bg-Large-Team-Platinum.png" }
+  ],
+
+  "secure_files": {
+    "$visibility": "owner_only",
+    "files": [
+      { "id": 6001, "name": "Group Charter (signed 2021)",                "type": "legal",     "status": "uploaded", "uploaded_at": "2021-08-22", "expires_at": null,         "size_kb": 412 },
+      { "id": 6002, "name": "Membership Agreement Template",               "type": "legal",     "status": "uploaded", "uploaded_at": "2021-08-22", "expires_at": null,         "size_kb": 198 },
+      { "id": 6003, "name": "Code of Conduct (2025 ed.)",                  "type": "policy",    "status": "uploaded", "uploaded_at": "2025-01-15", "expires_at": null,         "size_kb": 220 },
+      { "id": 6004, "name": "Group Insurance Rider — Members $1M GL pool", "type": "coi",       "status": "uploaded", "uploaded_at": "2026-02-14", "expires_at": "2027-02-14", "size_kb": 412 },
+      { "id": 6005, "name": "Annual Tax Filing (Form 990, 2024)",           "type": "tax",       "status": "uploaded", "uploaded_at": "2025-04-15", "expires_at": null,         "size_kb": 1240 }
+    ]
+  },
+
+  "private_info": {
+    "$visibility": "owner_only",
+    "fields": [
+      { "label": "Treasurer",       "value": "Chris Wallace · chris@acmerobotics.example · (313) 555-0142" },
+      { "label": "Secretary",       "value": "Maria Lopez · maria@acmerobotics.example · (313) 555-2841" },
+      { "label": "Bank account",    "value": "•••••••••• 7842 (Chase Business)" },
+      { "label": "Tax-exempt EIN",  "value": "•• •••• 4471" },
+      { "label": "Annual budget",   "value": "$48,400 (2026 — events, software, insurance)" }
+    ]
+  },
+
+  "admin_notes": {
+    "$visibility": "admin_only",
+    "trust_score": 95,
+    "kyc_passed_at": "2021-08-22",
+    "warnings": [],
+    "tier_override": null,
+    "free_text_admin_note": "Anchor regional network. 138 members active. High-quality discussion threads. AA Sales (S. Patel) gives this group white-glove placement preference."
+  },
+
+  "open_member_positions": {
+    "$visibility": "all",
+    "items": [
+      { "id": "omp-1", "title": "Cleveland regional moderator",         "kind": "leadership", "compensation": "Volunteer · meeting reimbursement" },
+      { "id": "omp-2", "title": "Discussion forum monthly editor",      "kind": "moderator",  "compensation": "$200/month stipend" },
+      { "id": "omp-3", "title": "Vision Systems Specialist (any city)", "kind": "skills_seat", "compensation": "Member rate" }
+    ]
+  }
+}

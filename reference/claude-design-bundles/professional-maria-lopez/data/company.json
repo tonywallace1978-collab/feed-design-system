@@ -1,0 +1,231 @@
+{
+  "$schema": "Automate America — Business / System Integrator Profile (max-data reference fixture, EXHAUSTIVE)",
+  "$source": "Composite fictional record. CSIA-certified system integrator.",
+  "$rendered_for": "Claude Design — Business Profile prototype, Acme Robotics",
+  "$version": "2.0 — exhaustive arrays",
+  "$last_updated": "2026-04-25",
+
+  "company_id": 1147,
+  "company_uuid": "01HZACME0004RBOTI0X1RACRO9",
+  "slug": "acme-robotics",
+  "approval_status": "Approved",
+  "is_enabled": 1,
+  "is_company_verified": 1,
+  "is_coi_on_file": 1,
+  "is_w9_on_file": 1,
+  "is_csia_certified": 1,
+  "created_at": "2018-04-12T09:00:00Z",
+  "last_active_at": "2026-04-25T07:55:00Z",
+  "tenure_years": 8,
+
+  "header": {
+    "name": "Acme Robotics",
+    "legal_name": "Acme Robotics LLC",
+    "tagline": "PLC, robotics, and vision integration for the Detroit-3 OEMs.",
+    "classification": "System Integrator · CSIA-certified",
+    "founded": 2014,
+    "year_joined_platform": 2018,
+    "size_label": "47 employees · 8 on platform",
+    "head_office_city": "Detroit",
+    "head_office_state": "MI"
+  },
+
+  "logo": {
+    "main_url": "../assets/logos/automate-america.png",
+    "main_url_TODO": "Replace with Acme Robotics' real licensed logo when available.",
+    "main_size_px": 144
+  },
+
+  "addresses": [
+    { "kind": "head_office", "city": "Detroit",     "state": "MI", "address": "1700 W Fort St, Detroit, MI 48216",         "phone": "(313) 555-0142" },
+    { "kind": "branch",      "city": "Spartanburg", "state": "SC", "address": "210 Industrial Blvd, Spartanburg, SC 29303","phone": "(864) 555-0177" },
+    { "kind": "branch",      "city": "Louisville",  "state": "KY", "address": "1450 Auto Park Rd, Louisville, KY 40213",   "phone": "(502) 555-0188" }
+  ],
+
+  "company_brief": {
+    "about": "Acme Robotics is a CSIA-certified system integrator delivering PLC, robotics, and vision solutions to Detroit-3 OEMs and Tier-1 suppliers. Founded 2014, 47 employees, 3 branches. Specialty: body-in-white retrofits and high-mix vision-guided assembly. We staff our team through the platform and bid as a company on white-glove contracts.",
+    "industries_served": ["Automotive Assembly", "Body-in-White", "Aerospace", "Heavy Manufacturing", "Battery / EV", "Food & Beverage"],
+    "service_radius_miles": 800,
+    "willing_to_travel_intl": false,
+    "facility_photos": [
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800",
+      "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800",
+      "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=800",
+      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800"
+    ]
+  },
+
+  "stats": {
+    "active_contracts": 12,
+    "completed_contracts": 218,
+    "lifetime_billings_usd": 18200000,
+    "avg_rating_received": 4.84,
+    "avg_rating_given": 4.91,
+    "rating_count_received": 187,
+    "active_team_size_on_platform": 8,
+    "open_positions": 4,
+    "rehire_rate_pct": 47,
+    "tenure_years": 8,
+    "profile_strength_pct": 94
+  },
+
+  "ctas_visitor": [
+    { "id": "request-quote", "label": "Request a quote",    "kind": "primary",   "icon": "doc" },
+    { "id": "follow",        "label": "Follow company",     "kind": "secondary", "icon": "bell" },
+    { "id": "message",       "label": "Message",            "kind": "secondary", "icon": "envelope" },
+    { "id": "view-jobs",     "label": "View open jobs (4)", "kind": "tertiary",  "icon": "list" }
+  ],
+  "ctas_owner": [
+    { "id": "post-rfq",      "label": "Post RFQ / contract", "kind": "primary",   "icon": "plus" },
+    { "id": "manage-team",   "label": "Manage team",         "kind": "secondary", "icon": "users" },
+    { "id": "boost-listing", "label": "Boost listing",       "kind": "boost",     "icon": "bolt" },
+    { "id": "edit-profile",  "label": "Edit profile",        "kind": "tertiary",  "icon": "pencil" }
+  ],
+
+  "rates": {
+    "hourly_default": 165.00,
+    "hourly_emergency": 215.00,
+    "fixed_bid_minimum_usd": 25000,
+    "white_glove_premium_pct": 30,
+    "currency": "USD",
+    "rate_negotiable": true
+  },
+
+  "team_members": [
+    { "user_id": 38291, "name": "Maria Lopez",    "role": "Senior Controls Engineer", "city": "Detroit, MI",      "rating": 4.96, "tenure_years_with_company": 8, "available": true,  "is_primary_contact": true,  "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face" },
+    { "user_id": 39102, "name": "Karen Mitchell", "role": "Electrical Engineer",      "city": "Spartanburg, SC",  "rating": 4.88, "tenure_years_with_company": 6, "available": false, "is_primary_contact": false, "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face" },
+    { "user_id": 40117, "name": "Tony Rivera",    "role": "ABB Robot Programmer",     "city": "Spartanburg, SC",  "rating": 4.91, "tenure_years_with_company": 5, "available": true,  "is_primary_contact": false, "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face" },
+    { "user_id": 41208, "name": "Sarah Bennett",  "role": "KUKA Robot Programmer",    "city": "Louisville, KY",   "rating": 4.85, "tenure_years_with_company": 3, "available": true,  "is_primary_contact": false, "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face" },
+    { "user_id": 41334, "name": "Derek Simmons",  "role": "PLC Programmer",           "city": "Detroit, MI",      "rating": 4.79, "tenure_years_with_company": 7, "available": false, "is_primary_contact": false, "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face" },
+    { "user_id": 41502, "name": "Lisa Park",      "role": "Vision Systems Specialist","city": "Detroit, MI",      "rating": 4.92, "tenure_years_with_company": 4, "available": false, "is_primary_contact": false, "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" },
+    { "user_id": 41709, "name": "Alicia Reyes",   "role": "HMI / SCADA Engineer",     "city": "Louisville, KY",   "rating": 4.81, "tenure_years_with_company": 2, "available": true,  "is_primary_contact": false, "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=face" },
+    { "user_id": 41822, "name": "Jake Morrison",  "role": "FANUC Robot Programmer",   "city": "Detroit, MI",      "rating": 4.87, "tenure_years_with_company": 6, "available": true,  "is_primary_contact": false, "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" }
+  ],
+
+  "services_offered": [
+    { "id": "svc-1", "name": "Robot Programming",     "rate": 165, "rate_unit": "hr", "icon": "robot",   "desc": "FANUC, ABB, KUKA, Yaskawa for welding, material handling, and assembly." },
+    { "id": "svc-2", "name": "PLC Programming",       "rate": 145, "rate_unit": "hr", "icon": "bolt",    "desc": "Allen-Bradley ControlLogix and Siemens TIA Portal. HMI, network config, safety." },
+    { "id": "svc-3", "name": "Vision Integration",    "rate": 175, "rate_unit": "hr", "icon": "eye",     "desc": "Cognex In-Sight and Keyence — calibration, robot guidance, OCR/OCV." },
+    { "id": "svc-4", "name": "Emergency Field Support","rate": 245, "rate_unit": "hr", "icon": "wrench",  "desc": "24/7 on-call within 4 hours in SE Michigan, 12 hours in SC and KY." },
+    { "id": "svc-5", "name": "White Glove Integration","rate": null,"rate_unit": "fixed-bid","icon": "diamond", "desc": "Anonymous, fixed-bid retrofits for OEMs that require non-disclosure. NDA-on-bid." }
+  ],
+
+  "skills_certified": [
+    { "id": "siemens",  "manufacturer": "Siemens",            "logo": "../assets/logos/siemens.png",            "models": "S7-1500, TIA Portal V18, WinCC, PROFINET, PROFIsafe", "team_size": 4, "years": 8, "primary": true },
+    { "id": "rockwell", "manufacturer": "Allen-Bradley / Rockwell", "logo": "../assets/logos/rockwell-automation.png", "models": "ControlLogix, CompactLogix, Studio 5000, FactoryTalk, GuardLogix", "team_size": 6, "years": 8, "primary": true },
+    { "id": "fanuc",    "manufacturer": "FANUC",              "logo": "../assets/logos/fanuc.png",              "models": "M-710iC, R-30iB Plus, R-30iD, KAREL, iRVision, DCS Safety", "team_size": 5, "years": 8, "primary": true },
+    { "id": "abb",      "manufacturer": "ABB",                "logo": "../assets/logos/abb.png",                "models": "IRB 6700, IRC5, RobotStudio, RAPID, SafeMove",       "team_size": 3, "years": 7, "primary": false },
+    { "id": "cognex",   "manufacturer": "Cognex",             "logo": "../assets/logos/cognex.png",             "models": "In-Sight 7000/8000, VisionPro, DataMan",              "team_size": 2, "years": 6, "primary": false }
+  ],
+
+  "work_history_by_team": [
+    { "id": "wh-1",  "title": "Body Shop Retrofit — FANUC Cell 14",       "customer": "BMW Manufacturing",   "customer_logo": "../assets/logos/bmw.png",            "city": "Spartanburg, SC",     "value_usd": 412000, "duration_weeks": 6,  "rating": 5, "completed_at": "2026-02-15", "ongoing": false, "white_glove": false },
+    { "id": "wh-2",  "title": "Sterling Heights Paint PLC Migration",      "customer": "Stellantis",          "customer_logo": "../assets/logos/stellantis.png",     "city": "Sterling Heights, MI","value_usd": 580000, "duration_weeks": 8,  "rating": 5, "completed_at": "2025-11-04", "ongoing": false, "white_glove": false },
+    { "id": "wh-3",  "title": "Lake Orion AB CompactLogix Migration",      "customer": "General Motors",      "customer_logo": "../assets/logos/general-motors.png", "city": "Lake Orion, MI",      "value_usd": 312000, "duration_weeks": 6,  "rating": 5, "completed_at": "2025-08-22", "ongoing": false, "white_glove": false },
+    { "id": "wh-4",  "title": "[White Glove Contract]",                    "customer": "[Anonymous]",          "customer_logo": null,                                  "city": "[Anonymous]",         "value_usd": null,   "duration_weeks": 12, "rating": 5, "completed_at": "2025-05-30", "ongoing": false, "white_glove": true  },
+    { "id": "wh-5",  "title": "Cedar Rapids Mill Modernization",           "customer": "ADM",                 "customer_logo": null,                                  "city": "Cedar Rapids, IA",    "value_usd": 312000, "duration_weeks": 14, "rating": 5, "completed_at": "2025-03-15", "ongoing": false, "white_glove": false },
+    { "id": "wh-6",  "title": "Robot Palletizer Commissioning",            "customer": "Ford Rouge Complex",  "customer_logo": "../assets/logos/ford-motor-company.png","city": "Dearborn, MI",      "value_usd": 178000, "duration_weeks": 4,  "rating": 0, "completed_at": null,         "ongoing": true,  "white_glove": false },
+    { "id": "wh-7",  "title": "Body Shop Cell 7 — FANUC + AB",             "customer": "Honda Manufacturing", "customer_logo": "../assets/logos/honda.png",          "city": "Marysville, OH",      "value_usd": 244000, "duration_weeks": 5,  "rating": 5, "completed_at": "2024-09-30", "ongoing": false, "white_glove": false },
+    { "id": "wh-8",  "title": "[White Glove Contract]",                    "customer": "[Anonymous]",          "customer_logo": null,                                  "city": "[Anonymous]",         "value_usd": null,   "duration_weeks": 6,  "rating": 5, "completed_at": "2024-07-18", "ongoing": false, "white_glove": true  },
+    { "id": "wh-9",  "title": "Paint Robot Line PLC Migration",            "customer": "Toyota Manufacturing","customer_logo": "../assets/logos/toyota.png",          "city": "Georgetown, KY",      "value_usd": 392000, "duration_weeks": 8,  "rating": 5, "completed_at": "2024-05-22", "ongoing": false, "white_glove": false },
+    { "id": "wh-10", "title": "Emergency Line Support",                    "customer": "Ford Rouge Complex",  "customer_logo": "../assets/logos/ford-motor-company.png","city": "Dearborn, MI",      "value_usd": 28000,  "duration_weeks": 1,  "rating": 5, "completed_at": "2024-04-08", "ongoing": false, "white_glove": false },
+    { "id": "wh-11", "title": "Cognex Vision Calibration — Bottling",      "customer": "Anheuser-Busch",      "customer_logo": null,                                  "city": "St. Louis, MO",       "value_usd": 76000,  "duration_weeks": 2,  "rating": 4, "completed_at": "2024-02-26", "ongoing": false, "white_glove": false },
+    { "id": "wh-12", "title": "Body Shop Functional Safety SIL-2",         "customer": "BMW Manufacturing",   "customer_logo": "../assets/logos/bmw.png",            "city": "Spartanburg, SC",     "value_usd": 268000, "duration_weeks": 6,  "rating": 5, "completed_at": "2024-01-08", "ongoing": false, "white_glove": false },
+    { "id": "wh-13", "title": "[White Glove Contract]",                    "customer": "[Anonymous]",          "customer_logo": null,                                  "city": "[Anonymous]",         "value_usd": null,   "duration_weeks": 4,  "rating": 5, "completed_at": "2023-11-22", "ongoing": false, "white_glove": true  },
+    { "id": "wh-14", "title": "Paint Cell Robot Path Optimization",         "customer": "Stellantis",          "customer_logo": "../assets/logos/stellantis.png",     "city": "Sterling Heights, MI","value_usd": 148000, "duration_weeks": 3,  "rating": 5, "completed_at": "2023-10-04", "ongoing": false, "white_glove": false },
+    { "id": "wh-15", "title": "Assembly Line 7 PLC Migration",              "customer": "General Motors",      "customer_logo": "../assets/logos/general-motors.png", "city": "Lake Orion, MI",      "value_usd": 312000, "duration_weeks": 7,  "rating": 5, "completed_at": "2023-08-15", "ongoing": false, "white_glove": false },
+    { "id": "wh-16", "title": "Vision System Retrofit — Palletizer",       "customer": "PepsiCo",             "customer_logo": null,                                  "city": "Plano, TX",           "value_usd": 198000, "duration_weeks": 4,  "rating": 5, "completed_at": "2023-06-29", "ongoing": false, "white_glove": false },
+    { "id": "wh-17", "title": "FANUC R-2000 Commissioning",                "customer": "Honda Manufacturing", "customer_logo": "../assets/logos/honda.png",          "city": "Anna, OH",            "value_usd": 244000, "duration_weeks": 5,  "rating": 5, "completed_at": "2023-05-11", "ongoing": false, "white_glove": false },
+    { "id": "wh-18", "title": "Allen-Bradley HMI Redesign — Final Asy.",   "customer": "Ford Rouge Complex",  "customer_logo": "../assets/logos/ford-motor-company.png","city": "Dearborn, MI",      "value_usd": 178000, "duration_weeks": 4,  "rating": 5, "completed_at": "2023-03-22", "ongoing": false, "white_glove": false }
+  ],
+
+  "work_history_for_team": [
+    { "id": "fh-1", "title": "Emergency Welding Support",   "vendor": "R&E Automated", "vendor_id": null, "rate": 220, "value_usd": 8800,  "duration_weeks": 1, "rating_given": 5, "completed_at": "2026-01-22", "white_glove": false },
+    { "id": "fh-2", "title": "Cognex Vision Calibration",   "vendor": "Lisa Park (independent)", "vendor_id": 41502, "rate": 175, "value_usd": 14000, "duration_weeks": 2, "rating_given": 5, "completed_at": "2025-11-08", "white_glove": false },
+    { "id": "fh-3", "title": "Vendor Audit Services",       "vendor": "Vinson Industrial",       "vendor_id": null,  "rate": null,"value_usd": 22000, "duration_weeks": 3, "rating_given": 4, "completed_at": "2025-04-30", "white_glove": false }
+  ],
+
+  "open_positions": [
+    { "id": 28140, "title": "PLC Programmer · Robotic palletizer commissioning", "type": "Hourly · 4 wk",    "rate": 148.50, "applicants": 12, "city": "Dearborn, MI",   "white_glove": false },
+    { "id": 28145, "title": "Senior Controls Engineer — Spartanburg",            "type": "Direct W-2",       "rate": null,    "applicants": 18, "city": "Spartanburg, SC","white_glove": false, "salary_band": "165k–195k" },
+    { "id": 28150, "title": "Vision Integration Specialist",                    "type": "Hourly · 6 wk",    "rate": 175,     "applicants": 9,  "city": "Detroit, MI",    "white_glove": true  },
+    { "id": 28155, "title": "Field Service Tech — KY region",                   "type": "Direct W-2",       "rate": null,    "applicants": 31, "city": "Louisville, KY", "white_glove": false, "salary_band": "82k–98k" }
+  ],
+
+  "customer_reviews": [
+    { "id": "cr-1",  "rating": 5, "customer": "BMW Manufacturing",     "customer_logo": "../assets/logos/bmw.png",            "reviewer": "K. Schmidt",   "role": "Plant Engineering Manager",     "date": "2026-02-18", "text": "Acme delivered Cell 14 on schedule, no rework. Maria's team is the gold standard." },
+    { "id": "cr-2",  "rating": 5, "customer": "Stellantis",             "customer_logo": "../assets/logos/stellantis.png",     "reviewer": "M. Rivera",    "role": "PM Sterling Heights",          "date": "2025-11-04", "text": "Best PLC migration we've contracted in 5 years." },
+    { "id": "cr-3",  "rating": 5, "customer": "General Motors",         "customer_logo": "../assets/logos/general-motors.png", "reviewer": "T. Park",      "role": "Controls Lead Lake Orion",     "date": "2025-08-22", "text": "Migrated the line on a Sunday. We ran first shift Monday at full rate." },
+    { "id": "cr-4",  "rating": 4, "customer": "ADM",                    "customer_logo": null,                                  "reviewer": "J. Reyes",     "role": "PM Cedar Rapids",              "date": "2025-03-15", "text": "Strong technical depth. Communication on schedule changes was good. Would hire again." },
+    { "id": "cr-5",  "rating": 5, "customer": "Ford Rouge Complex",     "customer_logo": "../assets/logos/ford-motor-company.png","reviewer": "R. Chen",   "role": "Plant Engineering Manager",     "date": "2025-08-19", "text": "Acme gives us our deepest controls bench. We've contracted 8 engagements with them." },
+    { "id": "cr-6",  "rating": 5, "customer": "Honda Manufacturing",    "customer_logo": "../assets/logos/honda.png",          "reviewer": "Y. Tanaka",    "role": "Body Shop Manager",            "date": "2024-09-30", "text": "Cell 7 commissioned in 5 weeks flat. Acme's documentation set the bar." },
+    { "id": "cr-7",  "rating": 5, "customer": "Toyota Manufacturing",   "customer_logo": "../assets/logos/toyota.png",         "reviewer": "M. Yamamoto",  "role": "Senior Controls Engineer",     "date": "2024-05-22", "text": "AB-to-Siemens migration on a paint robot line. Live cutover, no surprises." },
+    { "id": "cr-8",  "rating": 4, "customer": "Anheuser-Busch",          "customer_logo": null,                                  "reviewer": "L. Park",      "role": "Maintenance Lead",             "date": "2024-02-26", "text": "Cognex calibration was thorough. Parts ordering miscommunication cost us a day." },
+    { "id": "cr-9",  "rating": 5, "customer": "BMW Manufacturing",      "customer_logo": "../assets/logos/bmw.png",            "reviewer": "P. Müller",    "role": "Functional Safety Engineer",   "date": "2024-01-08", "text": "TÜV-grade work. Validation report was airtight." },
+    { "id": "cr-10", "rating": 5, "customer": "PepsiCo",                "customer_logo": null,                                  "reviewer": "B. Hayes",     "role": "Engineering Manager",          "date": "2023-06-29", "text": "Vision retrofit on a 30-year-old line. Acme made the old equipment behave." },
+    { "id": "cr-11", "rating": 4, "customer": "Stellantis",             "customer_logo": "../assets/logos/stellantis.png",     "reviewer": "G. Hill",      "role": "Plant Manager Toledo",         "date": "2022-10-25", "text": "Solid migration on a complex oven. Three minor production stops first week, all handled fast." },
+    { "id": "cr-12", "rating": 5, "customer": "Whirlpool",              "customer_logo": null,                                  "reviewer": "C. Vasquez",   "role": "Plant Engineer",                "date": "2022-07-22", "text": "Found the cycle-time bug in 4 hours. Best contract hire we've had in 3 years." }
+  ],
+
+  "certifications": [
+    { "id": "csia",        "name": "CSIA Certified Member",                 "issuer": "Control System Integrators Association", "issued": "2019-04-22", "expires": "2027-04-22", "credential_id": "CSIA-2019-44182" },
+    { "id": "rockwell",    "name": "Rockwell Recognized System Integrator", "issuer": "Rockwell Automation",                     "issued": "2020-08-15", "expires": null,         "credential_id": "RW-RSI-2020-9981" },
+    { "id": "fanuc",       "name": "FANUC Authorized System Integrator",    "issuer": "FANUC America",                            "issued": "2021-02-09", "expires": null,         "credential_id": "FANUC-ASI-2021-3327" },
+    { "id": "iso-9001",    "name": "ISO 9001:2015 Quality Management",      "issuer": "ISO",                                      "issued": "2022-11-30", "expires": "2025-11-30", "credential_id": "ISO-9001-2022-110872", "renewal_due_soon": true },
+    { "id": "siemens-asi", "name": "Siemens Authorized System Integrator",  "issuer": "Siemens",                                  "issued": "2023-03-15", "expires": null,         "credential_id": "SIE-ASI-2023-77192" }
+  ],
+
+  "secure_files": {
+    "$visibility": "owner_only",
+    "files": [
+      { "id": 8001, "name": "Certificate of Insurance — $5M GL + $2M Workers Comp", "type": "coi",     "status": "uploaded", "uploaded_at": "2026-02-14", "expires_at": "2027-02-14", "size_kb": 412 },
+      { "id": 8002, "name": "W-9 (Acme Robotics LLC)",                              "type": "tax",     "status": "uploaded", "uploaded_at": "2026-01-08", "expires_at": "2026-12-31", "size_kb": 184 },
+      { "id": 8003, "name": "OSHA-30 Group Training Roster",                        "type": "cert",    "status": "uploaded", "uploaded_at": "2025-09-02", "expires_at": "2030-09-02", "size_kb": 226 },
+      { "id": 8004, "name": "Master Service Agreement (template)",                  "type": "legal",   "status": "uploaded", "uploaded_at": "2024-04-08", "expires_at": null,         "size_kb": 412 },
+      { "id": 8005, "name": "Employee Handbook (2026 ed.)",                         "type": "policy",  "status": "uploaded", "uploaded_at": "2026-01-15", "expires_at": null,         "size_kb": 880 },
+      { "id": 8006, "name": "CSIA Certified Member documents",                      "type": "cert",    "status": "uploaded", "uploaded_at": "2025-05-04", "expires_at": "2027-04-22", "size_kb": 224 },
+      { "id": 8007, "name": "Cybersecurity Compliance Statement (NIST 800-171)",     "type": "compliance","status": "uploaded","uploaded_at": "2025-12-01", "expires_at": "2026-12-01", "size_kb": 612 }
+    ]
+  },
+
+  "badges_earned": [
+    { "id": "company-top-employer-diamond", "name": "Top 1% Employer",   "category": "Top Employer",  "tier": "Diamond",  "earned_at": "2025-08-30", "criterion": "Top 1% by avg rating from contractors", "asset": "../assets/badges/Company-Top-Employer-Diamond.png" },
+    { "id": "company-hired-platinum",       "name": "Platinum Hirer",    "category": "Hires",         "tier": "Platinum", "earned_at": "2024-09-12", "criterion": "200+ contractors hired",                  "asset": "../assets/badges/Company-Hired-Platinum.png" },
+    { "id": "company-spend-diamond",        "name": "Diamond Spender",   "category": "Spend",         "tier": "Diamond",  "earned_at": "2024-12-30", "criterion": "$15M+ lifetime platform spend",           "asset": "../assets/badges/Company-Spend-Diamond.png" },
+    { "id": "company-tenure-platinum",      "name": "Platinum Tenure",   "category": "Tenure",        "tier": "Platinum", "earned_at": "2023-04-12", "criterion": "5+ years on platform",                    "asset": "../assets/badges/Company-Tenure-Platinum.png" },
+    { "id": "company-active-hirer-gold",    "name": "Active Hirer",      "category": "Active",        "tier": "Gold",     "earned_at": "2025-01-04", "criterion": "12+ contracts posted in 12 months",        "asset": "../assets/badges/Company-Active-Hirer-Gold.png" },
+    { "id": "company-applicants-gold",      "name": "Applicant Magnet",  "category": "Applicants",    "tier": "Gold",     "earned_at": "2025-03-22", "criterion": "1000+ applicants attracted in 12 months",  "asset": "../assets/badges/Company-Applicants-Gold.png" },
+    { "id": "company-verified-buyer",       "name": "Verified Buyer",    "category": "Verification",  "tier": "Diamond",  "earned_at": "2018-04-12", "criterion": "Full KYC + COI + tax + AP verified",       "asset": "../assets/badges/Company-Verified-Buyer-Diamond.png" },
+    { "id": "sp-contracts-diamond",         "name": "Diamond Performer", "category": "Service Provider — Contracts", "tier": "Diamond", "earned_at": "2024-11-08", "criterion": "200+ completed contracts as company", "asset": "../assets/badges/Sp-Contracts-Diamond.png" },
+    { "id": "sp-rating-diamond",            "name": "Diamond Rated",     "category": "Service Provider — Rating",    "tier": "Diamond", "earned_at": "2025-02-12", "criterion": "4.85+ avg rating across 100+ reviews", "asset": "../assets/badges/Sp-Rating-Diamond.png" },
+    { "id": "sp-team-gold",                 "name": "Team Strong",       "category": "Service Provider — Team",      "tier": "Gold",    "earned_at": "2024-06-20", "criterion": "8+ active team members on platform",   "asset": "../assets/badges/Sp-Team-Gold.png" },
+    { "id": "sp-tenure-platinum",           "name": "Platinum Tenure",   "category": "Service Provider — Tenure",    "tier": "Platinum","earned_at": "2023-04-12", "criterion": "5+ years active as service provider", "asset": "../assets/badges/Sp-Tenure-Platinum.png" },
+    { "id": "sp-earnings-platinum",         "name": "Platinum Earnings", "category": "Service Provider — Earnings",  "tier": "Platinum","earned_at": "2024-12-30", "criterion": "$15M+ company billings",               "asset": "../assets/badges/Sp-Earnings-Platinum.png" }
+  ],
+
+  "key_contacts": [
+    { "id": "kc-1", "name": "Chris Wallace",  "role": "Owner / Lead Engineer",      "email": "chris@acmerobotics.example", "phone": "(313) 555-0142", "primary": true,  "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" },
+    { "id": "kc-2", "name": "Maria Lopez",    "role": "Senior Controls Engineer",   "email": "maria@acmerobotics.example", "phone": "(313) 555-2841", "primary": false, "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face" },
+    { "id": "kc-3", "name": "Ray Thompson",   "role": "Spartanburg Regional Manager","email": "ray@acmerobotics.example",   "phone": "(864) 555-0177", "primary": false, "avatar": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face" },
+    { "id": "kc-4", "name": "Dan Kowalski",   "role": "Louisville Operations Lead",  "email": "dan@acmerobotics.example",    "phone": "(502) 555-0188", "primary": false, "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" },
+    { "id": "kc-5", "name": "AP / Billing",   "role": "Accounts Payable",            "email": "ap@acmerobotics.example",     "phone": "(313) 555-0143", "primary": false, "avatar": null }
+  ],
+
+  "media": [
+    { "kind": "image", "url": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200", "caption": "Body-in-white retrofit — BMW Spartanburg" },
+    { "kind": "image", "url": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200", "caption": "FANUC R-30iB cell commissioning" },
+    { "kind": "image", "url": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=1200", "caption": "Cognex vision integration" },
+    { "kind": "image", "url": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200", "caption": "Detroit shop floor" },
+    { "kind": "video", "url": "https://www.youtube.com/watch?v=PLACEHOLDER_ACME",                    "caption": "Cell 14 walkthrough (3 min)" }
+  ],
+
+  "admin_notes": {
+    "$visibility": "admin_only",
+    "trust_score": 96,
+    "kyc_passed_at": "2018-04-12",
+    "csia_verified_at": "2019-04-22",
+    "tier_override": null,
+    "warnings": [],
+    "free_text_admin_note": "Anchor system-integrator account. 218 completed contracts · 187 reviews · 4.84 avg rating. Eligible for white-glove placement preference."
+  }
+}

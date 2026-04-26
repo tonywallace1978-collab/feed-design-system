@@ -1,0 +1,105 @@
+{
+  "$schema": "Automate America — Customer Dashboard (signed-in customer home)",
+  "$source": "Composite fictional record. The dashboard a logged-in hiring manager sees as their home page.",
+  "$rendered_for": "Claude Design — Customer Dashboard prototype, Rebecca Chen at Ford Rouge",
+  "$version": "1.0",
+  "$last_updated": "2026-04-25",
+
+  "viewer": {
+    "user_id": 14072,
+    "display_name": "Rebecca Chen",
+    "first_name": "Rebecca",
+    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face",
+    "role_label": "Plant Engineering Manager · Ford Rouge",
+    "company_logo": "../assets/logos/ford-motor-company.png",
+    "current_time_local": "08:42 EST",
+    "greeting": "Good morning, Rebecca"
+  },
+
+  "kpi_strip": [
+    { "id": "kpi-1", "label": "Active contracts",      "value": "47",        "trend": "+5 (30d)", "icon": "briefcase","color": "primary" },
+    { "id": "kpi-2", "label": "Spend (YTD 2026)",      "value": "$1.84M",     "trend": "+18%",     "icon": "dollar",   "color": "success" },
+    { "id": "kpi-3", "label": "Avg fill time",         "value": "3.2 days",   "trend": "-0.7 d",   "icon": "clock",    "color": "info"    },
+    { "id": "kpi-4", "label": "Applicants this week",  "value": "184",        "trend": "+22",      "icon": "users",    "color": "warning" },
+    { "id": "kpi-5", "label": "Rehire rate",           "value": "41%",        "trend": "+3 pt",    "icon": "repeat",   "color": "success" }
+  ],
+
+  "open_contracts_table": {
+    "summary": { "live": 5, "draft": 2, "closed_30d": 12, "filled_30d": 8 },
+    "rows": [
+      { "id": 28140, "title": "PLC programmer · Robotic palletizer commissioning", "type": "Hourly · 4 wk", "rate": 148.50, "applicants": 12, "shortlisted": 3, "interview_scheduled": 1, "posted_at": "2026-04-21", "closes_at": "2026-04-28", "status": "Live",  "white_glove": false },
+      { "id": 28139, "title": "Body Shop FANUC retrofit — Cell 14",                "type": "Hourly · 6 wk", "rate": 165.00, "applicants": 18, "shortlisted": 4, "interview_scheduled": 0, "posted_at": "2026-04-19", "closes_at": "2026-05-03", "status": "Live",  "white_glove": true  },
+      { "id": 28138, "title": "Paint Shop HMI migration — WinCC to FactoryTalk",   "type": "Hourly · 8 wk", "rate": 155.00, "applicants": 9,  "shortlisted": 2, "interview_scheduled": 0, "posted_at": "2026-04-15", "closes_at": "2026-05-12", "status": "Live",  "white_glove": false },
+      { "id": 28136, "title": "Senior Controls Engineer — Final Assembly",         "type": "Direct W-2",    "rate": null,    "applicants": 24, "shortlisted": 6, "interview_scheduled": 2, "posted_at": "2026-04-12", "closes_at": "2026-05-15", "status": "Live",  "white_glove": false, "salary_band": "180k–235k" },
+      { "id": 28132, "title": "Maintenance Tech — 2nd shift",                      "type": "Direct W-2",    "rate": null,    "applicants": 41, "shortlisted": 9, "interview_scheduled": 4, "posted_at": "2026-04-08", "closes_at": "2026-05-08", "status": "Live",  "white_glove": false, "salary_band": "78k–95k"   }
+    ]
+  },
+
+  "applicants_today": [
+    { "id": "app-1", "applicant_name": "Maria Lopez",     "applicant_id": 38291, "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face", "contract_id": 28140, "contract_title": "PLC programmer · Palletizer", "rating": 4.96, "rate_offered": 148.50, "match_score": 97, "applied_at": "2026-04-25T07:42:00Z", "status": "New", "white_glove": false },
+    { "id": "app-2", "applicant_name": "Tony Rivera",     "applicant_id": 40117, "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face", "contract_id": 28139, "contract_title": "Body Shop FANUC retrofit",   "rating": 4.91, "rate_offered": 158.00, "match_score": 92, "applied_at": "2026-04-25T06:55:00Z", "status": "New", "white_glove": true  },
+    { "id": "app-3", "applicant_name": "Sarah Bennett",   "applicant_id": 41208, "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face", "contract_id": 28140, "contract_title": "PLC programmer · Palletizer", "rating": 4.85, "rate_offered": 145.00, "match_score": 89, "applied_at": "2026-04-25T05:18:00Z", "status": "New", "white_glove": false }
+  ],
+
+  "spending_trend_quarterly": {
+    "currency": "USD",
+    "quarters": [
+      { "label": "Q3 2025", "amount": 1042000 },
+      { "label": "Q4 2025", "amount": 1188000 },
+      { "label": "Q1 2026", "amount": 1240000 },
+      { "label": "Q2 2026 (to date)", "amount": 600000 }
+    ],
+    "by_trade_q1_2026": [
+      { "trade": "Controls Engineer",      "amount": 412000, "pct": 33 },
+      { "trade": "Robot Programmer",       "amount": 354000, "pct": 28 },
+      { "trade": "PLC Programmer",         "amount": 215000, "pct": 17 },
+      { "trade": "Maintenance Technician", "amount": 165000, "pct": 13 },
+      { "trade": "Other",                  "amount": 94000,  "pct": 9  }
+    ]
+  },
+
+  "interviews_this_week": [
+    { "id": "int-1", "day": "Mon", "date": "2026-04-27", "title": "Maintenance Tech (2nd shift) — 1st round",      "candidate": "P. Olivera",   "candidate_avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=128&h=128&fit=crop&crop=face", "start": "10:00", "end": "10:45", "kind": "phone-screen" },
+    { "id": "int-2", "day": "Tue", "date": "2026-04-28", "title": "PLC Programmer Palletizer — final round",       "candidate": "M. Lopez",     "candidate_avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=128&h=128&fit=crop&crop=face", "start": "15:00", "end": "15:45", "kind": "video" },
+    { "id": "int-3", "day": "Wed", "date": "2026-04-29", "title": "Senior Controls — Final Assembly · 2nd round",  "candidate": "K. Mitchell",  "candidate_avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=128&h=128&fit=crop&crop=face", "start": "11:00", "end": "12:00", "kind": "onsite" },
+    { "id": "int-4", "day": "Thu", "date": "2026-04-30", "title": "Body Shop retrofit — 1st round",                "candidate": "T. Rivera",    "candidate_avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=128&h=128&fit=crop&crop=face", "start": "09:30", "end": "10:00", "kind": "phone-screen" }
+  ],
+
+  "messages_preview": [
+    { "id": "msg-1", "from": "Maria Lopez",    "from_avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=128&h=128&fit=crop&crop=face", "preview": "Confirmed Tuesday 3 PM. Reviewing your scope doc tonight.",   "time": "07:48", "unread": true },
+    { "id": "msg-2", "from": "Acme Robotics",  "from_avatar": "../assets/logos/automate-america.png",                                                          "preview": "Quote attached for Cell 14. Open to either fixed-bid or T&M.", "time": "Yesterday", "unread": true },
+    { "id": "msg-3", "from": "AA Sales (Sam Patel)", "from_avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=face", "preview": "Q2 spend pacing summary attached. White-glove pool report inside.", "time": "Yesterday", "unread": false }
+  ],
+
+  "shortlist_carousel": [
+    { "user_id": 38291, "name": "Maria Lopez",     "occupation": "Senior Controls Engineer",     "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face", "rating": 4.96, "rate": 148.50, "tagged_to": "Palletizer",      "available": true,  "match": 97 },
+    { "user_id": 40117, "name": "Tony Rivera",     "occupation": "ABB Robot Programmer",          "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face", "rating": 4.91, "rate": 158.00, "tagged_to": "Body Shop retrofit","available": true, "match": 92 },
+    { "user_id": 41208, "name": "Sarah Bennett",   "occupation": "KUKA Robot Programmer",        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face", "rating": 4.85, "rate": 145.00, "tagged_to": "Palletizer",      "available": true,  "match": 89 },
+    { "user_id": 39102, "name": "Karen Mitchell",  "occupation": "Electrical Engineer",          "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face", "rating": 4.88, "rate": 152.00, "tagged_to": "Final Assembly",  "available": false, "match": 90 }
+  ],
+
+  "compliance_status": {
+    "coi_status": "current",
+    "coi_expires": "2027-02-14",
+    "w9_status": "current",
+    "msa_signed_with_aa": true,
+    "ach_authorized": true,
+    "warnings": []
+  },
+
+  "quick_actions": [
+    { "id": "qa-post-contract",   "label": "Post a contract",     "icon": "plus",      "kind": "primary" },
+    { "id": "qa-view-applicants", "label": "Review applicants",   "icon": "users",     "kind": "secondary" },
+    { "id": "qa-message",         "label": "Open messages",       "icon": "envelope",  "kind": "secondary" },
+    { "id": "qa-watchlist",       "label": "Manage watchlist",    "icon": "eye",       "kind": "secondary" },
+    { "id": "qa-boost",           "label": "Boost a contract",    "icon": "bolt",      "kind": "boost"     },
+    { "id": "qa-reports",         "label": "Spending reports",    "icon": "chart",     "kind": "tertiary"  }
+  ],
+
+  "notifications": [
+    { "id": "n-1", "kind": "applicant",  "title": "12 new applicants on Palletizer contract since last login",       "time": "1 hr ago",  "read": false },
+    { "id": "n-2", "kind": "interview",  "title": "Interview Tuesday 3 PM with Maria Lopez",                            "time": "2 hr ago",  "read": false },
+    { "id": "n-3", "kind": "milestone",  "title": "Cell 14 retrofit hit 50% milestone — partial invoice approved",      "time": "Yesterday", "read": true  },
+    { "id": "n-4", "kind": "system",     "title": "Q1 2026 spending report ready",                                       "time": "2 days ago","read": true  }
+  ]
+}

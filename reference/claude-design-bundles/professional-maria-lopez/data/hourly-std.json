@@ -1,0 +1,153 @@
+{
+  "$schema": "Automate America — Hourly Contract · STANDARD tier (max-data reference fixture)",
+  "$source": "Composite fictional record. Standard hourly contract from a system integrator.",
+  "$rendered_for": "Claude Design — Hourly Contract Standard prototype",
+  "$version": "1.0",
+  "$last_updated": "2026-04-25",
+  "$tier_explanation": "Standard = customer + scope visible to all browsers. No NDA required at application. No premium concierge. Default tier per CEO P634D.",
+
+  "contract_id": 28140,
+  "contract_uuid": "01HZX9P4M2K7HOURLY28140STD",
+  "type": "hourly",
+  "tier": "Standard",
+  "white_glove": false,
+  "anonymous_until_shortlist": false,
+  "status": "Live",
+  "posted_at": "2026-04-21T09:00:00Z",
+  "closes_at": "2026-04-28T17:00:00-04:00",
+  "applicants_must_sign_nda": false,
+  "boosted": false,
+
+  "header": {
+    "title": "PLC programmer · Robotic palletizer commissioning",
+    "company_name": "Acme Robotics",
+    "company_id": 1147,
+    "company_logo": "../assets/logos/automate-america.png",
+    "industry": "System Integration",
+    "end_customer_label": "Tier-1 customer (visible post-shortlist)",
+    "city": "Dearborn",
+    "state": "MI",
+    "country": "United States",
+    "remote_eligible": false,
+    "remote_label": "Onsite",
+    "duration_label": "4-week onsite engagement",
+    "headline_rate": "$148.50 / hr · 4-hour minimum invoice"
+  },
+
+  "ctas_visitor": [
+    { "id": "apply",          "label": "Apply",             "kind": "primary",   "icon": "paper-plane" },
+    { "id": "save",            "label": "Save",              "kind": "secondary", "icon": "bookmark" },
+    { "id": "share",           "label": "Share",             "kind": "secondary", "icon": "share" },
+    { "id": "ask-question",    "label": "Ask a question",     "kind": "tertiary",  "icon": "envelope" }
+  ],
+
+  "compensation": {
+    "rate_default_usd": 148.50,
+    "rate_unit": "hour",
+    "rate_emergency_usd": null,
+    "rate_minimum_invoice_hours": 4,
+    "white_glove_premium_pct": 0,
+    "rate_disclosed": true,
+    "currency": "USD",
+    "expense_reimbursement": ["Per diem $75/d if onsite >7d"],
+    "billing_cycle": "weekly",
+    "payment_terms": "Net 14 via AA platform",
+    "invoice_template": "AA-standard hourly W-9 with timesheet attestation"
+  },
+
+  "scope_summary": [
+    "Commission new robotic palletizer cell at Tier-1 customer's Dearborn plant.",
+    "Allen-Bradley ControlLogix integration with 6-axis FANUC arm.",
+    "Tune robot path + safety logic to plant SOP standards.",
+    "Validate cycle time and pallet-stack accuracy per acceptance test.",
+    "Hand off to plant controls team with full documentation."
+  ],
+
+  "deliverables": [
+    "Final Studio 5000 program with line-by-line comments.",
+    "FANUC TPP backups + Roboguide simulation.",
+    "Acceptance test report (cycle-time, accuracy, safety).",
+    "Sign-off from plant controls + maintenance leads.",
+    "2-hour knowledge-transfer session with the plant team."
+  ],
+
+  "requirements_must_have": [
+    "3+ years Allen-Bradley ControlLogix programming.",
+    "FANUC robot programming (any controller from R-30iA onward).",
+    "OSHA-10 minimum (or willingness to obtain in 30 days).",
+    "Available continuous 4 weeks during May 2026."
+  ],
+
+  "requirements_nice_to_have": [
+    "FANUC iRVision experience.",
+    "Bilingual (English + Spanish) — plant crew benefit.",
+    "Prior palletizing-cell commissioning (industrial, food-and-bev, or auto)."
+  ],
+
+  "interview_process": [
+    { "step": 1, "name": "Application review",      "duration": "1–2 days", "owner": "Acme Robotics Project Manager" },
+    { "step": 2, "name": "Phone screen",             "duration": "30 min",    "owner": "Project Manager" },
+    { "step": 3, "name": "Hiring manager interview", "duration": "45 min",    "owner": "Lead Controls Engineer" },
+    { "step": 4, "name": "Reference + offer",        "duration": "2–3 days",  "owner": "Acme PM" }
+  ],
+
+  "company_brief": {
+    "$visibility": "all",
+    "logo": "../assets/logos/automate-america.png",
+    "logo_TODO": "Replace with Acme Robotics' real licensed logo",
+    "name": "Acme Robotics",
+    "classification": "System Integrator · CSIA-certified",
+    "city": "Detroit, MI",
+    "tagline": "PLC, robotics, and vision integration for the Detroit-3 OEMs.",
+    "rating": 4.84,
+    "review_count": 187
+  },
+
+  "end_customer_brief_post_shortlist": {
+    "$visibility": "post_shortlist",
+    "logo": "../assets/logos/ford-motor-company.png",
+    "name": "Ford Rouge Complex",
+    "city": "Dearborn, MI",
+    "industry": "Automotive Assembly · F-150",
+    "size_label": "7,400+ at the Rouge",
+    "tagline": "The historic and active manufacturing flagship of Ford Motor Company."
+  },
+
+  "stats": {
+    "applicants": 12,
+    "shortlisted": 3,
+    "interview_scheduled": 1,
+    "views_total": 248,
+    "saves_total": 22,
+    "boosted": false,
+    "match_score_for_viewer": 97
+  },
+
+  "compliance_required": [
+    { "label": "OSHA-10 minimum",                  "verified_at_application": true },
+    { "label": "COI · GL $1M minimum",             "verified_pre_first_day": true },
+    { "label": "W-9 on file",                      "verified_pre_first_day": true },
+    { "label": "Site orientation · 1 hr",           "completed_first_day": true }
+  ],
+
+  "applicant_panel": {
+    "$visibility": "owner_only",
+    "summary": { "applied": 12, "shortlisted": 3, "interview_scheduled": 1, "rejected": 1 },
+    "rows": [
+      { "applicant_name": "Maria Lopez",    "applicant_id": 38291, "rating": 4.96, "match": 97, "applied_at": "2026-04-23", "status": "Shortlisted",  "rate_proposed": 148.50, "interview_at": "2026-04-26T15:00:00-04:00" },
+      { "applicant_name": "Tony Rivera",    "applicant_id": 40117, "rating": 4.91, "match": 88, "applied_at": "2026-04-22", "status": "Shortlisted",  "rate_proposed": 152.00, "interview_at": null },
+      { "applicant_name": "Sarah Bennett",  "applicant_id": 41208, "rating": 4.85, "match": 89, "applied_at": "2026-04-21", "status": "Shortlisted",  "rate_proposed": 145.00, "interview_at": null }
+    ]
+  },
+
+  "similar_contracts": [
+    { "id": 28139, "title": "Body Shop FANUC retrofit — Cell 14",                "company": "[White Glove · Tier-1 OEM]", "rate": 165.00, "tier": "White Glove" },
+    { "id": 28311, "title": "Sterling Heights paint shop migration",             "company": "Stellantis",                  "rate": 155.00, "tier": "Standard"   },
+    { "id": 28145, "title": "Senior Controls Engineer — Spartanburg",            "company": "Acme Robotics",               "rate": null,    "tier": "Direct W-2", "salary_band": "165k–195k" }
+  ],
+
+  "questions_log": [
+    { "id": "q-1", "from_anonymous_applicant": true, "question": "Day shift only, or any flex?", "answer": "Day shift, 6 AM start. No flex on this project — plant runs nights for production.", "asked_at": "2026-04-22", "answered_at": "2026-04-22" },
+    { "id": "q-2", "from_anonymous_applicant": true, "question": "Is rate negotiable for FANUC iRVision experience?", "answer": "Yes. iRVision certified candidates can propose up to $158/hr. We pay for what we use.", "asked_at": "2026-04-23", "answered_at": "2026-04-23" }
+  ]
+}
