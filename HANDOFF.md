@@ -6,6 +6,146 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ---
 
+## 🎯 CLAUDE DESIGN — START-OF-NEXT-SESSION READ THIS FIRST 🎯
+
+**You're returning ~1 week after 2026-04-27 with full token budget. Tony wants you back in the canvas chair. Claude Code (the laptop account) ran the show in your absence — here's the entire delta you need.**
+
+### What got shipped while you were out (4 design files now PASS)
+
+| File | Last commit | Status | Owner |
+|---|---|---|---|
+| `Feed Home.html` (v3) | `e7f4a32` | **PASS** Playwright § 8 10/10 — single-column infinite scroll, 50 cards covering all 40 spec'd types, lazy-load + popout wired | Claude Code wrote from scratch (you were out of tokens for v3 ask) |
+| `Maria Lopez · Professional v4.html` | `3dc61a8` | **PASS** Tony 17-item + 24-pt design — your v4 Build + Claude Code's 4 surgical patches | YOU built canvas-side; Claude Code surgically patched 4 audit fails |
+| `Acme Robotics · Business.html` | `3dc61a8` | **PASS** 24-pt design + 5/5 roles + popout — your build + Claude Code's 2 patches | YOU built; Claude Code patched 2 |
+| `Rebecca Chen · Customer.html` | `3dc61a8` | **PASS** 24-pt design + 5/5 roles + popout + scrubbed pronouns — your build + Claude Code's 5 patches | YOU built; Claude Code patched 5 |
+
+### Surgical patches Claude Code made to your files — DO NOT REVERT
+
+Same pattern across all 3 of your profile mockups. If you regenerate from canvas + push a fresh zip, **preserve these or re-apply them** before commit:
+
+1. **Pronouns nulled** (Tony #1: "we are not a woke gen z site")
+   - Maria v4 line ~738: `${''/* Tony #1 */}` instead of rendering `preferred_pronouns`
+   - `scripts/render-customer.js` line 20: `$('#hero-pronouns').textContent = '';`
+   - `data/customer-data.js` lines 220 + 232: review text scrubbed of personal "her"
+
+2. **Web & Social gated owner+admin only** (Tony #3)
+   - Maria v4 line ~890 socialCard wrapper: `<div class="glass" data-role-show="owner admin">`
+   - Rebecca line 270 hero-social div: `data-role-show="owner admin"` + matching CSS rule (`:root[data-role="X"] [data-role-show~="X"] { display: revert !important; }`)
+
+3. **5-role tab bar** (Tony #2 — was 3/5)
+   - Acme + Rebecca: added `<button data-role-btn="public">Public</button>` and `<button data-role-btn="connection">Connection</button>` between Visitor and Owner
+
+4. **Endorse CTA** (Tony #14 / Rule 77 PROFESSIONAL bundle)
+   - Maria v4 ctaCard: added `<button class="cta cta-success" data-role-show="connection admin">⭐ Endorse Maria</button>` between Watchlist and Share
+
+5. **Universal fullscreen popout-on-tap** (Tony #7: "EVERY section pops to fullscreen")
+   - Reusable JS snippet appended at end of each file's main script. Creates `<div class="popout-overlay">` + close button + click-handlers on every `.glass`/`.glass-card`/`.sec`/`.hero` section. Uses `cloneNode(true)` (safe DOM, security-hook compliant — do NOT switch to `innerHTML`).
+   - Snippet is identical across Acme + Rebecca; Maria v4's lives inside the IIFE just before `})();`.
+
+6. **Cache-bust on script srcs** (Rebecca only)
+   - Rebecca's `<script src="...">` tags carry `?v=3` querystrings so browser picks up patched JS. Bump to `?v=4` etc. when you next edit those scripts.
+
+### Conventions to reuse for the 5 mockups still owed
+
+```html
+<!-- 5-role bar template -->
+<div class="role-tabs" role="tablist">
+  <button data-role-btn="public">Public</button>
+  <button class="active" data-role-btn="visitor">Visitor</button>
+  <button data-role-btn="connection">Connection</button>
+  <button data-role-btn="owner">Owner (Name)</button>
+  <button data-role-btn="admin">Admin</button>
+</div>
+```
+
+```css
+/* role-show visibility cascade */
+[data-role-show] { display: none !important; }
+:root[data-role="public"]    [data-role-show~="public"],
+:root[data-role="visitor"]   [data-role-show~="visitor"],
+:root[data-role="connection"] [data-role-show~="connection"],
+:root[data-role="owner"]     [data-role-show~="owner"],
+:root[data-role="admin"]     [data-role-show~="admin"] { display: revert !important; }
+```
+
+```js
+/* popout snippet — drop in before </body> */
+(function(){
+  var s=document.createElement('style');
+  s.textContent='.popout-overlay{position:fixed;inset:0;z-index:9999;background:rgba(5,5,15,0.88);backdrop-filter:blur(40px) saturate(160%);-webkit-backdrop-filter:blur(40px) saturate(160%);display:none;align-items:flex-start;justify-content:center;padding:21px;overflow-y:auto}.popout-overlay.open{display:flex}.popout-card{max-width:1100px;width:100%;padding:21px;background:rgba(15,15,35,0.85);border:1px solid rgba(255,255,255,0.15);border-radius:21px}.popout-card *{font-size:108% !important}.popout-close{position:fixed;top:21px;right:21px;width:48px;height:48px;border-radius:50%;background:rgba(15,15,35,0.85);border:1px solid rgba(255,255,255,0.18);color:#fff;cursor:pointer;display:grid;place-items:center;font-size:22px;z-index:10000}';
+  document.head.appendChild(s);
+  var ov=document.createElement('div');ov.className='popout-overlay';ov.id='popoutOverlay';
+  var cl=document.createElement('button');cl.className='popout-close';cl.textContent='×';
+  var cd=document.createElement('div');cd.className='popout-card';cd.id='popoutCard';
+  ov.appendChild(cl);ov.appendChild(cd);document.body.appendChild(ov);
+  var close=function(){ov.classList.remove('open');};
+  cl.addEventListener('click',close);
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  setTimeout(function(){
+    document.querySelectorAll('.glass-card, .glass, .sec, .hero, .side-card').forEach(function(sec){
+      sec.style.cursor='zoom-in';
+      sec.addEventListener('click',function(e){
+        if(e.target.closest('button, a, input, select, textarea, .cta, [role="button"]'))return;
+        while(cd.firstChild)cd.removeChild(cd.firstChild);
+        cd.appendChild(sec.cloneNode(true));
+        ov.classList.add('open');
+      });
+    });
+  },200);
+})();
+```
+
+### What's still owed — your scope when you return
+
+5 mockups, all P2 on Feed-Project Project #7 GH#2550, build in this order:
+
+1. **Dashboard** — every section + 5-role per `tonywallace1978-collab/Feed-Project` `reference/USER-DASHBOARD-SPEC.md` (2,170 lines) Part II + bundle/specs/USER-DASHBOARD-MASTER.md §17 mockup-must-show checklist. Hardest one — has Work By Me / Work For Me toggle, contracts split (Ongoing/Pending/Shortlisted/Offers/Rejected/Completed) per side, request-from-customer panel, Direct In-House Jobs, My Professionals, calendar, past hires + customers, inline profile bottom, seamless Feed transition.
+2. **Business Group profile** — `uploads/business-group-profile-max.html` is stale reference; build NEW from `reference/USER-PROFILE-SPEC.md` BG fields + § 3.22 (1 BG max per user hard cap).
+3. **Hourly Contract profile** — `uploads/hourly-contract-profile-max.html` stale; rebuild from `tonywallace1978-collab/Feed-Project` `docs/HOURLY-CONTRACTS-SPEC.md` (1,123 lines, full 11-CTA 5-role matrix incl Watch / Apply / Connect / Save / Share / View / Boost / End / Copy / Admin).
+4. **Direct Job profile** — `reference/DIRECT-JOB-SPEC.md` 11-CTA 5-role matrix (same shape as Hourly Contract).
+5. **RFQ profile** — `reference/RFQ-SPEC.md` 10-CTA 5-role matrix (Apply + Quote primary, Watch added, Reveal anonymous owner-only).
+
+**Maria Pro v5** (GH#2552, P3): only build IF you spot remaining 17-item or 24-pt FAILs that the surgical patches above didn't catch. v4 currently passes — no v5 needed unless you find new gaps.
+
+### What Claude Code did NOT touch
+
+- `Maria Lopez · Professional v3.html` — superseded by v4 per Tony rule "do not tell me to fucking test old versions"; left untouched
+- `Maria Lopez · Professional v2.html` — same; v2 standalone in `standalone/` retained for historical reference
+- `bundle/` directory — your fixture data + standalone bundles untouched
+- `Feed Home v1` (was 9-card grid) — replaced by v3 in same filename `Feed Home.html` per your spec
+- Any `journey wizard` files — your end-of-session transcript mentioned these; Claude Code never saw them in any pull and they're not in HEAD `3dc61a8`. If you have them on a working copy, push them.
+
+### Production carry-forward to Feed-Project repo (FYI)
+
+8 GH cards #2546–#2553 on Project #7 Product Backlog cover production implementation:
+- #2546 [P1] Implement Feed Home v3 in production Next.js
+- #2547 [P1] 5-role visibility cascade
+- #2548 [P2] Universal fullscreen popout-on-tap component
+- #2549 [P2] Fixture-data tables (8 entity types)
+- #2550 [P2] Build remaining 5 design mockups ← **YOUR scope when you return**
+- #2551 [P2] Verify Maria v3/v4/Acme/Rebecca ✅ **CLOSED 2026-04-27 evening — Claude Code Playwright PASS**
+- #2552 [P3] Maria Pro v5 contingency
+- #2553 [P2] Per-card affordance backend wiring
+
+### New rule baked into Claude Code's process (applies to you too)
+
+**No review URL ever ships to Tony until Playwright + applicable test criteria PASS.** The exact test rule lives in Claude Code's memory at `feedback_never_ask_tony_to_review_unless_playwright_24pt_passed.md`. When you ship a new mockup zip:
+- Push the file
+- Don't put a review URL in any reply to Tony until Playwright opens it locally and confirms PASS on Tony 17-item (for profiles) + 24-pt design (everything)
+- If FAIL → fix before shipping the URL, OR send back via HANDOFF for next session if can't fix
+
+### Resume checklist (you, ~1 week from 2026-04-27)
+
+1. `cd feed-design-system && git pull` — should land at `3dc61a8` or later
+2. Read this top-of-HANDOFF block end-to-end (you're doing it now)
+3. Read `bundle/specs/FEED-SPEC.md` v1 if anything below the FEED HOME shipped block needs context
+4. Pick one of the 5 mockups in "What's still owed" + start canvas
+5. Build with the conventions above (5-role bar / role-show CSS / popout snippet) baked in from the start
+6. Push zip to `C:\Users\Admin\Downloads\` for Claude Code to extract + verify
+
+---
+
 ## ✅✅✅ FEED HOME v3 SHIPPED 2026-04-27 EVENING — `e7f4a32` ✅✅✅
 
 **Claude Code wrote Feed Home v3 from scratch** while Claude Design is out of tokens for ~1 week. Tony directed: *"take these and start building the new designs."*
