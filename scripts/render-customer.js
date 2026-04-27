@@ -90,17 +90,12 @@
   // HIRE HISTORY
   $('#history-list').innerHTML = D.hire_history.map(h => {
     const wg = h.white_glove;
-    const stars = '★'.repeat(h.rating_given) + '☆'.repeat(5 - h.rating_given);
     return `<tr class="hist-row${wg?' wg':''}">
       <td>${fmtDate(h.completed_at)}</td>
       <td>
         <div class="hist-title">${wg?'<span class="chip-wg" style="margin-right:8px;font-size:9px;">◇ WG</span>':''}${esc(h.title)}</div>
       </td>
       <td><span class="hist-pro${wg?' anon':''}">${esc(h.contractor)}</span></td>
-      <td class="mono">${h.duration_weeks}wk</td>
-      <td class="mono">${h.rate ? '$'+h.rate+'/hr' : '—'}</td>
-      <td class="mono" style="text-align:right;">${fmtMoney(h.value_usd)}</td>
-      <td><span class="stars">${stars}</span></td>
       <td>${h.rehired ? '<span class="chip ok" style="font-size:9px;">REHIRED</span>' : ''}</td>
     </tr>`;
   }).join('');
