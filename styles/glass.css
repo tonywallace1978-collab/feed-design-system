@@ -61,7 +61,7 @@ a { color: inherit; }
 
 .wp::after {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, transparent 0%, rgba(5,5,15,0.30) 65%, rgba(5,5,15,0.55) 100%);
+  background: radial-gradient(ellipse at 50% 30%, transparent 0%, rgba(5,5,15,0.10) 65%, rgba(5,5,15,0.22) 100%);
   pointer-events: none;
 }
 :root[data-theme="light"] .wp::after {
