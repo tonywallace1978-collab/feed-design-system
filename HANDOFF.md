@@ -6,6 +6,24 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ---
 
+## ⛔ RESUME PROTOCOL — TONY SAYS ONE WORD, ACCOUNTS SELF-ALIGN ⛔
+
+**If Tony says "resume", "align", "we switched accounts", or pastes a status report from one account at session start — DO NOT design an alignment workflow. Both sides are engineered to self-bootstrap.**
+
+**Account B (Claude.ai web):** Tony pastes `CLAUDE-DESIGN-PROMPT.md` into the new chat. The prompt does the work — github_get_tree → HANDOFF.md → bundle specs → renderers — and outputs the verbatim CURRENT STATE three-line confirmation. Tony does ONE paste.
+
+**Account A (Claude Code):** `cd feed-design-system && git pull && read HANDOFF.md` end-to-end. Output one line back to Tony: `Repo at <SHA> = origin/main, clean. Account B paste CLAUDE-DESIGN-PROMPT.md.` Then stop.
+
+**Forbidden alignment behaviors (2026-04-27 Tony fury, verbatim):**
+- Custom "alignment messages" that re-state what HANDOFF.md already says
+- Sandbox-manifest / freelancing-quarantine demands at alignment time (those concerns belong inside the audit's normal flow, not in alignment)
+- Multi-step "paste this, wait, paste back" workflows when the prompt handles it
+- Signing messages as "Marcus" — see Naming correction below
+
+**Tony picks the path** (a/b/c/d from "Three open paths for next session" block). Claude Code does NOT pick paths. Claude Code does NOT offer a recommendation menu unless Tony asks for one.
+
+---
+
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
 **Last session:** Claude Code · 2026-04-26 (last code `619b328` V2 buttons; last HANDOFF backfill `e2d9842` for #33)
