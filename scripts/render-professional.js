@@ -345,7 +345,6 @@
             <div class="exp-dates mono">${fmtMonthYr(e.start)} → ${e.current ? '<span style="color:#34D399">Present</span>' : fmtMonthYr(e.end)} · ${Math.floor(e.duration_months/12)}y ${e.duration_months%12}mo</div>
           </div>
         </div>
-        <p class="exp-desc">${escapeHtml(e.description)}</p>
         <ul class="exp-highlights">${e.highlights.map(h=>`<li>${escapeHtml(h)}</li>`).join('')}</ul>
       </div>
     `).join('');
