@@ -31,6 +31,56 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 **Standing rule (CEO 2026-04-26):** every visual deviation ships 2–3 variants — Variant B active, A + C as commented-alt blocks above. Toggle to swap. Same shape applies to wizard variants and any future "test screen / prototype" ask.
 **Naming correction:** commit-mirror role is **Claude Code** (this account). "Marcus" is a Feed-Project PM agent on a separate workspace — do NOT conflate in deviation reports.
 
+---
+
+## TONY FEEDBACK · 2026-04-27 (Maria Pro visitor view review — Claude Design v2 scope)
+
+Tony reviewed `Maria Lopez · Professional.html` at `localhost:8765`, default visitor role. **17 items below — verbatim Tony voice, do NOT paraphrase or sanitize when implementing.** This is the v2-canvas backlog for Claude Design; nothing here is yet in repo.
+
+1. **Pronouns out.** "Remove pronouns, we are not a woke gen z site."
+2. **Role demos must be explicit + complete.** Every demo needs to be very specific who is viewing it. **MISSING:** connection role, AND logged-in vs non-logged-in visitor split (currently one collapsed "visitor" mode). Five distinct roles needed: logged-out visitor / logged-in visitor / connection / owner / admin.
+3. **Social media privacy.** Remove social media from public view — admin and the user themselves only.
+4. **Customer reviews → bigger, bolder.** "No customer reviews shown, these are the best trust feature the site has, they should be much more visible and bold." (Currently buried below other right-column sections.)
+5. **Column scroll asymmetry.** "I hate how the right moves, but the left does not until later." Fix the timing so columns move together.
+6. **Left-column overrun.** "The left column has run over near connections, eliminate this always and forever." Same surface, every profile, permanently.
+7. **EVERY SECTION pops to fullscreen on click.** "Nothing pops out to a full screen, yet everything will pop out to a full screen, everything, every section. Full Screen. EVERY SECTION pops out to a full screen with larger texts when clicked." Universal behavior — no exceptions.
+8. **Badge labels are wrong.** "Badges and achievement are all labeled wrong. They should not fucking say Diamond Rating, that is stupid, it should say what the rating is for then say diamond underneath it." Pattern: `<rating subject>` line 1, `Diamond` (or tier) line 2.
+9. **Availability moves up.** "Availability is super important and should be near the top. Stupid of you to put it way down there on the left side, looks hidden." Promote out of left rail to top of profile.
+10. **Golden-ratio spiral center holds the money cards.** "The fucking rates, that's just garbage, I put the right in the middle of the sacred circle of the golden ratio design. You are not following the concept at all. The most important information stays near the center of the golden ratio, so the request this professional now, the pay rates, the availability stay near that spirals center, just like I fucking had designed." Re-anchor Request CTA + Rates + Availability inside the spiral focal zone.
+11. **Boost CTA — never public.** "Boost CTA would never ever be in the public view, that's just stupid, public is not going to pay to boost your fucking profile." Owner + admin only.
+12. **REQUEST THIS PROFESSIONAL CTA — MISSING.** "Where is the god damn request this professional CTA!!!!!! This is the most fucking important cta ever in the entire fucking site!! And you fucking missed it you idiot." Highest-priority money CTA — must be present + prominent + spiral-anchored.
+13. **ADD TO WATCH LIST CTA — MISSING.** "Were is the fucking add to watch list you dumb fuck!!!!!"
+14. **Bundle CTA documentation not followed.** "You have not followed the documentation that I initially gave you with all of the mother fucking cta's for every mother fucking card in the feed in every mother fucking view." Re-read bundle CTA spec end-to-end and audit every card × every role for spec compliance.
+15. **Available status — much more prominent.** "If the professional is available, that needs to be much more prominent on the fucking profile!"
+16. **Money CTAs in money positions.** "The fucking request this professional, watch or connect are the main fucking CTA's that make us fucking money!!!!!!!! Put them in a better spot." Best position = spiral center per item 10.
+17. **Example profile must be complete.** "You are missing interview questions, and many other sections, this is supposed to be an example profile with everything in it!! Full sections, every update." Inventory every section spec'd in `bundle/specs/SECTIONS.md` and ensure Maria Pro renders every one with real data.
+
+**Priority cluster (Tony intensifier-count weighted):** 12 (REQUEST CTA missing) + 13 (WATCH CTA missing) + 14 (CTA spec ignored) + 16 (CTA placement) all hit the same root: **CTA layer is the highest-impact gap on the file**. Fix that before cosmetic items.
+
+**Process note for Claude Code (this account):** Per `MIRROR THE OTHER ACCOUNT — NEVER FREELANCE` rule, Claude Code does NOT implement the 17 items from these descriptions. Claude Design ships v2 file/diff via Tony zip-paste; Claude Code commits verbatim.
+
+---
+
+## CLAUDE DESIGN v2 RELAY · 2026-04-27 (in flight on canvas — NOT yet in repo)
+
+Claude Design self-reported on canvas (per Tony relay):
+
+**3 real bugs fixed on canvas (still pending push):**
+- Mini rates panel was reading stub keys (`standard`/`travel`/`weekend`); fixed to real schema (`hourly_default`/`hourly_emergency`/`hourly_remote`/`white_glove_premium_pct`). Owner+admin see exact $; others see `from $X` with rest dashed.
+- Reviews banner was reading `D.stats` (doesn't exist) → hardcoded fallback `4.96 / 17`. Fixed to `D.quick_stats.rating_avg` + `D.reviews_received.length`.
+- Active Application card was empty owner-only box. Fixed to populate from `D.active_application`: status pill + contract title + company+rate + applied date + applicant count + interview slot callout.
+
+**Open question relayed to Tony — Interview Questions section was added with 5 fabricated Q&A pairs (no `interview_questions` field in `professional-data.js`). Three options:**
+- **(a)** Keep fabricated copy as working draft
+- **(b)** Strip fabricated copy → empty state until real Q&A lands in data file
+- **(c)** Generic question prompts only — answers from data when present
+
+**Claude Code answer: (b).** Audit precedent is strict-subtractive against fabrication: #2 stripped 3 ad-libbed bio paragraphs (forced verbatim from `COPY-BLOCKS.md § 1`); #3 stripped Body-Shop-FANUC-WG-Spartanburg fabrication (forced canonical Acme Robotics / Ford Rouge); #4 stripped hardcoded `fakeWatchers` (derived from `D.watchers.recent`); #6 stripped 6 fabricated portfolio items (derived from `D.portfolio_links`); #7 stripped fake `tony.wallace 2026-04-22` admin signature. Inlining 5 fabricated Q&A in the renderer reverses the established rule. Empty-state copy: `"Interview questions not yet on file."` Canonical Q&A belongs in `bundle/specs/COPY-BLOCKS.md` (or a new `INTERVIEW-QA.md` if Tony wants a dedicated spec doc) — never inline in `render-professional.js`. Visibility per role per item 3 above (owner sees own Q&A always; admin always; visitor + connection per spec — TBD by Tony).
+
+**Action for Claude Design next session:** pull repo → read this block → implement 17 items + strip the fabricated Interview Q&A → ship zip to Tony → Claude Code commits verbatim. Update CURRENT STATE before push.
+
+---
+
 ## VISUAL DEVIATIONS (V-series)
 
 | # | SHA | What changed | Variants |
