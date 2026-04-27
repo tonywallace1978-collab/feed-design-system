@@ -182,13 +182,19 @@
     </div>`).join('');
 
   // KEY CONTACTS
-  $('#contacts-list').innerHTML = D.key_contacts.map(k => `
+  // Spec § 2 item 7: "Rebecca + 3 colleagues (PM / AP / Director)" — surface owner + 3 role-targeted contacts
+  // Direct contact channels (email/phone) are gated behind platform messaging, not surfaced inline
+  const contactRoleOrder = ['Plant Engineering Manager', 'Maintenance Lead', 'AP / Vendor Onboarding', 'Director of Plant Engineering'];
+  const contactsTop = contactRoleOrder
+    .map(role => D.key_contacts.find(k => k.role === role))
+    .filter(Boolean);
+  $('#contacts-list').innerHTML = contactsTop.map(k => `
     <div class="contact-card${k.primary?' primary':''}">
       <div class="contact-avatar" style="background-image:url('${k.avatar}')"></div>
       <div class="contact-meta">
         <div class="contact-name">${esc(k.name)}${k.primary?' <span class="chip accent" style="font-size:9px;margin-left:4px">PRIMARY</span>':''}</div>
         <div class="contact-role">${esc(k.role)}</div>
-        <div class="contact-tel mono">${esc(k.email)}</div>
+        <button class="contact-msg gbtn gbtn-secondary sm" data-contact-id="${esc(k.id)}">Message</button>
       </div>
     </div>`).join('');
 
