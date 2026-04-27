@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Pro Profile Wizard — 3 variants</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="tokens/glass-design-tokens.css">
+<link rel="stylesheet" href="styles/glass.css">
+<link rel="stylesheet" href="wizards/wizard-styles.css">
+
+<style>
+  html, body { background: #07071A; min-height: 100vh; margin: 0; }
+  body { font-family: 'Outfit', system-ui, sans-serif; color: var(--glass-text-primary); }
+  /* Canvas host */
+  #root { min-height: 100vh; }
+</style>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <rect width="200" height="200" fill="#0E0E22"/>
+    <rect x="44" y="56" width="112" height="88" rx="10" fill="none" stroke="#A78BFA" stroke-width="2"/>
+    <rect x="56" y="74" width="40" height="6" rx="2" fill="#6366F1"/>
+    <rect x="56" y="88" width="88" height="3" rx="1.5" fill="#A78BFA" opacity="0.5"/>
+    <rect x="56" y="98" width="60" height="3" rx="1.5" fill="#A78BFA" opacity="0.5"/>
+    <circle cx="142" cy="128" r="6" fill="#34D399"/>
+  </svg>
+</template>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- React 18 + Babel pinned -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="wizards/design-canvas.jsx"></script>
+<script type="text/babel" src="wizards/wizard-shared.jsx"></script>
+<script type="text/babel" src="wizards/wizard-step-content.jsx"></script>
+<script type="text/babel" src="wizards/wizard-stepper.jsx"></script>
+<script type="text/babel" src="wizards/wizard-longform.jsx"></script>
+<script type="text/babel" src="wizards/wizard-conversational.jsx"></script>
+
+<script type="text/babel">
+const { useEffect } = React;
+
+function App() {
+  // Slider gradient is set per-frame inside each variant; refresh on canvas resize too.
+  useEffect(() => {
+    const sync = () => {
+      document.querySelectorAll('.wiz-slider').forEach(el => {
+        const min = +el.min || 0, max = +el.max || 100, val = +el.value || 0;
+        el.style.setProperty('--p', ((val - min) / (max - min)) * 100 + '%');
+      });
+    };
+    const t = setInterval(sync, 250);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <DesignCanvas docTitle="Pro Profile Wizard — 3 variants" docSubtitle="Field-categorized · Maria-prefill · 20 steps">
+      <DCSection id="wizards" title="Three takes on Pro Profile setup">
+
+        <DCArtboard id="stepper" label="A · Stepper · Apple Setup-style" width={1280} height={800}>
+          <StepperWizard />
+        </DCArtboard>
+
+        <DCArtboard id="longform" label="B · Long-form · Notion-density" width={1280} height={1100}>
+          <LongFormWizard />
+        </DCArtboard>
+
+        <DCArtboard id="conversational" label="C · Conversational · Chat thread + active pane" width={1280} height={800}>
+          <ConversationalWizard />
+        </DCArtboard>
+
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

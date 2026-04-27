@@ -22,18 +22,36 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 **Visual deviation queue:** V3 = display-type rebalancing pass (hero `.hero-name` 32px → ~48px, section `h2` 22px → larger to match lit-card surface), 3 type-scale variants per the standing rule.
 
-## WIZARD WORK (P700 pivot — NOT IN REPO)
+## WIZARD WORK (P700 pivot — SHIPPED)
 
-**Status:** Other-Claude built three Pro Profile Wizard variants on the Claude.ai design canvas:
-- **A · Stepper** — Apple Setup-style; 220px section rail + top progress bar; 1280×800
-- **B · Long-form** — Notion density; sticky TOC + IntersectionObserver; 1280×1100
-- **C · Conversational** — chat-thread rail + active step pane; AI-assist via `window.claude.complete`; 1280×800
+**Status:** Pro Profile Wizard shipped via zip extraction (Tony's `Automate.zip` → Claude Code unpack to repo, 2026-04-26 ~22:50 UTC). Three variants live on the design canvas:
+- **A · Stepper** (`wizards/wizard-stepper.jsx`) — Apple Setup-style; top progress bar; one focused step at a time; 1280×800
+- **B · Long-form** (`wizards/wizard-longform.jsx`) — Notion density; sticky TOC + IntersectionObserver active state; all 19 sections one scroll; sticky publish footer; 1280×1100
+- **C · Conversational** (`wizards/wizard-conversational.jsx`) — chat-thread rail of every Q + answer summary; active step pane right; AI-assist on tagline via `window.claude.complete`; 1280×800
 
-Shared infra: `wizard-shared.jsx`, `wizard-step-content.jsx`, `wizard-styles.css`. Each persists to its own `localStorage` key, "Prefill demo" loads Maria, posture-leak categorization respected (◇ private chips on rates_priv / education private / business affiliation direct rate / entire private info step), amber dashed posture panels.
+Shared infra (file paths in repo):
+- `wizards/wizard-shared.jsx` (500 lines · `WIZARD_STEPS` + `useWizardState` + `Wiz*` primitives)
+- `wizards/wizard-step-content.jsx` (737 lines · per-step forms · Maria-prefilled)
+- `wizards/wizard-styles.css` (812 lines)
+- `wizards/design-canvas.jsx` (623 lines · pan/zoom canvas + `DCArtboard` fullscreen focus)
+- `wizards/professional-profile-field-categorization.md` (the input doc — 20 wizard steps mapped, 4 posture-leak clusters flagged)
 
-**⛔ FILES ARE NOT IN THIS REPO YET.** They live in the other-account design canvas. To preserve: zip → drop in Downloads → Claude Code commits via established protocol. Without that, the wizard work is lost on account switch.
+**Host:** `Pro Profile Wizard.html` at repo root. Loads `tokens/glass-design-tokens.css` + `styles/glass.css` (so wizards inherit V1+V2 spectral lift) + `wizards/wizard-styles.css` + React 18.3.1 + Babel via unpkg CDN, then all 6 `.jsx` files via `<script type="text/babel">`.
 
-**Field categorization doc** (the input that drove the wizards) should be at `wizards/professional-profile-field-categorization.md` per other-Claude's mention — also NOT yet in repo. Same risk + extraction path.
+**Wizard step blueprint (canonical · matches `wizards/professional-profile-field-categorization.md`):**
+1 account · 2 identity · 3 photo · 4 headline · 5 location · 6 rates_pub · **7 rates_priv (posture)** · 8 avail · 9 years · 10 skills · 11 certs · **12 edu (posture)** · 13 lang · 14 equip · 15 exp · 16 portfolio · 17 social · **18 affil (posture)** · **19 private (posture)** · 20 review.
+
+Four posture steps render with `WizPosturePanel` chrome (amber dashed border, ◇ private chip) — visual signal derived from rule-9 audit work (#20 / #22 / #23 / #24).
+
+**Each variant:** persists to its own `localStorage` key, ships a "Prefill demo" button that loads Maria's data verbatim from `data/professional-data.js`. Submit shows resulting JSON shape in a final-step preview pane (no persistence — `[demo]` posture per established stub precedent).
+
+**Companion memory doc:** `SESSION-MEMORY.md` at repo root — wizard step blueprint + pending decisions from the wizard build session (Variant pick / expansion plan / audit-resume options).
+
+**Three open paths for next session (Tony picks per `SESSION-MEMORY.md`):**
+- **(a) Wizard polish** — Tony picks A/B/C, polish phase. Transitions, error states, mobile, copy pass.
+- **(b) Wizard expansion** — repeat 3-variant pattern for Customer / Business / Business Group. ~3 weeks each.
+- **(c) Resume audit** — pick up at #34 Hire History 22→5 + overflow OR fresh first-principles scan of unaudited Customer surfaces (Hero / Company card / Quick stats / Secure Files / Preferred Business Groups / Achievement Badges / Company Brief / Admin notes).
+- **(d) Resume visual elevation** — #V3 typography rebalancing (3 type-scale variants per standing rule).
 
 ---
 **Status:** Customer Profile (Rebecca Chen / Ford Rouge) audit in progress. **7 Customer deviations shipped (#26-#32).** #32 = Spending Breakdown — first multi-part / first NET-ADDITIVE deviation in audit (prior 31 were strictly subtractive). Two stacked drifts on `[O]` owner-only card: (A) unauthorized `by_tier` over-surface block stripped; (B) "by trade pie" spec rendered as horizontal bars with non-proportional widths → replaced with proper SVG annular donut + 6-color palette + right-side legend (180×180 viewBox, indigo/violet/pink/amber/emerald/slate). **First fidelity-only deviation since #5-#8** — no rule-9 element (owner-only). Remaining carry-forwards: **#33 Hire History 22→5 + overflow; #34 Open Contracts 7→5 + overflow.** Open follow-up: `qs.avg_rating_given` Reviews-left footer = grading-curve disclosure. Unaudited customer surfaces: Hero, Company card, Quick stats, Secure Files [O] (#19 Maria-side parallel due), Preferred Business Groups [O], Achievement Badges, Company Brief, Admin notes [A]. Maria Pro Tony-eyeball-checkpoint still async-pending.
