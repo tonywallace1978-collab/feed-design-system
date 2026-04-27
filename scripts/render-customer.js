@@ -112,7 +112,9 @@
     42118: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=200&fit=crop&crop=faces',
     42301: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces',
   };
-  $('#watched-list').innerHTML = D.watched_pros.map(p => `
+  const watchedTop = D.watched_pros.slice(0, 4);
+  const watchedOverflow = D.watched_pros.length - watchedTop.length;
+  $('#watched-list').innerHTML = watchedTop.map(p => `
     <div class="pro-card${p.available?' avail':''}">
       <div class="pro-avatar" style="background-image:url('${proPhotos[p.id]||''}')">
         ${p.available ? '<span class="avail-dot" title="Available"></span>' : ''}
@@ -126,7 +128,7 @@
         <div class="kpi-val" style="font-size:18px !important">${p.times_hired}</div>
         <div class="kpi-label" style="font-size:8px !important">HIRED</div>
       </div>
-    </div>`).join('');
+    </div>`).join('') + (watchedOverflow > 0 ? `<button class="watched-more">+ ${watchedOverflow} more</button>` : '');
   $('#watched-count').textContent = `${D.watched_pros.length} watched · ${D.watched_pros.filter(p=>p.available).length} available now`;
 
   // PREFERRED GROUPS
