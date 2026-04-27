@@ -175,10 +175,16 @@
   $('#files-count').textContent = `${D.secure_files.files.length} files`;
 
   // PRIVATE INFO
-  $('#private-list').innerHTML = D.private_info.fields.map(f => `
-    <div class="kv-row">
+  // Spec POPOUTS.md: re-auth-then-reveal + edit popouts per masked row.
+  // Affordances ship visual-only (parked as #30b open product call) until META modal primitive lands;
+  // click handler intentionally absent — graceful degradation per Maria #20b precedent.
+  const eyeIcon = `<button class="kv-action kv-reveal" title="Reveal" aria-label="Reveal value"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>`;
+  const penIcon = `<button class="kv-action kv-edit" title="Edit" aria-label="Edit value"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4l6 6L8 22H2v-6L14 4z"/></svg></button>`;
+  const isMasked = (v) => /•/.test(v);
+  $('#private-list').innerHTML = D.private_info.fields.map((f, i) => `
+    <div class="kv-row${isMasked(f.value)?' masked':''}" data-pi-idx="${i}">
       <div class="kv-key">${esc(f.label)}</div>
-      <div class="kv-val">${esc(f.value)}</div>
+      <div class="kv-val">${esc(f.value)}${isMasked(f.value)?eyeIcon:''}${penIcon}</div>
     </div>`).join('');
 
   // KEY CONTACTS

@@ -112,7 +112,11 @@
   .kv-row:last-child { border-bottom:0; }
   :root[data-theme="light"] .kv-row { border-color:rgba(0,0,0,0.05); }
   .kv-key { font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;min-width:90px; }
-  .kv-val { font-family:'Outfit';font-size:12px;color:var(--glass-text-primary);font-weight:600;flex:1;min-width:0; }
+  .kv-val { font-family:'Outfit';font-size:12px;color:var(--glass-text-primary);font-weight:600;flex:1;min-width:0;display:flex;align-items:center;gap:8px; }
+  .kv-action { display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:transparent;border:1px solid rgba(255,255,255,0.10);border-radius:6px;color:var(--glass-text-tertiary);cursor:pointer;transition:color 120ms,border-color 120ms,background 120ms; }
+  :root[data-theme="light"] .kv-action { border-color:rgba(0,0,0,0.10); }
+  .kv-action:hover { color:var(--glass-accent-info,#22D3EE);border-color:var(--glass-accent-info,#22D3EE);background:rgba(34,211,238,0.06); }
+  .kv-row.masked .kv-val { letter-spacing:0.06em; }
 
   /* Right column section */
   .sec { padding:21px; }
