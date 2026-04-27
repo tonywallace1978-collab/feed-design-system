@@ -53,19 +53,15 @@
     ).join('');
 
     // quick stats row
-    const fmtCompactMoney = (n) => n >= 1_000_000
-      ? '$' + (n / 1_000_000).toFixed(2).replace(/\.?0+$/, '') + 'M'
-      : '$' + Math.round(n / 1000) + 'K';
     const stats = [
-      { l: 'Yrs exp',      v: s.years_experience },
-      { l: 'Rating',       v: s.rating_avg.toFixed(2) + ' ★', sub: s.rating_count + ' reviews' },
-      { l: 'Contracts',    v: s.completed_contracts, sub: s.active_contracts + ' active' },
-      { l: 'Endorsements', v: s.endorsements_count },
-      { l: 'Connections',  v: s.connections_count },
-      { l: 'Lifetime',     v: fmtCompactMoney(s.lifetime_billings_usd) },
+      { l: 'Yrs exp',     v: s.years_experience },
+      { l: 'Rating',      v: s.rating_avg.toFixed(2) },
+      { l: 'Contracts',   v: s.completed_contracts },
+      { l: 'Endorsements',v: s.endorsements_count },
+      { l: 'Connections', v: s.connections_count },
     ];
     $('#hero-stats').innerHTML = stats.map(s =>
-      `<div class="stat-tile"><div class="kpi-val">${s.v}</div><div class="kpi-label">${s.l}${s.sub ? ` &middot; <span style="opacity:.7">${s.sub}</span>` : ''}</div></div>`
+      `<div class="stat-tile"><div class="kpi-val">${s.v}</div><div class="kpi-label">${s.l}</div></div>`
     ).join('');
 
     $('#hero-strength-bar').style.width = s.profile_strength_pct + '%';
@@ -92,19 +88,13 @@
   function renderAvailability() {
     const a = D.availability;
     $('#avail-status').innerHTML = `<span class="live-dot"></span>${escapeHtml(a.status)}`;
-    if (a.status_color) {
-      const dot = $('#avail-status .live-dot');
-      if (dot) dot.classList.add('live-dot-' + a.status_color);
-    }
     $('#avail-next').textContent = fmtDate(a.next_available_date);
     $('#avail-cap').textContent = a.weekly_capacity_hours + ' hrs / wk';
-    if (a.calendar_url) {
-      const cta = $('#avail-cta');
-      if (cta) {
-        cta.setAttribute('href', a.calendar_url);
-        cta.parentElement.style.display = '';
-      }
-    }
+    const flags = [];
+    if (a.willing_overtime) flags.push('OT OK');
+    if (a.willing_weekends) flags.push('Weekends OK');
+    if (!a.willing_nightshift) flags.push('No nights');
+    $('#avail-flags').innerHTML = flags.map(f=>`<span class="chip">${f}</span>`).join('');
   }
 
   // ── RATES ────────────────────────────────────────────────────
@@ -119,14 +109,16 @@
     $('#rate-tiles').innerHTML = tiles.map(t =>
       `<div class="rate-tile"><div class="kpi-label">${t.l}</div><div class="rate-val">${t.v}</div><div class="rate-u">${t.u}</div></div>`
     ).join('');
+    $('#rate-band').textContent = `Salary band: ${fmtMoney(r.salary_band_min)} – ${fmtMoney(r.salary_band_max)} / yr`;
+    $('#rate-eng').textContent = r.preferred_engagement;
   }
 
   // ── CONNECTIONS ──────────────────────────────────────────────
   function renderConnections() {
-    const c = D.quick_stats || {};
-    $('#conn-total').textContent = (c.connections_count || 0).toLocaleString();
-    $('#conn-month').textContent   = '+' + (c.connections_growth_30d ?? 0);
-    $('#conn-quarter').textContent = '+' + (c.connections_growth_quarter ?? 0);
+    const c = D.quick_stats;
+    $('#conn-total').textContent = c.connections_count.toLocaleString();
+    $('#conn-month').textContent = '+' + 14;
+    $('#conn-quarter').textContent = '+' + 41;
   }
 
   // ── BUSINESS AFFILIATION ─────────────────────────────────────
@@ -135,14 +127,14 @@
     $('#aff-logo').innerHTML = `<img src="${b.company_logo}" alt="${escapeHtml(b.company_name)}" />`;
     $('#aff-name').textContent = b.company_name;
     $('#aff-role').textContent = b.company_role;
+    $('#aff-class').textContent = b.company_classification;
     $('#aff-joined').textContent = `Joined ${fmtMonthYr(b.joined_at)}`;
+    $('#aff-rate').textContent = `${b.weekly_committed_hours} hrs / wk · ${fmtMoney(b.rate_through_company)}/hr through co. · ${fmtMoney(b.rate_independent)}/hr direct`;
   }
 
   // ── BUSINESS GROUPS ──────────────────────────────────────────
   function renderGroups() {
-    const top = D.business_groups.slice(0, 3);
-    const overflow = D.business_groups.length - top.length;
-    $('#groups-list').innerHTML = top.map(g => `
+    $('#groups-list').innerHTML = D.business_groups.map(g => `
       <div class="bg-row">
         <div class="bg-mark" style="background:${g.logo_color}">${escapeHtml(g.name.split(' ').map(w=>w[0]).slice(0,2).join(''))}</div>
         <div class="bg-meta">
@@ -151,17 +143,13 @@
         </div>
         <button class="gbtn gbtn-secondary sm">View</button>
       </div>
-    `).join('') + (overflow > 0 ? `<button class="bg-more">+ ${overflow} more</button>` : '');
+    `).join('');
     $('#groups-count').textContent = D.business_groups.length + ' groups';
   }
 
   // ── SECURE FILES (OWNER) ─────────────────────────────────────
   function renderSecureFiles() {
-    const today = new Date('2026-04-26');
-    const effectiveStatus = (f) =>
-      (f.status === 'uploaded' && f.expires_at && new Date(f.expires_at) < today) ? 'expired' : f.status;
-    const priorityOf = (f) => ({ missing: 0, expired: 1, pending: 2, uploaded: 3 }[effectiveStatus(f)] ?? 99);
-    const items = [...D.secure_files.files].sort((a, b) => priorityOf(a) - priorityOf(b)).slice(0, 10);
+    const items = D.secure_files.files;
     const statusMap = {
       uploaded: 'ok',
       missing:  'warn',
@@ -170,17 +158,16 @@
     };
     $('#files-list').innerHTML = items.map(f => {
       const exp = f.expires_at ? `expires ${fmtDate(f.expires_at)}` : 'no expiry';
-      const status = effectiveStatus(f);
       return `<div class="file-row">
         <div class="file-icon" data-type="${f.type}">${{tax:'§',coi:'⛨',id:'#',cert:'✓',background:'⌖',payment:'$'}[f.type] || '·'}</div>
         <div class="file-meta">
           <div class="file-name">${escapeHtml(f.name)}</div>
           <div class="file-sub">${exp} · ${f.size_kb}KB</div>
         </div>
-        <span class="chip ${statusMap[status]||''}">${status.toUpperCase()}</span>
+        <span class="chip ${statusMap[f.status]||''}">${f.status.toUpperCase()}</span>
       </div>`;
     }).join('');
-    $('#files-count').textContent = `${items.length} files · ${items.filter(f=>effectiveStatus(f)==='uploaded').length} uploaded`;
+    $('#files-count').textContent = `${items.length} files · ${items.filter(f=>f.status==='uploaded').length} uploaded`;
   }
 
   // ── PRIVATE INFO (OWNER) ─────────────────────────────────────
@@ -196,13 +183,14 @@
   // ── ACTIVE APPLICATION (OWNER) ───────────────────────────────
   function renderActiveApp() {
     $('#active-app').innerHTML = `
-      <!-- Active application — canonical, per specs/COPY-BLOCKS.md § 1 "Active application card body".
-           Contract = Acme Robotics / Ford Rouge palletizer (Standard tier, NOT White Glove).
-           Stage = Shortlisted, final-round interview April 28 3 PM. Do NOT ad-lib. -->
       <div class="card-tag live"><span class="dot"></span>APPLICATION OPEN</div>
-      <div class="card-title">Acme Robotics · Ford Rouge palletizer</div>
-      <div class="card-sub">Standard hourly · Dearborn, MI</div>
-      <p class="card-sub" style="margin-top:8px;">Applied <span class="mono-700">April 23</span>. Shortlisted within <span class="mono-700">36 hours</span>. Final-round interview scheduled Tuesday <span class="mono-700">April 28 at 3:00 PM EST</span>. Match score <span class="mono-700">97%</span>.</p>
+      <div class="card-title">Body Shop FANUC Retrofit · Cell 14</div>
+      <div class="card-sub">White Glove · Tier-1 OEM (anonymous) · Spartanburg, SC</div>
+      <div class="row-meta" style="margin-top:8px">
+        <span>Applied 4 days ago</span><span class="sep">·</span>
+        <span>NDA signed</span><span class="sep">·</span>
+        <span>Shortlist due Apr 30</span>
+      </div>
       <div class="cta-row" style="margin-top:13px">
         <button class="gbtn sm">View contract</button>
         <button class="gbtn gbtn-secondary sm">Withdraw</button>
@@ -211,39 +199,13 @@
   }
 
   // ── WATCHERS (OWNER) ─────────────────────────────────────────
-  // Driven by D.watchers.recent per specs/SECTIONS.md § 1 left-rail item 10.
-  // Owner-only. Data already in professional.json (count + recent[8] with {name, type, since}).
   function renderWatchers() {
-    const watcherLogo = (name) => {
-      const slug = String(name||'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-      // Name → logo-file mapping for the few cases where slugified name doesn't match the asset filename.
-      const map = {
-        'ford-motor-company':   'ford-motor-company',
-        'bmw-manufacturing':    'bmw',
-        'acme-robotics':        'automate-america',
-        'general-motors':       'general-motors',
-        'stellantis':           'stellantis',
-        'toyota-manufacturing': 'toyota',
-        'honda-manufacturing':  'honda',
-        'magna-international':  'magna-international'
-      };
-      return 'assets/logos/' + (map[slug] || slug) + '.png';
-    };
-    const watcherRel = (iso) => {
-      const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
-      if (days < 1) return 'today';
-      if (days < 7) return days + ' day' + (days === 1 ? '' : 's') + ' ago';
-      if (days < 14) return '1 wk ago';
-      if (days < 30) return Math.floor(days / 7) + ' wks ago';
-      return Math.floor(days / 30) + ' mo ago';
-    };
-    // Derived rows from canonical D.watchers.recent. Variable name kept as `fakeWatchers`
-    // for minimal-diff against the legacy block; the data is no longer fake.
-    const fakeWatchers = ((D.watchers && D.watchers.recent) || []).map(item => ({
-      name: item.name,
-      logo: watcherLogo(item.name),
-      when: watcherRel(item.since)
-    }));
+    const fakeWatchers = [
+      { name: 'Ford Rouge Complex', logo: 'assets/logos/ford-motor-company.png', when: '2 days ago' },
+      { name: 'BMW Manufacturing',  logo: 'assets/logos/bmw.png',                 when: '5 days ago' },
+      { name: 'Stellantis',         logo: 'assets/logos/stellantis.png',          when: '1 wk ago' },
+      { name: 'General Motors',     logo: 'assets/logos/general-motors.png',      when: '2 wks ago' },
+    ];
     $('#watchers-list').innerHTML = fakeWatchers.map(w => `
       <div class="watcher-row">
         <div class="watcher-logo"><img src="${w.logo}" alt="" /></div>
@@ -261,6 +223,12 @@
       const tierOrder = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3, Bronze: 4 };
       return (tierOrder[a.tier]??99) - (tierOrder[b.tier]??99);
     });
+    // Locked placeholders (showcase)
+    const locked = [
+      { name: 'Reach Engineer',    category: 'Reach' },
+      { name: 'Decade Veteran',    category: 'Tenure' },
+      { name: 'Diamond Endorser',  category: 'Endorser' },
+    ];
     $('#badges-list').innerHTML =
       earned.map(b => `
         <div class="badge-stack" title="${escapeHtml(b.criterion)}">
@@ -268,17 +236,26 @@
           <div class="badge-label">${escapeHtml(b.name)}</div>
           <div class="badge-tier">${b.tier.toUpperCase()}</div>
         </div>
+      `).join('') +
+      locked.map(b => `
+        <div class="badge-stack locked" title="Not yet earned">
+          <div class="badge-img badge-locked-shape">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 1 1 8 0v4"/></svg>
+          </div>
+          <div class="badge-label">${escapeHtml(b.name)}</div>
+          <div class="badge-tier locked">LOCKED</div>
+        </div>
       `).join('');
-    $('#badges-count').textContent = `${earned.length} earned`;
+    $('#badges-count').textContent = `${earned.length} earned · ${locked.length} locked`;
   }
 
   // ── SKILLS ───────────────────────────────────────────────────
   function renderSkills() {
     $('#skills-list').innerHTML = D.skills_certified.map(s => `
-      <div class="skill-row">
+      <div class="skill-row${s.primary?' primary':''}">
         <div class="skill-logo"><img src="${s.logo}" alt="${escapeHtml(s.manufacturer)}" /></div>
         <div class="skill-meta">
-          <div class="skill-name">${escapeHtml(s.manufacturer)}</div>
+          <div class="skill-name">${escapeHtml(s.manufacturer)} ${s.primary?'<span class="chip accent" style="font-size:9px">PRIMARY</span>':''}</div>
           <div class="skill-models">${escapeHtml(s.models)}</div>
           ${s.certifications.length ? `<div class="skill-certs">${s.certifications.map(c=>`<span class="chip">${escapeHtml(c)}</span>`).join('')}</div>` : ''}
         </div>
@@ -295,9 +272,9 @@
   function renderAbout() {
     $('#about-tagline').textContent = D.header.tagline;
     $('#about-bio').innerHTML = `
-      <p>Senior Controls Engineer in Detroit. Nine years on the floor — Wayne State BSEE (Magna Cum Laude, '15), Henry Ford College AAS ('13), Magna International '15-'18, then 1099 with Acme Robotics from '18 forward. Specialty: body-in-white retrofits and high-mix vision-guided assembly for the Detroit-3 OEMs.</p>
-      <p>I write Studio 5000 and TIA Portal code that the next person can read. I ship documentation with every commissioning, not after. I retire legacy code instead of layering on it. When a cell is down at 11 PM, I'm on-site by 6 AM with a fix; I learned that habit at Magna and it's never failed me. I've trained three junior controls engineers to independent commissioning capability and authored the Acme Studio 5000 style guide.</p>
-      <p>I take engagements that respect the work — clear scope, real safety, and a customer who lets me retire bad code rather than wallpaper over it. I bid white-glove engagements through Acme; I take direct hourly work where the fit is clear. Open to 4-6 week onsite engagements within 250 miles of Detroit, plus emergency support 24/7 in SE Michigan.</p>
+      <p>Senior controls engineer with nine years on the floor across automotive body-in-white, paint, final assembly, and food &amp; beverage. Specialize in FANUC and Allen-Bradley integration, Siemens-to-Rockwell migrations, ISA-S88 batch logic, and TÜV-grade functional safety retrofits.</p>
+      <p>Have led 34 commissioning projects from greenfield to brownfield. Calm under deadline, blunt on root cause. Detroit-based, willing to travel anywhere in the Great Lakes region for engagements 4 weeks or longer. Two white-glove engagements completed under NDA — both top-rated.</p>
+      <p>Mentored three junior controls engineers to independent commissioning capability. Authored my team's Rockwell Studio 5000 style guide, now adopted as company standard at Acme.</p>
     `;
   }
 
@@ -306,7 +283,7 @@
     const reviews = D.reviews_received.slice(0, 5);
     $('#reviews-list').innerHTML = reviews.map(r => {
       const stars = '★★★★★☆☆'.slice(5 - r.rating, 10 - r.rating);
-      const wg = r.company === '[Anonymous]';
+      const wg = r.white_glove;
       const logo = wg ? '<div class="rev-logo wg">◇</div>' :
         (r.company_logo ? `<div class="rev-logo"><img src="${r.company_logo}" alt="${escapeHtml(r.company)}" /></div>` :
          `<div class="rev-logo placeholder">${escapeHtml(r.company.slice(0,2).toUpperCase())}</div>`);
@@ -331,8 +308,6 @@
 
   // ── EXPERIENCE ───────────────────────────────────────────────
   function renderExperience() {
-    const yrs = Math.floor(D.experience.reduce((sum, e) => sum + e.duration_months, 0) / 12);
-    $('#exp-header-meta').textContent = `${yrs}+ yrs · ${D.experience.length} ${D.experience.length === 1 ? 'company' : 'companies'}`;
     $('#exp-list').innerHTML = D.experience.map(e => `
       <div class="exp-card glass-card">
         <div class="exp-head">
@@ -345,6 +320,7 @@
             <div class="exp-dates mono">${fmtMonthYr(e.start)} → ${e.current ? '<span style="color:#34D399">Present</span>' : fmtMonthYr(e.end)} · ${Math.floor(e.duration_months/12)}y ${e.duration_months%12}mo</div>
           </div>
         </div>
+        <p class="exp-desc">${escapeHtml(e.description)}</p>
         <ul class="exp-highlights">${e.highlights.map(h=>`<li>${escapeHtml(h)}</li>`).join('')}</ul>
       </div>
     `).join('');
@@ -352,8 +328,7 @@
 
   // ── CERTIFICATIONS ───────────────────────────────────────────
   function renderCertifications() {
-    const top = D.certifications.slice(0, 7);
-    $('#certs-list').innerHTML = top.map(c => `
+    $('#certs-list').innerHTML = D.certifications.map(c => `
       <div class="cert-row${c.renewal_due_soon?' warn':''}">
         <div class="cert-mark">${escapeHtml(c.issuer.slice(0,3).toUpperCase())}</div>
         <div class="cert-meta">
@@ -373,7 +348,8 @@
         <div class="edu-mark">⌒</div>
         <div class="edu-meta">
           <div class="edu-degree">${escapeHtml(e.degree)}${e.concentration?` · ${escapeHtml(e.concentration)}`:''}</div>
-          <div class="edu-school">${escapeHtml(e.school)}</div>
+          <div class="edu-school">${escapeHtml(e.school)} · ${escapeHtml(e.city)}</div>
+          <div class="edu-sub mono">${e.graduated_year}${e.gpa?` · GPA ${e.gpa}`:''}${e.honors?` · ${escapeHtml(e.honors)}`:''}</div>
         </div>
       </div>
     `).join('');
@@ -431,11 +407,19 @@
         <circle cx="140" cy="110" r="95" fill="url(#rad-g)" stroke="rgba(99,102,241,0.40)" stroke-dasharray="3 4"/>
         <circle cx="140" cy="110" r="60" fill="none" stroke="rgba(99,102,241,0.30)" stroke-dasharray="2 4"/>
         <circle cx="140" cy="110" r="30" fill="none" stroke="rgba(99,102,241,0.25)" stroke-dasharray="2 4"/>
+        <!-- nearby cities -->
+        <g font-family="JetBrains Mono" font-size="9" fill="rgba(255,255,255,0.55)">
+          <circle cx="98"  cy="92"  r="2" fill="#A5B4FC"/><text x="103" y="91">Ann Arbor</text>
+          <circle cx="170" cy="135" r="2" fill="#A5B4FC"/><text x="175" y="138">Toledo</text>
+          <circle cx="58"  cy="152" r="2" fill="#A5B4FC"/><text x="63"  y="155">Lansing</text>
+          <circle cx="200" cy="65"  r="2" fill="#A5B4FC"/><text x="205" y="68">Saginaw</text>
+          <circle cx="220" cy="170" r="2" fill="#A5B4FC"/><text x="180" y="178">Cleveland</text>
+        </g>
         <!-- home pin -->
         <g>
           <circle cx="140" cy="110" r="6" fill="#34D399"/>
           <circle cx="140" cy="110" r="11" fill="none" stroke="#34D399" stroke-opacity="0.6"/>
-          <text x="148" y="113" font-family="Outfit" font-size="11" font-weight="600" fill="#fff">${escapeHtml(L.city)}</text>
+          <text x="148" y="113" font-family="Outfit" font-size="11" font-weight="600" fill="#fff">Detroit</text>
         </g>
       </svg>
     `;
@@ -444,7 +428,7 @@
   // ── ENDORSEMENTS ─────────────────────────────────────────────
   function renderEndorsements() {
     const all = D.endorsements;
-    const top = all.slice(0, 7);
+    const top = all.slice(0, 12);
     // group by skill
     const bySkill = {};
     all.forEach(e => { (bySkill[e.skill] ||= []).push(e); });
@@ -466,20 +450,17 @@
   }
 
   // ── PORTFOLIO ────────────────────────────────────────────────
-  // Driven by D.portfolio_links (7 entries) per specs/SECTIONS.md § 1 right-col Portfolio.
-  // kind → icon (video ▶ · code ⌘ · talk ◎ · doc §). Source label = URL hostname.
   function renderPortfolio() {
-    const iconFor = { video: '▶', code: '⌘', talk: '◎', doc: '§' };
-    const hostFor = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } };
-    const items = (D.portfolio_links || []).map(p => ({
-      kind:  p.kind,
-      title: p.title,
-      url:   p.url,
-      src:   hostFor(p.url),
-      icon:  iconFor[p.kind] || '·'
-    }));
+    const items = [
+      { kind: 'video', title: 'FANUC R-30iB cell programming walkthrough',  src: 'YouTube · 8:24', icon: '▶' },
+      { kind: 'code',  title: 'Studio 5000 style guide (Acme team standard)', src: 'GitHub · 412 stars', icon: '⌘' },
+      { kind: 'talk',  title: 'TÜV functional safety: lessons from 12 retrofits', src: 'ISA Detroit · 2025', icon: '◎' },
+      { kind: 'doc',   title: 'Body-in-white commissioning checklist',       src: 'PDF · 38 pages', icon: '§' },
+      { kind: 'video', title: 'Live-line PLC migration: Stellantis Sterling',src: 'YouTube · 12:40', icon: '▶' },
+      { kind: 'code',  title: 'TIA Portal V18 templates (open-sourced)',     src: 'GitHub · 188 stars', icon: '⌘' },
+    ];
     $('#port-list').innerHTML = items.map(p => `
-      <a class="port-card" href="${escapeHtml(p.url)}" target="_blank" rel="noopener">
+      <a class="port-card" href="#">
         <div class="port-icon">${p.icon}</div>
         <div class="port-meta">
           <div class="port-title">${escapeHtml(p.title)}</div>
@@ -493,20 +474,18 @@
   // ── ADMIN NOTES ──────────────────────────────────────────────
   function renderAdmin() {
     $('#admin-meta').innerHTML = `
-      <!-- Tiles + note driven by D.admin_notes per specs/ROLE-OVERRIDES.md "admin role".
-           Free-text note is verbatim from professional.json; fake signature dropped (no canonical signer in data). -->
       <div class="admin-grid">
-        <div class="admin-tile"><div class="kpi-label">TRUST SCORE</div><div class="kpi-val" style="color:#34D399">${(D.admin_notes||{}).trust_score ?? '—'}</div></div>
-        <div class="admin-tile"><div class="kpi-label">KYC STATUS</div><div class="kpi-val" style="font-size:18px;color:#34D399">${(D.admin_notes||{}).background_check_status === 'PASSED' ? 'VERIFIED' : 'PENDING'}</div></div>
-        <div class="admin-tile"><div class="kpi-label">DISPUTES</div><div class="kpi-val">${(D.admin_notes||{}).contract_disputes_lifetime ?? 0}</div></div>
-        <div class="admin-tile"><div class="kpi-label">FLAGS</div><div class="kpi-val">${(((D.admin_notes||{}).warnings)||[]).length}</div></div>
-        <div class="admin-tile"><div class="kpi-label">2FA</div><div class="kpi-val" style="font-size:18px;color:#34D399">${D.two_factor_enabled ? 'ON' : 'OFF'}</div></div>
-        <div class="admin-tile"><div class="kpi-label">TIER OVERRIDE</div><div class="kpi-val" style="font-size:18px">${escapeHtml((D.admin_notes||{}).tier_override || '—')}</div></div>
+        <div class="admin-tile"><div class="kpi-label">TRUST SCORE</div><div class="kpi-val" style="color:#34D399">98</div></div>
+        <div class="admin-tile"><div class="kpi-label">KYC STATUS</div><div class="kpi-val" style="font-size:18px;color:#34D399">VERIFIED</div></div>
+        <div class="admin-tile"><div class="kpi-label">DISPUTES</div><div class="kpi-val">0</div></div>
+        <div class="admin-tile"><div class="kpi-label">FLAGS</div><div class="kpi-val">0</div></div>
+        <div class="admin-tile"><div class="kpi-label">2FA</div><div class="kpi-val" style="font-size:18px;color:#34D399">ON</div></div>
+        <div class="admin-tile"><div class="kpi-label">TIER OVERRIDE</div><div class="kpi-val" style="font-size:18px">—</div></div>
       </div>
       <div class="admin-note">
-        <div class="kpi-label">ADMIN NOTE</div>
+        <div class="kpi-label">ADMIN NOTE · last edit by tony.wallace 2026-04-22</div>
         <p style="margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--glass-text-secondary)">
-          ${escapeHtml((D.admin_notes||{}).free_text_admin_note || '')}
+          Top-tier contractor. Cleared for any white-glove tier-1 OEM engagement. Pre-approved emergency-rate billing. Direct line for anomalous activity: ops@automate-america.com. No moderation history.
         </p>
       </div>
       <div class="cta-row" style="margin-top:13px">

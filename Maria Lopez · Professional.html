@@ -87,7 +87,7 @@
   :root[data-theme="light"] .social-icon { background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.06); }
 
   /* Quick stats row */
-  .hero-stats { display:grid; grid-template-columns: repeat(6, 1fr); gap:8px; margin-top:21px; }
+  .hero-stats { display:grid; grid-template-columns: repeat(5, 1fr); gap:8px; margin-top:21px; }
   .stat-tile { padding:10px 8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:13px; text-align:center; }
   :root[data-theme="light"] .stat-tile { background:rgba(0,0,0,0.03); border-color:rgba(0,0,0,0.06); }
   .stat-tile .kpi-val { font-size:20px !important; font-weight:800 !important; }
@@ -148,9 +148,6 @@
   .bg-meta { flex:1; min-width:0; }
   .bg-name { font-family:'Outfit'; font-weight:600; font-size:13px; color:var(--glass-text-primary); }
   .bg-sub { font-size:11px; color:var(--glass-text-tertiary); margin-top:1px; font-weight:500; }
-  .bg-more { width:100%; margin-top:8px; padding:10px 12px; background:rgba(255,255,255,0.04); border:1px dashed rgba(255,255,255,0.10); border-radius:10px; color:var(--glass-text-secondary); font-size:12px; font-weight:500; cursor:pointer; transition:background 120ms, color 120ms; }
-  .bg-more:hover { background:rgba(255,255,255,0.08); color:var(--glass-text-primary); }
-  :root[data-theme="light"] .bg-more { background:rgba(0,0,0,0.03); border-color:rgba(0,0,0,0.10); }
 
   /* Files */
   .file-row { display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
@@ -211,10 +208,10 @@
 
   /* Skills */
   #skills-list { display:flex; flex-direction:column; gap:10px; }
-  .skill-row { display:grid; grid-template-columns: 80px 1fr auto; gap:13px; align-items:center; padding:13px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:15px; }
+  .skill-row { display:grid; grid-template-columns: 56px 1fr auto; gap:13px; align-items:center; padding:13px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:15px; }
   :root[data-theme="light"] .skill-row { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
   .skill-row.primary { border-color: rgba(99,102,241,0.35); background: rgba(99,102,241,0.06); }
-  .skill-logo { width:80px; height:80px; border-radius:11px; background:rgba(255,255,255,0.95); padding:7px; display:grid; place-items:center; border:1px solid rgba(255,255,255,0.15); }
+  .skill-logo { width:56px; height:56px; border-radius:11px; background:rgba(255,255,255,0.95); padding:7px; display:grid; place-items:center; border:1px solid rgba(255,255,255,0.15); }
   .skill-logo img { width:100%; height:100%; object-fit:contain; }
   .skill-name { font-family:'Outfit'; font-weight:700; font-size:16px; color:var(--glass-text-primary); display:flex; align-items:center; gap:7px; }
   .skill-models { font-family:'JetBrains Mono'; font-size:11px; color:var(--glass-text-secondary); margin-top:2px; font-weight:500; }
@@ -235,17 +232,11 @@
   #reviews-list { display:grid; grid-template-columns:1fr; gap:13px; }
   @media (min-width: 700px) { #reviews-list { grid-template-columns:1fr 1fr; } }
   .rev-card { padding:17px; }
-  /* WG reviews render with NORMAL chrome (no gold edge). Per specs/WHITE-GLOVE-VISUAL.md:
-     "Reviews from WG contracts ... DON'T get gold-edge treatment on the review card itself.
-     They sit alongside non-WG reviews with normal chrome."
-     Visual signifier is the ◇ glyph in .rev-logo.wg only. */
+  .rev-card.wg { border-color: rgba(168,85,247,0.30); background: rgba(168,85,247,0.05); }
   .rev-head { display:grid; grid-template-columns:48px 1fr auto; gap:11px; align-items:center; margin-bottom:11px; }
   .rev-logo { width:48px; height:48px; border-radius:11px; background:rgba(255,255,255,0.95); padding:6px; border:1px solid rgba(255,255,255,0.15); flex-shrink:0; }
   .rev-logo img { width:100%; height:100%; object-fit:contain; }
-  /* WG anonymous reviewer: neutral muted chrome + ◇ glyph in --wg-primary (amber #F59E0B).
-     Subtle marker — gold treatment goes on the WG ENTITY (the contract page), not on artifacts that mention WG. */
-  .rev-logo.wg { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); display:grid; place-items:center; color:#F59E0B; font-size:22px; font-family:'Outfit'; font-weight:700; padding:0; }
-  :root[data-theme="light"] .rev-logo.wg { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.08); color:#D97706; }
+  .rev-logo.wg { background: linear-gradient(135deg, #A855F7, #6366F1); display:grid; place-items:center; color:#fff; font-size:18px; font-family:'Outfit'; font-weight:800; }
   .rev-logo.placeholder { background: rgba(99,102,241,0.20); border-color:rgba(99,102,241,0.30); display:grid; place-items:center; font-family:'JetBrains Mono'; font-weight:700; color:#A5B4FC; font-size:13px; padding:0; }
   .rev-company { font-family:'Outfit'; font-weight:700; font-size:14px; color:var(--glass-text-primary); }
   .rev-name { font-size:11px; color:var(--glass-text-secondary); margin-top:2px; font-weight:500; }
@@ -417,15 +408,15 @@
               <div><div class="kpi-label">NEXT FREE</div><div id="avail-next"></div></div>
               <div><div class="kpi-label">CAPACITY</div><div id="avail-cap"></div></div>
             </div>
-            <div id="avail-cta-wrap" style="margin-top:10px;display:none">
-              <a id="avail-cta" class="gbtn gbtn-secondary sm" href="#" target="_blank" rel="noopener">Book intro call</a>
-            </div>
+            <div id="avail-flags"></div>
           </section>
 
           <!-- RATES -->
           <section class="glass-card side-card">
             <div class="h"><span>RATES &amp; ENGAGEMENT</span></div>
             <div id="rate-tiles"></div>
+            <div id="rate-band"></div>
+            <div id="rate-eng"></div>
           </section>
 
           <!-- CONNECTIONS -->
@@ -446,9 +437,11 @@
               <div style="flex:1;min-width:0;">
                 <div id="aff-name"></div>
                 <div id="aff-role"></div>
+                <div id="aff-class"></div>
               </div>
             </div>
             <div id="aff-joined"></div>
+            <div id="aff-rate"></div>
           </section>
 
           <!-- BUSINESS GROUPS -->
@@ -539,7 +532,7 @@
           <section class="glass-card sec">
             <div class="sec-h">
               <h2>Work Experience</h2>
-              <span class="meta" id="exp-header-meta"></span>
+              <span class="meta">9+ yrs · 4 companies</span>
             </div>
             <div id="exp-list"></div>
           </section>

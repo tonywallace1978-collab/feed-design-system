@@ -4,6 +4,18 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rebecca Chen · Plant Engineering Manager · Ford Rouge</title>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#0a0a1a"/><stop offset="100%" stop-color="#1a3a4a"/>
+  </linearGradient></defs>
+  <rect width="600" height="400" fill="url(#g)"/>
+  <circle cx="300" cy="170" r="62" fill="#34D399" opacity="0.85"/>
+  <text x="300" y="186" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="56" fill="#fff">R</text>
+  <text x="300" y="280" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="22" fill="#fff">Rebecca Chen</text>
+  <text x="300" y="310" text-anchor="middle" font-family="JetBrains Mono,monospace" font-weight="600" font-size="13" fill="#86EFAC" letter-spacing="2">PLANT ENG. MANAGER</text>
+</svg>
+</template>
 <link rel="stylesheet" href="tokens/glass-design-tokens.css" />
 <link rel="stylesheet" href="styles/glass.css" />
 <style>
@@ -97,14 +109,6 @@
   .spend-bar-amt { font-family:'JetBrains Mono';font-weight:700;color:var(--glass-text-primary);font-size:11px;text-align:right; }
   #spend-tier { display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px; }
   .spend-tier-tile { padding:11px;background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.18);border-radius:11px; }
-  .spend-pie-wrap { display:grid;grid-template-columns:180px 1fr;gap:18px;align-items:center;padding:8px 0; }
-  .spend-pie-legend { display:flex;flex-direction:column;gap:6px; }
-  .pie-legend-row { display:grid;grid-template-columns:12px 1fr auto auto;gap:8px;align-items:center;font-size:12px;color:var(--glass-text-secondary); }
-  .pie-swatch { width:12px;height:12px;border-radius:3px; }
-  .pie-trade { color:var(--glass-text-primary); }
-  .pie-amt { color:var(--glass-text-secondary); }
-  .pie-pct { color:var(--glass-text-tertiary);min-width:28px;text-align:right; }
-  @media (max-width:480px) { .spend-pie-wrap { grid-template-columns:1fr;justify-items:center; } }
 
   /* Files */
   .file-row { display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04); }
@@ -120,11 +124,7 @@
   .kv-row:last-child { border-bottom:0; }
   :root[data-theme="light"] .kv-row { border-color:rgba(0,0,0,0.05); }
   .kv-key { font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;min-width:90px; }
-  .kv-val { font-family:'Outfit';font-size:12px;color:var(--glass-text-primary);font-weight:600;flex:1;min-width:0;display:flex;align-items:center;gap:8px; }
-  .kv-action { display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:transparent;border:1px solid rgba(255,255,255,0.10);border-radius:6px;color:var(--glass-text-tertiary);cursor:pointer;transition:color 120ms,border-color 120ms,background 120ms; }
-  :root[data-theme="light"] .kv-action { border-color:rgba(0,0,0,0.10); }
-  .kv-action:hover { color:var(--glass-accent-info,#22D3EE);border-color:var(--glass-accent-info,#22D3EE);background:rgba(34,211,238,0.06); }
-  .kv-row.masked .kv-val { letter-spacing:0.06em; }
+  .kv-val { font-family:'Outfit';font-size:12px;color:var(--glass-text-primary);font-weight:600;flex:1;min-width:0; }
 
   /* Right column section */
   .sec { padding:21px; }
@@ -173,9 +173,6 @@
   .pro-occ { font-size:11px;color:var(--glass-text-secondary);font-weight:600;margin-top:2px; }
   .pro-loc { font-size:11px;color:var(--glass-text-tertiary);margin-top:2px;font-weight:500; }
   .pro-stat { text-align:center; }
-  .watched-more { width:100%;margin-top:8px;padding:10px 12px;background:rgba(255,255,255,0.04);border:1px dashed rgba(255,255,255,0.10);border-radius:10px;color:var(--glass-text-secondary);font-size:12px;font-weight:500;cursor:pointer;transition:background 120ms,color 120ms; }
-  :root[data-theme="light"] .watched-more { background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.10); }
-  .watched-more:hover { background:rgba(255,255,255,0.08);color:var(--glass-text-primary); }
 
   /* Reviews */
   #reviews-list { display:grid;grid-template-columns:1fr;gap:13px; }
@@ -337,7 +334,7 @@
             <div class="hist-wrap">
               <table class="hist-table">
                 <thead>
-                  <tr><th>Completed</th><th>Contract</th><th>Pro</th><th>—</th></tr>
+                  <tr><th>Completed</th><th>Contract</th><th>Pro</th><th>Wks</th><th>Rate</th><th style="text-align:right;">Value</th><th>Rating</th><th>—</th></tr>
                 </thead>
                 <tbody id="history-list"></tbody>
               </table>

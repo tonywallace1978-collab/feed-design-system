@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-role="public">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maria E. Lopez — Senior Controls Engineer</title>
+
+<meta name="description" content="Maria Lopez — senior controls and automation specialist. 9 years across automotive, F&amp;B, medical-device. Detroit, MI · 250-mi service radius.">
+<meta property="og:title" content="Maria E. Lopez · Senior Controls Engineer">
+<meta property="og:image" content="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=630&fit=crop">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@300;400;450;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* Type scales */
+  --serif:'Fraunces',ui-serif,Georgia,serif;
+  --sans:'Inter',-apple-system,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  /* Spacing */
+  --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:20px;--s-6:24px;--s-7:32px;--s-8:40px;--s-9:56px;--s-10:72px;
+  /* Radii */
+  --r-1:6px;--r-2:10px;--r-3:14px;--r-4:20px;--r-5:28px;
+  /* Brand: amber/gold (White Glove tier) */
+  --gold:#FCD34D;--gold-light:#FEF3C7;--gold-deep:#F59E0B;--gold-burn:#D97706;
+  --gold-glow:rgba(252,211,77,0.32);
+  --amber:#F59E0B;
+  /* Status */
+  --green:#34D399;--green-deep:#059669;--red:#F87171;--blue:#60A5FA;
+  /* Tier colors */
+  --t-diamond:#A5F3FC;--t-platinum:#E5E4E2;--t-gold:#FCD34D;--t-silver:#D1D5DB;--t-bronze:#FB923C;
+  /* Glass surfaces (Vision Pro vibe) */
+  --gl-1:rgba(28,22,8,0.32);   /* warm dark glass */
+  --gl-2:rgba(38,30,12,0.42);   /* hover */
+  --gl-3:rgba(18,14,6,0.62);    /* deeper modal */
+  --gl-tint:rgba(252,211,77,0.06);
+  --bd-1:rgba(255,250,235,0.10);
+  --bd-2:rgba(255,250,235,0.18);
+  --bd-warm:rgba(252,211,77,0.22);
+  /* Text — warm greys, not cold */
+  --t1:#FBFAF5; --t2:#D4D0C2; --t3:#9A9586; --t4:#615C50;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100vw;overflow-x:hidden}
+html{background:#1a0f04}
+body{
+  font-family:var(--sans);
+  color:var(--t1);
+  font-feature-settings:"ss01","cv11","ss03";
+  font-weight:450;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  letter-spacing:-0.005em;
+}
+
+/* ════════════════════ WALLPAPER ════════════════════ */
+.wp{position:fixed;inset:0;z-index:0;overflow:hidden}
+.wp::before{
+  content:'';position:absolute;inset:-3%;
+  background:url('assets/wallpaper-industrial.png') center/cover no-repeat;
+  /* desaturate slightly + warm */
+  filter:saturate(1.12) contrast(1.05) brightness(0.78);
+  transform:scale(1.05);
+}
+.wp::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(80% 60% at 20% 10%, rgba(252,211,77,0.10), transparent 60%),
+    radial-gradient(70% 60% at 90% 100%, rgba(20,10,40,0.45), transparent 60%),
+    linear-gradient(180deg,rgba(8,4,2,0.10) 0%,rgba(8,4,2,0.18) 40%,rgba(8,4,2,0.45) 100%);
+}
+
+/* ════════════════════ TOPBAR ════════════════════ */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  backdrop-filter:blur(28px) saturate(180%);
+  -webkit-backdrop-filter:blur(28px) saturate(180%);
+  background:rgba(10,6,2,0.55);
+  border-bottom:1px solid var(--bd-1);
+}
+.topbar-inner{max-width:1440px;margin:0 auto;padding:14px var(--s-7);display:flex;align-items:center;gap:var(--s-6)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--t1);font-weight:800;letter-spacing:0.4px;font-size:13px;text-transform:uppercase}
+.brand img{height:24px;filter:brightness(1.1)}
+.brand-glyph{
+  width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-burn) 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-style:italic;font-weight:800;color:#1a0f04;font-size:18px;line-height:1;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 4px 12px rgba(245,158,11,0.3);
+}
+.topnav{display:flex;gap:6px;margin-left:auto;font-size:13px}
+.topnav a{color:var(--t2);text-decoration:none;padding:7px 14px;border-radius:var(--r-1);transition:all 0.15s;font-weight:500;letter-spacing:-0.01em}
+.topnav a:hover{color:var(--t1);background:rgba(255,250,235,0.05)}
+.topnav a.active{color:var(--gold);background:rgba(252,211,77,0.08);box-shadow:inset 0 0 0 1px rgba(252,211,77,0.18)}
+
+/* ════════════════════ ROLE BAR ════════════════════ */
+.rolebar{
+  position:sticky;top:53px;z-index:55;
+  backdrop-filter:blur(20px) saturate(160%);
+  background:rgba(10,6,2,0.4);
+  border-bottom:1px solid var(--bd-1);
+}
+.rolebar-inner{max-width:1440px;margin:0 auto;padding:9px var(--s-7);display:flex;align-items:center;gap:var(--s-3)}
+.rolebar .lbl{color:var(--t3);text-transform:uppercase;letter-spacing:1.4px;font-weight:700;font-size:10px}
+.role-tabs{display:flex;gap:2px;background:rgba(0,0,0,0.4);border:1px solid var(--bd-1);border-radius:var(--r-1);padding:3px}
+.role-tabs button{
+  background:transparent;border:none;color:var(--t2);
+  padding:5px 11px;border-radius:5px;font-family:inherit;font-size:11px;font-weight:600;
+  cursor:pointer;letter-spacing:0.2px;transition:all 0.15s;
+}
+.role-tabs button.active{background:var(--gold);color:#1a0f04;box-shadow:inset 0 1px 0 rgba(255,255,255,0.4)}
+.role-tabs button:hover:not(.active){color:var(--t1);background:rgba(255,255,255,0.05)}
+.role-explainer{color:var(--t3);font-size:11px;font-style:italic;margin-left:auto;font-family:var(--serif);font-weight:400}
+
+/* ════════════════════ PAGE ════════════════════ */
+.page{position:relative;z-index:2;max-width:1440px;margin:0 auto;padding:var(--s-8) var(--s-7) var(--s-10)}
+
+/* ════════════════════ NAME HEADLINE (above grid) ════════════════════ */
+.name-strip{display:grid;grid-template-columns:1fr auto;gap:var(--s-6);align-items:end;margin-bottom:var(--s-7);padding-bottom:var(--s-6);border-bottom:1px solid var(--bd-1)}
+.name-strip .l h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-style:italic;
+  font-size:clamp(40px, 6vw, 76px);
+  line-height:0.94;
+  letter-spacing:-0.03em;
+  color:var(--t1);
+  font-variation-settings:"opsz" 144;
+}
+.name-strip .l h1 .first{font-style:italic;font-weight:500;color:var(--gold)}
+.name-strip .l .role{
+  font-family:var(--sans);font-weight:500;font-size:17px;color:var(--t2);
+  margin-top:10px;letter-spacing:-0.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.name-strip .l .role .dot{width:3px;height:3px;border-radius:50%;background:var(--t4)}
+.name-strip .l .role .verified{color:var(--gold);font-weight:700;display:inline-flex;align-items:center;gap:5px;text-transform:uppercase;letter-spacing:1.2px;font-size:11px}
+.name-strip .r{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.tier-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:100px;
+  background:linear-gradient(180deg,rgba(252,211,77,0.16),rgba(245,158,11,0.10));
+  border:1px solid rgba(252,211,77,0.4);
+  font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--gold);
+  box-shadow:0 0 30px rgba(252,211,77,0.15),inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.tier-pill::before{content:'';width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-burn));box-shadow:0 0 10px var(--gold)}
+.headstats{display:flex;gap:0;font-family:var(--sans);font-size:12px;background:var(--gl-1);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--bd-1);border-radius:var(--r-2);overflow:hidden}
+.headstats > div{padding:8px 16px;display:flex;flex-direction:column;align-items:center;gap:1px;border-right:1px solid var(--bd-1);min-width:78px}
+.headstats > div:last-child{border-right:none}
+.headstats .v{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--t1);letter-spacing:-0.02em;line-height:1}
+.headstats .v.green{color:var(--green)}
+.headstats .v.gold{color:var(--gold)}
+.headstats .l{font-size:9px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1.2px;line-height:1.2;text-align:center}
+
+/* ════════════════════ GOLDEN-RATIO GRID ════════════════════ */
+.profile{display:grid;grid-template-columns:minmax(380px,1fr) minmax(0,1.618fr);gap:var(--s-6);align-items:start}
+@media (max-width:920px){.profile{grid-template-columns:1fr}}
+.col{display:flex;flex-direction:column;gap:var(--s-4);min-width:0}
+
+/* ════════════════════ GLASS CARD (Vision Pro) ════════════════════ */
+.glass{
+  position:relative;
+  background:var(--gl-1);
+  backdrop-filter:blur(36px) saturate(190%);
+  -webkit-backdrop-filter:blur(36px) saturate(190%);
+  border:1px solid var(--bd-1);
+  border-radius:var(--r-3);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    inset 0 0 0 1px rgba(255,255,255,0.02),
+    0 8px 32px rgba(0,0,0,0.25),
+    0 1px 3px rgba(0,0,0,0.5);
+  overflow:hidden;
+}
+.glass::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12) 50%,transparent);
+  pointer-events:none;
+}
+.glass.warm{background:linear-gradient(135deg,rgba(252,211,77,0.04),rgba(28,22,8,0.32));border-color:var(--bd-warm)}
+
+/* Card head */
+.head{
+  display:flex;align-items:center;gap:var(--s-3);
+  padding:var(--s-3) var(--s-5);
+  border-bottom:1px solid var(--bd-1);
+}
+.head h3{
+  font-family:var(--sans);font-size:10.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1.6px;color:var(--t1);
+}
+.head .num{font-family:var(--mono);font-size:10.5px;color:var(--gold);font-weight:600;letter-spacing:0.5px}
+.head .right{margin-left:auto;font-size:10px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:1.2px}
+.head .right a{color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.head .right a:hover{color:var(--gold-light)}
+.head .gem{
+  width:6px;height:14px;
+  background:linear-gradient(180deg,var(--gold-light),var(--gold-burn));
+  border-radius:1px;flex-shrink:0;
+  box-shadow:0 0 8px var(--gold-glow);
+}
+
+/* Card body padding */
+.body{padding:var(--s-5)}
+.body.tight{padding:var(--s-3) var(--s-5)}
+
+/* ════════════════════ HERO CARD (left) ════════════════════ */
+.hero{padding:var(--s-5)}
+.hero-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:var(--s-3);align-items:stretch}
+.hero-photo{
+  position:relative;aspect-ratio:1/1;width:100%;border-radius:var(--r-2);
+  overflow:hidden;flex-shrink:0;align-self:stretch;
+  box-shadow:0 12px 40px rgba(0,0,0,0.5),inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-photo::after{
+  content:'';position:absolute;inset:0;border-radius:var(--r-2);
+  background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,0.5) 100%);
+  pointer-events:none;
+}
+.hero-photo .verified{
+  position:absolute;bottom:8px;right:8px;
+  width:30px;height:30px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-burn) 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:#1a0f04;font-weight:900;font-size:14px;
+  box-shadow:0 4px 12px rgba(245,158,11,0.5),inset 0 1px 0 rgba(255,255,255,0.4);
+  border:2px solid rgba(0,0,0,0.3);
+}
+.hero-photo .pronouns{
+  position:absolute;top:8px;left:8px;
+  font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:3px 8px;border-radius:100px;
+  background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);
+  color:var(--t2);
+}
+.hero-stack{display:grid;grid-template-rows:repeat(4,1fr);gap:6px;align-self:stretch}
+.hero-cell{
+  background:rgba(255,250,235,0.03);
+  border:1px solid var(--bd-1);
+  border-radius:var(--r-1);
+  padding:7px 11px;
+  display:flex;flex-direction:column;justify-content:center;
+  min-height:0;
+}
+.hero-cell .k{font-size:8.5px;text-transform:uppercase;letter-spacing:1.3px;color:var(--t3);font-weight:700;margin-bottom:1px}
+.hero-cell .v{font-size:13px;font-weight:600;color:var(--t1);line-height:1.15;letter-spacing:-0.015em}
+.hero-cell .v .id{font-family:var(--mono);font-size:10px;color:var(--t3);font-weight:500;letter-spacing:0.5px;margin-left:6px}
+.hero-cell.split{display:grid;grid-template-columns:1.4fr 1fr 0.8fr;gap:6px;padding:0;background:transparent;border:0}
+.hero-cell.split > div{background:rgba(255,250,235,0.03);border:1px solid var(--bd-1);border-radius:var(--r-1);padding:7px 11px;display:flex;flex-direction:column;justify-content:center;min-height:0}
+.hero-cell.split > div.flag-cell{padding:6px 6px 7px;align-items:center;justify-content:center;gap:5px}
+.hero-cell.split > div.flag-cell .fimg{width:42px;height:28px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.5),inset 0 0 0 1px rgba(255,255,255,0.18);display:block;flex-shrink:0}
+.hero-cell.split > div.flag-cell .lbl{font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:2px 0;margin-top:auto}
+.avail{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:0.6px}
+.avail::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(52,211,153,0.18);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(52,211,153,0.18)}50%{box-shadow:0 0 0 6px rgba(52,211,153,0)}}
+.rate-amt{font-family:var(--serif);font-weight:600;color:var(--gold);font-size:21px;letter-spacing:-0.02em;line-height:1}
+.rate-amt .u{font-family:var(--sans);font-size:9px;color:var(--t3);font-weight:600;letter-spacing:0.5px;margin-left:2px}
+
+/* ════════════════════ Skills strip (manufacturers) ════════════════════ */
+.mfg-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:var(--s-3) var(--s-5) var(--s-5)}
+.mfg{
+  position:relative;
+  aspect-ratio:1/1;
+  border-radius:var(--r-2);
+  background:rgba(255,250,235,0.04);
+  border:1px solid var(--bd-1);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:8px;gap:5px;text-align:center;
+  cursor:pointer;transition:all 0.18s;
+  backdrop-filter:blur(12px);
+}
+.mfg:hover{background:rgba(252,211,77,0.05);border-color:var(--bd-warm);transform:translateY(-2px)}
+.mfg img{max-width:64%;max-height:48%;object-fit:contain;filter:brightness(1.15) drop-shadow(0 2px 4px rgba(0,0,0,0.4))}
+.mfg .nm{font-size:8.5px;font-weight:700;color:var(--t1);text-transform:uppercase;letter-spacing:0.4px;line-height:1.1}
+.mfg .yrs{font-family:var(--mono);font-size:8px;color:var(--gold);font-weight:600}
+.mfg.flag{padding:0;overflow:hidden}
+.mfg.flag .flag-img{width:100%;height:65%;object-fit:cover}
+.mfg.flag .meta{padding:5px 4px;text-align:center;width:100%}
+
+/* ════════════════════ Trades chips ════════════════════ */
+.chip-cloud{display:flex;flex-wrap:wrap;gap:6px;padding:var(--s-4) var(--s-5)}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:100px;
+  background:rgba(255,250,235,0.05);
+  border:1px solid var(--bd-1);
+  font-size:11.5px;font-weight:500;color:var(--t1);
+  letter-spacing:-0.005em;
+}
+.chip .lvl{font-family:var(--mono);font-size:9px;color:var(--gold);font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+.chip .yr{font-family:var(--mono);font-size:9px;color:var(--t3);font-weight:600}
+.chip.warm{background:rgba(252,211,77,0.06);border-color:var(--bd-warm)}
+
+/* ════════════════════ Competencies ════════════════════ */
+.comps{display:flex;flex-direction:column;gap:8px;padding:var(--s-4) var(--s-5)}
+.comp{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.comp .nm{font-size:12.5px;font-weight:500;color:var(--t1);letter-spacing:-0.005em}
+.comp .nm .y{font-family:var(--mono);font-size:9.5px;color:var(--t3);font-weight:600;margin-left:6px}
+.comp .bar-wrap{display:flex;align-items:center;gap:8px}
+.comp .bar{width:70px;height:4px;background:rgba(255,255,255,0.08);border-radius:100px;overflow:hidden}
+.comp .bar > div{height:100%;background:linear-gradient(90deg,var(--gold-light),var(--gold) 60%,var(--gold-burn));border-radius:100px}
+.comp .pct{font-family:var(--mono);font-size:10px;color:var(--gold);font-weight:700;letter-spacing:-0.01em;min-width:26px;text-align:right}
+
+/* ════════════════════ About me ════════════════════ */
+.about{padding:var(--s-4) var(--s-5)}
+.about p{font-size:13.5px;color:var(--t2);line-height:1.6;letter-spacing:-0.005em;font-weight:400}
+.about p + p{margin-top:8px}
+.about p .pull{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--t1);font-size:14.5px}
+.tagline{font-family:var(--serif);font-style:italic;font-weight:400;font-size:16px;line-height:1.4;color:var(--t1);padding:var(--s-3) var(--s-5);background:linear-gradient(180deg,rgba(252,211,77,0.06),transparent);border-bottom:1px solid var(--bd-1)}
+.tagline::before{content:'"';color:var(--gold);font-size:36px;line-height:0;position:relative;top:14px;margin-right:4px;font-family:var(--serif);font-style:italic;font-weight:600}
+
+/* ════════════════════ Travel / Engagement ════════════════════ */
+.kvs{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.kvs > div{padding:10px 16px;border-right:1px solid var(--bd-1);border-bottom:1px solid var(--bd-1)}
+.kvs > div:nth-child(2n){border-right:none}
+.kvs .k{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1.3px;font-weight:700;margin-bottom:2px}
+.kvs .v{font-size:13px;color:var(--t1);font-weight:500;letter-spacing:-0.005em}
+.kvs .v.mono{font-family:var(--mono);font-weight:600}
+.kvs .v.gold{color:var(--gold)}
+.kvs .v.green{color:var(--green)}
+
+/* ════════════════════ Social links ════════════════════ */
+.socials{display:flex;gap:6px;padding:var(--s-4) var(--s-5);flex-wrap:wrap}
+.social{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:var(--r-1);
+  background:rgba(255,250,235,0.04);border:1px solid var(--bd-1);
+  text-decoration:none;color:var(--t2);font-size:11.5px;font-weight:500;
+  transition:all 0.15s;letter-spacing:-0.01em;
+}
+.social:hover{background:rgba(252,211,77,0.06);border-color:var(--bd-warm);color:var(--gold)}
+.social .icon{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.5px}
+
+/* ════════════════════ CTAs ════════════════════ */
+.ctas{display:flex;flex-direction:column;gap:6px;padding:var(--s-3) var(--s-3)}
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 16px;border-radius:var(--r-2);
+  font-family:var(--sans);font-size:13px;font-weight:600;
+  letter-spacing:-0.01em;
+  cursor:pointer;border:none;
+  transition:all 0.15s;
+}
+.cta-primary{
+  background:linear-gradient(180deg,var(--gold-light),var(--gold) 50%,var(--gold-burn));
+  color:#1a0f04;font-weight:700;
+  box-shadow:0 6px 20px rgba(245,158,11,0.32),inset 0 1px 0 rgba(255,255,255,0.4);
+}
+.cta-primary:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(245,158,11,0.45),inset 0 1px 0 rgba(255,255,255,0.4)}
+.cta-success{
+  background:linear-gradient(180deg,var(--green),var(--green-deep));
+  color:#0b2418;font-weight:700;
+  box-shadow:0 4px 14px rgba(52,211,153,0.28),inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.cta-ghost{background:rgba(255,250,235,0.04);color:var(--t1);border:1px solid var(--bd-1)}
+.cta-ghost:hover{background:rgba(255,250,235,0.08);border-color:var(--bd-2)}
+.cta-watch{background:rgba(168,85,247,0.10);color:#C4B5FD;border:1px solid rgba(168,85,247,0.3)}
+.cta-watch:hover{background:rgba(168,85,247,0.18)}
+.cta-danger{background:rgba(248,113,113,0.10);color:var(--red);border:1px solid rgba(248,113,113,0.25)}
+
+/* ════════════════════ STRIPS (right column wireframe) ════════════════════ */
+.strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid var(--bd-1)}
+.strip > .cell{
+  border-right:1px solid var(--bd-1);
+  padding:var(--s-3) var(--s-2);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  gap:6px;text-align:center;
+  min-height:138px;
+  cursor:pointer;
+  transition:background 0.15s;
+  position:relative;
+}
+.strip > .cell:last-child{border-right:none}
+.strip > .cell:hover{background:rgba(252,211,77,0.04)}
+
+/* GLASS CHIP — logo holder, no white background */
+.gl-chip{
+  position:relative;
+  width:54px;height:54px;border-radius:var(--r-2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;padding:8px;
+  background:rgba(255,250,235,0.06);
+  backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid var(--bd-1);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),0 4px 12px rgba(0,0,0,0.25);
+}
+.gl-chip img{max-width:100%;max-height:100%;object-fit:contain;filter:brightness(1.15) contrast(1.05)}
+.gl-chip.placeholder{
+  font-family:var(--mono);font-weight:700;font-size:13px;color:var(--gold);
+  background:linear-gradient(135deg,rgba(252,211,77,0.10),rgba(245,158,11,0.04));
+  border-color:var(--bd-warm);
+}
+.gl-chip.round{border-radius:50%;padding:0;overflow:hidden}
+.gl-chip.round img{width:100%;height:100%;object-fit:cover;border-radius:50%;filter:none}
+
+.cell-title{font-size:11px;font-weight:600;color:var(--t1);line-height:1.2;letter-spacing:-0.01em;max-width:100%;overflow-wrap:break-word}
+.cell-sub{font-size:9.5px;color:var(--t3);font-weight:500;line-height:1.25}
+.cell-meta{font-family:var(--mono);font-size:9px;color:var(--t4);font-weight:600;letter-spacing:0.3px}
+.cell-stars{color:var(--gold);font-size:11px;letter-spacing:1.5px;line-height:1}
+
+/* Interview Q icon */
+.iq-ico{
+  width:54px;height:54px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(52,211,153,0.10);border:1px solid rgba(52,211,153,0.30);
+  font-size:24px;position:relative;
+}
+.iq-ico.no{background:rgba(248,113,113,0.10);border-color:rgba(248,113,113,0.30)}
+.iq-ico::after{
+  content:'✓';position:absolute;bottom:-3px;right:-3px;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--green);color:#0b2418;font-weight:900;font-size:11px;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid #1a0f04;
+}
+.iq-ico.no::after{content:'✕';background:var(--red);color:#3a0a0a}
+.iq-q{font-size:10px;color:var(--t2);font-weight:500;line-height:1.25;max-width:108px;letter-spacing:-0.005em}
+.iq-ans{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:1.5px;color:var(--green)}
+.iq-ans.no{color:var(--red)}
+
+/* Industries + Languages split */
+.ind-lang{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--bd-1)}
+.ind-lang .colhead{
+  grid-column:span 4;padding:8px 14px;
+  font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold);
+  background:linear-gradient(180deg,rgba(252,211,77,0.06),rgba(0,0,0,0.18));
+  border-right:2px solid var(--bd-warm);border-bottom:1px solid var(--bd-1);
+  display:flex;align-items:center;gap:6px;
+}
+.ind-lang .colhead .num{font-family:var(--mono);color:var(--gold);font-weight:600}
+.ind-lang .colhead.lang{grid-column:span 2;border-right:none}
+.ind-lang .ind:nth-child(4),
+.ind-lang .ind:last-of-type{border-right:2px solid var(--bd-warm)}
+.ind-lang .ind{
+  grid-column:span 2;padding:var(--s-3) var(--s-2);min-height:138px;border-right:1px solid var(--bd-1);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;text-align:center;
+}
+.ind-lang .lng{
+  grid-column:span 1;padding:var(--s-3) var(--s-2);min-height:138px;border-right:1px solid var(--bd-1);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;text-align:center;
+}
+.ind-lang .lng:last-child{border-right:none}
+.ind-icon{font-size:30px;line-height:1;filter:saturate(0.9)}
+.ind-name{font-size:11.5px;font-weight:600;color:var(--t1);line-height:1.25;letter-spacing:-0.005em}
+.ind-rate{color:var(--gold);font-size:10px;letter-spacing:1.5px}
+.lng-flag{
+  width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(252,211,77,0.18),rgba(245,158,11,0.06));
+  border:1px solid var(--bd-warm);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-style:italic;font-size:18px;font-weight:600;color:var(--gold-light);
+  letter-spacing:-0.02em;
+}
+.lng-name{font-size:11px;font-weight:600;color:var(--t1)}
+.lng-prof{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:0.6px;font-weight:600}
+
+/* "View all" foot */
+.foot{
+  display:flex;align-items:center;justify-content:center;
+  padding:8px;font-size:10.5px;color:var(--gold);font-weight:600;
+  text-transform:uppercase;letter-spacing:1.5px;
+  border-top:1px solid var(--bd-1);
+  background:rgba(252,211,77,0.04);cursor:pointer;
+  transition:background 0.15s;
+}
+.foot:hover{background:rgba(252,211,77,0.10)}
+
+/* RIGHT-COL section title (above each strip card) */
+.rblock{margin-bottom:0}
+.rblock + .rblock{margin-top:var(--s-4)}
+.rtitle{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--t1);
+  background:rgba(0,0,0,0.32);
+  backdrop-filter:blur(20px) saturate(160%);
+  border:1px solid var(--bd-1);border-bottom:none;
+  border-radius:var(--r-2) var(--r-2) 0 0;
+}
+.rtitle::before{content:'';width:5px;height:14px;background:linear-gradient(180deg,var(--gold-light),var(--gold-burn));border-radius:1px}
+.rtitle .num{font-family:var(--mono);color:var(--gold);font-weight:600;letter-spacing:0.5px}
+.rtitle .right{margin-left:auto;font-size:9.5px;font-weight:600;color:var(--t3);letter-spacing:1.4px}
+.rtitle .right a{color:var(--gold);text-decoration:none}
+.rblock .glass{border-radius:0 0 var(--r-3) var(--r-3);border-top:none}
+
+/* Completed Contracts list */
+.contracts{display:flex;flex-direction:column;border-top:1px solid var(--bd-1)}
+.crow{
+  display:grid;grid-template-columns:42px 1fr auto auto auto;gap:12px;align-items:center;
+  padding:9px 16px;border-bottom:1px solid var(--bd-1);
+  font-size:12px;
+}
+.crow:last-child{border-bottom:none}
+.crow:hover{background:rgba(255,250,235,0.03)}
+.crow .gl-chip{width:36px;height:36px;padding:5px}
+.crow .ti{font-weight:600;color:var(--t1);letter-spacing:-0.005em;font-size:12.5px;line-height:1.2}
+.crow .ti .cust{color:var(--t3);font-weight:500;font-size:11px}
+.crow .rate{font-family:var(--mono);color:var(--gold);font-weight:700;font-size:11px}
+.crow .val{font-family:var(--serif);color:var(--t1);font-weight:600;font-size:14px;letter-spacing:-0.02em}
+.crow .stars{color:var(--gold);font-size:10px;letter-spacing:1px}
+
+/* Services / Products */
+.list-rows{display:flex;flex-direction:column;border-top:1px solid var(--bd-1)}
+.lrow{padding:11px 16px;border-bottom:1px solid var(--bd-1);display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start}
+.lrow:last-child{border-bottom:none}
+.lrow .ti{font-size:13px;font-weight:600;color:var(--t1);letter-spacing:-0.005em;margin-bottom:2px}
+.lrow .desc{font-size:11.5px;color:var(--t2);line-height:1.45;font-weight:400}
+.lrow .pri{font-family:var(--serif);color:var(--gold);font-weight:600;font-size:18px;letter-spacing:-0.02em;line-height:1;text-align:right}
+.lrow .pri .u{font-family:var(--sans);font-size:9px;color:var(--t3);font-weight:600;letter-spacing:0.5px;display:block;margin-top:2px}
+
+/* Equipment */
+.eq{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--bd-1)}
+.eq-cell{padding:12px 16px;border-right:1px solid var(--bd-1);border-bottom:1px solid var(--bd-1)}
+.eq-cell:nth-child(2n){border-right:none}
+.eq-cell .cat{font-size:9.5px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:6px}
+.eq-cell .it{font-size:11.5px;color:var(--t2);line-height:1.45;font-weight:400}
+.eq-cell .it + .it{margin-top:2px}
+
+/* Badges */
+.badges{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--bd-1)}
+.badge{
+  padding:var(--s-3) var(--s-2);border-right:1px solid var(--bd-1);border-bottom:1px solid var(--bd-1);
+  display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;cursor:pointer;
+}
+.badge:nth-child(6n){border-right:none}
+.badge:hover{background:rgba(252,211,77,0.04)}
+.badge-frame{
+  width:50px;height:54px;
+  background:linear-gradient(180deg,rgba(252,211,77,0.18),rgba(245,158,11,0.04));
+  border:1px solid var(--bd-warm);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-style:italic;font-weight:600;font-size:22px;color:var(--gold-light);
+  box-shadow:0 4px 12px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.1);
+  position:relative;
+}
+.badge-frame.diamond{background:linear-gradient(180deg,rgba(165,243,252,0.18),rgba(56,189,248,0.04));border-color:rgba(165,243,252,0.3);color:var(--t-diamond)}
+.badge-frame.platinum{background:linear-gradient(180deg,rgba(229,228,226,0.16),rgba(180,180,180,0.04));border-color:rgba(229,228,226,0.3);color:var(--t-platinum)}
+.badge-frame.gold{background:linear-gradient(180deg,rgba(252,211,77,0.20),rgba(245,158,11,0.06));border-color:rgba(252,211,77,0.4);color:var(--gold-light)}
+.badge-frame.silver{background:linear-gradient(180deg,rgba(209,213,219,0.18),rgba(156,163,175,0.04));border-color:rgba(209,213,219,0.3);color:var(--t-silver)}
+.badge-frame.bronze{background:linear-gradient(180deg,rgba(251,146,60,0.18),rgba(234,88,12,0.04));border-color:rgba(251,146,60,0.3);color:var(--t-bronze)}
+.badge .nm{font-size:9.5px;font-weight:600;color:var(--t1);line-height:1.2}
+.badge .tier{font-family:var(--mono);font-size:7.5px;color:var(--t3);text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
+
+/* Business Affiliation card content */
+.biz{padding:var(--s-4) var(--s-5);display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;border-bottom:1px solid var(--bd-1)}
+.biz:last-child{border-bottom:none}
+.biz .nm{font-size:13px;font-weight:600;color:var(--t1);letter-spacing:-0.005em}
+.biz .role{font-size:10px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:1.3px;margin-top:1px}
+.biz .meta{font-size:11px;color:var(--t3);font-weight:500;margin-top:4px;line-height:1.35}
+
+/* Owner-only / role-gated */
+[data-role="public"] [data-role-show]:not([data-role-show~="public"]),
+[data-role="visitor"] [data-role-show]:not([data-role-show~="visitor"]),
+[data-role="connection"] [data-role-show]:not([data-role-show~="connection"]),
+[data-role="owner"] [data-role-show]:not([data-role-show~="owner"]),
+[data-role="admin"] [data-role-show]:not([data-role-show~="admin"]){display:none !important}
+
+/* Owner-pane decoration */
+.owner-pane{border-color:rgba(168,85,247,0.18) !important;background:linear-gradient(135deg,rgba(168,85,247,0.04),var(--gl-1)) !important}
+.owner-pane .head{border-bottom-color:rgba(168,85,247,0.18)}
+.owner-pane .head .gem{background:linear-gradient(180deg,#C4B5FD,#7C3AED)}
+.owner-pane .head h3{color:#C4B5FD}
+
+.admin-pane{border-color:rgba(248,113,113,0.22) !important;background:linear-gradient(135deg,rgba(248,113,113,0.04),var(--gl-1)) !important}
+.admin-pane .head{border-bottom-color:rgba(248,113,113,0.22)}
+.admin-pane .head .gem{background:linear-gradient(180deg,#FCA5A5,#DC2626)}
+.admin-pane .head h3{color:#FCA5A5}
+
+/* Refs / Endorsements with letter */
+.ref-row{
+  display:grid;grid-template-columns:42px 1fr auto;gap:12px;align-items:center;
+  padding:10px 16px;border-bottom:1px solid var(--bd-1);
+}
+.ref-row:last-child{border-bottom:none}
+.ref-row .nm{font-size:12.5px;font-weight:600;color:var(--t1);letter-spacing:-0.005em}
+.ref-row .rl{font-size:11px;color:var(--t2);font-weight:400;line-height:1.35}
+.ref-row .pill-letter{
+  font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  padding:3px 8px;border-radius:100px;
+  background:rgba(252,211,77,0.10);color:var(--gold);border:1px solid var(--bd-warm);
+}
+.ref-row .pill-letter.no{background:rgba(255,255,255,0.04);color:var(--t3);border-color:var(--bd-1)}
+
+/* Media gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd-1);border-top:1px solid var(--bd-1)}
+.gallery .gi{aspect-ratio:4/3;background:#000;position:relative;overflow:hidden;cursor:pointer}
+.gallery .gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s}
+.gallery .gi:hover img{transform:scale(1.05)}
+.gallery .gi .cap{position:absolute;left:0;right:0;bottom:0;padding:8px 10px;font-size:10px;color:#fff;font-weight:500;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.85));line-height:1.3}
+.gallery .gi .vt{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px}
+
+/* Profile strength */
+.strength{padding:var(--s-4) var(--s-5)}
+.strength .bar{height:8px;border-radius:100px;background:rgba(255,255,255,0.06);overflow:hidden;position:relative}
+.strength .bar > div{height:100%;background:linear-gradient(90deg,var(--gold-light),var(--gold) 50%,var(--green));border-radius:100px;box-shadow:0 0 12px var(--gold-glow)}
+.strength .row{display:flex;justify-content:space-between;margin-bottom:8px;align-items:center}
+.strength .v{font-family:var(--serif);font-weight:600;font-size:24px;color:var(--gold);letter-spacing:-0.02em;line-height:1}
+.strength .lbl{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1.4px}
+.strength .next{font-size:11px;color:var(--t2);margin-top:10px;line-height:1.4}
+.strength .next b{color:var(--gold);font-weight:600}
+
+/* Active app */
+.appcard{padding:var(--s-4) var(--s-5)}
+.appcard .stage{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--green);margin-bottom:6px}
+.appcard .ti{font-family:var(--serif);font-weight:500;font-style:italic;font-size:18px;color:var(--t1);line-height:1.2;letter-spacing:-0.01em;margin-bottom:8px}
+.appcard .meta{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:11px;color:var(--t2);margin-bottom:10px}
+.appcard .interview{padding:8px 11px;border-radius:var(--r-1);background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.18);font-size:11.5px;color:var(--t1)}
+.appcard .interview b{color:var(--green);font-weight:600}
+
+/* File rows (secure) */
+.frow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:9px 16px;border-bottom:1px solid var(--bd-1);font-size:12px}
+.frow:last-child{border-bottom:none}
+.frow .fn{font-weight:500;color:var(--t1);font-size:12px;display:flex;align-items:center;gap:8px}
+.frow .fn .ic{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--gold)}
+.frow .st{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px}
+.frow .st.ok{background:rgba(52,211,153,0.12);color:var(--green)}
+.frow .st.miss{background:rgba(248,113,113,0.12);color:var(--red)}
+.frow .ac{display:flex;gap:4px}
+.frow .btn{width:24px;height:24px;border-radius:5px;background:rgba(255,255,255,0.05);border:1px solid var(--bd-1);color:var(--t2);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.frow .btn:hover{background:rgba(252,211,77,0.10);color:var(--gold)}
+
+/* Private rows */
+.prow{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:7px 16px;border-bottom:1px solid var(--bd-1);font-size:12px}
+.prow:last-child{border-bottom:none}
+.prow .k{font-size:9.5px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1.3px;align-self:center}
+.prow .v{font-size:12px;color:var(--t1);font-weight:500;text-align:right;align-self:center;letter-spacing:-0.005em}
+.prow .v.mono{font-family:var(--mono)}
+.prow .v.masked{letter-spacing:3px}
+
+/* Note pills */
+.notes{display:flex;flex-wrap:wrap;gap:6px;padding:var(--s-3) var(--s-5)}
+.note{font-size:11px;padding:5px 10px;border-radius:var(--r-1);background:rgba(255,250,235,0.04);border:1px solid var(--bd-1);color:var(--t2)}
+.note.warn{background:rgba(245,158,11,0.10);border-color:var(--bd-warm);color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div class="wp"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-glyph">A</div>
+      <span>AUTOMATE AMERICA</span>
+    </a>
+    <nav class="topnav">
+      <a href="index.html">Feed</a>
+      <a href="Maria Lopez · Professional v4.html" class="active">Maria's Profile</a>
+      <a href="Rebecca · Customer Profile.html">Rebecca's Profile</a>
+      <a href="Acme Robotics · Business.html">Acme Robotics</a>
+    </nav>
+  </div>
+</header>
+
+<div class="rolebar">
+  <div class="rolebar-inner">
+    <span class="lbl">Viewing as</span>
+    <div class="role-tabs" id="roleTabs">
+      <button class="active" data-role="public">Public</button>
+      <button data-role="visitor">Visitor</button>
+      <button data-role="connection">Connection</button>
+      <button data-role="owner">Owner</button>
+      <button data-role="admin">Admin</button>
+    </div>
+    <span class="role-explainer" id="roleEx">Logged-out viewer — found Maria via search engine. No account, browsing publicly.</span>
+  </div>
+</div>
+
+<main class="page" id="root"></main>
+
+<script src="data/professional-data.js?v=6"></script>
+<script src="data/profile-v4-fixtures.js?v=6"></script>
+<script>
+(function(){
+  const D = window.PROFESSIONAL_DATA || {};
+  const F = window.PROFILE_V4_FIXTURES || {};
+  const esc = s => String(s==null?'':s).replace(/[<>&"']/g, c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c]));
+  const initials = s => String(s||'').split(/\s+/).filter(Boolean).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const fmtMoney = (n,d) => '$' + Number(n).toLocaleString('en-US',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});
+  const fmtMoneyK = n => n>=1e6 ? '$'+(n/1e6).toFixed(2)+'M' : n>=1e3 ? '$'+(n/1e3).toFixed(0)+'K' : '$'+n;
+  const ymonth = s => { if(!s) return ''; const d=new Date(s); return isNaN(d)?s:d.toLocaleString('en-US',{month:'short',year:'numeric'}); };
+  const langGlyph = nm => ({'English':'En','Spanish':'Es','French':'Fr','German':'De','Italian':'It','Portuguese':'Pt','Mandarin':'中','Cantonese':'粤','Japanese':'日','Korean':'한','Arabic':'ع'})[nm]||(nm||'').slice(0,2);
+
+  const h = D.header||{}, qs = D.quick_stats||{}, loc = D.location||{}, av = D.availability||{}, r = D.rates||{}, photo = D.photo||{};
+  const fullName = [h.first_name, h.middle_initial?h.middle_initial+'.':'', h.last_name].filter(Boolean).join(' ');
+  const cid = `AA-${D.user_id||'00000'}`;
+
+  /* ───────── Glass-chip logo helper ───────── */
+  const chip = (logo, fallbackText, klass) => logo
+    ? `<div class="gl-chip ${klass||''}"><img src="${esc(logo)}" alt=""></div>`
+    : `<div class="gl-chip placeholder ${klass||''}">${initials(fallbackText)}</div>`;
+  const chipR = (avatar, fallbackText) => avatar
+    ? `<div class="gl-chip round"><img src="${esc(avatar)}" alt=""></div>`
+    : `<div class="gl-chip placeholder" style="border-radius:50%">${initials(fallbackText)}</div>`;
+
+  /* ───────── NAME STRIP ───────── */
+  const headStrip = `
+    <div class="name-strip">
+      <div class="l">
+        <h1>
+          <span class="first">${esc(h.first_name||'Maria')}</span>
+          ${h.middle_initial? esc(h.middle_initial)+'. ':''}${esc(h.last_name||'Lopez')}
+        </h1>
+        <div class="role">
+          <span>${esc(h.primary_occupation||'Senior Controls Engineer')}</span>
+          <span class="dot"></span>
+          <span>${esc(loc.city||'')}, ${esc(loc.state||'')}</span>
+          <span class="dot"></span>
+          <span class="verified">✓ Verified Pro</span>
+        </div>
+      </div>
+      <div class="r">
+        <div class="tier-pill">${esc(D.membership_tier||'White Glove')} · Diamond</div>
+        <div class="headstats">
+          <div><span class="v gold">${qs.years_experience||9}</span><span class="l">Years</span></div>
+          <div><span class="v">${qs.completed_contracts||34}</span><span class="l">Contracts</span></div>
+          <div><span class="v gold">${qs.rating_avg||4.96}</span><span class="l">Rating</span></div>
+          <div><span class="v">${qs.endorsements_count||(D.endorsements||[]).length}</span><span class="l">Endorse.</span></div>
+          <div><span class="v">${qs.connections_count||412}</span><span class="l">Network</span></div>
+          <div data-role-show="owner admin"><span class="v green">${fmtMoneyK(qs.lifetime_billings_usd||1684000)}</span><span class="l">Lifetime</span></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  /* ───────── HERO CARD (left) ───────── */
+  const heroCard = `
+    <div class="glass hero">
+      <div class="hero-grid">
+        <div class="hero-photo">
+          <img src="${esc(photo.main_url||'')}" alt="${esc(fullName)}">
+          ${h.preferred_pronouns?`<div class="pronouns">${esc(h.preferred_pronouns)}</div>`:''}
+          <div class="verified" title="Verified Professional">✓</div>
+        </div>
+        <div class="hero-stack">
+          <div class="hero-cell">
+            <div class="k">First Name · Contractor #</div>
+            <div class="v">${esc(h.first_name||'')}<span class="id">${cid}</span></div>
+          </div>
+          <div class="hero-cell">
+            <div class="k">City / State</div>
+            <div class="v">${esc(loc.city||'')}, ${esc(loc.state||'')}</div>
+          </div>
+          <div class="hero-cell">
+            <div class="k">Primary Occupation</div>
+            <div class="v">${esc(h.primary_occupation||'')}</div>
+          </div>
+          <div class="hero-cell split">
+            <div>
+              <div class="k">Availability</div>
+              <div class="avail">${esc(av.status||'Available')}</div>
+            </div>
+            <div>
+              <div class="k">Years</div>
+              <div class="v" style="font-family:var(--mono);font-weight:700">${qs.years_experience||9}</div>
+            </div>
+            <div class="flag-cell" title="${esc(F.citizenship||'U.S. Citizen')}">
+              <img class="fimg" src="https://flagcdn.com/w160/us.png" alt="US flag" loading="lazy">
+              <div class="lbl" style="color:var(--t3);text-transform:uppercase">U.S. Citizen</div>
+            </div>
+          </div>
+          <div class="hero-cell">
+            <div class="k">Base Rate</div>
+            <div class="rate-amt">${fmtMoney(r.hourly_default||148.50,2)}<span class="u">/HR</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  /* ───────── TAGLINE quote ───────── */
+  const taglineCard = h.tagline ? `
+    <div class="glass">
+      <div class="tagline">${esc(h.tagline)}</div>
+    </div>
+  ` : '';
+
+  /* ───────── MFG STRIP (3 manufacturers + flag) ───────── */
+  const mfgs = (D.skills_certified||[]).slice(0,3);
+  const mfgCells = mfgs.map(m => `
+    <div class="mfg" title="${esc(m.manufacturer||'')}">
+      ${m.logo ? `<img src="${esc(m.logo)}" alt="">` : `<span style="font-family:var(--mono);font-weight:800;color:var(--gold);font-size:14px">${initials(m.manufacturer)}</span>`}
+      <div class="nm">${esc((m.manufacturer||'').split(/[\s/]/)[0])}</div>
+      <div class="yrs">${m.years||9}y</div>
+    </div>
+  `).join('');
+  // (citizenship moved into hero stack — no flag tile in mfg strip anymore)
+  const moreSkillsCount = Math.max(0,(D.skills_certified||[]).length-3);
+  const flagCell = `
+    <div class="mfg" style="background:linear-gradient(135deg,rgba(252,211,77,0.10),rgba(245,158,11,0.04));border-color:var(--bd-warm)" title="${moreSkillsCount} more manufacturers">
+      <span style="font-family:var(--serif);font-style:italic;font-weight:600;color:var(--gold);font-size:24px;line-height:1">+${moreSkillsCount}</span>
+      <div class="nm" style="color:var(--gold)">More</div>
+      <div class="yrs">View all</div>
+    </div>
+  `;
+  const mfgCard = `
+    <div class="glass">
+      <div class="head">
+        <span class="gem"></span>
+        <h3>Top Manufacturers</h3>
+        <span class="num">${(D.skills_certified||[]).length}</span>
+        <span class="right">Citizenship →</span>
+      </div>
+      <div class="mfg-strip">${mfgCells}${flagCell}</div>
+    </div>
+  `;
+
+  /* ───────── SKILLED TRADES ───────── */
+  const trades = F.skilled_trades||[];
+  const tradesCard = `
+    <div class="glass">
+      <div class="head"><span class="gem"></span><h3>Skilled Trades</h3><span class="num">${trades.length}</span></div>
+      <div class="chip-cloud">
+        ${trades.map(t => `<span class="chip" title="${esc(t.license||'no license')}">${esc(t.name)}<span class="lvl">${esc(t.level)}</span><span class="yr">${t.years}y</span></span>`).join('')}
+      </div>
+    </div>
+  `;
+
+  /* ───────── PROFESSIONAL COMPETENCIES ───────── */
+  const comps = F.professional_competencies||[];
+  const compsCard = `
+    <div class="glass">
+      <div class="head"><span class="gem"></span><h3>Professional Competencies</h3><span class="num">${comps.length}</span></div>
+      <div class="comps">
+        ${comps.map(c => {
+          const pct = Math.round((c.rating/5)*100);
+          return `
+            <div class="comp">
+              <div class="nm">${esc(c.name)}<span class="y">${c.years}y</span></div>
+              <div class="bar-wrap">
+                <div class="bar"><div style="width:${pct}%"></div></div>
+                <div class="pct">${c.rating.toFixed(1)}</div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  /* ───────── ABOUT ME ───────── */
+  const bio = h.bio || `Senior controls and automation specialist with ${qs.years_experience||9} years across automotive Tier-1, food &amp; beverage, and medical-device facilities. I lead PLC programming, robot integration, vision systems, and functional-safety commissioning from FAT through SAT.
+
+Past three years: ${fmtMoneyK(qs.lifetime_billings_usd||1684000)} billable across ${qs.completed_contracts||34} completed contracts at 100% on-time. Detroit-based, comfortable on a ${loc.service_radius_miles||250}-mile service radius. Available for emergency response inside 48 hours, North America.
+
+Decade-long client list including BMW, Stellantis, Ford, Toyota, and Tesla — happy to share references and walk past projects in detail during the interview.`;
+  const bioParas = bio.split(/\n\n+/).filter(Boolean);
+  const aboutCard = `
+    <div class="glass">
+      <div class="head"><span class="gem"></span><h3>About Me</h3></div>
+      <div class="about">
+        ${bioParas.map((p,i) => `<p${i===0?' class="lead"':''}>${i===0?'<span class="pull">'+esc(p)+'</span>':esc(p)}</p>`).join('')}
+      </div>
+    </div>
+  `;
+
+  /* ───────── TRAVEL & ENGAGEMENT (kvs) ───────── */
+  const engageCard = `
+    <div class="glass">
+      <div class="head"><span class="gem"></span><h3>Engagement &amp; Travel</h3></div>
+      <div class="kvs">
+        <div><div class="k">Service Radius</div><div class="v mono">${loc.service_radius_miles||250} mi</div></div>
+        <div><div class="k">Travel</div><div class="v green">${loc.willing_to_travel?'Yes':'No'}</div></div>
+        <div><div class="k">Weekly Capacity</div><div class="v mono">${av.weekly_capacity_hours||50} hrs</div></div>
+        <div><div class="k">Min Engagement</div><div class="v mono">${r.minimum_engagement_hours||8} hrs</div></div>
+        <div><div class="k">Overtime</div><div class="v ${av.willing_overtime?'green':''}">${av.willing_overtime?'Available':'No'}</div></div>
+        <div><div class="k">Weekends</div><div class="v ${av.willing_weekends?'green':''}">${av.willing_weekends?'Available':'No'}</div></div>
+        <div><div class="k">Emergency Rate</div><div class="v gold mono">${fmtMoney(r.hourly_emergency||195,0)}/hr</div></div>
+        <div><div class="k">Remote Rate</div><div class="v gold mono">${fmtMoney(r.hourly_remote||125,0)}/hr</div></div>
+        <div data-role-show="owner admin"><div class="k">Salary Band</div><div class="v gold">${fmtMoneyK(r.salary_band_min||168000)}–${fmtMoneyK(r.salary_band_max||215000)}</div></div>
+        <div data-role-show="owner admin"><div class="k">Negotiable</div><div class="v ${r.rate_negotiable?'green':''}">${r.rate_negotiable?'Yes':'No'}</div></div>
+      </div>
+      <div class="notes">
+        ${loc.travel_notes ? `<span class="note">✈️ ${esc(loc.travel_notes)}</span>`:''}
+        <span class="note">📅 Next available: ${ymonth(av.next_available_date)}</span>
+      </div>
+    </div>
+  `;
+
+  /* ───────── SOCIAL LINKS ───────── */
+  const socials = D.social_links||[];
+  const socialIco = {linkedin:'in',github:'gh',youtube:'yt',x:'X',website:'WEB'};
+  const socialCard = `
+    <div class="glass">
+      <div class="head"><span class="gem"></span><h3>Web &amp; Social</h3><span class="num">${socials.length}</span></div>
+      <div class="socials">
+        ${socials.map(s => `<a class="social" href="${esc(s.url)}" target="_blank" rel="noopener"><span class="icon">${esc(socialIco[s.platform]||s.platform.slice(0,2))}</span> ${esc(s.platform)}</a>`).join('')}
+      </div>
+    </div>
+  `;
+
+  /* ───────── CTA STACK (role-aware) ───────── */
+  const ctaCard = `
+    <div class="glass">
+      <div class="ctas">
+        <button class="cta cta-primary"  data-role-show="public visitor connection admin">📞 Request an Interview</button>
+        <button class="cta cta-success"  data-role-show="visitor admin">⚭ Request to Connect</button>
+        <button class="cta cta-success"  data-role-show="connection">✉ Send Message</button>
+        <button class="cta cta-success"  data-role-show="public">⚭ Connect or Message</button>
+        <button class="cta cta-watch"    data-role-show="public visitor connection admin">★ Add to Watchlist</button>
+        <button class="cta cta-ghost"    data-role-show="public visitor connection owner admin">↗ Share Profile</button>
+        <button class="cta cta-ghost"    data-role-show="visitor connection admin">⌕ Hire for Direct Job</button>
+        <button class="cta cta-primary"  data-role-show="owner">✎ Edit Profile</button>
+        <button class="cta cta-success"  data-role-show="owner">👁 Preview as Visitor</button>
+        <button class="cta cta-watch"    data-role-show="owner admin">★ Boost Profile · $50/wk</button>
+        <button class="cta cta-danger"   data-role-show="admin">⚙ Admin Actions</button>
+      </div>
+    </div>
+  `;
+
+  /* ───────── OWNER PANES ───────── */
+  // Profile strength
+  const strengthCard = `
+    <div class="glass owner-pane" data-role-show="owner admin">
+      <div class="head"><span class="gem"></span><h3>Profile Strength</h3><span class="right">Owner</span></div>
+      <div class="strength">
+        <div class="row"><span class="lbl">Score</span><span class="v">${qs.profile_strength_pct||96}%</span></div>
+        <div class="bar"><div style="width:${qs.profile_strength_pct||96}%"></div></div>
+        <div class="next">Next steps: <b>add 2 more portfolio links</b> and <b>upload OSHA-30 cert PDF</b> to reach 100%.</div>
+      </div>
+    </div>
+  `;
+
+  // Active application
+  const aa = D.active_application;
+  const activeAppCard = aa ? `
+    <div class="glass owner-pane" data-role-show="owner admin">
+      <div class="head"><span class="gem"></span><h3>Active Application</h3><span class="right">${esc(aa.stage||'Submitted')}</span></div>
+      <div class="appcard">
+        <div class="stage">${esc(aa.stage||'Application submitted')}</div>
+        <div class="ti">${esc(aa.contract_title||'Tesla Fremont — Drive Unit Cell #4')}</div>
+        <div class="meta">
+          <span>${esc(aa.customer||'Tesla, Inc.')}</span> ·
+          <span style="color:var(--gold);font-weight:600">${fmtMoney(aa.rate||175,0)}/hr</span> ·
+          <span>${aa.applicants_count||14} applicants</span> ·
+          <span>Applied ${ymonth(aa.applied_at)}</span>
+        </div>
+        ${aa.interview_slot ? `<div class="interview"><b>Interview scheduled</b> — ${esc(new Date(aa.interview_slot).toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))}</div>`:''}
+      </div>
+    </div>
+  ` : '';
+
+  // Secure files
+  const sf = (D.secure_files||{}).files || [];
+  const secureFilesCard = sf.length ? `
+    <div class="glass owner-pane" data-role-show="owner admin">
+      <div class="head"><span class="gem"></span><h3>Secure Files</h3><span class="num">${sf.length}</span><span class="right">Owner only</span></div>
+      <div>
+        ${sf.map(f => `
+          <div class="frow">
+            <div class="fn"><span class="ic">[${esc((f.kind||'doc').slice(0,3).toUpperCase())}]</span> ${esc(f.name||'Untitled')}</div>
+            <div class="st ${f.status==='uploaded'?'ok':'miss'}">${esc(f.status||'')}</div>
+            <div class="ac"><button class="btn" title="View">↓</button><button class="btn" title="Replace">↻</button></div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  // Private info
+  const pf = (D.private_info||{}).fields || [];
+  const privateCard = pf.length ? `
+    <div class="glass owner-pane" data-role-show="owner admin">
+      <div class="head"><span class="gem"></span><h3>Private Information</h3><span class="right">Owner only</span></div>
+      <div>
+        ${pf.map(p => `<div class="prow"><span class="k">${esc(p.label||'')}</span><span class="v ${p.mono?'mono':''} ${p.masked?'masked':''}">${esc(p.value||'')}</span></div>`).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  // Banking (owner only) — from fixtures
+  const b = F.banking||null;
+  const bankCard = b ? `
+    <div class="glass owner-pane" data-role-show="owner admin">
+      <div class="head"><span class="gem"></span><h3>Banking · Direct Deposit</h3><span class="right">Owner only</span></div>
+      <div>
+        <div class="prow"><span class="k">Bank</span><span class="v">${esc(b.bank_name||'')}</span></div>
+        <div class="prow"><span class="k">Account name</span><span class="v">${esc(b.account_name||'')}</span></div>
+        <div class="prow"><span class="k">Routing</span><span class="v mono">${esc(b.routing||'•••• ••••')}</span></div>
+        <div class="prow"><span class="k">Account #</span><span class="v mono masked">${esc(b.account_number_masked||'•••• •••• •••• ••••')}</span></div>
+        <div class="prow"><span class="k">Type</span><span class="v">${esc(b.account_type||'')}</span></div>
+        <div class="prow"><span class="k">Verified</span><span class="v" style="color:var(--green)">${b.verified?'✓ Yes':'No'}</span></div>
+      </div>
+    </div>
+  ` : '';
+
+  // Watchers (owner)
+  const w = D.watchers || {};
+  const watchersCard = `
+    <div class="glass owner-pane" data-role-show="owner admin">
+      <div class="head"><span class="gem"></span><h3>Watchers</h3><span class="num">${w.count||F.watchlist_count||18}</span><span class="right">Owner only</span></div>
+      <div class="kvs">
+        <div><div class="k">Total watching</div><div class="v mono gold">${w.count||F.watchlist_count||18}</div></div>
+        <div><div class="k">This week</div><div class="v mono">+${w.this_week||4}</div></div>
+        <div><div class="k">Customers</div><div class="v mono">${w.by_role_customers||11}</div></div>
+        <div><div class="k">Companies</div><div class="v mono">${w.by_role_companies||7}</div></div>
+      </div>
+    </div>
+  `;
+
+  // Admin notes
+  const an = D.admin_notes;
+  const adminCard = an ? `
+    <div class="glass admin-pane" data-role-show="admin">
+      <div class="head"><span class="gem"></span><h3>Admin Notes</h3><span class="right">Admin only</span></div>
+      <div>
+        <div class="prow"><span class="k">Internal ID</span><span class="v mono">${esc(an.internal_id||'')}</span></div>
+        <div class="prow"><span class="k">Trust score</span><span class="v mono gold">${esc(an.trust_score||'')}</span></div>
+        <div class="prow"><span class="k">Risk flags</span><span class="v" style="color:var(--green)">${esc(an.risk_flags||'None')}</span></div>
+        <div class="prow"><span class="k">Last reviewed</span><span class="v mono">${esc(an.last_reviewed_at||'')}</span></div>
+        ${an.notes ? `<div class="prow"><span class="k">Notes</span><span class="v" style="text-align:left">${esc(an.notes)}</span></div>` : ''}
+      </div>
+    </div>
+  ` : '';
+
+  // Business affiliation
+  const ba = D.business_affiliation;
+  const bizAffCard = ba ? `
+    <div class="glass">
+      <div class="head"><span class="gem"></span><h3>Business Affiliation</h3></div>
+      <div class="biz">
+        ${chip(ba.company_logo, ba.company_name)}
+        <div>
+          <div class="nm">${esc(ba.company_name||'')}</div>
+          <div class="role">${esc(ba.role||ba.type||'')}</div>
+          <div class="meta">${esc(ba.relationship||'')} · since ${esc((ba.started_at||'').slice(0,4)||'—')}</div>
+        </div>
+      </div>
+    </div>
+  ` : '';
+
+  // Business groups
+  const bgs = D.business_groups || [];
+  const bgsCard = bgs.length ? `
+    <div class="glass">
+      <div class="head"><span class="gem"></span><h3>Business Groups</h3><span class="num">${bgs.length}</span></div>
+      ${bgs.map(g => `
+        <div class="biz">
+          <div class="gl-chip" style="background:linear-gradient(135deg,${esc(g.logo_color||'#F59E0B')}33,${esc(g.logo_color||'#F59E0B')}11);border-color:${esc(g.logo_color||'#F59E0B')}55">
+            <span style="font-family:var(--mono);font-weight:700;color:${esc(g.logo_color||'#F59E0B')};font-size:11px">${initials(g.name)}</span>
+          </div>
+          <div>
+            <div class="nm">${esc(g.name||'')}</div>
+            <div class="role">${esc(g.role||'Member')}</div>
+            <div class="meta">${g.members_count||0} members · <span style="color:var(--green)">${g.available_now||0} available</span> · ${g.on_contract||0} on contract</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
+  // Badges
+  const badges = D.badges_earned || [];
+  const badgesCard = badges.length ? `
+    <div class="glass">
+      <div class="head"><span class="gem"></span><h3>Badges Earned</h3><span class="num">${badges.length}</span></div>
+      <div class="badges">
+        ${badges.slice(0,12).map(bd => `
+          <div class="badge" title="${esc(bd.criterion||'')}">
+            <div class="badge-frame ${esc((bd.tier||'gold').toLowerCase())}">${esc(initials(bd.category||bd.name).slice(0,1))}</div>
+            <div class="nm">${esc(bd.name||'')}</div>
+            <div class="tier">${esc(bd.tier||'')}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  /* ═══════════════════ RIGHT COLUMN STRIPS ═══════════════════ */
+
+  const reviews = D.reviews_received || [];
+  const isWG = rv => (rv.tier||'').toLowerCase().includes('glove') || rv.is_wg || rv.anonymous;
+  const reviewsBlock = `
+    <div class="rblock">
+      <div class="rtitle">Customer Reviews <span class="num">#${reviews.length}</span><span class="right"><a href="#">View all →</a></span></div>
+      <div class="glass">
+        <div class="strip">
+          ${reviews.slice(0,6).map((rv,i) => {
+            const co = isWG(rv) ? '[Anonymous]' : (rv.company||'');
+            return `
+              <div class="cell" title="${esc(rv.reviewer_role||'')}">
+                ${chip(isWG(rv)?null:rv.company_logo, co)}
+                <div class="cell-stars">${'★'.repeat(rv.rating||5)}</div>
+                <div class="cell-title">${esc(co)}</div>
+                <div class="cell-meta">REV-${i+1} · ${esc((rv.date||'').slice(0,7))}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+        <div class="foot">View all ${reviews.length} reviews →</div>
+      </div>
+    </div>
+  `;
+
+  const exp = D.experience || [];
+  const expBlock = `
+    <div class="rblock">
+      <div class="rtitle">Work Experience <span class="num">#${exp.length}</span><span class="right"><a href="#">Full history →</a></span></div>
+      <div class="glass">
+        <div class="strip">
+          ${exp.slice(0,6).map(e => {
+            const co = e.company || e.client_company || '';
+            const dates = `${ymonth(e.started_at)} – ${e.ended_at?ymonth(e.ended_at):'Present'}`;
+            return `
+              <div class="cell" title="${esc(e.role||'')}">
+                ${chip(e.company_logo||e.client_logo, co)}
+                <div class="cell-title">${esc(co)}</div>
+                <div class="cell-sub">${esc(e.role||'')}</div>
+                <div class="cell-meta">${esc(dates)}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+        <div class="foot">View all ${exp.length} positions →</div>
+      </div>
+    </div>
+  `;
+
+  // Interview Q's — fixed 6 from wireframe
+  const iq = (F.interview_questions||[]);
+  const iqLookup = (regex) => iq.find(x => regex.test(x.q));
+  const iqOrder = [
+    {key:'travel',     icon:'✈️', label:'Willing to Travel',     re:/travel|miles|home/i},
+    {key:'emergency',  icon:'🚨', label:'Emergency Contracts',   re:/emergency/i},
+    {key:'nights',     icon:'🌙', label:'Nights / Afternoons',   re:/night|afternoon/i},
+    {key:'saturdays',  icon:'📅', label:'Saturdays',             re:/saturday/i},
+    {key:'sundays',    icon:'📅', label:'Sundays',               re:/sunday/i},
+    {key:'passport',   icon:'🛂', label:'Valid Passport',        re:/passport/i},
+  ];
+  const iqBlock = `
+    <div class="rblock">
+      <div class="rtitle">Interview Questions <span class="num">#${iq.length}</span><span class="right"><a href="#">All ${iq.length} →</a></span></div>
+      <div class="glass">
+        <div class="strip">
+          ${iqOrder.map(o => {
+            const found = iqLookup(o.re);
+            const ans = (found && found.a||'').toString();
+            const yes = /^y/i.test(ans);
+            return `
+              <div class="cell" title="${esc(found?found.q:o.label)}">
+                <div class="iq-ico ${yes?'':'no'}">${o.icon}</div>
+                <div class="iq-q">${esc(o.label)}</div>
+                <div class="iq-ans ${yes?'':'no'}">${esc((ans||'?').toUpperCase())}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Education + certifications combined
+  const edu = D.education || [];
+  const certs = D.certifications || [];
+  const credentials = [
+    ...edu.map(e => ({type:'EDU', name:e.degree, sub:e.school, year:e.graduated_year, logo:e.school_logo})),
+    ...certs.map(c => ({type:'CERT', name:c.name, sub:c.issuer, year:(c.issued||'').slice(0,4), logo:c.logo}))
+  ];
+  const eduBlock = `
+    <div class="rblock">
+      <div class="rtitle">Education / Training / Certificates <span class="num">#${credentials.length}</span><span class="right"><a href="#">All ${credentials.length} →</a></span></div>
+      <div class="glass">
+        <div class="strip">
+          ${credentials.slice(0,6).map(c => `
+            <div class="cell" title="${esc(c.sub||'')}">
+              ${chip(c.logo, c.sub)}
+              <div class="cell-title">${esc(c.name||'')}</div>
+              <div class="cell-sub">${esc(c.sub||'')}</div>
+              <div class="cell-meta">${esc(c.type)} · ${esc(c.year||'')}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="foot">View all ${credentials.length} credentials →</div>
+      </div>
+    </div>
+  `;
+
+  // Industries + Languages
+  const inds = (F.industries_served||[]).slice(0,2);
+  const langs = (D.languages||[]).slice(0,2);
+  const indLangBlock = `
+    <div class="rblock">
+      <div class="rtitle">Industries Served <span class="num">#${(F.industries_served||[]).length}</span> · Languages <span class="num">#${(D.languages||[]).length}</span></div>
+      <div class="glass">
+        <div class="ind-lang">
+          <div class="colhead">Industries Served <span class="num">#${(F.industries_served||[]).length}</span></div>
+          <div class="colhead lang">Languages <span class="num">#${(D.languages||[]).length}</span></div>
+          ${inds.map(i => `
+            <div class="ind">
+              <div class="ind-icon">${i.icon||'🏭'}</div>
+              <div class="ind-name">${esc(i.name||'')}</div>
+              <div class="ind-rate">${'★'.repeat(Math.round(i.rating||5))}</div>
+            </div>
+          `).join('')}
+          ${langs.map(l => `
+            <div class="lng">
+              <div class="lng-flag">${langGlyph(l.name)}</div>
+              <div class="lng-name">${esc(l.name||'')}</div>
+              <div class="lng-prof">${esc(l.proficiency||'')}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Endorsements
+  const ends = D.endorsements || [];
+  const endorseBlock = `
+    <div class="rblock">
+      <div class="rtitle">Endorsements <span class="num">#${ends.length}</span><span class="right"><a href="#">All ${ends.length} →</a></span></div>
+      <div class="glass">
+        <div class="strip">
+          ${ends.slice(0,6).map(e => `
+            <div class="cell" title="${esc(e.from_role||'')}">
+              ${chipR(e.from_avatar, e.from_name)}
+              <div class="cell-title">${esc(e.from_name||'')}</div>
+              <div class="cell-sub">${esc(e.from_role||'')}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="foot">View all ${ends.length} endorsements →</div>
+      </div>
+    </div>
+  `;
+
+  // Facilities
+  const fac = F.facilities_worked_at||[];
+  const facBlock = `
+    <div class="rblock">
+      <div class="rtitle">Facilities Worked At <span class="num">#${fac.length}</span></div>
+      <div class="glass">
+        <div class="strip">
+          ${fac.slice(0,6).map(f => `
+            <div class="cell" title="${esc(f.comments||'')}">
+              ${chip(f.logo, f.name)}
+              <div class="cell-title">${esc((f.name||'').split('—')[0].trim())}</div>
+              <div class="cell-sub">${esc(f.location||'')}</div>
+              <div class="cell-meta">${esc(ymonth(f.from))}–${esc(ymonth(f.to))}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="foot">View all ${fac.length} facilities →</div>
+      </div>
+    </div>
+  `;
+
+  // Completed Contracts list
+  const cc = D.completed_contracts || [];
+  const ccBlock = cc.length ? `
+    <div class="rblock">
+      <div class="rtitle">Completed Contracts <span class="num">#${cc.length}</span><span class="right">Lifetime: ${fmtMoneyK(qs.lifetime_billings_usd||1684000)}</span></div>
+      <div class="glass">
+        <div class="contracts">
+          ${cc.slice(0,8).map(c => `
+            <div class="crow">
+              ${chip(c.customer_logo, c.customer)}
+              <div class="ti">${esc(c.title||'')}<div class="cust">${esc(c.customer||'')} · ${esc(c.city||'')}</div></div>
+              <div class="rate">${fmtMoney(c.rate||0,0)}/hr</div>
+              <div class="val">${fmtMoneyK(c.value_usd||0)}</div>
+              <div class="stars">${'★'.repeat(c.rating||5)}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="foot">View all ${cc.length} contracts →</div>
+      </div>
+    </div>
+  ` : '';
+
+  // Services
+  const svc = F.services_offered||[];
+  const svcBlock = svc.length ? `
+    <div class="rblock">
+      <div class="rtitle">Services Offered <span class="num">#${svc.length}</span></div>
+      <div class="glass">
+        <div class="list-rows">
+          ${svc.map(s => `
+            <div class="lrow">
+              <div><div class="ti">${esc(s.name)}</div><div class="desc">${esc(s.desc||'')}</div></div>
+              <div class="pri">${fmtMoney(s.rate||0,0)}<span class="u">USD/HR</span></div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  ` : '';
+
+  // Products
+  const prod = F.products_offered||[];
+  const prodBlock = prod.length ? `
+    <div class="rblock">
+      <div class="rtitle">Products Offered <span class="num">#${prod.length}</span></div>
+      <div class="glass">
+        <div class="list-rows">
+          ${prod.map(p => `
+            <div class="lrow">
+              <div><div class="ti">${esc(p.name)}</div><div class="desc">${esc(p.desc||'')}</div></div>
+              <div class="pri">${fmtMoney(p.price||0,0)}<span class="u">USD</span></div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  ` : '';
+
+  // Equipment owned
+  const eq = D.equipment_owned||[];
+  const eqBlock = eq.length ? `
+    <div class="rblock">
+      <div class="rtitle">Equipment &amp; Tools Owned <span class="num">#${eq.reduce((n,e)=>n+(e.items||[]).length,0)}</span></div>
+      <div class="glass">
+        <div class="eq">
+          ${eq.map(e => `
+            <div class="eq-cell">
+              <div class="cat">${esc(e.category||'')}</div>
+              ${(e.items||[]).map(it => `<div class="it">• ${esc(it)}</div>`).join('')}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  ` : '';
+
+  // References — count public; full list (with letter download) for connection/owner/admin
+  const refs = F.references||[];
+  const refsWithLetter = refs.filter(r => r.letter).length;
+  const refsBlock = refs.length ? `
+    <div class="rblock">
+      <div class="rtitle">References <span class="num">#${refs.length}</span><span class="right">${refsWithLetter} with letters</span></div>
+      <div class="glass">
+        <div data-role-show="public visitor" style="padding:var(--s-5);text-align:center">
+          <div style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:32px;color:var(--gold);letter-spacing:-0.02em;line-height:1">${refs.length}</div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1.4px;margin-top:6px">Professional References on file</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:10px;font-weight:400;line-height:1.5;max-width:420px;margin-left:auto;margin-right:auto">
+            ${refsWithLetter} include downloadable letters of recommendation. Names, roles &amp; contact info are visible to <b style="color:var(--gold);font-weight:600">connections only</b> — connect with Maria to view.
+          </div>
+        </div>
+        <div data-role-show="connection owner admin">
+          ${refs.map(rf => `
+            <div class="ref-row">
+              ${chipR(rf.avatar, rf.name)}
+              <div><div class="nm">${esc(rf.name||'')}</div><div class="rl">${esc(rf.relationship||'')}</div></div>
+              <span class="pill-letter ${rf.letter?'':'no'}">${rf.letter?'📜 Letter ✓':'No letter'}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  ` : '';
+
+  // Portfolio links
+  const pl = D.portfolio_links||[];
+  const portfolioBlock = pl.length ? `
+    <div class="rblock">
+      <div class="rtitle">Portfolio &amp; Public Work <span class="num">#${pl.length}</span></div>
+      <div class="glass">
+        <div class="list-rows">
+          ${pl.map(p => `
+            <div class="lrow">
+              <div><div class="ti">${esc(p.title||'')}</div><div class="desc" style="font-family:var(--mono);font-size:10px">${esc(p.url||'')}</div></div>
+              <div class="pri" style="font-family:var(--sans);font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold)">${esc((p.kind||'').toUpperCase())}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  ` : '';
+
+  // Media gallery
+  const mg = F.media_gallery||[];
+  const mediaBlock = mg.length ? `
+    <div class="rblock">
+      <div class="rtitle">Media Gallery <span class="num">#${mg.length}</span></div>
+      <div class="glass">
+        <div class="gallery">
+          ${mg.map(m => `
+            <div class="gi">
+              <img src="${esc(m.url)}" alt="">
+              ${m.type==='video'?`<div class="vt">▶</div>`:''}
+              <div class="cap">${esc(m.caption||'')}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  ` : '';
+
+  /* ═══════════════════ ASSEMBLE ═══════════════════ */
+  const root = document.getElementById('root');
+  root.innerHTML = `
+    ${headStrip}
+    <div class="profile">
+      <div class="col col-left">
+        ${heroCard}
+        ${taglineCard}
+        ${ctaCard}
+        ${activeAppCard}
+        ${strengthCard}
+        ${mfgCard}
+        ${aboutCard}
+        ${tradesCard}
+        ${compsCard}
+        ${engageCard}
+        ${badgesCard}
+        ${bizAffCard}
+        ${bgsCard}
+        ${socialCard}
+        ${watchersCard}
+        ${secureFilesCard}
+        ${privateCard}
+        ${bankCard}
+        ${adminCard}
+      </div>
+      <div class="col col-right">
+        ${reviewsBlock}
+        ${ccBlock}
+        ${expBlock}
+        ${endorseBlock}
+        ${eduBlock}
+        ${facBlock}
+        ${indLangBlock}
+        ${iqBlock}
+        ${eqBlock}
+        ${svcBlock}
+        ${refsBlock}
+        ${portfolioBlock}
+        ${prodBlock}
+        ${mediaBlock}
+      </div>
+    </div>
+  `;
+
+  /* ───────── Role tabs ───────── */
+  const explainers = {
+    public:'Logged-out viewer — found Maria via search. No account. Sees public profile only.',
+    visitor:'Logged-in user, not yet connected. Can request connection / message. No private financial info.',
+    connection:'Connected user. Can DM directly, see references and download letters.',
+    owner:'Maria viewing her own profile. Edit access · profile strength · banking · watchers · active applications.',
+    admin:'Automate America staff — sees everything Maria sees plus admin notes, trust score, moderation actions.'
+  };
+  document.querySelectorAll('#roleTabs button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#roleTabs button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      const role = b.dataset.role;
+      document.documentElement.setAttribute('data-role', role);
+      document.getElementById('roleEx').textContent = explainers[role]||'';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

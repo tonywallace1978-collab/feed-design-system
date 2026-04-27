@@ -83,8 +83,6 @@ window.PROFESSIONAL_DATA = {
     "active_contracts": 1,
     "endorsements_count": 28,
     "connections_count": 412,
-    "connections_growth_30d": 14,
-    "connections_growth_quarter": 41,
     "lifetime_billings_usd": 1684000,
     "profile_strength_pct": 96
   },
@@ -145,10 +143,7 @@ window.PROFESSIONAL_DATA = {
   },
 
   "business_groups": [
-    { "id": 304, "name": "Detroit Plant",                     "role": "Lead Engineer",       "members_count": 11,  "available_now": 5,  "on_contract": 5,  "logo_color": "#14B8A6", "joined_at": "2019-04-15" },
-    { "id": 412, "name": "Great Lakes Automation Network",    "role": "Member",              "members_count": 138, "available_now": 47, "on_contract": 71, "logo_color": "#6366F1", "joined_at": "2021-08-22" },
-    { "id": 587, "name": "Body-in-White Specialists",         "role": "Charter Member",      "members_count": 28,  "available_now": 9,  "on_contract": 16, "logo_color": "#F59E0B", "joined_at": "2022-11-03" },
-    { "id": 644, "name": "Detroit-3 OEM Integrators",         "role": "Member",              "members_count": 92,  "available_now": 31, "on_contract": 48, "logo_color": "#EC4899", "joined_at": "2023-04-18" }
+    { "id": 412, "name": "Great Lakes Automation Network",    "role": "Member",              "members_count": 138, "available_now": 47, "on_contract": 71, "logo_color": "#6366F1", "joined_at": "2021-08-22" }
   ],
 
   "secure_files": {

@@ -1,17 +1,17 @@
 USER DASHBOARDS
 At the top, we need to Display the words User Dashboard so that they understand what page they are on.  
 First Row CTA Cards, Time Sheets, Expense Reports, Invoices, Purchase Orders.  
-Second Row CTAís, View as Business, Search Work, Seach Customers, Edit Profile
+Second Row CTA‚Äôs, View as Business, Search Work, Seach Customers, Edit Profile
 Third Row is a Summary Card of The Users Profile, It shows his profile image, # of connections, Primary Occupation, State and Country, Users Email, Users Phone Number, Boost My Profile CTA, and a Share option that uses the arrow icon and gives the options of Copy link, Send to Text, Send to Email, Share on Facebook, Share on LinkedIn, and Share on WhatsApp.  I am available switch, that shows Green When Available and Red When Not Available.  
 Next we have a row that is divided into two sections, Work Being Done By Me or My Employees and another section called Work Being Done For Me.
 
-Work Being Done By Me or My Employees is selected, the sections are as follows ñ 
-	Work Being Done By Me or My Employees is selected, the sections are as follows ñ 
+Work Being Done By Me or My Employees is selected, the sections are as follows ‚Äì 
+	Work Being Done By Me or My Employees is selected, the sections are as follows ‚Äì 
        Contracts Section
        Ongoing Contracts
        	Contract Header
 Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
-       		CTAís ñ Copy, End Contract
+       		CTA‚Äôs ‚Äì Copy, End Contract
 Note:  Below the professional information, we have a section for Timesheets, Expense Reports, Invoices, and Purchase Orders.  These are only shown for White Glove Hourly Contracts.
 Timesheet (Only for White Glove Hourly Contracts, Not Standard Hourly Contracts)
        Current Timesheet, No Number
@@ -38,10 +38,10 @@ Applications Rejected (These are Hourly Contracts that I applied myself or one o
 The professionals can view the contract summary cards and the full contract, but there is nothing that they can do here.    
 `	Rejected Offers (These are applications that I made for me or my employee, the customer sent an offer and hired us, but we rejected the offer.)
 The professionals can view the contract summary cards and the full contract, but there is nothing that they can do here.
-Completed / Closed Contracts ñ This design is very similar to the Open and Ongoing Contract Section.
+Completed / Closed Contracts ‚Äì This design is very similar to the Open and Ongoing Contract Section.
        Contract Header
 Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
-CTAís ñ Copy 
+CTA‚Äôs ‚Äì Copy 
        	Contract Summary
        		Location of Contract (if Onsite) - State and City
        		Completed Date (When you closed the contract)
@@ -68,7 +68,7 @@ Due Expense Reports (these are due and past due, I need to complete these and su
 Pending Customer Approval (Expense Reports that me or my business group members need to turn in immediately)
 Approved Expense Reports (expense reports that the customer has approved)  
        Request From Customers (Section)
-Note:  Professionals Requested Section is needed to track any requests from customer for a users services or the services of one of their available employees.  The Sub Sections are "Open Requestsî and ìRejected Requestsî.  If the professional approves the requested work, it goes into their Ongoing Contracts section and is tracked and maintained as an Hourly Contract.  When a user requests a professional directly, a contract is made automatically based on the rates in the users profile, the start date that customer needs the professional, the duration of the contract and what work is required.  When the customer requests a professional we will start asking them the mandatory fields just like an hourly contract.  The only difference with a Direct Request is that it is a private contract between the customer and contractor.  It is not open for others to apply to.  The customer will be given the option at the end of the Direct Request Process to Make the request an Open Contract to the Public to get more applicants, and if they say yes, they will be asked if they want White Glove Hourly Contract Options or Standard Hourly Contract Options.  	
+Note:  Professionals Requested Section is needed to track any requests from customer for a users services or the services of one of their available employees.  The Sub Sections are "Open Requests‚Äù and ‚ÄúRejected Requests‚Äù.  If the professional approves the requested work, it goes into their Ongoing Contracts section and is tracked and maintained as an Hourly Contract.  When a user requests a professional directly, a contract is made automatically based on the rates in the users profile, the start date that customer needs the professional, the duration of the contract and what work is required.  When the customer requests a professional we will start asking them the mandatory fields just like an hourly contract.  The only difference with a Direct Request is that it is a private contract between the customer and contractor.  It is not open for others to apply to.  The customer will be given the option at the end of the Direct Request Process to Make the request an Open Contract to the Public to get more applicants, and if they say yes, they will be asked if they want White Glove Hourly Contract Options or Standard Hourly Contract Options.  	
 Open Requests (Request from customer for me or my employees that I or one of my business group members need Accept or Reject as soon as possible)
 If a professional accepts a request, the request becomes a contract and is saved in the Ongoing Contracts section for both the professional and customer.  
 Rejected Requests (The customer requested me or one of my employees, but myself or on of the members of my business group rejected the request) 
@@ -77,7 +77,7 @@ Direct In-House Jobs (Section).  Keep in mind that a user will never apply their
        Ongoing Direct In-House Job (This cannot be more than one job per users)
        	Job Header
 Primary Occupation, Start Date 
-       		CTAís ñ Copy, Close Job (I am no longer employed by this company)
+       		CTA‚Äôs ‚Äì Copy, Close Job (I am no longer employed by this company)
 Job Offers Pending (The customer has Hired / Sent Offers to you for a job that you applied to, now it is up to you to accept or reject the offer)  
        My Applications to Jobs (Lists all the Direct Jobs that I have applied myself to)  
 Users can view the Job Summary or the full Job Posting and Retract their application is desired.  
@@ -86,10 +86,10 @@ Users can view the Job Summary Card and a full view, and they can retract their 
 Job Offers I Rejected (These are jobs that I applied to, and the customer sent me an offer, then I rejected the offer).
 The user can view the Job Posts but that is it.  They can never re apply to a job that they rejected or that the customer rejected them for.      
 	`	
-Completed / Closed Direct In-House Jobs ñ This design is very similar to the Open and Ongoing Job Section.  These are Jobs that I was hired for, and the job has ended and I am no longer employed by this company.  
+Completed / Closed Direct In-House Jobs ‚Äì This design is very similar to the Open and Ongoing Job Section.  These are Jobs that I was hired for, and the job has ended and I am no longer employed by this company.  
        Job Header
 Primary Occupation, Start Date, Onsite or Remote Job.
-CTAís ñ Copy 
+CTA‚Äôs ‚Äì Copy 
        	Job Summary
        		Location of Job (if Onsite) - State and City
        		Completed Date (When you closed the job)
@@ -106,11 +106,11 @@ Work Being Done For Me is selected, the following sections are shown-
        Ongoing Contracts
        	Contract Header
 Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
-       		CTAís ñ Copy, End Contract
+       		CTA‚Äôs ‚Äì Copy, End Contract
        	Professional Details (the professionals that have been hired)
 Left Side / Full Name, Primary Occupation, State and City of Professional, # of Reviews, Rating
 Right Side / Top Skill, Second Skill, Work Experience, Member Since  
-       		CTAís ñ View Profile
+       		CTA‚Äôs ‚Äì View Profile
 Note:  Below the professional information, we have a section for Timesheets, Expense Reports, Invoices, and Purchase Orders.  These are only shown for White Glove Hourly Contracts.
 Timesheet (Only for White Glove Hourly Contracts)
        Current Timesheet, No Number
@@ -150,7 +150,7 @@ The customer can view the profiles of the professionals and revert the rejected 
 Draft Contracts (You or someone in your business group have started these contracts, you need to finish them and submit them for approval)
        Contract Header
 Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
-       		CTAís ñ Copy, Delete Draft
+       		CTA‚Äôs ‚Äì Copy, Delete Draft
        	Contract Summary
        		Location of Contract (if Onsite) - State and City
        		Initiated Date (When did you start the draft)
@@ -161,12 +161,12 @@ Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourl
        			Base 
        			Overtime 
        			Sun / Holidays
-       	Bottom CTAís ñ Edit Contract, Submit for Approval
+       	Bottom CTA‚Äôs ‚Äì Edit Contract, Submit for Approval
        
 Contracts Pending Admin Approval (You have submitted these contracts to Automate America Administration and are awaiting their approval)
        Contract Header
 Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
-       		CTAís ñ Copy, Delete
+       		CTA‚Äôs ‚Äì Copy, Delete
        	Contract Summary
        		Location of Contract (if Onsite) - State and City
        		Sent For Approval Date (When did you submit for approval)
@@ -177,12 +177,12 @@ Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourl
        			Base 
        			Overtime 
        			Sun / Holidays
-       	Bottom CTAís ñ Boost This Contract
+       	Bottom CTA‚Äôs ‚Äì Boost This Contract
        
        Open Contracts
        Contract Header
 Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
-CTAís ñ Copy, Unpublish (this will take it back to draft), Delete (a warning should be given, If you delete this contract it will be unavailable to you and Automate America admin, are you sure you want to permanently delete this contract?  Unpublishing will take it back to draft.)
+CTA‚Äôs ‚Äì Copy, Unpublish (this will take it back to draft), Delete (a warning should be given, If you delete this contract it will be unavailable to you and Automate America admin, are you sure you want to permanently delete this contract?  Unpublishing will take it back to draft.)
        	Contract Summary
        		Location of Contract (if Onsite) - State and City
        		Sent For Approval Date (When did you submit for approval)
@@ -204,12 +204,12 @@ Rejected Offers (Shows a number) These professionals applied to the contract, th
 When the user clicks this section, the user is taken to a page with Summary Cards for all the applicants that rejected the offer.  The user will be able to view full profiles.    
 Rejected Applicants (Shows a number) These professionals applied to the contract, and the customer rejected their applications. 
 When the user clicks this section, the user is taken to a page with Summary Cards for all of the applicants that they have Rejected.  The user will be able to view full profiles, Shortlist, or Hire / Send and Offer to the professionals.  
-       Bottom CTAís ñ Boost This Contract
+       Bottom CTA‚Äôs ‚Äì Boost This Contract
        
-Completed / Closed Contracts ñ This design is very similar to the Open and Ongoing Contract Section.
+Completed / Closed Contracts ‚Äì This design is very similar to the Open and Ongoing Contract Section.
        Contract Header
 Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
-CTAís ñ Copy 
+CTA‚Äôs ‚Äì Copy 
        	Contract Summary
        		Location of Contract (if Onsite) - State and City
        		Completed Date (When you closed the contract)
@@ -245,7 +245,7 @@ Approved Expense Reports (expense reports that you the customer have approved)
 Contractors Hired (for Both White Glove Hourly Contracts and Standard Hourly Contracts) This section will take you to a page with the Summary Cards for all the professionals that you hired for this contract.  You will be given the call to action to view full profile and Request This Contractor Again.
        
        Professionals Requested (Section)
-Note:  Professionals Requested Section is needed to track any professionals that were requested by customers.  The Sub Sections are "Open Requestedî and ìRejected Requestsî.  If the professional approves the requested work, it goes into the customers Ongoing Contracts section and is tracked and maintained as an Hourly Contract.  When a user requests a professional directly, a contract is made automatically based on the rates in the users profile, the start date that customer needs the professional, the duration of the contract and what work is required.  When the customer requests a professional we will start asking them the mandatory fields just like an hourly contract.  The only difference with a Direct Request is that it is a private contract between the customer and contractor.  It is not open for others to apply to.  The customer will be given the option at the end of the Direct Request Process to Make the request an Open Contract to the Public to get more applicants, and if they say yes, they will be asked if they want White Glove Hourly Contract Options or Standard Hourly Contract Options.  	
+Note:  Professionals Requested Section is needed to track any professionals that were requested by customers.  The Sub Sections are "Open Requested‚Äù and ‚ÄúRejected Requests‚Äù.  If the professional approves the requested work, it goes into the customers Ongoing Contracts section and is tracked and maintained as an Hourly Contract.  When a user requests a professional directly, a contract is made automatically based on the rates in the users profile, the start date that customer needs the professional, the duration of the contract and what work is required.  When the customer requests a professional we will start asking them the mandatory fields just like an hourly contract.  The only difference with a Direct Request is that it is a private contract between the customer and contractor.  It is not open for others to apply to.  The customer will be given the option at the end of the Direct Request Process to Make the request an Open Contract to the Public to get more applicants, and if they say yes, they will be asked if they want White Glove Hourly Contract Options or Standard Hourly Contract Options.  	
 Open Requests (Professionals that I the customer Requested but they have not accepted or rejected)
 If a professional accepts a request, the request becomes a contract and is saved in the Ongoing Contracts section for both the professional and customer.  
 Rejected Requests (I the customer requested these professionals and they rejected the request.) 
@@ -256,11 +256,11 @@ Customer can view the professionals summary cards with an option to view full pr
        Ongoing Direct In-House Jobs
        	Job Header
 Primary Occupation, Start Date 
-       		CTAís ñ Copy, Close Job
+       		CTA‚Äôs ‚Äì Copy, Close Job
        	Professional Details (the professionals that have been hired)
 Left Side / Full Name, Primary Occupation, State and City of Professional, # of Reviews, Rating
 Right Side / Top Skill, Second Skill, Work Experience, Member Since  
-       		CTAís ñ View Profile
+       		CTA‚Äôs ‚Äì View Profile
 Note:  Below we have a section for Applications Received, Shortlisted Applicants, Offers Pending, Offers Accepted, Offers Rejected, and Rejected Applicants.  
 Applications Received (Lists all the professionals who applied to the job and were not Hired or Rejected)  
 Customers can view the profile on any applicant here and are still given the ability to hire them (send them an offer), Shortlist or Reject them.  
@@ -277,7 +277,7 @@ The customer can view the profiles of the professionals and revert the rejected 
 Draft Direct In-House Jobs (You or someone in your business group have started these Direct In-House Jobs, you need to finish them and submit them for approval)
        Job Header
 Primary Occupation, Start Date and End Date, Type of Job (White Glove Hourly Job or Standard Hourly Job), Onsite or Remote Job.
-       		CTAís ñ Copy, Delete Draft
+       		CTA‚Äôs ‚Äì Copy, Delete Draft
        	Job Summary
        		Location of Job (if Onsite) - State and City
        		Initiated Date (When did you start the draft)
@@ -288,12 +288,12 @@ Primary Occupation, Start Date and End Date, Type of Job (White Glove Hourly Job
        			Base 
        			Overtime 
        			Sun / Holidays
-       	Bottom CTAís ñ Edit Job, Submit for Approval
+       	Bottom CTA‚Äôs ‚Äì Edit Job, Submit for Approval
        
 Direct In-House Jobs Pending Admin Approval (You have submitted these Direct In-House Jobs to Automate America Administration and are awaiting their approval)
        Job Header
 Primary Occupation, Start Date, Onsite or Remote Job.
-       		CTAís ñ Copy, Delete
+       		CTA‚Äôs ‚Äì Copy, Delete
        	Job Summary
        		Location of Job (if Onsite) - State and City
        		Sent For Approval Date (When did you submit for approval)
@@ -304,12 +304,12 @@ Primary Occupation, Start Date, Onsite or Remote Job.
        			Base 
        			Overtime 
        			Sun / Holidays
-       	Bottom CTAís ñ Boost This Job
+       	Bottom CTA‚Äôs ‚Äì Boost This Job
        
        Open Direct In-House Jobs
        Job Header
 Primary Occupation, Start Date and End Date, Onsite or Remote Job.
-CTAís ñ Copy, Unpublish (this will take it back to draft), Delete (a warning should be given, If you delete this job it will be unavailable to you and Automate America admin, are you sure you want to permanently delete this job?  Unpublishing will take it back to draft.)
+CTA‚Äôs ‚Äì Copy, Unpublish (this will take it back to draft), Delete (a warning should be given, If you delete this job it will be unavailable to you and Automate America admin, are you sure you want to permanently delete this job?  Unpublishing will take it back to draft.)
        	Job Summary
        		Location of Job (if Onsite) - State and City
        		Sent For Approval Date (When did you submit for approval)
@@ -331,12 +331,12 @@ Rejected Offers (Shows a number) These professionals applied to the job, the cus
 When the user clicks this section, the user is taken to a page with Summary Cards for all the applicants that rejected the offer.  The user will be able to view full profiles.    
 Rejected Applicants (Shows a number) These professionals applied to the job, and the customer rejected their applications. 
 When the user clicks this section, the user is taken to a page with Summary Cards for all of the applicants that they have Rejected.  The user will be able to view full profiles, Shortlist, or Hire / Send and Offer to the professionals.  
-       Bottom CTAís ñ Boost This Job
+       Bottom CTA‚Äôs ‚Äì Boost This Job
        
-Completed / Closed Direct In-House Jobs ñ This design is very similar to the Open and Ongoing Job Section.
+Completed / Closed Direct In-House Jobs ‚Äì This design is very similar to the Open and Ongoing Job Section.
        Job Header
 Primary Occupation, Start Date, Onsite or Remote Job.
-CTAís ñ Copy 
+CTA‚Äôs ‚Äì Copy 
        	Job Summary
        		Location of Job (if Onsite) - State and City
        		Completed Date (When you closed the job)
@@ -351,7 +351,7 @@ Employees Hired,
 This section will take you to a page with the Summary Cards for all the professionals that you hired for this job.  You will be given the call to action to view full profile and Request This Employee Again.
 
 
-Add Professionals to My Team ñ CTA
+Add Professionals to My Team ‚Äì CTA
 My Professionals Section (This is where the user can manage any professionals that they have added to their team) They can manage the profiles of their professionals.  Time Sheet, Expense Reports, Invoices are all managed from the section above called work being done by me or my employees.  
 My Calendar Section 
 Professionals that I have Hired In The Past (Dashboard Section) -

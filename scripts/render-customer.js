@@ -66,6 +66,7 @@
   $('#contracts-list').innerHTML = D.open_contracts.map(j => {
     const wg = j.white_glove;
     const w2 = j.type.includes('Direct');
+    const rateText = j.rate ? `$${j.rate}/hr` : (j.salary_band ? `$${j.salary_band}/yr` : '—');
     return `
       <div class="contract-row${wg?' wg':''}${w2?' w2':''}">
         <div class="contract-tag">
@@ -75,7 +76,7 @@
         </div>
         <div>
           <div class="contract-title">${esc(j.title)}</div>
-          <div class="contract-sub">${esc(j.type)}</div>
+          <div class="contract-sub">${esc(j.type)} · ${rateText} · Posted ${fmtDate(j.posted_at)} · Closes ${fmtDate(j.closes_at)}</div>
         </div>
         <div class="contract-applicants">
           <div class="kpi-val" style="font-size:24px !important;">${j.applicants}</div>
@@ -89,22 +90,37 @@
   // HIRE HISTORY
   $('#history-list').innerHTML = D.hire_history.map(h => {
     const wg = h.white_glove;
+    const stars = '★'.repeat(h.rating_given) + '☆'.repeat(5 - h.rating_given);
     return `<tr class="hist-row${wg?' wg':''}">
       <td>${fmtDate(h.completed_at)}</td>
       <td>
         <div class="hist-title">${wg?'<span class="chip-wg" style="margin-right:8px;font-size:9px;">◇ WG</span>':''}${esc(h.title)}</div>
       </td>
       <td><span class="hist-pro${wg?' anon':''}">${esc(h.contractor)}</span></td>
+      <td class="mono">${h.duration_weeks}wk</td>
+      <td class="mono">${h.rate ? '$'+h.rate+'/hr' : '—'}</td>
+      <td class="mono" style="text-align:right;">${fmtMoney(h.value_usd)}</td>
+      <td><span class="stars">${stars}</span></td>
       <td>${h.rehired ? '<span class="chip ok" style="font-size:9px;">REHIRED</span>' : ''}</td>
     </tr>`;
   }).join('');
 
   // WATCHED PROS
-  const watchedTop = D.watched_pros.slice(0, 4);
-  const watchedOverflow = D.watched_pros.length - watchedTop.length;
-  $('#watched-list').innerHTML = watchedTop.map(p => `
+  const proPhotos = {
+    38291: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces',
+    39102: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=faces',
+    40117: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces',
+    41208: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=faces',
+    41502: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop&crop=faces',
+    41334: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces',
+    41822: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=faces',
+    41709: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?w=200&h=200&fit=crop&crop=faces',
+    42118: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=200&fit=crop&crop=faces',
+    42301: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces',
+  };
+  $('#watched-list').innerHTML = D.watched_pros.map(p => `
     <div class="pro-card${p.available?' avail':''}">
-      <div class="pro-avatar" style="background-image:url('${p.avatar||''}')">
+      <div class="pro-avatar" style="background-image:url('${proPhotos[p.id]||''}')">
         ${p.available ? '<span class="avail-dot" title="Available"></span>' : ''}
       </div>
       <div class="pro-meta">
@@ -116,7 +132,7 @@
         <div class="kpi-val" style="font-size:18px !important">${p.times_hired}</div>
         <div class="kpi-label" style="font-size:8px !important">HIRED</div>
       </div>
-    </div>`).join('') + (watchedOverflow > 0 ? `<button class="watched-more">+ ${watchedOverflow} more</button>` : '');
+    </div>`).join('');
   $('#watched-count').textContent = `${D.watched_pros.length} watched · ${D.watched_pros.filter(p=>p.available).length} available now`;
 
   // PREFERRED GROUPS
@@ -131,41 +147,24 @@
     </div>`).join('');
 
   // SPENDING (OWNER)
-  function renderTradePie(trades) {
-    const colors = ['#6366F1', '#8B5CF6', '#EC4899', '#F59E0B', '#10B981', '#64748B'];
-    const cx = 90, cy = 90, r_outer = 80, r_inner = 50;
-    let cumPct = 0;
-    const arcs = trades.map((t, i) => {
-      const startA = (cumPct / 100) * 2 * Math.PI - Math.PI / 2;
-      cumPct += t.pct;
-      const endA = (cumPct / 100) * 2 * Math.PI - Math.PI / 2;
-      const largeArc = t.pct > 50 ? 1 : 0;
-      const x1 = cx + r_outer * Math.cos(startA), y1 = cy + r_outer * Math.sin(startA);
-      const x2 = cx + r_outer * Math.cos(endA),   y2 = cy + r_outer * Math.sin(endA);
-      const x3 = cx + r_inner * Math.cos(endA),   y3 = cy + r_inner * Math.sin(endA);
-      const x4 = cx + r_inner * Math.cos(startA), y4 = cy + r_inner * Math.sin(startA);
-      return `<path d="M ${x1} ${y1} A ${r_outer} ${r_outer} 0 ${largeArc} 1 ${x2} ${y2} L ${x3} ${y3} A ${r_inner} ${r_inner} 0 ${largeArc} 0 ${x4} ${y4} Z" fill="${colors[i % colors.length]}" stroke="rgba(0,0,0,0.20)" stroke-width="0.5"/>`;
-    }).join('');
-    const legend = trades.map((t, i) => `
-      <div class="pie-legend-row">
-        <span class="pie-swatch" style="background:${colors[i % colors.length]}"></span>
-        <span class="pie-trade">${esc(t.trade)}</span>
-        <span class="pie-amt mono">${fmtMoneyShort(t.ytd)}</span>
-        <span class="pie-pct mono">${t.pct}%</span>
-      </div>`).join('');
-    return `
-      <div class="spend-pie-wrap">
-        <svg viewBox="0 0 180 180" width="180" height="180" class="spend-pie">${arcs}</svg>
-        <div class="spend-pie-legend">${legend}</div>
-      </div>`;
-  }
   const sp = D.spending_breakdown;
   $('#spend-yrs').innerHTML = `
     <div class="spend-yr"><div class="kpi-label">YTD 2026</div><div class="kpi-val" style="color:#34D399">${fmtMoneyShort(sp.ytd_2026_usd)}</div></div>
     <div class="spend-yr"><div class="kpi-label">FY 2025</div><div class="kpi-val">${fmtMoneyShort(sp.fy_2025_usd)}</div></div>
     <div class="spend-yr"><div class="kpi-label">FY 2024</div><div class="kpi-val">${fmtMoneyShort(sp.fy_2024_usd)}</div></div>
     <div class="spend-yr"><div class="kpi-label">FY 2023</div><div class="kpi-val">${fmtMoneyShort(sp.fy_2023_usd)}</div></div>`;
-  $('#spend-trade').innerHTML = renderTradePie(sp.by_trade);
+  $('#spend-trade').innerHTML = sp.by_trade.map(t => `
+    <div class="spend-bar-row">
+      <div class="spend-bar-label">${esc(t.trade)}</div>
+      <div class="spend-bar"><div class="spend-fill" style="width:${t.pct*2.5}%"></div></div>
+      <div class="spend-bar-amt">${fmtMoneyShort(t.ytd)} <span style="opacity:0.6">${t.pct}%</span></div>
+    </div>`).join('');
+  $('#spend-tier').innerHTML = sp.by_tier.map(t => `
+    <div class="spend-tier-tile">
+      <div class="kpi-label">${esc(t.tier).toUpperCase()}</div>
+      <div class="kpi-val" style="font-size:22px !important">${fmtMoneyShort(t.ytd)}</div>
+      <div style="font-size:11px;color:var(--glass-text-tertiary);font-weight:600;margin-top:2px;font-family:'JetBrains Mono'">${t.pct}%</div>
+    </div>`).join('');
 
   // SECURE FILES (OWNER)
   $('#files-list').innerHTML = D.secure_files.files.map(f => `
@@ -180,32 +179,20 @@
   $('#files-count').textContent = `${D.secure_files.files.length} files`;
 
   // PRIVATE INFO
-  // Spec POPOUTS.md: re-auth-then-reveal + edit popouts per masked row.
-  // Affordances ship visual-only (parked as #30b open product call) until META modal primitive lands;
-  // click handler intentionally absent — graceful degradation per Maria #20b precedent.
-  const eyeIcon = `<button class="kv-action kv-reveal" title="Reveal" aria-label="Reveal value"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>`;
-  const penIcon = `<button class="kv-action kv-edit" title="Edit" aria-label="Edit value"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4l6 6L8 22H2v-6L14 4z"/></svg></button>`;
-  const isMasked = (v) => /•/.test(v);
-  $('#private-list').innerHTML = D.private_info.fields.map((f, i) => `
-    <div class="kv-row${isMasked(f.value)?' masked':''}" data-pi-idx="${i}">
+  $('#private-list').innerHTML = D.private_info.fields.map(f => `
+    <div class="kv-row">
       <div class="kv-key">${esc(f.label)}</div>
-      <div class="kv-val">${esc(f.value)}${isMasked(f.value)?eyeIcon:''}${penIcon}</div>
+      <div class="kv-val">${esc(f.value)}</div>
     </div>`).join('');
 
   // KEY CONTACTS
-  // Spec § 2 item 7: "Rebecca + 3 colleagues (PM / AP / Director)" — surface owner + 3 role-targeted contacts
-  // Direct contact channels (email/phone) are gated behind platform messaging, not surfaced inline
-  const contactRoleOrder = ['Plant Engineering Manager', 'Maintenance Lead', 'AP / Vendor Onboarding', 'Director of Plant Engineering'];
-  const contactsTop = contactRoleOrder
-    .map(role => D.key_contacts.find(k => k.role === role))
-    .filter(Boolean);
-  $('#contacts-list').innerHTML = contactsTop.map(k => `
+  $('#contacts-list').innerHTML = D.key_contacts.map(k => `
     <div class="contact-card${k.primary?' primary':''}">
       <div class="contact-avatar" style="background-image:url('${k.avatar}')"></div>
       <div class="contact-meta">
         <div class="contact-name">${esc(k.name)}${k.primary?' <span class="chip accent" style="font-size:9px;margin-left:4px">PRIMARY</span>':''}</div>
         <div class="contact-role">${esc(k.role)}</div>
-        <button class="contact-msg gbtn gbtn-secondary sm" data-contact-id="${esc(k.id)}">Message</button>
+        <div class="contact-tel mono">${esc(k.email)}</div>
       </div>
     </div>`).join('');
 
@@ -219,9 +206,7 @@
   $('#badges-count').textContent = `${D.badges_earned.length} earned`;
 
   // REVIEWS LEFT
-  // Spec § 2 item 13: "3 sample" — curated representative sample, not most-recent slice
-  const reviewsTop = D.reviews_left_for_contractors.slice(0, 3);
-  $('#reviews-list').innerHTML = reviewsTop.map(r => `
+  $('#reviews-list').innerHTML = D.reviews_left_for_contractors.slice(0,8).map(r => `
     <div class="rev-card glass-card">
       <div class="rev-head">
         <div class="rev-stars stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>

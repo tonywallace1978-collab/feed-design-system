@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-role="visitor">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Acme Robotics · System Integrator · Automate America</title>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#0a0a1a"/><stop offset="100%" stop-color="#3a1a0a"/>
+  </linearGradient></defs>
+  <rect width="600" height="400" fill="url(#g)"/>
+  <rect x="238" y="108" width="124" height="124" rx="22" fill="#F59E0B" opacity="0.85"/>
+  <text x="300" y="194" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="56" fill="#fff">A</text>
+  <text x="300" y="280" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="22" fill="#fff">Acme Robotics</text>
+  <text x="300" y="310" text-anchor="middle" font-family="JetBrains Mono,monospace" font-weight="600" font-size="13" fill="#FCD34D" letter-spacing="2">SYSTEM INTEGRATOR</text>
+</svg>
+</template>
+<link rel="stylesheet" href="tokens/glass-design-tokens.css" />
+<link rel="stylesheet" href="styles/glass.css" />
+<style>
+  .pro-shell { width: min(1500px, 100%); margin: 0 auto; padding: 21px 21px 80px; }
+
+  /* Role bar */
+  .role-bar { display:flex;align-items:center;gap:13px;padding:13px 21px;margin-bottom:21px;background:rgba(15,15,35,0.40);border:1px solid rgba(255,255,255,0.08);border-radius:17px;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%); }
+  :root[data-theme="light"] .role-bar { background:rgba(255,255,255,0.55); border-color:rgba(255,255,255,0.6); }
+  .role-bar .lbl { font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.10em;color:var(--glass-text-secondary);text-transform:uppercase;font-weight:600; }
+  .role-tabs { display:flex;gap:4px;background:rgba(15,15,35,0.40);border:1px solid rgba(255,255,255,0.10);border-radius:999px;padding:4px; }
+  :root[data-theme="light"] .role-tabs { background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.06); }
+  .role-tabs button { padding:7px 16px;border-radius:999px;border:0;cursor:pointer;font-family:'Outfit';font-weight:600;font-size:13px;background:transparent;color:var(--glass-text-secondary); }
+  .role-tabs button.active { background:linear-gradient(135deg,#6366F1,#4F46E5);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,0.30),inset 0 -1px 0 rgba(0,0,0,0.20),0 2px 8px rgba(99,102,241,0.45); }
+  .role-bar .ctx { margin-left:auto;font-size:13px;color:var(--glass-text-secondary);font-weight:500; }
+  .role-bar .ctx strong { color:var(--glass-text-primary);font-weight:700; }
+
+  /* Visibility */
+  [data-owner-only], [data-admin-only] { display:none; }
+  :root[data-role="owner"] [data-owner-only] { display:revert; }
+  :root[data-role="admin"] [data-owner-only] { display:revert; }
+  :root[data-role="admin"] [data-admin-only] { display:revert; }
+  :root[data-role="owner"] #hero-cta-visitor, :root[data-role="admin"] #hero-cta-visitor { display:none; }
+  :root:not([data-role="owner"]):not([data-role="admin"]) #hero-cta-owner { display:none; }
+
+  /* Layout */
+  .grid-2col { display:grid;grid-template-columns:380px 1fr;gap:21px;align-items:start; }
+  @media (max-width:1100px) { .grid-2col { grid-template-columns:1fr; } }
+  .left-rail { display:flex;flex-direction:column;gap:21px; position:sticky; top:76px; }
+  @media (max-width:1100px) { .left-rail { position:static; } }
+  .right-col { display:flex;flex-direction:column;gap:34px;min-width:0; }
+
+  /* HERO — company variant */
+  .hero { padding:21px;display:grid;grid-template-columns:120px 1fr;gap:17px;align-items:start; }
+  @media (max-width:520px) { .hero { grid-template-columns:1fr;text-align:center; } }
+  .logo-mark { width:120px;height:120px;border-radius:24px;background:linear-gradient(135deg,#6366F1 0%,#A855F7 50%,#EC4899 100%);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.30),inset 0 -2px 0 rgba(0,0,0,0.20),0 8px 32px rgba(99,102,241,0.40);position:relative; }
+  .logo-mark span { font-family:'Outfit';font-weight:800;font-size:48px;color:#fff;letter-spacing:-0.04em;text-shadow:0 2px 4px rgba(0,0,0,0.30); }
+  .hero-name { font-family:'Outfit';font-weight:800;font-size:32px;line-height:1.05;color:var(--glass-text-primary);margin:0 0 6px;letter-spacing:-0.025em; }
+  .hero-tagline { font-size:14px;line-height:1.5;color:var(--glass-text-secondary);margin:6px 0 11px;font-weight:500;text-wrap:pretty; }
+  .hero-class { display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px; }
+  .hero-loc { font-size:12px;color:var(--glass-text-secondary);font-weight:600; }
+  .hero-id { font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);margin-top:3px; }
+  .ind-tag { display:inline-flex;align-items:center;padding:3px 10px;font-family:'Outfit';font-size:11px;font-weight:600;color:var(--glass-text-secondary);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);border-radius:999px; }
+  :root[data-theme="light"] .ind-tag { background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.08); }
+  .ind-tag.big { padding:5px 12px;font-size:12px; }
+
+  .hero-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:17px;grid-column:1 / -1; }
+  @media (max-width:520px) { .hero-stats { grid-template-columns:repeat(2,1fr); } }
+  .stat-tile { padding:11px 8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:13px;text-align:center; }
+  :root[data-theme="light"] .stat-tile { background:rgba(0,0,0,0.03); border-color:rgba(0,0,0,0.06); }
+  .stat-tile .kpi-val { font-size:20px !important;font-weight:800 !important; }
+  .stat-tile .kpi-label { font-size:9px !important;margin-top:4px !important; }
+
+  .strength { margin-top:17px;grid-column:1 / -1; }
+  .strength-track { height:6px;border-radius:3px;background:rgba(255,255,255,0.08);overflow:hidden;margin-top:6px; }
+  .strength-fill { height:100%;background:linear-gradient(90deg,#0EA5E9,#34D399);border-radius:3px;box-shadow:0 0 12px rgba(14,165,233,0.5); }
+  .hero-cta { margin-top:17px;display:flex;flex-wrap:wrap;gap:8px;grid-column:1 / -1; }
+
+  /* Sidebar cards */
+  .side-card { padding:17px; }
+  .side-card .h { font-family:'JetBrains Mono';font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--glass-text-tertiary);font-weight:700;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between; }
+  .side-card .h .small { font-family:'Outfit';font-size:11px;color:var(--glass-text-secondary);text-transform:none;letter-spacing:0; }
+
+  /* Addresses */
+  .addr-row { display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05); }
+  .addr-row:last-child { border-bottom:0; }
+  :root[data-theme="light"] .addr-row { border-color:rgba(0,0,0,0.06); }
+  .addr-pin { width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-family:'Outfit';font-weight:700;font-size:14px;color:#fff;flex-shrink:0;box-shadow:inset 0 1px 0 rgba(255,255,255,0.30),inset 0 -1px 0 rgba(0,0,0,0.15); }
+
+  /* Rates */
+  .rate-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+  .rate-tile { padding:11px 12px;background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.18);border-radius:11px; }
+  .rate-tile.alert { background:rgba(251,146,60,0.06);border-color:rgba(251,146,60,0.25); }
+  .rate-tile.wg { background:rgba(168,85,247,0.06);border-color:rgba(168,85,247,0.25); }
+  .rate-tile .kpi-label { font-size:9px !important;margin-bottom:2px !important; }
+  .rate-tile .kpi-val { font-size:20px !important; }
+  .rate-sub { font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:600;margin-top:1px; }
+
+  /* Files */
+  .file-row { display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04); }
+  .file-row:last-child { border-bottom:0; }
+  :root[data-theme="light"] .file-row { border-color:rgba(0,0,0,0.05); }
+  .file-icon { width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-family:'Outfit';font-weight:700;font-size:14px;background:rgba(99,102,241,0.10);border:1px solid rgba(99,102,241,0.20);color:#A5B4FC;flex-shrink:0; }
+  .file-meta { flex:1;min-width:0; }
+  .file-name { font-family:'Outfit';font-weight:600;font-size:12px;color:var(--glass-text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+  .file-sub { font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:500; }
+
+  /* Right column section */
+  .sec { padding:21px; }
+  .sec > .sec-h { display:flex;align-items:baseline;justify-content:space-between;margin-bottom:17px;flex-wrap:wrap;gap:8px; }
+  .sec > .sec-h h2 { font-family:'Outfit';font-weight:700;font-size:22px;margin:0;color:var(--glass-text-primary);letter-spacing:-0.01em; }
+  .sec > .sec-h .meta { font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);font-weight:600; }
+
+  /* Services */
+  #services-list { display:grid;grid-template-columns:1fr;gap:10px; }
+  @media (min-width:700px) { #services-list { grid-template-columns:1fr 1fr; } }
+  .service-card { padding:15px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px; }
+  :root[data-theme="light"] .service-card { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .service-card.wg { border-color:rgba(168,85,247,0.30);background:rgba(168,85,247,0.05); }
+  .service-head { display:flex;align-items:center;gap:11px;margin-bottom:7px; }
+  .service-icon { width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:18px;background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.25);color:#A5B4FC;flex-shrink:0; }
+  .service-name { font-family:'Outfit';font-weight:700;font-size:14px;color:var(--glass-text-primary); }
+  .service-rate { font-family:'JetBrains Mono';font-size:12px;color:var(--glass-text-secondary);font-weight:700;margin-top:1px; }
+  .service-desc { font-size:12px;line-height:1.5;color:var(--glass-text-secondary);font-weight:500;text-wrap:pretty; }
+
+  /* Skills certified */
+  #skills-list { display:grid;grid-template-columns:1fr;gap:10px; }
+  @media (min-width:700px) { #skills-list { grid-template-columns:1fr 1fr; } }
+  .skill-card { display:grid;grid-template-columns:60px 1fr;gap:13px;align-items:center;padding:13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px; }
+  :root[data-theme="light"] .skill-card { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .skill-card.primary { border-color:rgba(52,211,153,0.30); }
+  .skill-logo { width:60px;height:60px;border-radius:11px;background:rgba(255,255,255,0.95);padding:9px;display:grid;place-items:center; }
+  .skill-logo img { width:100%;height:100%;object-fit:contain; }
+  .skill-name { font-family:'Outfit';font-weight:700;font-size:14px;color:var(--glass-text-primary); }
+  .skill-models { font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:500;margin-top:3px;line-height:1.4; }
+  .skill-meta { font-size:11px;color:var(--glass-text-secondary);margin-top:4px;font-weight:500; }
+  .mono-700 { font-family:'JetBrains Mono';font-weight:700;color:var(--glass-text-primary); }
+
+  /* Team */
+  #team-list { display:grid;grid-template-columns:1fr;gap:8px; }
+  @media (min-width:700px) { #team-list { grid-template-columns:1fr 1fr; } }
+  @media (min-width:1200px) { #team-list { grid-template-columns:1fr 1fr; } }
+  .pro-card { display:grid;grid-template-columns:48px 1fr;gap:11px;align-items:center;padding:11px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;transition:all 150ms; }
+  :root[data-theme="light"] .pro-card { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .pro-card.avail { border-color:rgba(52,211,153,0.30); }
+  .pro-card.primary { border-color:rgba(99,102,241,0.35);background:rgba(99,102,241,0.05); }
+  .pro-avatar { width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center;border:2px solid rgba(255,255,255,0.15);position:relative;flex-shrink:0; }
+  .avail-dot { position:absolute;bottom:0;right:0;width:13px;height:13px;border-radius:50%;background:#34D399;border:2px solid rgba(15,15,35,1);box-shadow:0 0 8px rgba(52,211,153,0.6); }
+  .pro-name { font-family:'Outfit';font-weight:700;font-size:13px;color:var(--glass-text-primary); }
+  .pro-occ { font-size:11px;color:var(--glass-text-secondary);font-weight:600;margin-top:2px; }
+  .pro-loc { font-size:11px;color:var(--glass-text-tertiary);margin-top:2px;font-weight:500; }
+
+  /* Work history rows */
+  #wh-by-list, #wh-for-list { display:flex;flex-direction:column;gap:8px; }
+  .wh-row { display:grid;grid-template-columns:48px 1fr 90px auto;gap:13px;align-items:center;padding:11px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;transition:all 150ms; }
+  :root[data-theme="light"] .wh-row { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .wh-row:hover { transform:translateY(-1px);background:rgba(99,102,241,0.06); }
+  .wh-row.wg { border-color:rgba(168,85,247,0.25);background:rgba(168,85,247,0.04); }
+  .wh-row.ongoing { border-color:rgba(52,211,153,0.30); }
+  .wh-logo { width:48px;height:48px;border-radius:11px;background:rgba(255,255,255,0.95);padding:7px;display:grid;place-items:center;flex-shrink:0; }
+  .wh-logo img { width:100%;height:100%;object-fit:contain; }
+  .wh-anon { width:100%;height:100%;border-radius:6px;background:linear-gradient(135deg,#A855F7,#7C3AED);display:grid;place-items:center;color:#fff;font-family:'Outfit';font-weight:800;font-size:18px; }
+  .wh-title { font-family:'Outfit';font-weight:700;font-size:13px;color:var(--glass-text-primary);line-height:1.3; }
+  .wh-sub { font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);margin-top:2px;font-weight:500; }
+  .wh-val { font-family:'JetBrains Mono';font-weight:800;font-size:13px;color:var(--glass-text-primary);text-align:right; }
+  .wh-rate { white-space:nowrap; }
+  .stars { color:#FCD34D;letter-spacing:1px;font-size:11px; }
+
+  /* Open positions */
+  #positions-list { display:flex;flex-direction:column;gap:9px; }
+  .contract-row { display:grid;grid-template-columns:130px 1fr 80px auto;gap:13px;align-items:center;padding:13px 15px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;transition:all 150ms; }
+  :root[data-theme="light"] .contract-row { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .contract-row:hover { background:rgba(99,102,241,0.06);border-color:rgba(99,102,241,0.25);transform:translateY(-1px); }
+  .contract-row.wg { border-color:rgba(168,85,247,0.30);background:rgba(168,85,247,0.05); }
+  .contract-row.w2 { border-color:rgba(99,102,241,0.25);background:rgba(99,102,241,0.04); }
+  .chip-wg { display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:0.05em;padding:3px 9px;border-radius:999px;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.35);color:#E9D5FF; }
+  :root[data-theme="light"] .chip-wg { color:#7C3AED; background:rgba(168,85,247,0.10); border-color:rgba(168,85,247,0.40); }
+  .contract-title { font-family:'Outfit';font-weight:700;font-size:14px;color:var(--glass-text-primary);line-height:1.3; }
+  .contract-sub { font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);margin-top:3px;font-weight:500; }
+
+  /* Reviews */
+  #reviews-list { display:grid;grid-template-columns:1fr;gap:13px; }
+  @media (min-width:700px) { #reviews-list { grid-template-columns:1fr 1fr; } }
+  .rev-card { padding:15px; }
+  .rev-head { display:flex;align-items:center;gap:11px;margin-bottom:9px;flex-wrap:wrap; }
+  .rev-pro { font-family:'Outfit';font-weight:700;font-size:13px;color:var(--glass-text-primary); }
+  .rev-text { font-size:13px;line-height:1.55;color:var(--glass-text-primary);font-weight:500;margin-bottom:9px;text-wrap:pretty; }
+  .rev-foot { font-size:11px;color:var(--glass-text-tertiary);font-weight:500; }
+  .row-meta { font-family:'JetBrains Mono';font-size:11px; }
+
+  /* Certifications */
+  #certs-list { display:grid;grid-template-columns:1fr;gap:10px; }
+  @media (min-width:700px) { #certs-list { grid-template-columns:1fr 1fr; } }
+  .cert-card { padding:13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px; }
+  :root[data-theme="light"] .cert-card { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .cert-card.alert { border-color:rgba(251,146,60,0.40);background:rgba(251,146,60,0.05); }
+  .cert-head { display:flex;align-items:center;gap:11px;margin-bottom:8px; }
+  .cert-icon { width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#0EA5E9,#0369A1);display:grid;place-items:center;font-family:'Outfit';font-weight:800;font-size:11px;color:#fff;flex-shrink:0; }
+  .cert-name { font-family:'Outfit';font-weight:700;font-size:13px;color:var(--glass-text-primary);line-height:1.3; }
+  .cert-issuer { font-size:11px;color:var(--glass-text-secondary);margin-top:1px;font-weight:500; }
+  .cert-meta { display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:10px;color:var(--glass-text-tertiary);font-weight:600;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06); }
+  :root[data-theme="light"] .cert-meta { border-color:rgba(0,0,0,0.06); }
+  .cert-id { font-family:'JetBrains Mono';font-size:9px;color:var(--glass-text-tertiary);margin-top:5px;letter-spacing:0.04em; }
+
+  /* Badges */
+  #badges-list { display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:13px; }
+  .badge-stack { display:flex;flex-direction:column;align-items:center;gap:6px;padding:11px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;transition:all 200ms;text-align:center; }
+  .badge-stack:hover { transform:translateY(-2px);border-color:rgba(99,102,241,0.30); }
+  :root[data-theme="light"] .badge-stack { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .badge-img { width:60px;height:60px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.25)); }
+  .badge-label { font-family:'Outfit';font-weight:600;font-size:11px;line-height:1.2;color:var(--glass-text-primary); }
+  .badge-tier { font-family:'JetBrains Mono';font-size:9px;font-weight:700;letter-spacing:0.10em;color:#0EA5E9; }
+  :root[data-theme="light"] .badge-tier { color:#0369A1; }
+
+  /* Contacts */
+  #contacts-list { display:grid;grid-template-columns:1fr;gap:8px; }
+  @media (min-width:700px) { #contacts-list { grid-template-columns:1fr 1fr; } }
+  .contact-card { display:grid;grid-template-columns:48px 1fr;gap:11px;align-items:center;padding:11px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px; }
+  :root[data-theme="light"] .contact-card { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .contact-card.primary { border-color:rgba(99,102,241,0.35);background:rgba(99,102,241,0.05); }
+  .contact-avatar { width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center;border:2px solid rgba(255,255,255,0.15);flex-shrink:0; }
+  .contact-name { font-family:'Outfit';font-weight:700;font-size:13px;color:var(--glass-text-primary); }
+  .contact-role { font-size:11px;color:var(--glass-text-secondary);font-weight:600;margin-top:2px; }
+  .contact-tel { font-size:10px;color:var(--glass-text-tertiary);margin-top:3px;font-weight:500;font-family:'JetBrains Mono'; }
+
+  /* Media */
+  #media-list { display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:11px; }
+  .media-card { background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;overflow:hidden; }
+  :root[data-theme="light"] .media-card { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .media-thumb { aspect-ratio:4/3;background-size:cover;background-position:center;position:relative;display:grid;place-items:center; }
+  .media-thumb .play { font-size:32px;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,0.5); }
+  .media-cap { padding:9px 11px;font-size:11px;color:var(--glass-text-secondary);font-weight:600;line-height:1.3;font-family:'Outfit'; }
+
+  /* About text */
+  #about-text { font-size:15px;line-height:1.65;color:var(--glass-text-secondary);font-weight:500;text-wrap:pretty;margin:0; }
+
+  /* Admin */
+  .admin-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:13px; }
+  .admin-tile { padding:11px 13px;background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.10);border-radius:11px; }
+  :root[data-theme="light"] .admin-tile { background:rgba(255,255,255,0.50); border-color:rgba(0,0,0,0.07); }
+  .admin-note { padding:13px;background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.07);border-radius:11px; }
+  :root[data-theme="light"] .admin-note { background:rgba(255,255,255,0.45); border-color:rgba(0,0,0,0.06); }
+  .sec.admin { border-color:rgba(168,85,247,0.30);background:rgba(168,85,247,0.06) !important; }
+
+  .gbtn.sm { padding:6px 12px;font-size:12px; }
+
+  @media (max-width:600px) {
+    .pro-shell { padding:13px 13px 80px; }
+    .role-bar { flex-wrap:wrap;padding:11px 13px; }
+    .role-bar .ctx { width:100%; order:3; }
+    .hero-name { font-size:24px; }
+    .wh-row { grid-template-columns:42px 1fr;gap:9px; }
+    .wh-val, .wh-rate { grid-column:2;text-align:left; }
+    .contract-row { grid-template-columns:1fr;gap:8px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wp dark"></div>
+  <div class="wp light"></div>
+
+  <main class="app">
+    <div class="pro-shell">
+      <div class="role-bar">
+        <span class="lbl">Viewing as</span>
+        <div class="role-tabs" role="tablist">
+          <button class="active" data-role-btn="visitor">Visitor</button>
+          <button data-role-btn="owner">Owner (Acme)</button>
+          <button data-role-btn="admin">Admin</button>
+        </div>
+        <span class="ctx">Profile of <strong>Acme Robotics</strong> · ID #1147 · <span style="color:#34D399;">●</span> CSIA-certified</span>
+      </div>
+
+      <div class="grid-2col">
+        <aside class="left-rail">
+          <!-- HERO -->
+          <section class="glass-card hero">
+            <div id="hero-logo"></div>
+            <div>
+              <h1 id="hero-name" class="hero-name"></h1>
+              <p id="hero-tagline" class="hero-tagline"></p>
+              <div id="hero-class" class="hero-class"></div>
+              <div id="hero-loc" class="hero-loc"></div>
+              <div id="hero-id" class="hero-id"></div>
+            </div>
+            <div id="hero-stats" class="hero-stats"></div>
+            <div class="strength">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span class="kpi-label">PROFILE STRENGTH</span>
+                <span id="hero-strength-pct" class="mono-700" style="font-size:13px;color:var(--glass-text-primary);"></span>
+              </div>
+              <div class="strength-track"><div id="hero-strength-bar" class="strength-fill"></div></div>
+            </div>
+            <div id="hero-cta-visitor" class="hero-cta" data-visitor-only></div>
+            <div id="hero-cta-owner" class="hero-cta" data-owner-only></div>
+          </section>
+
+          <!-- INDUSTRIES SERVED -->
+          <section class="glass-card side-card">
+            <div class="h"><span>INDUSTRIES SERVED</span><span class="small">6 verticals</span></div>
+            <div id="industries-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+            <div id="radius-info" style="margin-top:11px;border-top:1px solid rgba(255,255,255,0.06);padding-top:8px"></div>
+          </section>
+
+          <!-- ADDRESSES -->
+          <section class="glass-card side-card">
+            <div class="h"><span>OFFICES</span><span class="small">HQ + 2 branches</span></div>
+            <div id="addresses-list"></div>
+          </section>
+
+          <!-- RATES -->
+          <section class="glass-card side-card">
+            <div class="h"><span>RATES &amp; PRICING</span><span class="small">USD</span></div>
+            <div id="rates-list"></div>
+          </section>
+
+          <!-- SECURE FILES (OWNER) -->
+          <section class="glass-card side-card" data-owner-only>
+            <div class="h"><span>SECURE FILES</span><span id="files-count" class="small"></span></div>
+            <div id="files-list"></div>
+          </section>
+        </aside>
+
+        <div class="right-col">
+          <!-- ADMIN -->
+          <section class="glass-card sec admin" data-admin-only>
+            <div class="sec-h">
+              <h2 style="color:#E9D5FF;">⌖ Admin Console</h2>
+              <span class="meta" style="color:#E9D5FF">admin-only · trust score</span>
+            </div>
+            <div id="admin-meta"></div>
+          </section>
+
+          <!-- ABOUT -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>About Acme Robotics</h2>
+              <span class="meta">company brief</span>
+            </div>
+            <p id="about-text"></p>
+          </section>
+
+          <!-- SERVICES OFFERED -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Services Offered</h2>
+              <span class="meta">5 service lines</span>
+            </div>
+            <div id="services-list"></div>
+          </section>
+
+          <!-- SKILLS / MANUFACTURERS -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Manufacturer Certifications</h2>
+              <span class="meta">authorized integrator</span>
+            </div>
+            <div id="skills-list"></div>
+          </section>
+
+          <!-- TEAM MEMBERS -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Team on Platform</h2>
+              <span id="team-count" class="meta"></span>
+            </div>
+            <div id="team-list"></div>
+          </section>
+
+          <!-- WORK HISTORY (BY) -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Work History · Delivered</h2>
+              <span id="wh-by-count" class="meta"></span>
+            </div>
+            <div id="wh-by-list"></div>
+            <div style="margin-top:13px;text-align:center;">
+              <button class="gbtn gbtn-secondary sm">View all 218 contracts →</button>
+            </div>
+          </section>
+
+          <!-- WORK HISTORY (FOR) -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Work History · Hired Through Platform</h2>
+              <span class="meta">acme as buyer</span>
+            </div>
+            <div id="wh-for-list"></div>
+          </section>
+
+          <!-- OPEN POSITIONS -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Open Positions</h2>
+              <span class="meta">4 hiring · hourly + direct W-2</span>
+            </div>
+            <div id="positions-list"></div>
+          </section>
+
+          <!-- REVIEWS -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Customer Reviews</h2>
+              <span id="reviews-count" class="meta"></span>
+            </div>
+            <div id="reviews-list"></div>
+          </section>
+
+          <!-- CERTIFICATIONS -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Certifications &amp; Compliance</h2>
+              <span class="meta">5 credentials</span>
+            </div>
+            <div id="certs-list"></div>
+          </section>
+
+          <!-- BADGES -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Badges &amp; Achievements</h2>
+              <span id="badges-count" class="meta"></span>
+            </div>
+            <div id="badges-list"></div>
+          </section>
+
+          <!-- KEY CONTACTS -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Key Contacts</h2>
+              <span class="meta">primary + regional leads</span>
+            </div>
+            <div id="contacts-list"></div>
+          </section>
+
+          <!-- MEDIA -->
+          <section class="glass-card sec">
+            <div class="sec-h">
+              <h2>Media &amp; Facility Photos</h2>
+              <span class="meta">4 photos · 1 video</span>
+            </div>
+            <div id="media-list"></div>
+          </section>
+        </div>
+      </div>
+
+      <p style="text-align:center;font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);margin:34px 0 0;">
+        Acme Robotics · CSIA-certified System Integrator · 14 sections rendered
+      </p>
+    </div>
+  </main>
+
+  <script src="data/company-data.js"></script>
+  <script src="scripts/glass-shell.js" data-active="business"></script>
+  <script src="scripts/render-company.js"></script>
+</body>
+</html>

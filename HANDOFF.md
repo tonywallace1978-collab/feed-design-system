@@ -26,58 +26,8 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-27 LATE — multi-cycle session, 7 spec-corrective commits in Feed-Project repo (sister production repo). All canonical specs now live in **`Feed-Project` repo at SHA `9736277ec`** (path `C:\Users\Admin\Documents\GitHub\Feed-Project\`). Claude Design pulls Feed-Project via GitHub connector for the spec; ships canvas builds back through Tony zip-paste here.
-**Mode:** AUDIT PARKED at #33; VISUAL ELEVATION PASS shipped (V1+V2 buttons); MARIA PRO v2 standalone in repo at `80f1dee` (Q&A strip + 3 bug fixes); Maria v3 / Maria v4 / Maria v5 canvas-side rebuilds in flight at Claude Design — repeated misses on completeness, fixes baked into spec instead of relying on canvas memory.
-
-## CANONICAL SPEC LOCATIONS (post-2026-04-27 — single doc per concern, no duplicates)
-
-Tony directive 2026-04-27 verbatim: *"never ever allowed to make new documents inside the project... merge into one profile spec and dashboard spec."* All design contract content folded INTO existing single specs in Feed-Project. Stale `bundle/specs/USER-PROFILE-MASTER.md` etc. in this repo are deprecated — use Feed-Project paths below.
-
-**Read these files from `tonywallace1978-collab/Feed-Project` main branch SHA `9736277ec`:**
-
-| Concern | Canonical doc | What's inside |
-|---|---|---|
-| **Profile (every section, every field, every CTA per role)** | `reference/USER-PROFILE-SPEC.md` | Part I implementation + Part II Tony 2026-04-27 design contract (24 sections + § 3.25 Badges + § 3.26 Skilled Trades + § 3.27 Competencies + § 3.28 Trust Metrics PUBLIC + § 3.29 Active App = 29 sections) + Appendix A Tony verbatim source |
-| **Dashboard** | `reference/USER-DASHBOARD-SPEC.md` | Part I impl + Part II design contract (16 sections + § 16.5 Lifetime Records — All Timesheets/Expenses/Invoices/POs/Work ever) + Appendix A |
-| **Feed** | `reference/FEED-PAGES-COMPLETE-MAP.md` | Part I FeedSectionRouter cases + Part II 40 card types + 5-role + cadences |
-| **Hourly Contracts** | `docs/HOURLY-CONTRACTS-SPEC.md` | 11-CTA 5-role matrix incl Watch + Apply + Connect + Save + Share + View + Boost + End + Copy + Admin |
-| **Direct Jobs** | `reference/DIRECT-JOB-SPEC.md` | 11-CTA 5-role matrix (same pattern) |
-| **RFQs** | `reference/RFQ-SPEC.md` | 10-CTA 5-role matrix (Apply+Quote primary, Watch added, Reveal anonymous owner-only) |
-| **Master rules** | `reference/GLOBAL-RULES-INDEX.md` | R-035 Profile / R-036 Dashboard / R-037 Feed all point at the merged specs above |
-| **Agent bible** | `AGENT-BIBLE.md` | Rule 77 (4 PROFESSIONAL CTAs) + Rule 77B (WORK-CARD CTAs) + PROFILE / Feed / Dashboard rules sections |
-
-## CRITICAL TONY DIRECTIVES BAKED INTO SPEC (read both Part II sections + check matrix for every section before designing)
-
-1. **No pronouns** (17-item #1)
-2. **5-role visibility** (logged-out / logged-in / connection / owner / admin) on every section per CTA cell — § 3.x table per section
-3. **Social media owner+admin only** (#3) — § 3.17
-4. **Reviews bigger + bolder + top-third** (#4) — § 3.3
-5. **Column scroll symmetry, no overrun** (#5/#6)
-6. **EVERY section pops to fullscreen on tap** (#7) — § 5 universal
-7. **Badges: subject line 1 / tier word line 2** (#8) — § 3.25 (NOT "Diamond Rating" as one string)
-8. **Availability prominent near top** (#9) — § 3.1 + § 3.2
-9. **Spiral-center money CTAs** (#10/#15/#16) — § 3.2 Money CTA Card
-10. **Boost owner+admin only** (#11) — § 3.24 + § 2
-11. **Request This Professional CTA** (#12, top priority money CTA) — § 2
-12. **Add to Watch List CTA** (#13) — § 2 PROFILES + Rule 77B WORK-CARDS in HOURLY-CONTRACTS / DIRECT-JOB / RFQ specs
-13. **Bundle CTA spec compliance** (#14) — entire § 3 + § 4
-14. **Available status more prominent** (#15)
-15. **Money CTAs in money positions** (#16)
-16. **Example profile complete with EVERY section** (#17) — § 9 + § 3.25/3.26/3.27/3.28/3.29 added since
-17. **Trust Metrics PUBLIC** — completed contracts / approved timesheets / approved expenses / lifetime billings / hires / repeat-hire / on-time / response rate / years on platform — § 3.28
-18. **Dashboard Lifetime Records** — links to all timesheets / expenses / invoices / POs / work ever — § 16.5
-19. **References = COUNT public + details connection+** — § 3.12
-20. **MAX 1 Business Group per user** (HARD CAP, structural rule) — § 3.22
-21. **Skilled Trades** (chip cloud) + **Professional Competencies** (rated bars) — § 3.26 + § 3.27 (new fields, James will migrate `skilled_trades` + `professional_competencies` JSON columns)
-
-## DESIGN-SIDE FILE INVENTORY IN THIS REPO (feed-design-system)
-
-| File | Status |
-|---|---|
-| `Maria Lopez · Professional v2.html` | 6.23 MB standalone, repo-committed at `80f1dee`. Q&A strip + 3 bug fixes shipped. **ALL deeper fields below are NOT in v2 — Claude Design's canvas-side v3/v4/v5 rebuilds in flight, none yet repo-committed.** |
-| `bundle/specs/USER-PROFILE-MASTER.md` + `USER-DASHBOARD-MASTER.md` + `FEED-SPEC.md` + `bundle/specs/source/` | DEPRECATED — superseded by single-doc merge in Feed-Project. Kept here for historical reference only. **Do NOT extend these — extend the Feed-Project canonical specs.** |
-| All other `bundle/specs/*` (POPOUTS / SECTIONS / TIERS / ADMIN-DASHBOARD-SPEC) | Active |
-| `data/professional-data.js` + sister fixture files | Active. Need fixture data added: `skilled_trades` (6-10 chips) + `professional_competencies` (6-8 bars) for Maria + references-count fields exposure. |
+**Last session:** Claude Design (web) · 2026-04-27 late — Maria Pro **v4** active build, hitting token wall mid-task. Tony directive: "Stop, you are almost out of tokens. Save everything to github now."
+**Mode:** MARIA PRO v4 IN PROGRESS — major rebuild past v2/v3. Tony just flagged "horrible deformed US flag" (FIXED in `Maria Lopez · Professional v4.html` lines 256-258 + 763-766: changed flag-cell from absolute-positioned `object-fit:cover` to a properly-proportioned 42×28 chip with rounded 3px border, label below in t3 color). **OPEN ITEM Tony JUST raised before stop:** "Why are you not using our logos, our achievement badges?" — partially fixed in renderer (manufacturer m.logo wired to assets/logos/*.png on line 788; affiliation chip on line 1028; review/exp/edu/facility/contract chips all use assets) BUT **badges are still rendering as CSS `.badge-frame` with single-letter initials (line 1066) instead of `assets/badges/*.png`**. Fix path: build `${bd.id}` → `assets/badges/Pro-Tenure-Platinum.png` style mapping (capitalize each segment of id). Data has 12 badges, all PNGs exist in `assets/badges/`. **Language flags also still wrong** — `.lng-flag` (line 452) renders serif italic 2-letter glyphs; should swap to flagcdn.com country PNGs (mapping in `langGlyph` line 688: English→gb, Spanish→es, Mandarin→cn, etc).
 
 **`Maria Lopez · Professional v2.html`** = standalone HTML (everything inlined, base64 assets). Sibling to v1's modular `Maria Lopez · Professional.html`+`scripts/render-professional.js`. v1 = audit surface (deviation #1-#25 applied here); v2 = Claude Design canvas-built ship (Q&A strip + rates-panel/reviews-banner/active-app fixes). Both files live in repo; Tony reviews v2 by serving locally + clicking. Future deviations against v2 either patch standalone OR back-port to modular — Tony product call.
 
@@ -91,6 +41,48 @@ Tony directive 2026-04-27 verbatim: *"never ever allowed to make new documents i
 **Next deliverables (Tony assigned to Claude Design):** ONE full Maria profile mockup with EVERY section populated + ONE full Maria dashboard mockup with EVERY section populated. Both with 5-role toggle bar. Read both master specs end-to-end + USER-PROFILE-MASTER §9 + USER-DASHBOARD-MASTER §17 mockup-must-show checklists before designing.
 **Standing rule (CEO 2026-04-26):** every visual deviation ships 2–3 variants — Variant B active, A + C as commented-alt blocks above. Toggle to swap. Same shape applies to wizard variants and any future "test screen / prototype" ask.
 **Naming correction:** commit-mirror role is **Claude Code** (this account). "Marcus" is a Feed-Project PM agent on a separate workspace — do NOT conflate in deviation reports.
+
+---
+
+## V4 SESSION SNAPSHOT · 2026-04-27 LATE (TOKEN-WALL HANDOFF)
+
+**Files Claude Code MUST commit (all live in Claude.ai project filesystem — Tony bridges via Claude.ai download/share):**
+- `Maria Lopez · Professional v4.html` (1461 lines, ~80% of v3 fixes applied + flag fix just now)
+- `Maria Lopez · Professional v3.html` (intermediate, keep for diff)
+- `data/profile-v4-fixtures.js` (v4-specific fixture extensions if any)
+- `HANDOFF.md` (this file, updated)
+- All `assets/badges/*.png` and `assets/logos/*.png` (already in repo, verify)
+
+**v4 architecture vs v2/v3:** v4 is a from-scratch single-file rebuild — all CSS + JS + render logic inlined into one HTML. NOT using `scripts/render-professional.js` (that's v1's modular renderer). Data still loaded via `data/professional-data.js` window global. Two-column layout (`.col-left` / `.col-right`), 24+ section cards, 5-role visibility toggle bar (owner/admin/customer/other-pro/visitor).
+
+**v4 column ordering (just landed before token wall — by-importance refactor):**
+
+LEFT col: Hero → Tagline → CTAs → Active Application *(owner)* → Profile Strength *(owner)* → Manufacturers → About → Skilled Trades → Competencies → Engagement & Travel → Badges → Business Affiliation → Business Groups → Web & Social → Watchers *(owner)* → Secure Files *(owner)* → Private Info *(owner)* → Banking *(owner)* → Admin Notes *(admin)*
+
+RIGHT col: Customer Reviews → Completed Contracts → Work Experience → Endorsements → Education/Training/Certs → Facilities Worked At → Industries+Languages → Interview Questions → Equipment Owned → Services Offered → References → Portfolio Links → Products Offered → Media Gallery
+
+**v4 known bugs / open items at handoff:**
+1. **Badges not using PNG assets** (Tony complaint, NOT yet fixed). Line ~1064 of v4: replace `<div class="badge-frame ${tier}">${initial}</div>` with `<img src="assets/badges/${idToFilename(bd.id)}.png">` where `idToFilename("pro-tenure-platinum")` → `"Pro-Tenure-Platinum"`. Data: 12 badges in `D.badges_earned`. Files: `Pro-{Contracts,Earnings,Endorsed,Endorser,Hours,Profile,Ratings,Repeat,Reviewer,Skills,Tenure}-{Gold,Diamond,Platinum,Silver}.png`. Drop the `.badge-frame` CSS gradient backing or keep as fallback.
+2. **Language flags wrong** (still serif italic glyphs). Line 452 `.lng-flag` + line 1203 `langGlyph(l.name)`. Replace with `<img src="https://flagcdn.com/w80/${langToCountry(l.name)}.png">` and adjust `.lng-flag` to rectangular 36×24 chip (NOT 46×46 circle).
+3. **US flag in hero strip — JUST FIXED** in this session (lines 256-258 CSS, 763-766 markup). 42×28 properly proportioned chip with label below.
+4. Tony explicitly approved the column reordering (left+right by-importance) right before raising the badge/logo issue.
+
+**v4 Tony feedback received this session (in order, all addressed except #last):**
+- Mini rates panel was blank (FIXED — wired to hourly_default/hourly_emergency/hourly_remote schema)
+- Reviews banner showed hardcoded 4.96/17 (FIXED — reads D.quick_stats.rating_avg + D.reviews_received.length)
+- Active Application card was empty owner-only box (FIXED — full status pill, contract title, company+rate, applied date, applicants, interview slot callout)
+- Interview Questions section uses fabricated copy — Tony decision pending: (a) keep as draft (b) empty state (c) generic prompts only
+- Column reorder by importance (DONE — see ordering above)
+- US flag deformed (FIXED this session — properly-proportioned chip)
+- **Logos + achievement badges not used** (Tony's last message before token-wall stop) — manufacturer logos confirmed wired; **badges PNG mapping still TODO**
+
+**RESUME INSTRUCTIONS for next Claude session (whichever account picks up):**
+
+1. Read this CURRENT STATE block + V4 SESSION SNAPSHOT end-to-end.
+2. Open `Maria Lopez · Professional v4.html`. Confirm it loads cleanly via `done` tool.
+3. Apply badge PNG mapping fix (item #1 above) — single edit around line 1064. Then language flags (item #2).
+4. Show v4 to Tony, ask: "(a) is the badge fix what you wanted, and (b) Interview Questions decision (a/b/c)?"
+5. Do NOT touch v1's `scripts/render-professional.js` or `Maria Lopez · Professional.html` — those are the audit-baseline modular renderer, separate track.
 
 ---
 
