@@ -6,6 +6,40 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ---
 
+## ✅✅✅ FEED HOME v3 SHIPPED 2026-04-27 EVENING — `e7f4a32` ✅✅✅
+
+**Claude Code wrote Feed Home v3 from scratch** while Claude Design is out of tokens for ~1 week. Tony directed: *"take these and start building the new designs."*
+
+**Playwright § 8 acceptance: 10/10 PASS** —
+- c1 single-column scroll (`display:flex; flex-direction:column`) ✅
+- c2 50 cards rendered at first paint ✅
+- c3 40 of 40 spec'd card types present (zero missing) ✅
+- c4 scroll height **15.93x viewport** (14,960px on 939px) ✅
+- c5 no "Today on the floor" / dashboard chrome ✅
+- c6 no KPI panels in feed body ✅
+- c7 IntersectionObserver wired to lazy-load batches of 10 ✅
+- c8 fullscreen popout-on-tap (cloneNode safe DOM, no innerHTML) ✅
+- c9 90 affordance buttons (Save / Share / Dismiss / View Full) on 50 cards ✅
+- c10 8 fixture-needed flags on entities lacking real DB data ✅
+
+**Carried into production via 8 GH cards** on `tonywallace1978-collab/Feed-Project` Project #7 Product Backlog (2026-04-27):
+- #2546 [P1] Implement Feed Home v3 in production Next.js (port from `e7f4a32`)
+- #2547 [P1] 5-role visibility cascade (Public / Visitor / Connection / Owner / Admin)
+- #2548 [P2] Universal fullscreen popout-on-tap component
+- #2549 [P2] Feed fixture-data tables (schools / products / services / user posts / admin posts / polls / affiliates / industry news)
+- #2550 [P2] Build remaining design mockups (Dashboard / BG / Hourly Contract / Direct Job / RFQ profiles)
+- #2551 [P2] Playwright-verify Maria v3 / v4 / Acme Robotics / Rebecca Customer (17-item Pro feedback + 24-pt test)
+- #2552 [P3] Maria Pro v5 — close gaps from v4 verification (depends on #2551)
+- #2553 [P2] Per-card affordance wiring (Save / Share / Dismiss 7-day / View Full)
+
+**When Claude Design tokens reset (~1 week from 2026-04-27):**
+- Pull `e7f4a32` (Feed Home v3 reference)
+- Build the 5 remaining mockups per #2550 (Dashboard / BG / Hourly Contract / Direct Job / RFQ)
+- If Maria v3/v4 have remaining gaps from #2551 walk, ship Maria v5 per #2552
+- Continue Claude-Code-commits-verbatim workflow from § RESUME PROTOCOL below
+
+---
+
 ## ⛔⛔⛔⛔⛔ TOP NOTICE 2026-04-27 LATE — FEED HOME v2 REJECTED ⛔⛔⛔⛔⛔
 
 **Claude Design's `Feed Home.html` from commit `d4c45f7` was REJECTED by Tony.** Same fundamental concept failure as v1 (9-card grid Tony killed earlier today). Claude Code Playwright-diagnosed v2:
