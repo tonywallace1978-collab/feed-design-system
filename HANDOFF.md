@@ -26,8 +26,58 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-27 (Maria Pro v2 standalone landed — 6.23 MB self-contained from Claude Design canvas; 17-item feedback captured below)
-**Mode:** AUDIT PARKED at #33; VISUAL ELEVATION PASS active (V1+V2 buttons shipped); MARIA PRO v2 first ship landed (Q&A strip + 3 bug fixes per RELAY block); 17-item Tony feedback queued for v3.
+**Last session:** Claude Code · 2026-04-27 LATE — multi-cycle session, 7 spec-corrective commits in Feed-Project repo (sister production repo). All canonical specs now live in **`Feed-Project` repo at SHA `9736277ec`** (path `C:\Users\Admin\Documents\GitHub\Feed-Project\`). Claude Design pulls Feed-Project via GitHub connector for the spec; ships canvas builds back through Tony zip-paste here.
+**Mode:** AUDIT PARKED at #33; VISUAL ELEVATION PASS shipped (V1+V2 buttons); MARIA PRO v2 standalone in repo at `80f1dee` (Q&A strip + 3 bug fixes); Maria v3 / Maria v4 / Maria v5 canvas-side rebuilds in flight at Claude Design — repeated misses on completeness, fixes baked into spec instead of relying on canvas memory.
+
+## CANONICAL SPEC LOCATIONS (post-2026-04-27 — single doc per concern, no duplicates)
+
+Tony directive 2026-04-27 verbatim: *"never ever allowed to make new documents inside the project... merge into one profile spec and dashboard spec."* All design contract content folded INTO existing single specs in Feed-Project. Stale `bundle/specs/USER-PROFILE-MASTER.md` etc. in this repo are deprecated — use Feed-Project paths below.
+
+**Read these files from `tonywallace1978-collab/Feed-Project` main branch SHA `9736277ec`:**
+
+| Concern | Canonical doc | What's inside |
+|---|---|---|
+| **Profile (every section, every field, every CTA per role)** | `reference/USER-PROFILE-SPEC.md` | Part I implementation + Part II Tony 2026-04-27 design contract (24 sections + § 3.25 Badges + § 3.26 Skilled Trades + § 3.27 Competencies + § 3.28 Trust Metrics PUBLIC + § 3.29 Active App = 29 sections) + Appendix A Tony verbatim source |
+| **Dashboard** | `reference/USER-DASHBOARD-SPEC.md` | Part I impl + Part II design contract (16 sections + § 16.5 Lifetime Records — All Timesheets/Expenses/Invoices/POs/Work ever) + Appendix A |
+| **Feed** | `reference/FEED-PAGES-COMPLETE-MAP.md` | Part I FeedSectionRouter cases + Part II 40 card types + 5-role + cadences |
+| **Hourly Contracts** | `docs/HOURLY-CONTRACTS-SPEC.md` | 11-CTA 5-role matrix incl Watch + Apply + Connect + Save + Share + View + Boost + End + Copy + Admin |
+| **Direct Jobs** | `reference/DIRECT-JOB-SPEC.md` | 11-CTA 5-role matrix (same pattern) |
+| **RFQs** | `reference/RFQ-SPEC.md` | 10-CTA 5-role matrix (Apply+Quote primary, Watch added, Reveal anonymous owner-only) |
+| **Master rules** | `reference/GLOBAL-RULES-INDEX.md` | R-035 Profile / R-036 Dashboard / R-037 Feed all point at the merged specs above |
+| **Agent bible** | `AGENT-BIBLE.md` | Rule 77 (4 PROFESSIONAL CTAs) + Rule 77B (WORK-CARD CTAs) + PROFILE / Feed / Dashboard rules sections |
+
+## CRITICAL TONY DIRECTIVES BAKED INTO SPEC (read both Part II sections + check matrix for every section before designing)
+
+1. **No pronouns** (17-item #1)
+2. **5-role visibility** (logged-out / logged-in / connection / owner / admin) on every section per CTA cell — § 3.x table per section
+3. **Social media owner+admin only** (#3) — § 3.17
+4. **Reviews bigger + bolder + top-third** (#4) — § 3.3
+5. **Column scroll symmetry, no overrun** (#5/#6)
+6. **EVERY section pops to fullscreen on tap** (#7) — § 5 universal
+7. **Badges: subject line 1 / tier word line 2** (#8) — § 3.25 (NOT "Diamond Rating" as one string)
+8. **Availability prominent near top** (#9) — § 3.1 + § 3.2
+9. **Spiral-center money CTAs** (#10/#15/#16) — § 3.2 Money CTA Card
+10. **Boost owner+admin only** (#11) — § 3.24 + § 2
+11. **Request This Professional CTA** (#12, top priority money CTA) — § 2
+12. **Add to Watch List CTA** (#13) — § 2 PROFILES + Rule 77B WORK-CARDS in HOURLY-CONTRACTS / DIRECT-JOB / RFQ specs
+13. **Bundle CTA spec compliance** (#14) — entire § 3 + § 4
+14. **Available status more prominent** (#15)
+15. **Money CTAs in money positions** (#16)
+16. **Example profile complete with EVERY section** (#17) — § 9 + § 3.25/3.26/3.27/3.28/3.29 added since
+17. **Trust Metrics PUBLIC** — completed contracts / approved timesheets / approved expenses / lifetime billings / hires / repeat-hire / on-time / response rate / years on platform — § 3.28
+18. **Dashboard Lifetime Records** — links to all timesheets / expenses / invoices / POs / work ever — § 16.5
+19. **References = COUNT public + details connection+** — § 3.12
+20. **MAX 1 Business Group per user** (HARD CAP, structural rule) — § 3.22
+21. **Skilled Trades** (chip cloud) + **Professional Competencies** (rated bars) — § 3.26 + § 3.27 (new fields, James will migrate `skilled_trades` + `professional_competencies` JSON columns)
+
+## DESIGN-SIDE FILE INVENTORY IN THIS REPO (feed-design-system)
+
+| File | Status |
+|---|---|
+| `Maria Lopez · Professional v2.html` | 6.23 MB standalone, repo-committed at `80f1dee`. Q&A strip + 3 bug fixes shipped. **ALL deeper fields below are NOT in v2 — Claude Design's canvas-side v3/v4/v5 rebuilds in flight, none yet repo-committed.** |
+| `bundle/specs/USER-PROFILE-MASTER.md` + `USER-DASHBOARD-MASTER.md` + `FEED-SPEC.md` + `bundle/specs/source/` | DEPRECATED — superseded by single-doc merge in Feed-Project. Kept here for historical reference only. **Do NOT extend these — extend the Feed-Project canonical specs.** |
+| All other `bundle/specs/*` (POPOUTS / SECTIONS / TIERS / ADMIN-DASHBOARD-SPEC) | Active |
+| `data/professional-data.js` + sister fixture files | Active. Need fixture data added: `skilled_trades` (6-10 chips) + `professional_competencies` (6-8 bars) for Maria + references-count fields exposure. |
 
 **`Maria Lopez · Professional v2.html`** = standalone HTML (everything inlined, base64 assets). Sibling to v1's modular `Maria Lopez · Professional.html`+`scripts/render-professional.js`. v1 = audit surface (deviation #1-#25 applied here); v2 = Claude Design canvas-built ship (Q&A strip + rates-panel/reviews-banner/active-app fixes). Both files live in repo; Tony reviews v2 by serving locally + clicking. Future deviations against v2 either patch standalone OR back-port to modular — Tony product call.
 
