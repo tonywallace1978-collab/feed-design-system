@@ -214,7 +214,9 @@
   $('#badges-count').textContent = `${D.badges_earned.length} earned`;
 
   // REVIEWS LEFT
-  $('#reviews-list').innerHTML = D.reviews_left_for_contractors.slice(0,8).map(r => `
+  // Spec § 2 item 13: "3 sample" — curated representative sample, not most-recent slice
+  const reviewsTop = D.reviews_left_for_contractors.slice(0, 3);
+  $('#reviews-list').innerHTML = reviewsTop.map(r => `
     <div class="rev-card glass-card">
       <div class="rev-head">
         <div class="rev-stars stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
