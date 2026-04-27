@@ -143,24 +143,41 @@
     </div>`).join('');
 
   // SPENDING (OWNER)
+  function renderTradePie(trades) {
+    const colors = ['#6366F1', '#8B5CF6', '#EC4899', '#F59E0B', '#10B981', '#64748B'];
+    const cx = 90, cy = 90, r_outer = 80, r_inner = 50;
+    let cumPct = 0;
+    const arcs = trades.map((t, i) => {
+      const startA = (cumPct / 100) * 2 * Math.PI - Math.PI / 2;
+      cumPct += t.pct;
+      const endA = (cumPct / 100) * 2 * Math.PI - Math.PI / 2;
+      const largeArc = t.pct > 50 ? 1 : 0;
+      const x1 = cx + r_outer * Math.cos(startA), y1 = cy + r_outer * Math.sin(startA);
+      const x2 = cx + r_outer * Math.cos(endA),   y2 = cy + r_outer * Math.sin(endA);
+      const x3 = cx + r_inner * Math.cos(endA),   y3 = cy + r_inner * Math.sin(endA);
+      const x4 = cx + r_inner * Math.cos(startA), y4 = cy + r_inner * Math.sin(startA);
+      return `<path d="M ${x1} ${y1} A ${r_outer} ${r_outer} 0 ${largeArc} 1 ${x2} ${y2} L ${x3} ${y3} A ${r_inner} ${r_inner} 0 ${largeArc} 0 ${x4} ${y4} Z" fill="${colors[i % colors.length]}" stroke="rgba(0,0,0,0.20)" stroke-width="0.5"/>`;
+    }).join('');
+    const legend = trades.map((t, i) => `
+      <div class="pie-legend-row">
+        <span class="pie-swatch" style="background:${colors[i % colors.length]}"></span>
+        <span class="pie-trade">${esc(t.trade)}</span>
+        <span class="pie-amt mono">${fmtMoneyShort(t.ytd)}</span>
+        <span class="pie-pct mono">${t.pct}%</span>
+      </div>`).join('');
+    return `
+      <div class="spend-pie-wrap">
+        <svg viewBox="0 0 180 180" width="180" height="180" class="spend-pie">${arcs}</svg>
+        <div class="spend-pie-legend">${legend}</div>
+      </div>`;
+  }
   const sp = D.spending_breakdown;
   $('#spend-yrs').innerHTML = `
     <div class="spend-yr"><div class="kpi-label">YTD 2026</div><div class="kpi-val" style="color:#34D399">${fmtMoneyShort(sp.ytd_2026_usd)}</div></div>
     <div class="spend-yr"><div class="kpi-label">FY 2025</div><div class="kpi-val">${fmtMoneyShort(sp.fy_2025_usd)}</div></div>
     <div class="spend-yr"><div class="kpi-label">FY 2024</div><div class="kpi-val">${fmtMoneyShort(sp.fy_2024_usd)}</div></div>
     <div class="spend-yr"><div class="kpi-label">FY 2023</div><div class="kpi-val">${fmtMoneyShort(sp.fy_2023_usd)}</div></div>`;
-  $('#spend-trade').innerHTML = sp.by_trade.map(t => `
-    <div class="spend-bar-row">
-      <div class="spend-bar-label">${esc(t.trade)}</div>
-      <div class="spend-bar"><div class="spend-fill" style="width:${t.pct*2.5}%"></div></div>
-      <div class="spend-bar-amt">${fmtMoneyShort(t.ytd)} <span style="opacity:0.6">${t.pct}%</span></div>
-    </div>`).join('');
-  $('#spend-tier').innerHTML = sp.by_tier.map(t => `
-    <div class="spend-tier-tile">
-      <div class="kpi-label">${esc(t.tier).toUpperCase()}</div>
-      <div class="kpi-val" style="font-size:22px !important">${fmtMoneyShort(t.ytd)}</div>
-      <div style="font-size:11px;color:var(--glass-text-tertiary);font-weight:600;margin-top:2px;font-family:'JetBrains Mono'">${t.pct}%</div>
-    </div>`).join('');
+  $('#spend-trade').innerHTML = renderTradePie(sp.by_trade);
 
   // SECURE FILES (OWNER)
   $('#files-list').innerHTML = D.secure_files.files.map(f => `
