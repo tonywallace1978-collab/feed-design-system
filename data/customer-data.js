@@ -217,7 +217,7 @@ window.CUSTOMER_DATA = {
   ],
 
   "reviews_left_for_contractors": [
-    { "id": "rl-1",  "rating": 5, "contractor_name": "Maria Lopez",    "contractor_id": 38291, "contract_title": "Body Shop Cell 14 — FANUC retrofit",         "date": "2026-02-18", "text": "Maria is the calmest engineer on the floor under deadline. Hire her again, no hesitation." },
+    { "id": "rl-1",  "rating": 5, "contractor_name": "Maria Lopez",    "contractor_id": 38291, "contract_title": "Body Shop Cell 14 — FANUC retrofit",         "date": "2026-02-18", "text": "Maria is the calmest engineer on the floor under deadline. Will rehire without hesitation." },
     { "id": "rl-2",  "rating": 5, "contractor_name": "Maria Lopez",    "contractor_id": 38291, "contract_title": "Sterling Heights paint shop PLC migration",  "date": "2025-11-04", "text": "Documented every block. Trained our two in-house engineers during commissioning." },
     { "id": "rl-3",  "rating": 5, "contractor_name": "Maria Lopez",    "contractor_id": 38291, "contract_title": "Assembly line 4 — AB CompactLogix migration","date": "2025-08-22", "text": "Said what was wrong, said what to do, did it. Migrated the line on a Sunday." },
     { "id": "rl-4",  "rating": 5, "contractor_name": "Lisa Park",      "contractor_id": 41502, "contract_title": "Paint Shop Cognex vision retrofit",          "date": "2025-02-08", "text": "Cognex retrofit was clean. Pictures-to-stable-deployment in 11 days. Will rehire." },
@@ -229,7 +229,7 @@ window.CUSTOMER_DATA = {
     { "id": "rl-10", "rating": 5, "contractor_name": "Sarah Bennett",  "contractor_id": 41208, "contract_title": "Vision system retrofit — quality station",   "date": "2024-02-26", "text": "Three-week scope, three-week delivery. Documentation was perfect." },
     { "id": "rl-11", "rating": 5, "contractor_name": "Acme Robotics",   "contractor_id": 1147,  "contract_title": "Body shop functional safety upgrade",        "date": "2024-01-08", "text": "Acme team was thorough and on-budget." },
     { "id": "rl-12", "rating": 5, "contractor_name": "Maria Lopez",    "contractor_id": 38291, "contract_title": "Robot path optimization — paint cell",        "date": "2023-10-04", "text": "Cycle time improved 7% on a path we thought was already optimized." },
-    { "id": "rl-13", "rating": 5, "contractor_name": "Maria Lopez",    "contractor_id": 38291, "contract_title": "PLC migration — assembly line 7",             "date": "2023-08-15", "text": "Live-line migration, zero unplanned stops. Will hire her exclusively for line 7 going forward." },
+    { "id": "rl-13", "rating": 5, "contractor_name": "Maria Lopez",    "contractor_id": 38291, "contract_title": "PLC migration — assembly line 7",             "date": "2023-08-15", "text": "Live-line migration, zero unplanned stops. Maria will be the exclusive contractor for line 7 going forward." },
     { "id": "rl-14", "rating": 5, "contractor_name": "Lisa Park",      "contractor_id": 41502, "contract_title": "Cognex vision setup — paint inspection",     "date": "2023-06-29", "text": "Calibration was thorough. Repeatable, documented, ready to hand off." }
   ],
 

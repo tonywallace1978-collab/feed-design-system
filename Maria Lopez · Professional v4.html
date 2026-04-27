@@ -735,7 +735,7 @@ body{
       <div class="hero-grid">
         <div class="hero-photo">
           <img src="${esc(photo.main_url||'')}" alt="${esc(fullName)}">
-          ${h.preferred_pronouns?`<div class="pronouns">${esc(h.preferred_pronouns)}</div>`:''}
+          ${''/* Tony 2026-04-27 #1: never render preferred_pronouns. "we are not a woke gen z site." */}
           <div class="verified" title="Verified Professional">✓</div>
         </div>
         <div class="hero-stack">
@@ -884,10 +884,11 @@ Decade-long client list including BMW, Stellantis, Ford, Toyota, and Tesla — h
   `;
 
   /* ───────── SOCIAL LINKS ───────── */
+  /* Tony 2026-04-27 #3: social media owner+admin only — never public/visitor/connection */
   const socials = D.social_links||[];
   const socialIco = {linkedin:'in',github:'gh',youtube:'yt',x:'X',website:'WEB'};
   const socialCard = `
-    <div class="glass">
+    <div class="glass" data-role-show="owner admin">
       <div class="head"><span class="gem"></span><h3>Web &amp; Social</h3><span class="num">${socials.length}</span></div>
       <div class="socials">
         ${socials.map(s => `<a class="social" href="${esc(s.url)}" target="_blank" rel="noopener"><span class="icon">${esc(socialIco[s.platform]||s.platform.slice(0,2))}</span> ${esc(s.platform)}</a>`).join('')}
@@ -904,6 +905,7 @@ Decade-long client list including BMW, Stellantis, Ford, Toyota, and Tesla — h
         <button class="cta cta-success"  data-role-show="connection">✉ Send Message</button>
         <button class="cta cta-success"  data-role-show="public">⚭ Connect or Message</button>
         <button class="cta cta-watch"    data-role-show="public visitor connection admin">★ Add to Watchlist</button>
+        <button class="cta cta-success"  data-role-show="connection admin">⭐ Endorse Maria</button>
         <button class="cta cta-ghost"    data-role-show="public visitor connection owner admin">↗ Share Profile</button>
         <button class="cta cta-ghost"    data-role-show="visitor connection admin">⌕ Hire for Direct Job</button>
         <button class="cta cta-primary"  data-role-show="owner">✎ Edit Profile</button>
@@ -1451,6 +1453,42 @@ Decade-long client list including BMW, Stellantis, Ford, Toyota, and Tesla — h
       const role = b.dataset.role;
       document.documentElement.setAttribute('data-role', role);
       document.getElementById('roleEx').textContent = explainers[role]||'';
+    });
+  });
+
+  /* ───────── Fullscreen popout (Tony 2026-04-27 #7: EVERY section pops to fullscreen) ───────── */
+  const popoutStyle = document.createElement('style');
+  popoutStyle.textContent = '.popout-overlay{position:fixed;inset:0;z-index:9999;background:rgba(5,5,15,0.88);backdrop-filter:blur(40px) saturate(160%);-webkit-backdrop-filter:blur(40px) saturate(160%);display:none;align-items:flex-start;justify-content:center;padding:21px;overflow-y:auto}.popout-overlay.open{display:flex}.popout-card{max-width:1100px;width:100%;padding:21px;background:rgba(15,15,35,0.85);border:1px solid rgba(255,255,255,0.15);border-radius:21px}.popout-card *{font-size:108% !important}.popout-card .glass{background:rgba(15,15,35,0.55)}.popout-close{position:fixed;top:21px;right:21px;width:48px;height:48px;border-radius:50%;background:rgba(15,15,35,0.85);border:1px solid rgba(255,255,255,0.18);color:#fff;cursor:pointer;display:grid;place-items:center;font-size:22px;z-index:10000}';
+  document.head.appendChild(popoutStyle);
+
+  const popoutOverlay = document.createElement('div');
+  popoutOverlay.className = 'popout-overlay';
+  popoutOverlay.id = 'popoutOverlay';
+  const popoutClose = document.createElement('button');
+  popoutClose.className = 'popout-close';
+  popoutClose.textContent = '×';
+  popoutClose.setAttribute('aria-label','Close fullscreen');
+  const popoutCard = document.createElement('div');
+  popoutCard.className = 'popout-card';
+  popoutCard.id = 'popoutCard';
+  popoutOverlay.appendChild(popoutClose);
+  popoutOverlay.appendChild(popoutCard);
+  document.body.appendChild(popoutOverlay);
+
+  const closePopout = () => popoutOverlay.classList.remove('open');
+  popoutClose.addEventListener('click', closePopout);
+  popoutOverlay.addEventListener('click', (e) => { if (e.target === popoutOverlay) closePopout(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopout(); });
+
+  /* Wire every .glass section as a popout target. cloneNode = safe DOM, no innerHTML. */
+  document.querySelectorAll('.glass').forEach(section => {
+    section.style.cursor = 'zoom-in';
+    section.addEventListener('click', (e) => {
+      /* Don't trigger popout if user clicked an actionable child element */
+      if (e.target.closest('button, a, input, select, textarea, .cta, [role="button"]')) return;
+      while (popoutCard.firstChild) popoutCard.removeChild(popoutCard.firstChild);
+      popoutCard.appendChild(section.cloneNode(true));
+      popoutOverlay.classList.add('open');
     });
   });
 })();

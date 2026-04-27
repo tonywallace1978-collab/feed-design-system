@@ -261,7 +261,9 @@
       <div class="role-bar">
         <span class="lbl">Viewing as</span>
         <div class="role-tabs" role="tablist">
+          <button data-role-btn="public">Public</button>
           <button class="active" data-role-btn="visitor">Visitor</button>
+          <button data-role-btn="connection">Connection</button>
           <button data-role-btn="owner">Owner (Acme)</button>
           <button data-role-btn="admin">Admin</button>
         </div>
@@ -450,5 +452,34 @@
   <script src="data/company-data.js"></script>
   <script src="scripts/glass-shell.js" data-active="business"></script>
   <script src="scripts/render-company.js"></script>
+
+  <script>
+  /* Fullscreen popout (Tony 2026-04-27 #7: EVERY section pops to fullscreen) — added by Claude Code 2026-04-27 evening */
+  (function(){
+    var s = document.createElement('style');
+    s.textContent = '.popout-overlay{position:fixed;inset:0;z-index:9999;background:rgba(5,5,15,0.88);backdrop-filter:blur(40px) saturate(160%);-webkit-backdrop-filter:blur(40px) saturate(160%);display:none;align-items:flex-start;justify-content:center;padding:21px;overflow-y:auto}.popout-overlay.open{display:flex}.popout-card{max-width:1100px;width:100%;padding:21px;background:rgba(15,15,35,0.85);border:1px solid rgba(255,255,255,0.15);border-radius:21px}.popout-card *{font-size:108% !important}.popout-close{position:fixed;top:21px;right:21px;width:48px;height:48px;border-radius:50%;background:rgba(15,15,35,0.85);border:1px solid rgba(255,255,255,0.18);color:#fff;cursor:pointer;display:grid;place-items:center;font-size:22px;z-index:10000}';
+    document.head.appendChild(s);
+    var ov = document.createElement('div'); ov.className='popout-overlay'; ov.id='popoutOverlay';
+    var cl = document.createElement('button'); cl.className='popout-close'; cl.textContent='×'; cl.setAttribute('aria-label','Close fullscreen');
+    var cd = document.createElement('div'); cd.className='popout-card'; cd.id='popoutCard';
+    ov.appendChild(cl); ov.appendChild(cd); document.body.appendChild(ov);
+    var close=function(){ ov.classList.remove('open'); };
+    cl.addEventListener('click', close);
+    ov.addEventListener('click', function(e){ if(e.target===ov) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+    /* Wire after a tick so renderer has populated DOM */
+    setTimeout(function(){
+      document.querySelectorAll('.glass-card, .glass, .sec, .hero, .side-card').forEach(function(sec){
+        sec.style.cursor='zoom-in';
+        sec.addEventListener('click', function(e){
+          if (e.target.closest('button, a, input, select, textarea, .cta, [role="button"]')) return;
+          while(cd.firstChild) cd.removeChild(cd.firstChild);
+          cd.appendChild(sec.cloneNode(true));
+          ov.classList.add('open');
+        });
+      });
+    }, 200);
+  })();
+  </script>
 </body>
 </html>

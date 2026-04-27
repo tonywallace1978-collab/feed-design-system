@@ -17,7 +17,7 @@
   const h = D.header, ph = D.photo, c = D.company, qs = D.quick_stats;
   $('#hero-photo').style.backgroundImage = `url('${ph.main_url}')`;
   $('#hero-name').innerHTML = esc(h.display_name) + ' <span title="ID verified" style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#0EA5E9;border-radius:999px;color:#fff;margin-left:8px;vertical-align:middle;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 2px 6px rgba(14,165,233,.5);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>';
-  $('#hero-pronouns').textContent = h.preferred_pronouns;
+  $('#hero-pronouns').textContent = '';  /* Tony 2026-04-27 #1: never render preferred_pronouns */
   $('#hero-title').textContent = h.title;
   $('#hero-dept').textContent = h.department;
   $('#hero-tier').textContent = c.tier.toUpperCase();
