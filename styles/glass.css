@@ -103,15 +103,77 @@ a { color: inherit; }
     0 4px 12px rgba(15, 15, 35, 0.08);
 }
 
-/* Card — mid */
+/* ──────────────────────────────────────────────────────────────
+   Card — mid · #V1 Spectral Edge (active = Variant B)
+   Three variants live below; toggle the active block to swap.
+   - Variant A "Refined specular"  — conservative bump (Apple iOS 26 widget defaults)
+   - Variant B "Spectral edge"     — ACTIVE · Vision OS pane register
+   - Variant C "Refraction prism"  — chromatic dispersion · architectural-glass register
+   ────────────────────────────────────────────────────────────── */
+
+/* ── VARIANT B · ACTIVE — Spectral edge ──────────────────────── */
+.glass-card {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 30%),
+    rgba(15, 15, 35, 0.32);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  border-radius: 21px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 1px 0 0 rgba(255, 255, 255, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.20),
+    0 12px 32px rgba(0, 0, 0, 0.36),
+    0 2px 6px rgba(0, 0, 0, 0.18);
+  transition: background 300ms ease, box-shadow 300ms ease, transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+:root[data-theme="light"] .glass-card {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 30%),
+    rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 1px 0 0 rgba(255, 255, 255, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06),
+    0 12px 32px rgba(15, 15, 35, 0.12),
+    0 2px 6px rgba(15, 15, 35, 0.07);
+}
+.glass-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 1px 0 0 rgba(255, 255, 255, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.20),
+    0 20px 48px rgba(0, 0, 0, 0.42),
+    0 2px 6px rgba(0, 0, 0, 0.18);
+}
+:root[data-theme="light"] .glass-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 1px 0 0 rgba(255, 255, 255, 0.70),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06),
+    0 20px 48px rgba(15, 15, 35, 0.16),
+    0 2px 6px rgba(15, 15, 35, 0.07);
+}
+.glass-card.hoverable:hover { transform: translateY(-2px); background: rgba(15, 15, 35, 0.38); }
+:root[data-theme="light"] .glass-card.hoverable:hover { background: rgba(255, 255, 255, 0.45); }
+
+/* ── VARIANT A · Refined specular (alt — uncomment to swap) ──
 .glass-card {
   background: rgba(15, 15, 35, 0.32);
   -webkit-backdrop-filter: blur(22px) saturate(180%);
   backdrop-filter: blur(22px) saturate(180%);
   border-radius: 21px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
     inset 0 -1px 0 rgba(0, 0, 0, 0.18),
     0 8px 24px rgba(0, 0, 0, 0.30),
     0 2px 6px rgba(0, 0, 0, 0.15);
@@ -120,15 +182,51 @@ a { color: inherit; }
 }
 :root[data-theme="light"] .glass-card {
   background: rgba(255, 255, 255, 0.32);
-  border: 1px solid rgba(255, 255, 255, 0.50);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.78),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
     inset 0 -1px 0 rgba(0, 0, 0, 0.05),
     0 8px 24px rgba(15, 15, 35, 0.10),
     0 2px 6px rgba(15, 15, 35, 0.06);
 }
-.glass-card.hoverable:hover { transform: translateY(-2px); background: rgba(15, 15, 35, 0.38); }
-:root[data-theme="light"] .glass-card.hoverable:hover { background: rgba(255, 255, 255, 0.45); }
+*/
+
+/* ── VARIANT C · Refraction prism (alt — uncomment to swap) ──
+   Chromatic dispersion: indigo upper-rim, sky lower-right rim.
+   Conflict notice: competes visually with WG amber #F59E0B and
+   semantic chip colors. Defer unless architectural-glass register
+   is the explicit target.
+.glass-card {
+  background: rgba(15, 15, 35, 0.32);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  backdrop-filter: blur(24px) saturate(200%);
+  border-radius: 21px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 1px 0 0 rgba(199, 210, 254, 0.18),
+    inset -1px 0 0 rgba(186, 230, 253, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 14px 36px rgba(0, 0, 0, 0.38),
+    0 2px 6px rgba(0, 0, 0, 0.18);
+  transition: background 300ms ease, box-shadow 300ms ease, transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+:root[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 1px 0 0 rgba(99, 102, 241, 0.18),
+    inset -1px 0 0 rgba(14, 165, 233, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    0 14px 36px rgba(15, 15, 35, 0.13),
+    0 2px 6px rgba(15, 15, 35, 0.07);
+}
+*/
 
 /* Inline chip — most transparent */
 .chip {
