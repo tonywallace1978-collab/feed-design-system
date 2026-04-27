@@ -8,7 +8,34 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-26 (commit `95fafb1`)
+**Last session:** Claude Code · 2026-04-26 (last code `619b328` V2 buttons; last HANDOFF backfill `e2d9842` for #33)
+**Mode:** AUDIT PARKED at #33; VISUAL ELEVATION PASS active (V1+V2 shipped); WIZARDS in flight on other-account canvas (NOT in repo).
+**Standing rule (CEO 2026-04-26):** every visual deviation ships 2–3 variants — Variant B active, A + C as commented-alt blocks above. Toggle to swap. Same shape applies to wizard variants and any future "test screen / prototype" ask.
+**Naming correction:** commit-mirror role is **Claude Code** (this account). "Marcus" is a Feed-Project PM agent on a separate workspace — do NOT conflate in deviation reports.
+
+## VISUAL DEVIATIONS (V-series)
+
+| # | SHA | What changed | Variants |
+|---|---|---|---|
+| V1 | `0b33949` | `.glass-card` spectral edge — 0.16 inner-top → 0.42 + left rim 0.10 + halo 0.04 + top-down white gradient + deeper outer shadow stack (12/32 + 2/6). Hover lifts to 0.55 / 0.16 / 0.08 + 20/48 outer. Light-theme parallel derived (white-up: 0.95 / 0.55 / 0.45). Cross-cuts all 6 surfaces. | A "Refined specular" + C "Refraction prism" live as commented-alt blocks above active Variant B in `styles/glass.css`. |
+| V2 | `619b328` | `.gbtn` family specular crown — top-down white gradient (0.14 → 0 at 40%) + 0.55 inner-top + 0.10 left rim + 0.05 halo + deeper colored outer glow (8/24 → 16/40 on hover) + `translateY(-1px)` hover lift. Pattern mirrored across `.gbtn-secondary` (white), `.gbtn-connect` (green), `.gbtn-boost` (amber), and all 4 light-theme overrides. | A "Proportional lift" + C "Pressure-sensitive" live as commented-alt blocks for primary `.gbtn` only (tints follow active variant). |
+
+**Visual deviation queue:** V3 = display-type rebalancing pass (hero `.hero-name` 32px → ~48px, section `h2` 22px → larger to match lit-card surface), 3 type-scale variants per the standing rule.
+
+## WIZARD WORK (P700 pivot — NOT IN REPO)
+
+**Status:** Other-Claude built three Pro Profile Wizard variants on the Claude.ai design canvas:
+- **A · Stepper** — Apple Setup-style; 220px section rail + top progress bar; 1280×800
+- **B · Long-form** — Notion density; sticky TOC + IntersectionObserver; 1280×1100
+- **C · Conversational** — chat-thread rail + active step pane; AI-assist via `window.claude.complete`; 1280×800
+
+Shared infra: `wizard-shared.jsx`, `wizard-step-content.jsx`, `wizard-styles.css`. Each persists to its own `localStorage` key, "Prefill demo" loads Maria, posture-leak categorization respected (◇ private chips on rates_priv / education private / business affiliation direct rate / entire private info step), amber dashed posture panels.
+
+**⛔ FILES ARE NOT IN THIS REPO YET.** They live in the other-account design canvas. To preserve: zip → drop in Downloads → Claude Code commits via established protocol. Without that, the wizard work is lost on account switch.
+
+**Field categorization doc** (the input that drove the wizards) should be at `wizards/professional-profile-field-categorization.md` per other-Claude's mention — also NOT yet in repo. Same risk + extraction path.
+
+---
 **Status:** Customer Profile (Rebecca Chen / Ford Rouge) audit in progress. **7 Customer deviations shipped (#26-#32).** #32 = Spending Breakdown — first multi-part / first NET-ADDITIVE deviation in audit (prior 31 were strictly subtractive). Two stacked drifts on `[O]` owner-only card: (A) unauthorized `by_tier` over-surface block stripped; (B) "by trade pie" spec rendered as horizontal bars with non-proportional widths → replaced with proper SVG annular donut + 6-color palette + right-side legend (180×180 viewBox, indigo/violet/pink/amber/emerald/slate). **First fidelity-only deviation since #5-#8** — no rule-9 element (owner-only). Remaining carry-forwards: **#33 Hire History 22→5 + overflow; #34 Open Contracts 7→5 + overflow.** Open follow-up: `qs.avg_rating_given` Reviews-left footer = grading-curve disclosure. Unaudited customer surfaces: Hero, Company card, Quick stats, Secure Files [O] (#19 Maria-side parallel due), Preferred Business Groups [O], Achievement Badges, Company Brief, Admin notes [A]. Maria Pro Tony-eyeball-checkpoint still async-pending.
 **Active surface:** `Rebecca Chen · Customer.html` (driven by `scripts/render-customer.js` + `data/customer.json`).
 
