@@ -6,6 +6,46 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ---
 
+## ⛔⛔⛔⛔⛔ TOP NOTICE 2026-04-27 LATE — FEED HOME v2 REJECTED ⛔⛔⛔⛔⛔
+
+**Claude Design's `Feed Home.html` from commit `d4c45f7` was REJECTED by Tony.** Same fundamental concept failure as v1 (9-card grid Tony killed earlier today). Claude Code Playwright-diagnosed v2:
+
+- 3-column GRID (`feed-grid: 490px 490px 490px`) — Tony spec says **single-column infinite scroll**
+- 6 cards visible / 42 total elements / scroll height 1967px (~2 viewports) — Tony spec says **never-ending feed, 50+ at first paint, scroll height ≥ 8 viewports**
+- Headed "Today on the floor · 3 new contracts since 06:00 EST" — Tony spec says **no daily-briefing chrome above first card**
+- First-row card is a "Network performance" KPI panel — Tony spec says **no dashboard widgets, every card is one of the 40 entity/activity/promo/utility types**
+- Only **4 of 40** spec'd card types present (Pro / Company / BG / School). MISSING **36 of 40**: contracts (hourly std + WG + direct W-2), products, services, user posts, admin posts, hire announcements, endorsements, reviews, badges, all promo cards (Post Work / Boost / Connect Suggestion / Refer / Sponsored / Welcome), all utility cards (skill suggestion / cert renewal / industry news / geo suggestion / job match)
+
+**Tony directive 2026-04-27 evening, verbatim:** *"The feed is not the feed, the concept is completely wrong, i alreay told you to give claude design a great understanding of all of the pages (tens) of pages that will be in the feed, explain that every single profile ever that has been approved will show in the feed, explain every fucking page and everything that exists."*
+
+### What Claude Design must do for v3
+
+1. **Read `bundle/specs/FEED-SPEC.md` v1 end-to-end before touching any pixel.** It now contains:
+   - § 0 — what failed in v1 + v2 (so v3 doesn't repeat)
+   - § 1 — Tony verbatim, **read 5 times**
+   - § 2 — the **complete 124-page platform inventory** inlined (every Feed section + every entity type)
+   - § 3 — the 40 card types (unchanged from v0)
+   - § 4 — **worked example: Maria's first 30 cards, slot-by-slot, build this exact sequence**
+   - § 5 — 5-role visibility matrix
+   - § 6 — visual vocabulary (single column, max-width 720px, glass, popout, infinite scroll)
+   - § 7 — non-goals (NO grids, NO dashboard framing)
+   - § 8 — **Pass A acceptance criteria — Claude Code Playwright-checks all 10 before sending Tony a review URL**
+   - § 9 — process (Claude Code now Playwright-verifies BEFORE any Tony review)
+2. **Build Feed Home v3 single-column infinite-scroll. NOT a grid.**
+3. **Render every one of the 40 card types** at least once in the first 50 cards (use § 4 worked example).
+4. **No daily-briefing chrome above first card.** Global header → first feed card → scroll forever.
+5. Push v3 zip via Tony when complete.
+
+### Process change for Claude Code (this account)
+
+Per Tony 2026-04-27 evening rule: **NO review URLs to Tony until Claude Code has Playwright-walked the file and confirmed all 10 § 8 acceptance criteria PASS.** v2 commit `d4c45f7` review URLs (Maria v2/v3/v4, Acme Robotics, Feed Home) were a process failure — they were sent to Tony without Playwright verification. New rule: ship-confirm + Playwright-PASS-confirm or don't ship the URL.
+
+### Status of v2 ship `d4c45f7`
+
+Verbatim mirror still on `main` (we never edit Claude Design's work). Maria Pro v2/v3/v4 + Acme Robotics + Rebecca Customer + render-company.js + standalone bundles all stay. Only Feed Home is rejected — Claude Design rebuilds Feed Home v3 against new spec.
+
+---
+
 ## ⛔ RESUME PROTOCOL — TONY SAYS ONE WORD, ACCOUNTS SELF-ALIGN ⛔
 
 **If Tony says "resume", "align", "we switched accounts", or pastes a status report from one account at session start — DO NOT design an alignment workflow. Both sides are engineered to self-bootstrap.**
