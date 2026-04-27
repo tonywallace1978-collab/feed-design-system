@@ -1,8 +1,8 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-role="owner">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Automate America — Feed</title>
 <template id="__bundler_thumbnail">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
@@ -10,307 +10,1523 @@
     <stop offset="0%" stop-color="#0a0a1a"/><stop offset="100%" stop-color="#1a0a3a"/>
   </linearGradient></defs>
   <rect width="600" height="400" fill="url(#g)"/>
-  <rect x="180" y="120" width="240" height="50" rx="11" fill="#6366F1" opacity="0.50"/>
-  <rect x="180" y="180" width="240" height="50" rx="11" fill="#6366F1" opacity="0.35"/>
-  <rect x="180" y="240" width="240" height="50" rx="11" fill="#6366F1" opacity="0.22"/>
-  <text x="300" y="335" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="22" fill="#fff">Automate America</text>
-  <text x="300" y="365" text-anchor="middle" font-family="JetBrains Mono,monospace" font-weight="600" font-size="13" fill="#A5B4FC" letter-spacing="2">FEED · LIQUID GLASS</text>
+  <rect x="120" y="60" width="360" height="80" rx="14" fill="#6366F1" opacity="0.55"/>
+  <rect x="120" y="160" width="360" height="80" rx="14" fill="#A855F7" opacity="0.40"/>
+  <rect x="120" y="260" width="360" height="80" rx="14" fill="#EC4899" opacity="0.30"/>
+  <text x="300" y="380" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="20" fill="#fff">Feed · Single-Column Scroll · v3</text>
 </svg>
 </template>
 <link rel="stylesheet" href="tokens/glass-design-tokens.css" />
 <link rel="stylesheet" href="styles/glass.css" />
 <style>
-  /* page-specific */
-  .container-header { display: flex; align-items: center; justify-content: space-between; padding: 21px 34px 0; gap: 13px; flex-wrap: wrap; }
-  .container-header h1 { font-family: 'Outfit'; font-weight: 600; font-size: 26px; letter-spacing: -0.015em; margin: 0; color: var(--glass-text-primary); }
-  .feed-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 21px; padding: 21px; }
-  @media (max-width: 1100px) { .feed-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 760px) { .feed-grid { grid-template-columns: 1fr; padding: 13px; } }
-  .card-head { display: flex; align-items: flex-start; gap: 13px; }
-  .card-head .who { flex: 1; min-width: 0; }
-  .rate-block { display: flex; align-items: baseline; gap: 8px; margin: 13px 0 8px; }
-  .rate { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; color: #fff; line-height: 1; }
-  :root[data-theme="light"] .rate { color: #0a0a14; }
-  .rate-unit { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--glass-text-tertiary); }
-  .device-cluster { display: flex; align-items: flex-start; gap: 34px; margin: 34px auto 0; padding: 0 34px; flex-wrap: wrap; justify-content: center; }
-  .device-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.10em; color: var(--glass-text-tertiary); margin-bottom: 13px; padding-left: 8px; }
-  .iphone-frame .glass-card { padding: 13px; border-radius: 16px; }
-  .iphone-frame .card-title { font-size: 16px; }
-  .iphone-frame .card-sub { font-size: 13px; }
-  .iphone-frame .gbtn { min-height: 34px; padding: 7px 14px; font-size: 13px; }
-  .iphone-frame .rate { font-size: 22px; }
-  .iphone-dock { position: absolute; bottom: 21px; left: 21px; right: 21px; z-index: 4; display: flex; align-items: center; justify-content: space-around; padding: 13px 16px; border-radius: 24px; background: rgba(15,15,35,0.40); -webkit-backdrop-filter: blur(28px) saturate(180%); backdrop-filter: blur(28px) saturate(180%); border: 1px solid rgba(255,255,255,0.10); box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.20), 0 12px 32px rgba(0,0,0,0.40); }
-  :root[data-theme="light"] .iphone-dock { background: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.55); box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 12px 32px rgba(15,15,35,0.18); }
-  .iphone-dock button { border: 0; background: transparent; color: var(--glass-text-secondary); cursor: pointer; padding: 6px; border-radius: 10px; display: grid; place-items: center; }
-  .iphone-dock button.active { color: var(--glass-text-primary); }
-  .iphone-frame .iphone-content { padding-bottom: 100px; }
-  .kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 13px; margin-top: 13px; }
-  @media (max-width: 760px) { .device-cluster { display: none; } }
+  /* ============================================================
+     FEED HOME v3 — single-column infinite-scroll social feed
+     v2 (3-col grid + "Today on the floor" dashboard) REJECTED
+     v3 = each entity renders as a FULL profile-rich card,
+          stacked vertically, scroll forever.
+     ============================================================ */
+
+  body { background-image: url('assets/wallpaper-dark.jpg'); background-size: cover; background-attachment: fixed; min-height: 100vh; }
+
+  /* === GLOBAL HEADER ============================================ */
+  .gh { position: sticky; top: 0; z-index: 100; padding: 11px 21px; display: flex; align-items: center; gap: 17px;
+       background: rgba(10,10,26,0.55); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%);
+       border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .gh-logo { display:flex; align-items:center; gap:10px; font-family:'Outfit'; font-weight:800; font-size:16px; color:var(--glass-text-primary); letter-spacing:-0.02em; }
+  .gh-logo .mark { width:34px; height:34px; border-radius:9px; background:linear-gradient(135deg,#F59E0B 0%,#EF4444 60%,#A855F7 100%); display:grid; place-items:center; color:#fff; font-weight:800; box-shadow:inset 0 1px 0 rgba(255,255,255,0.30),inset 0 -1px 0 rgba(0,0,0,0.20); }
+  .gh-nav { display:flex; gap:4px; }
+  .gh-nav a { padding:7px 13px; border-radius:999px; font-family:'Outfit'; font-weight:600; font-size:13px; color:var(--glass-text-secondary); text-decoration:none; }
+  .gh-nav a.active { background:linear-gradient(135deg,#6366F1,#4F46E5); color:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,0.30),inset 0 -1px 0 rgba(0,0,0,0.20); }
+  .gh-search { flex:1; max-width:480px; display:flex; align-items:center; gap:8px; padding:8px 13px; border-radius:999px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.10); }
+  .gh-search input { flex:1; background:transparent; border:0; outline:0; color:var(--glass-text-primary); font-family:'Outfit'; font-size:13px; }
+  .gh-search input::placeholder { color:var(--glass-text-tertiary); }
+  .gh-icon-btn { width:34px; height:34px; border-radius:50%; display:grid; place-items:center; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.10); color:var(--glass-text-secondary); cursor:pointer; }
+  .gh-avatar { width:34px; height:34px; border-radius:50%; background-image:url('https://i.pravatar.cc/100?img=47'); background-size:cover; border:2px solid rgba(255,255,255,0.20); cursor:pointer; }
+
+  /* === ROLE BAR (5-role toggle, mirrors profile mockups) ======= */
+  .role-bar { display:flex; align-items:center; gap:13px; padding:11px 21px; max-width:1100px; margin:21px auto 0;
+              background:rgba(15,15,35,0.40); border:1px solid rgba(255,255,255,0.08); border-radius:17px;
+              backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%); }
+  .role-bar .lbl { font-family:'JetBrains Mono'; font-size:11px; letter-spacing:0.10em; color:var(--glass-text-secondary); text-transform:uppercase; font-weight:600; }
+  .role-tabs { display:flex; gap:4px; background:rgba(15,15,35,0.40); border:1px solid rgba(255,255,255,0.10); border-radius:999px; padding:4px; }
+  .role-tabs button { padding:7px 14px; border-radius:999px; border:0; cursor:pointer; font-family:'Outfit'; font-weight:600; font-size:12px; background:transparent; color:var(--glass-text-secondary); }
+  .role-tabs button.active { background:linear-gradient(135deg,#6366F1,#4F46E5); color:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,0.30),inset 0 -1px 0 rgba(0,0,0,0.20); }
+  .role-bar .ctx { margin-left:auto; font-size:12px; color:var(--glass-text-secondary); font-weight:500; font-style:italic; }
+
+  /* === FEED COLUMN — single column, centered, room for full profiles === */
+  .feed { max-width:1100px; margin:0 auto; padding:21px 21px 89px; display:flex; flex-direction:column; gap:34px; }
+
+  /* === CARD CHASSIS ============================================== */
+  .feed-card { background:rgba(15,15,35,0.40); border:1px solid rgba(255,255,255,0.10);
+              border-radius:21px; backdrop-filter:blur(24px) saturate(180%); -webkit-backdrop-filter:blur(24px) saturate(180%);
+              box-shadow:0 12px 40px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.08); padding:21px;
+              transition:transform 200ms, box-shadow 200ms; }
+  .feed-card:hover { transform:translateY(-2px); box-shadow:0 16px 48px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.12); }
+
+  /* === CARD HEADER (badge + meta + per-card affordances) ========= */
+  .card-meta { display:flex; align-items:center; gap:8px; margin-bottom:13px; flex-wrap:wrap; }
+  .card-badge { display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px;
+               font-family:'JetBrains Mono'; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; }
+  .badge-pro { background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35); color:#A5B4FC; }
+  .badge-cust { background:rgba(14,165,233,0.15); border:1px solid rgba(14,165,233,0.35); color:#7DD3FC; }
+  .badge-co { background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.35); color:#FCD34D; }
+  .badge-bg { background:rgba(236,72,153,0.15); border:1px solid rgba(236,72,153,0.35); color:#F9A8D4; }
+  .badge-school { background:rgba(168,85,247,0.15); border:1px solid rgba(168,85,247,0.35); color:#C4B5FD; }
+  .badge-contract { background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.35); color:#6EE7B7; }
+  .badge-wg { background:rgba(168,85,247,0.18); border:1px solid rgba(168,85,247,0.40); color:#DDD6FE; }
+  .badge-direct { background:rgba(14,165,233,0.18); border:1px solid rgba(14,165,233,0.40); color:#7DD3FC; }
+  .badge-product { background:rgba(99,102,241,0.10); border:1px solid rgba(99,102,241,0.25); color:#A5B4FC; }
+  .badge-service { background:rgba(52,211,153,0.10); border:1px solid rgba(52,211,153,0.25); color:#6EE7B7; }
+  .badge-affiliate { background:rgba(245,158,11,0.10); border:1px solid rgba(245,158,11,0.25); color:#FCD34D; }
+  .badge-post { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); color:var(--glass-text-secondary); }
+  .badge-admin { background:rgba(239,68,68,0.10); border:1px solid rgba(239,68,68,0.30); color:#FCA5A5; }
+  .badge-activity { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.10); color:var(--glass-text-tertiary); }
+  .badge-promo { background:rgba(244,114,182,0.10); border:1px solid rgba(244,114,182,0.25); color:#F9A8D4; }
+  .badge-sponsored { background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(168,85,247,0.18)); border:1px solid rgba(245,158,11,0.35); color:#FCD34D; }
+  .badge-utility { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.10); color:var(--glass-text-tertiary); }
+  .card-meta .when { font-family:'JetBrains Mono'; font-size:11px; color:var(--glass-text-tertiary); margin-left:auto; }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:#10B981; box-shadow:0 0 8px rgba(16,185,129,0.7); display:inline-block; }
+
+  /* === HERO ROW (avatar/logo + name + key info) ================== */
+  .hero { display:grid; grid-template-columns:120px 1fr; gap:21px; align-items:start; }
+  @media (max-width:520px) { .hero { grid-template-columns:1fr; text-align:center; } }
+  .hero-img { width:120px; height:120px; border-radius:24px; background-size:cover; background-position:center;
+             box-shadow:inset 0 1px 0 rgba(255,255,255,0.20), 0 8px 24px rgba(0,0,0,0.30); }
+  .hero-img.round { border-radius:50%; }
+  .hero-img.lg-tile { display:grid; place-items:center; font-family:'Outfit'; font-weight:800; font-size:48px; color:#fff;
+                       background:linear-gradient(135deg,#6366F1 0%,#A855F7 50%,#EC4899 100%); }
+  .hero-name { font-family:'Outfit'; font-weight:800; font-size:30px; line-height:1.05; color:var(--glass-text-primary); margin:0 0 5px; letter-spacing:-0.025em; }
+  .hero-sub { font-size:14px; color:var(--glass-text-secondary); font-weight:500; margin:0 0 8px; }
+  .hero-loc { font-size:13px; color:var(--glass-text-tertiary); font-weight:600; }
+  .hero-stats { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:13px; }
+  @media (max-width:520px) { .hero-stats { grid-template-columns:repeat(2,1fr); } }
+  .stat-tile { padding:10px 8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:11px; text-align:center; }
+  .stat-tile .v { font-family:'JetBrains Mono'; font-weight:800; font-size:18px; color:var(--glass-text-primary); line-height:1; }
+  .stat-tile .l { font-family:'JetBrains Mono'; font-size:9px; letter-spacing:0.10em; text-transform:uppercase; color:var(--glass-text-tertiary); margin-top:5px; font-weight:700; }
+
+  /* === BODY SECTIONS WITHIN A CARD =============================== */
+  .csec { margin-top:21px; }
+  .csec-h { font-family:'JetBrains Mono'; font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+            color:var(--glass-text-tertiary); font-weight:700; margin-bottom:11px; display:flex; justify-content:space-between; align-items:baseline; }
+  .csec-h .small { font-family:'Outfit'; text-transform:none; letter-spacing:0; font-size:11px; color:var(--glass-text-secondary); font-weight:500; }
+
+  /* === MANUFACTURER STRIP (logos row) ============================ */
+  .mfr-strip { display:flex; gap:8px; flex-wrap:wrap; }
+  .mfr-tile { width:60px; height:60px; border-radius:11px; background:rgba(255,255,255,0.95); padding:8px; display:grid; place-items:center; }
+  .mfr-tile img { width:100%; height:100%; object-fit:contain; }
+
+  /* === CHIP CLOUD (skills, trades, tags) ========================= */
+  .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { display:inline-flex; align-items:center; padding:5px 11px; font-family:'Outfit'; font-size:12px; font-weight:600;
+         color:var(--glass-text-secondary); background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.10); border-radius:999px; }
+  .chip.indigo { color:#A5B4FC; background:rgba(99,102,241,0.10); border-color:rgba(99,102,241,0.25); }
+  .chip.green { color:#6EE7B7; background:rgba(52,211,153,0.10); border-color:rgba(52,211,153,0.25); }
+  .chip.amber { color:#FCD34D; background:rgba(245,158,11,0.10); border-color:rgba(245,158,11,0.25); }
+
+  /* === RATE GRID (contracts) ===================================== */
+  .rate-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:11px; }
+  @media (max-width:520px) { .rate-grid { grid-template-columns:repeat(2,1fr); } }
+  .rate-tile { padding:13px; background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.18); border-radius:13px; }
+  .rate-tile.wg { background:rgba(168,85,247,0.06); border-color:rgba(168,85,247,0.22); }
+  .rate-tile .l { font-family:'JetBrains Mono'; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--glass-text-tertiary); font-weight:700; }
+  .rate-tile .v { font-family:'JetBrains Mono'; font-weight:800; font-size:24px; color:var(--glass-text-primary); margin-top:5px; line-height:1; }
+  .rate-tile .v small { font-size:13px; color:var(--glass-text-tertiary); font-weight:600; }
+
+  /* === REVIEWS STRIP ============================================= */
+  .rev-strip { display:flex; gap:11px; overflow-x:auto; padding-bottom:5px; }
+  .rev-card { min-width:220px; padding:13px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:13px; flex-shrink:0; }
+  .rev-stars { color:#FCD34D; font-size:13px; letter-spacing:1px; }
+  .rev-from { font-family:'Outfit'; font-weight:700; font-size:13px; color:var(--glass-text-primary); margin-top:5px; }
+  .rev-quote { font-size:12px; color:var(--glass-text-secondary); margin-top:5px; line-height:1.5; font-style:italic; }
+  .rev-meta { font-family:'JetBrains Mono'; font-size:10px; color:var(--glass-text-tertiary); margin-top:5px; }
+
+  /* === BADGES STRIP (achievement) ================================ */
+  .bdg-strip { display:flex; gap:11px; flex-wrap:wrap; }
+  .bdg-tile { width:80px; text-align:center; }
+  .bdg-tile .ic { width:64px; height:64px; border-radius:50%; margin:0 auto; display:grid; place-items:center; font-size:28px;
+                background:linear-gradient(135deg,rgba(245,158,11,0.20),rgba(245,158,11,0.05)); border:1px solid rgba(245,158,11,0.30); }
+  .bdg-tile .l1 { font-family:'Outfit'; font-weight:700; font-size:11px; color:var(--glass-text-primary); margin-top:6px; line-height:1.2; }
+  .bdg-tile .l2 { font-family:'JetBrains Mono'; font-size:9px; letter-spacing:0.10em; text-transform:uppercase; color:#FCD34D; font-weight:700; margin-top:2px; }
+
+  /* === CTA ROW ==================================================== */
+  .cta-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:21px; padding-top:17px; border-top:1px solid rgba(255,255,255,0.06); }
+  .cta { padding:10px 17px; border-radius:11px; font-family:'Outfit'; font-weight:700; font-size:13px; cursor:pointer; border:1px solid rgba(255,255,255,0.20);
+        background:rgba(255,255,255,0.06); color:var(--glass-text-primary); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+        transition:all 150ms; display:inline-flex; align-items:center; gap:7px; }
+  .cta:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.30); transform:translateY(-1px); }
+  .cta.primary { background:rgba(99,102,241,0.18); border-color:rgba(99,102,241,0.40); color:#fff; box-shadow:0 0 20px rgba(99,102,241,0.20); }
+  .cta.primary:hover { background:rgba(99,102,241,0.28); }
+  .cta.money { background:linear-gradient(135deg,rgba(245,158,11,0.20),rgba(239,68,68,0.20)); border-color:rgba(245,158,11,0.40); color:#fff; box-shadow:0 0 24px rgba(245,158,11,0.25); }
+  .cta.money:hover { background:linear-gradient(135deg,rgba(245,158,11,0.30),rgba(239,68,68,0.30)); }
+
+  /* === PER-CARD AFFORDANCES ROW (Save/Share/Dismiss/View Full) === */
+  .aff { display:flex; gap:6px; align-items:center; margin-left:auto; }
+  .aff-btn { width:32px; height:32px; border-radius:9px; border:1px solid rgba(255,255,255,0.10); background:rgba(255,255,255,0.04);
+            color:var(--glass-text-secondary); cursor:pointer; display:grid; place-items:center; font-size:13px; }
+  .aff-btn:hover { background:rgba(255,255,255,0.10); color:var(--glass-text-primary); }
+
+  /* === COMPACT CARDS (promo, activity, utility) ================== */
+  .compact { padding:17px; }
+  .compact .c-row { display:grid; grid-template-columns:auto 1fr auto; gap:13px; align-items:center; }
+  .compact .c-icon { width:48px; height:48px; border-radius:13px; display:grid; place-items:center; font-size:22px;
+                    background:rgba(99,102,241,0.12); border:1px solid rgba(99,102,241,0.25); color:#A5B4FC; }
+  .compact .c-icon.boost { background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.30); color:#FCD34D; }
+  .compact .c-icon.refer { background:rgba(236,72,153,0.12); border-color:rgba(236,72,153,0.30); color:#F9A8D4; }
+  .compact .c-icon.connect { background:rgba(14,165,233,0.12); border-color:rgba(14,165,233,0.30); color:#7DD3FC; }
+  .compact .c-icon.geo { background:rgba(52,211,153,0.12); border-color:rgba(52,211,153,0.30); color:#6EE7B7; }
+  .compact .c-icon.match { background:rgba(168,85,247,0.12); border-color:rgba(168,85,247,0.30); color:#C4B5FD; }
+  .compact .c-icon.cert { background:rgba(245,158,11,0.10); border-color:rgba(245,158,11,0.25); color:#FCD34D; }
+  .compact .c-icon.news { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.14); color:var(--glass-text-secondary); }
+  .compact .c-title { font-family:'Outfit'; font-weight:700; font-size:15px; color:var(--glass-text-primary); }
+  .compact .c-sub { font-size:12px; color:var(--glass-text-secondary); margin-top:3px; line-height:1.5; }
+  .compact .c-cta { font-family:'Outfit'; font-weight:700; font-size:12px; padding:7px 13px; border-radius:9px;
+                   background:rgba(99,102,241,0.18); border:1px solid rgba(99,102,241,0.35); color:#fff; cursor:pointer; }
+
+  /* === ACTIVITY CARDS (hire / endorse / review / badge) ========== */
+  .activity { padding:17px; display:grid; grid-template-columns:auto 1fr; gap:13px; align-items:start; }
+  .activity .who-pic { width:48px; height:48px; border-radius:50%; background-size:cover; background-position:center; border:2px solid rgba(255,255,255,0.15); }
+  .activity .body { min-width:0; }
+  .activity .who-line { font-family:'Outfit'; font-weight:600; font-size:13px; color:var(--glass-text-secondary); }
+  .activity .who-line strong { color:var(--glass-text-primary); font-weight:700; }
+  .activity .what { font-family:'Outfit'; font-weight:700; font-size:18px; color:var(--glass-text-primary); margin:6px 0 5px; line-height:1.3; }
+  .activity .meta { font-family:'JetBrains Mono'; font-size:11px; color:var(--glass-text-tertiary); }
+
+  /* === ADMIN POST (hero treatment) =============================== */
+  .admin-post { padding:34px 27px; background:linear-gradient(135deg,rgba(239,68,68,0.10),rgba(168,85,247,0.10) 60%, rgba(14,165,233,0.10));
+                border-color:rgba(239,68,68,0.20); }
+  .admin-post .who { display:flex; align-items:center; gap:11px; margin-bottom:13px; }
+  .admin-post .who-pic { width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#F59E0B,#EF4444); display:grid; place-items:center; color:#fff; font-family:'Outfit'; font-weight:800; font-size:18px; }
+  .admin-post .who-name { font-family:'Outfit'; font-weight:800; font-size:14px; color:var(--glass-text-primary); }
+  .admin-post .who-role { font-family:'JetBrains Mono'; font-size:10px; letter-spacing:0.10em; text-transform:uppercase; color:#FCD34D; font-weight:700; margin-top:2px; }
+  .admin-post .post-h { font-family:'Outfit'; font-weight:800; font-size:24px; color:var(--glass-text-primary); margin:6px 0 11px; letter-spacing:-0.015em; line-height:1.2; }
+  .admin-post .post-body { font-size:14px; line-height:1.6; color:var(--glass-text-secondary); }
+
+  /* === USER POST ================================================== */
+  .user-post { padding:21px; }
+  .user-post .who { display:flex; align-items:center; gap:11px; margin-bottom:11px; }
+  .user-post .who-pic { width:42px; height:42px; border-radius:50%; background-size:cover; background-position:center; }
+  .user-post .who-name { font-family:'Outfit'; font-weight:700; font-size:13px; color:var(--glass-text-primary); }
+  .user-post .who-occ { font-size:11px; color:var(--glass-text-secondary); margin-top:1px; }
+  .user-post .post-body { font-size:14px; line-height:1.55; color:var(--glass-text-primary); }
+  .user-post .react { display:flex; gap:13px; margin-top:13px; padding-top:11px; border-top:1px solid rgba(255,255,255,0.06); }
+  .user-post .react span { font-family:'JetBrains Mono'; font-size:11px; color:var(--glass-text-tertiary); font-weight:600; cursor:pointer; }
+
+  /* === FIXTURE-NEEDED FLAG ======================================== */
+  .fixture-flag { display:inline-block; padding:3px 8px; border-radius:6px; font-family:'JetBrains Mono'; font-size:10px;
+                 background:rgba(245,158,11,0.10); border:1px solid rgba(245,158,11,0.30); color:#FCD34D; font-weight:700; letter-spacing:0.05em; }
+
+  /* === LAZY-LOAD SENTINEL ========================================= */
+  .lazy-sentinel { padding:34px 21px; text-align:center; font-family:'JetBrains Mono'; font-size:11px; color:var(--glass-text-tertiary); letter-spacing:0.10em; text-transform:uppercase; }
+  .lazy-sentinel .pulse { display:inline-block; width:8px; height:8px; border-radius:50%; background:#6366F1; margin-right:8px; animation:pulse 1.5s infinite; vertical-align:middle; }
+  @keyframes pulse { 0%,100% { opacity:0.4; } 50% { opacity:1; } }
+
+  /* === FULLSCREEN POPOUT ========================================== */
+  .popout-overlay { position:fixed; inset:0; z-index:200; background:rgba(5,5,15,0.88); backdrop-filter:blur(40px) saturate(160%); -webkit-backdrop-filter:blur(40px) saturate(160%);
+                   display:none; align-items:flex-start; justify-content:center; padding:21px; overflow-y:auto; }
+  .popout-overlay.open { display:flex; }
+  .popout-card { max-width:960px; width:100%; padding:34px; background:rgba(15,15,35,0.85); border:1px solid rgba(255,255,255,0.15); border-radius:21px; }
+  .popout-close { position:fixed; top:21px; right:21px; width:42px; height:42px; border-radius:50%; background:rgba(15,15,35,0.85); border:1px solid rgba(255,255,255,0.18); color:#fff; cursor:pointer; display:grid; place-items:center; font-size:18px; z-index:201; }
+
+  /* === ROLE-VISIBILITY HOOKS ====================================== */
+  [data-private], [data-owner-only] { display:none; }
+  :root[data-role="owner"] [data-private], :root[data-role="owner"] [data-owner-only],
+  :root[data-role="admin"] [data-private], :root[data-role="admin"] [data-owner-only] { display:revert; }
+  [data-admin-only] { display:none; }
+  :root[data-role="admin"] [data-admin-only] { display:revert; }
+  [data-public-only] { display:revert; }
+  :root[data-role="owner"] [data-public-only], :root[data-role="admin"] [data-public-only] { display:none; }
+
+  .row-meta { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--glass-text-secondary); }
 </style>
 </head>
 <body>
-<main class="app">
-  <div class="shell-wide">
 
-    <section class="glass-container">
-      <div class="container-header">
-        <div>
-          <h1>Today on the floor</h1>
-          <div class="row-meta" style="margin-top: 6px;"><span class="live-dot"></span><span>3 new contracts since 06:00 EST · Detroit metro</span></div>
-        </div>
-        <div style="display: flex; gap: 8px;">
-          <button class="gbtn-secondary gbtn sm" type="button">Filters</button>
-          <button class="gbtn sm" type="button">+ Post job</button>
-        </div>
-      </div>
+<!-- =====================================================
+     GLOBAL HEADER (sticky)
+     ===================================================== -->
+<header class="gh">
+  <div class="gh-logo">
+    <span class="mark">A</span>
+    <span>Automate <span style="opacity:0.7;font-weight:600;">America</span></span>
+  </div>
+  <nav class="gh-nav">
+    <a href="#" class="active">Feed</a>
+    <a href="#">Contracts</a>
+    <a href="#">Network</a>
+    <a href="#">Messages</a>
+    <a href="#">Profile</a>
+  </nav>
+  <div class="gh-search">
+    <span style="color:var(--glass-text-tertiary);font-size:13px;">⌕</span>
+    <input type="text" placeholder="Search engineers, contracts, customers…" />
+  </div>
+  <button class="gh-icon-btn" title="Theme">◐</button>
+  <div class="gh-avatar" title="Maria Lopez"></div>
+</header>
 
-      <div class="feed-grid">
+<!-- =====================================================
+     ROLE BAR (5-role toggle — mockup-only)
+     ===================================================== -->
+<div class="role-bar">
+  <span class="lbl">Viewing as</span>
+  <div class="role-tabs">
+    <button data-r="public">Public</button>
+    <button data-r="visitor">Visitor</button>
+    <button data-r="connection">Connection</button>
+    <button data-r="owner" class="active">Owner</button>
+    <button data-r="admin">Admin</button>
+  </div>
+  <span class="ctx">Signed in as <strong>Maria Lopez</strong> (Pro) · personalized feed · 11,238 ranked entities</span>
+</div>
 
-        <!-- 1. LIVE CONTRACT -->
-        <article class="glass-card hoverable card-pad">
-          <div class="card-tag live"><span class="dot"></span>Live contract · 4h left to apply</div>
-          <div class="card-head">
-            <div class="logo-tile md-72 indigo">AR</div>
-            <div class="who">
-              <h3 class="card-title">PLC programmer · Robotic palletizer commissioning</h3>
-              <p class="card-sub">Acme Robotics · Detroit, MI</p>
-            </div>
-          </div>
-          <div class="rate-block"><span class="rate">$148.50</span><span class="rate-unit">/ hr · 4-week onsite</span></div>
-          <div class="chip-row" style="margin-top: 8px;">
-            <span class="chip">ROCKWELL CONTROLOGIX</span>
-            <span class="chip">ISA-S88</span>
-            <span class="chip ok">TÜV CERTIFIED</span>
-          </div>
-          <div class="row-meta" style="margin-top: 13px;">
-            <div class="avatars">
-              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces')"></div>
-              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=80&h=80&fit=crop&crop=faces')"></div>
-              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces')"></div>
-              <div class="a more">+9</div>
-            </div>
-            <span>12 applicants</span>
-          </div>
-          <div class="cta-row" style="margin-top: 21px;">
-            <button class="gbtn gbtn-connect" type="button">Connect</button>
-            <button class="gbtn-secondary gbtn" type="button">Message</button>
-          </div>
-        </article>
+<!-- =====================================================
+     FEED COLUMN — single-column infinite scroll
+     ~50 cards covering all 40 card types
+     ===================================================== -->
+<main class="feed">
 
-        <!-- 2. KPI TILE -->
-        <article class="glass-card hoverable card-pad">
-          <div class="card-tag"><span class="dot"></span>This quarter · Q2 2026</div>
-          <h3 class="card-title">Network performance</h3>
-          <div class="kpi-grid">
-            <div><div class="kpi-label">Paid out</div><div class="kpi-val">$2.4M</div><div class="kpi-delta">▲ 11.2%</div></div>
-            <div><div class="kpi-label">Timesheets</div><div class="kpi-val" style="color:#C7D2FE;">8,412</div><div class="kpi-delta">▲ 4.6%</div></div>
-            <div><div class="kpi-label">On-time</div><div class="kpi-val" style="color:#FCD34D;">96.3%</div><div class="kpi-delta">▲ 1.1pt</div></div>
-          </div>
-          <div class="spark" aria-hidden="true" style="margin-top: 13px;">
-            <div class="b" style="height:30%"></div><div class="b" style="height:45%"></div><div class="b" style="height:38%"></div>
-            <div class="b" style="height:62%"></div><div class="b" style="height:55%"></div><div class="b" style="height:78%"></div>
-            <div class="b" style="height:70%"></div><div class="b" style="height:88%"></div><div class="b" style="height:82%"></div>
-            <div class="b" style="height:95%"></div><div class="b" style="height:90%"></div><div class="b" style="height:100%"></div>
-          </div>
-          <div class="row-meta" style="margin-top: 13px;"><span>vs. Q1 2026</span><span class="sep">·</span><span>Updated 06:14 EST</span></div>
-        </article>
-
-        <!-- 3. PROFESSIONAL PROFILE -->
-        <article class="glass-card hoverable card-pad">
-          <div class="card-tag" style="color:#FCD34D;"><span class="dot" style="background:#FBBF24"></span>Professional · Verified</div>
-          <div class="card-head">
-            <!-- TODO: replace with real user photo -->
-            <div class="photo photo-72" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=faces')"></div>
-            <div class="who">
-              <h3 class="card-title">Maria Lopez</h3>
-              <p class="card-sub">Senior Controls Engineer · Detroit, MI</p>
-              <div class="row-meta" style="margin-top: 6px;"><span>9 yr exp</span><span class="sep">·</span><span>★ 4.96</span><span class="sep">·</span><span>34 contracts</span></div>
-            </div>
-          </div>
-          <!-- 5 achievement badges -->
-          <div class="badge-row" style="margin-top: 13px; justify-content: space-between;">
-            <div class="badge-stack">
-              <div class="badge-80 emerald" title="Verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
-              <div class="badge-label">Verified</div>
-            </div>
-            <div class="badge-stack">
-              <div class="badge-80" title="Top 1% Hourly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M5 9l7-7 7 7"/></svg></div>
-              <div class="badge-label">Top 1% rate</div>
-            </div>
-            <div class="badge-stack">
-              <div class="badge-80 indigo" title="On-time 96%+"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-              <div class="badge-label">On-time 96%</div>
-            </div>
-            <div class="badge-stack">
-              <div class="badge-80 silver" title="Multi-disciplinary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/></svg></div>
-              <div class="badge-label">Multi-disc</div>
-            </div>
-            <div class="badge-stack">
-              <div class="badge-80 rose" title="Decade Veteran"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18l7-4 7 4V3z"/></svg></div>
-              <div class="badge-label">10-yr vet</div>
-            </div>
-          </div>
-          <div class="chip-row" style="margin-top: 13px;">
-            <span class="chip">SIEMENS</span><span class="chip">ALLEN-BRADLEY</span><span class="chip">FANUC</span>
-          </div>
-          <div class="cta-row" style="margin-top: 21px;">
-            <a href="Professional Profile.html" class="gbtn">Endorse</a>
-            <a href="Professional Profile.html" class="gbtn-secondary gbtn">View profile</a>
-          </div>
-        </article>
-
-        <!-- 4. COMPLETED WORK -->
-        <article class="glass-card hoverable card-pad">
-          <div class="card-tag" style="color:#A5B4FC"><span class="dot" style="background:#818CF8"></span>Completed work · 2 days ago</div>
-          <div class="card-head">
-            <div class="logo-tile md-72 amber">CR</div>
-            <div class="who">
-              <h3 class="card-title">Cedar Rapids Mill modernization</h3>
-              <p class="card-sub">Rockwell ControlLogix migration · 14-week project</p>
-            </div>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-top: 13px;">
-            <div><div class="kpi-label">On-time</div><div class="kpi-val">96.3%</div></div>
-            <div><div class="kpi-label">Rating</div><div class="kpi-val stars" style="font-size: 22px;">★★★★★</div></div>
-          </div>
-          <div class="row-meta" style="margin-top: 13px;"><span>Lead: J. Reyes</span><span class="sep">·</span><span>Crew of 4</span><span class="sep">·</span><span>$312k value</span></div>
-          <div class="cta-row" style="margin-top: 21px;">
-            <button class="gbtn-secondary gbtn" type="button">Save</button>
-            <button class="gbtn-secondary gbtn" type="button">View report</button>
-          </div>
-        </article>
-
-        <!-- 5. CUSTOMER PROFILE -->
-        <article class="glass-card hoverable card-pad">
-          <div class="card-tag" style="color:#7DD3FC"><span class="dot" style="background:#38BDF8"></span>Customer · Tier 1 manufacturer</div>
-          <div class="card-head">
-            <div class="logo-tile md-72 sky">F</div>
-            <div class="who">
-              <h3 class="card-title">Ford Rouge Complex</h3>
-              <p class="card-sub">Dearborn, MI · Automotive assembly</p>
-              <div class="row-meta" style="margin-top: 6px;"><span>47 active contracts</span><span class="sep">·</span><span>Avg $142/hr</span></div>
-            </div>
-          </div>
-          <div class="chip-row" style="margin-top: 13px;">
-            <span class="chip">ASSEMBLY</span><span class="chip">BODY-IN-WHITE</span><span class="chip">PAINT SHOP</span><span class="chip accent">HIRING NOW</span>
-          </div>
-          <div class="cta-row" style="margin-top: 21px;">
-            <a href="Customer Profile.html" class="gbtn">Apply</a>
-            <a href="Customer Profile.html" class="gbtn-secondary gbtn">Follow</a>
-          </div>
-        </article>
-
-        <!-- 6. BUSINESS GROUP -->
-        <article class="glass-card hoverable card-pad">
-          <div class="card-tag" style="color:#FBCFE8"><span class="dot" style="background:#F472B6"></span>Business group · Regional</div>
-          <div class="card-head">
-            <div class="logo-tile md-72 rose">GL</div>
-            <div class="who">
-              <h3 class="card-title">Great Lakes Automation Network</h3>
-              <p class="card-sub">Detroit · Cleveland · Chicago · Milwaukee</p>
-              <div class="row-meta" style="margin-top: 6px;"><span>138 members</span><span class="sep">·</span><span>12 open contracts</span></div>
-            </div>
-          </div>
-          <div class="row-meta" style="margin-top: 13px;">
-            <div class="avatars">
-              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=faces')"></div>
-              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=faces')"></div>
-              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1521119989659-a83eee488004?w=80&h=80&fit=crop&crop=faces')"></div>
-              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=faces')"></div>
-              <div class="a" style="background-image:url('https://images.unsplash.com/photo-1463453091185-61582044d556?w=80&h=80&fit=crop&crop=faces')"></div>
-              <div class="a more">+133</div>
-            </div>
-          </div>
-          <div class="cta-row" style="margin-top: 21px;">
-            <a href="Business Group.html" class="gbtn">Join</a>
-            <a href="Business Group.html" class="gbtn-secondary gbtn">Browse</a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- Mobile preview -->
-    <div class="device-cluster">
+  <!-- 1. WELCOME / ONBOARDING TIP (#30) -->
+  <article class="feed-card compact" data-card="welcome">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Tip · Profile</span>
+      <span class="when">Now</span>
+      <div class="aff"><button class="aff-btn" title="Dismiss">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon" style="background:rgba(245,158,11,0.12);border-color:rgba(245,158,11,0.30);color:#FCD34D;">★</div>
       <div>
-        <div class="device-label">Mobile · 375 × 760</div>
-        <div class="iphone-frame">
-          <div class="iphone-screen">
-            <div class="iphone-wp dark"></div>
-            <div class="iphone-wp light"></div>
-            <div class="iphone-notch"></div>
-            <div class="iphone-status">
-              <span>9:41</span>
-              <div style="display:flex;gap:5px;align-items:center;">
-                <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><path d="M1 7h2v3H1zM5 5h2v5H5zM9 3h2v7H9zM13 1h2v9h-2z"/></svg>
-                <svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x="0.5" y="0.5" width="18" height="10" rx="2.5" stroke="currentColor"/><rect x="2" y="2" width="14" height="7" rx="1" fill="currentColor"/><rect x="19" y="3.5" width="2" height="4" rx="0.5" fill="currentColor"/></svg>
-              </div>
-            </div>
-            <div class="iphone-content">
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:0 8px;">
-                <div>
-                  <div style="font-family:'Outfit';font-weight:700;font-size:22px;color:var(--glass-text-primary);letter-spacing:-0.02em;">Feed</div>
-                  <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--glass-text-tertiary);margin-top:2px;"><span class="live-dot"></span>3 new today</div>
-                </div>
-                <div class="avatar-circle" style="width:32px;height:32px;background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces');"></div>
-              </div>
-              <article class="glass-card">
-                <div class="card-tag live" style="margin-bottom:8px;"><span class="dot"></span>Live · 4h left</div>
-                <div style="display:flex;gap:10px;align-items:flex-start;">
-                  <div class="logo-tile sm-48 indigo">AR</div>
-                  <div style="flex:1;min-width:0;">
-                    <h3 class="card-title">PLC programmer</h3>
-                    <p class="card-sub">Acme Robotics · Detroit</p>
-                  </div>
-                </div>
-                <div class="rate-block" style="margin:10px 0 6px;"><span class="rate">$148.50</span><span class="rate-unit">/ hr</span></div>
-                <div class="chip-row" style="margin-top:8px;"><span class="chip">ROCKWELL</span><span class="chip">ISA-S88</span></div>
-                <div class="cta-row" style="margin-top:13px;"><button class="gbtn gbtn-connect">Connect</button><button class="gbtn-secondary gbtn">Message</button></div>
-              </article>
-              <article class="glass-card">
-                <div class="card-tag" style="margin-bottom:8px;"><span class="dot"></span>Q2 2026</div>
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-                  <div><div class="kpi-label">Paid</div><div class="kpi-val" style="font-size:18px;">$2.4M</div></div>
-                  <div><div class="kpi-label">Sheets</div><div class="kpi-val" style="font-size:18px;color:#C7D2FE;">8,412</div></div>
-                  <div><div class="kpi-label">On-time</div><div class="kpi-val" style="font-size:18px;color:#FCD34D;">96.3%</div></div>
-                </div>
-              </article>
-              <article class="glass-card">
-                <div class="card-tag" style="color:#FCD34D;margin-bottom:8px;"><span class="dot" style="background:#FBBF24"></span>Professional</div>
-                <div style="display:flex;gap:10px;align-items:flex-start;">
-                  <div class="photo photo-48" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces')"></div>
-                  <div style="flex:1;min-width:0;">
-                    <h3 class="card-title">Maria Lopez</h3>
-                    <p class="card-sub">Senior Controls Eng · Detroit</p>
-                  </div>
-                </div>
-                <div class="cta-row" style="margin-top:10px;"><button class="gbtn">Endorse</button><button class="gbtn-secondary gbtn">Connect</button></div>
-              </article>
-              <article class="glass-card">
-                <div class="card-tag" style="color:#7DD3FC;margin-bottom:8px;"><span class="dot" style="background:#38BDF8"></span>Customer</div>
-                <div style="display:flex;gap:10px;align-items:flex-start;">
-                  <div class="logo-tile sm-48 sky">F</div>
-                  <div style="flex:1;min-width:0;"><h3 class="card-title">Ford Rouge</h3><p class="card-sub">Dearborn · 47 active</p></div>
-                </div>
-                <div class="cta-row" style="margin-top:10px;"><button class="gbtn">Apply</button></div>
-              </article>
-            </div>
-            <div class="iphone-dock">
-              <button class="active" aria-label="Feed"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></button>
-              <button aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-              <button aria-label="Post"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></button>
-              <button aria-label="Messages"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></button>
-              <button aria-label="Profile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
-            </div>
-          </div>
-        </div>
+        <div class="c-title">Add 2 more skills to unlock 14 more matched contracts</div>
+        <div class="c-sub">Your profile is 78% complete. <strong>OPC UA</strong> + <strong>SCADA Wonderware</strong> would be your highest-impact additions based on what customers in your area are hiring.</div>
+      </div>
+      <button class="c-cta">Add skills</button>
+    </div>
+  </article>
+
+  <!-- 2. OPEN CONTRACT — HOURLY WHITE GLOVE (#7) -->
+  <article class="feed-card" data-card="contract-wg">
+    <div class="card-meta">
+      <span class="card-badge badge-wg"><span class="live-dot"></span>White Glove · Live</span>
+      <span class="row-meta">4h left to apply</span>
+      <span class="when">10 min ago</span>
+      <div class="aff"><button class="aff-btn" title="Save">♡</button><button class="aff-btn" title="Share">↗</button><button class="aff-btn" title="Dismiss">×</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);">[WG]</div>
+      <div>
+        <h2 class="hero-name">Body Shop Cell 14 — FANUC R-2000iC retrofit</h2>
+        <p class="hero-sub"><span class="card-badge badge-wg" style="display:inline-flex;">[Anonymous Customer]</span> · 6-week onsite · ITAR-cleared candidates only</p>
+        <p class="hero-loc">📍 Spartanburg, SC · 14 mi from your saved location</p>
       </div>
     </div>
+    <div class="csec">
+      <div class="csec-h">Pay rates <span class="small">White-glove premium · 2-week net pay · Per-diem $150/day onsite</span></div>
+      <div class="rate-grid">
+        <div class="rate-tile wg"><div class="l">Base</div><div class="v">$149<small>/hr</small></div></div>
+        <div class="rate-tile wg"><div class="l">Overtime</div><div class="v">$223.50<small>/hr</small></div></div>
+        <div class="rate-tile wg"><div class="l">Double-time</div><div class="v">$298<small>/hr</small></div></div>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Skills required <span class="small">5/6 match your profile</span></div>
+      <div class="chips">
+        <span class="chip green">FANUC R-2000iC ✓</span>
+        <span class="chip green">RoboGuide ✓</span>
+        <span class="chip green">Body-shop body-in-white ✓</span>
+        <span class="chip green">Karel programming ✓</span>
+        <span class="chip green">PLC tie-in (Allen-Bradley) ✓</span>
+        <span class="chip">Vision (Cognex In-Sight)</span>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Manufacturers</div>
+      <div class="mfr-strip">
+        <div class="mfr-tile"><img src="assets/logos/fanuc.png" alt="FANUC"></div>
+        <div class="mfr-tile"><img src="assets/logos/cognex.png" alt="Cognex"></div>
+        <div class="mfr-tile"><img src="assets/logos/rockwell-automation.png" alt="Rockwell"></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">💰 Apply now</button>
+      <button class="cta">Add to Watch List</button>
+      <button class="cta">Connect to Customer</button>
+      <button class="cta">View full contract →</button>
+    </div>
+  </article>
 
-    <footer class="foot">Liquid Glass · Automate America · CEO design laws 1–11 honored · Toggle theme top-right</footer>
+  <!-- 3. HIRE ANNOUNCEMENT (#14) -->
+  <article class="feed-card activity" data-card="hire-announce">
+    <div class="who-pic" style="background-image:url('https://i.pravatar.cc/100?img=47');"></div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">Hire Announcement</span>
+        <span class="when">2 days ago</span>
+        <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+      </div>
+      <div class="who-line"><strong>ADM</strong> hired <strong>Maria Lopez</strong></div>
+      <div class="what">Cedar Rapids Mill modernization — 14-week ControlLogix L8 migration</div>
+      <div class="meta">$24,500 invoiced · 96.3% on-time · ★★★★★ rating from customer</div>
+    </div>
+  </article>
+
+  <!-- 4. OPEN CONTRACT — HOURLY STANDARD (#6) -->
+  <article class="feed-card" data-card="contract-std">
+    <div class="card-meta">
+      <span class="card-badge badge-contract"><span class="live-dot"></span>Hourly · Live</span>
+      <span class="row-meta">6 days left</span>
+      <span class="when">1 hour ago</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button><button class="aff-btn">×</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#0EA5E9,#6366F1);">ST</div>
+      <div>
+        <h2 class="hero-name">Sterling Heights paint shop — PLC migration</h2>
+        <p class="hero-sub"><strong>Stellantis · Sterling Heights, MI</strong> · 4-week onsite · 50-hr weeks expected</p>
+        <p class="hero-loc">📍 Sterling Heights, MI · 25 mi from Detroit</p>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Pay rates</div>
+      <div class="rate-grid">
+        <div class="rate-tile"><div class="l">Base</div><div class="v">$155<small>/hr</small></div></div>
+        <div class="rate-tile"><div class="l">Overtime</div><div class="v">$232.50<small>/hr</small></div></div>
+        <div class="rate-tile"><div class="l">Double-time</div><div class="v">$310<small>/hr</small></div></div>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Skills</div>
+      <div class="chips">
+        <span class="chip green">Allen-Bradley CompactLogix ✓</span>
+        <span class="chip green">Studio 5000 ✓</span>
+        <span class="chip green">FactoryTalk View ✓</span>
+        <span class="chip">PowerFlex VFDs</span>
+        <span class="chip">EtherNet/IP</span>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">💰 Apply now</button>
+      <button class="cta">Add to Watch List</button>
+      <button class="cta">Connect to Stellantis</button>
+      <button class="cta">View full contract →</button>
+    </div>
+  </article>
+
+  <!-- 5. PROMO: BOOST (#24) -->
+  <article class="feed-card compact" data-card="promo-boost">
+    <div class="card-meta">
+      <span class="card-badge badge-promo">Promoted</span>
+      <span class="when">Promo · ~7-card cadence</span>
+      <div class="aff"><button class="aff-btn" title="Dismiss">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon boost">⚡</div>
+      <div>
+        <div class="c-title">Boost your profile to top of customer searches</div>
+        <div class="c-sub">7-day boost · $49 · Estimated <strong>+38 profile views</strong> based on your category. Customers in Detroit, Cleveland, and Spartanburg searching for FANUC + body-shop right now.</div>
+      </div>
+      <button class="c-cta">Boost · $49</button>
+    </div>
+  </article>
+
+  <!-- 6. CUSTOMER PROFILE (#2) -->
+  <article class="feed-card" data-card="customer-profile">
+    <div class="card-meta">
+      <span class="card-badge badge-cust">Customer Profile</span>
+      <span class="when">Suggested · 5 mutuals</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img round" style="background-image:url('https://i.pravatar.cc/200?img=44');"></div>
+      <div>
+        <h2 class="hero-name">Rebecca Chen</h2>
+        <p class="hero-sub">Project Manager · <strong>Acme Robotics</strong> · Detroit, MI</p>
+        <p class="hero-loc">📍 Detroit metro · 15-yr career · Verified hirer</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-tile"><div class="v">47</div><div class="l">Hires</div></div>
+        <div class="stat-tile"><div class="v">$2.3M</div><div class="l">Spent</div></div>
+        <div class="stat-tile"><div class="v">4.94</div><div class="l">Rating</div></div>
+        <div class="stat-tile"><div class="v">84%</div><div class="l">Repeat</div></div>
+        <div class="stat-tile"><div class="v">8 yr</div><div class="l">Tenure</div></div>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Hiring focus <span class="small">Last 12 months</span></div>
+      <div class="chips">
+        <span class="chip indigo">FANUC integrators</span>
+        <span class="chip indigo">Body-in-white commissioning</span>
+        <span class="chip indigo">PLC migration</span>
+        <span class="chip indigo">Robot palletizers</span>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Recent reviews of professionals <span class="small">All 4.5★+</span></div>
+      <div class="rev-strip">
+        <div class="rev-card"><div class="rev-stars">★★★★★</div><div class="rev-from">For: Maria Lopez</div><div class="rev-quote">"Calm under deadline, blunt on root cause. Saved us 3 days on commissioning."</div><div class="rev-meta">2026-01 · BMW Spartanburg</div></div>
+        <div class="rev-card"><div class="rev-stars">★★★★★</div><div class="rev-from">For: John Park</div><div class="rev-quote">"Best Allen-Bradley programmer we've worked with. Asks the right questions before writing a line."</div><div class="rev-meta">2025-11 · Stellantis Sterling</div></div>
+        <div class="rev-card"><div class="rev-stars">★★★★½</div><div class="rev-from">For: Sarah Kim</div><div class="rev-quote">"Strong on documentation. Vision tuning a little slow first time but solid by week 2."</div><div class="rev-meta">2025-09 · GM Lake Orion</div></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta primary">Connect</button>
+      <button class="cta">Follow Acme Robotics</button>
+      <button class="cta">Message Rebecca</button>
+      <button class="cta">View full profile →</button>
+    </div>
+  </article>
+
+  <!-- 7. OPEN CONTRACT — DIRECT W-2 JOB (#8) -->
+  <article class="feed-card" data-card="contract-direct">
+    <div class="card-meta">
+      <span class="card-badge badge-direct">Direct W-2 Hire</span>
+      <span class="row-meta">$145K base · Open enrollment</span>
+      <span class="when">3 hrs ago</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button><button class="aff-btn">×</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#1d4ed8,#0EA5E9);">F</div>
+      <div>
+        <h2 class="hero-name">Senior Controls Engineer</h2>
+        <p class="hero-sub"><strong>Ford Motor Company</strong> · Dearborn, MI · Permanent · Hybrid (3-on-site)</p>
+        <p class="hero-loc">📍 Dearborn, MI · 12 mi from Detroit · Relocation assistance available</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-tile"><div class="v">$145K</div><div class="l">Base</div></div>
+        <div class="stat-tile"><div class="v">+25%</div><div class="l">Bonus</div></div>
+        <div class="stat-tile"><div class="v">RSU</div><div class="l">Equity</div></div>
+        <div class="stat-tile"><div class="v">Full</div><div class="l">Benefits</div></div>
+        <div class="stat-tile"><div class="v">25</div><div class="l">PTO</div></div>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Required skills</div>
+      <div class="chips">
+        <span class="chip green">PLC Programming (AB + Siemens)</span>
+        <span class="chip green">HMI development</span>
+        <span class="chip green">SCADA architecture</span>
+        <span class="chip">5+ yrs auto OEM</span>
+        <span class="chip">BS Engineering</span>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">💰 Apply now</button>
+      <button class="cta">Add to Watch List</button>
+      <button class="cta">Save for later</button>
+      <button class="cta">View full job →</button>
+    </div>
+  </article>
+
+  <!-- 8. ENDORSEMENT (#15) -->
+  <article class="feed-card activity" data-card="endorsement">
+    <div class="who-pic" style="background-image:url('https://i.pravatar.cc/100?img=33');"></div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">Endorsement</span>
+        <span class="when">5 hours ago</span>
+        <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+      </div>
+      <div class="who-line"><strong>John Park</strong> (Senior Controls Engineer at GM) endorsed</div>
+      <div class="what">Maria Lopez for <em>FANUC Programming</em> and <em>Body-shop Body-in-White</em></div>
+      <div class="meta">3rd endorsement this month · Brings your FANUC endorsement count to 27</div>
+    </div>
+  </article>
+
+  <!-- 9. PROMO: CONNECT SUGGESTIONS (#25) -->
+  <article class="feed-card compact" data-card="promo-connect">
+    <div class="card-meta">
+      <span class="card-badge badge-promo">Suggested</span>
+      <span class="when">~12-card cadence</span>
+      <div class="aff"><button class="aff-btn" title="Dismiss">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon connect">+</div>
+      <div>
+        <div class="c-title">3 controls engineers in Detroit you may know</div>
+        <div class="c-sub">Sarah Kim (GM Lake Orion) · Mike Volkov (Bosch Rexroth) · Ahmed Khan (Magna). All 5+ mutual connections, all worked at Stellantis Sterling 2024.</div>
+      </div>
+      <button class="c-cta">Connect all (3)</button>
+    </div>
+  </article>
+
+  <!-- 10. COMPANY PROFILE (#3) -->
+  <article class="feed-card" data-card="company-profile">
+    <div class="card-meta">
+      <span class="card-badge badge-co">Company Profile</span>
+      <span class="when">Trending in your area</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#F59E0B,#EF4444);">A</div>
+      <div>
+        <h2 class="hero-name">Acme Robotics</h2>
+        <p class="hero-sub">Tier 1 System Integrator · Body-in-White · Paint Shop · Assembly</p>
+        <p class="hero-loc">📍 Dearborn, MI · 47 active contracts · 138 team members · Hiring NOW</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-tile"><div class="v">47</div><div class="l">Open</div></div>
+        <div class="stat-tile"><div class="v">$142</div><div class="l">Avg /hr</div></div>
+        <div class="stat-tile"><div class="v">138</div><div class="l">Team</div></div>
+        <div class="stat-tile"><div class="v">12</div><div class="l">BG</div></div>
+        <div class="stat-tile"><div class="v">4.91</div><div class="l">Rating</div></div>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Specialties</div>
+      <div class="chips">
+        <span class="chip amber">Body-in-white</span>
+        <span class="chip amber">Paint shop automation</span>
+        <span class="chip amber">FANUC certified system integrator</span>
+        <span class="chip amber">ABB integration</span>
+        <span class="chip amber">Allen-Bradley PLCs</span>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Top customers</div>
+      <div class="mfr-strip">
+        <div class="mfr-tile"><img src="assets/logos/ford-motor-company.png" alt="Ford"></div>
+        <div class="mfr-tile"><img src="assets/logos/general-motors.png" alt="GM"></div>
+        <div class="mfr-tile"><img src="assets/logos/stellantis.png" alt="Stellantis"></div>
+        <div class="mfr-tile"><img src="assets/logos/bmw.png" alt="BMW"></div>
+        <div class="mfr-tile"><img src="assets/logos/honda.png" alt="Honda"></div>
+        <div class="mfr-tile"><img src="assets/logos/tesla.png" alt="Tesla"></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta primary">Follow company</button>
+      <button class="cta">Browse 47 open contracts →</button>
+      <button class="cta">View team</button>
+      <button class="cta">View full profile →</button>
+    </div>
+  </article>
+
+  <!-- 11. SKILL SUGGESTION (#31) -->
+  <article class="feed-card compact" data-card="util-skill">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Skill Suggestion</span>
+      <span class="when">Algorithm</span>
+      <div class="aff"><button class="aff-btn" title="Dismiss">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon" style="background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.30);color:#C4B5FD;">+</div>
+      <div>
+        <div class="c-title">Add "OPC UA" to your skill list</div>
+        <div class="c-sub">Used in <strong>312 open contracts</strong> · Avg rate $158/hr · 23 customers in your saved geography hiring this skill right now.</div>
+      </div>
+      <button class="c-cta">Add skill</button>
+    </div>
+  </article>
+
+  <!-- 12. OPEN CONTRACT — STD repeat -->
+  <article class="feed-card" data-card="contract-std-2">
+    <div class="card-meta">
+      <span class="card-badge badge-contract"><span class="live-dot"></span>Hourly · Live</span>
+      <span class="row-meta">11 days left</span>
+      <span class="when">3 hrs ago</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button><button class="aff-btn">×</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#0EA5E9,#6366F1);">GM</div>
+      <div>
+        <h2 class="hero-name">Assembly line 4 — AB CompactLogix migration</h2>
+        <p class="hero-sub"><strong>General Motors · Lake Orion, MI</strong> · 8-week onsite · Day shift</p>
+        <p class="hero-loc">📍 Lake Orion, MI · 38 mi from Detroit</p>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Pay rates</div>
+      <div class="rate-grid">
+        <div class="rate-tile"><div class="l">Base</div><div class="v">$145<small>/hr</small></div></div>
+        <div class="rate-tile"><div class="l">Overtime</div><div class="v">$217.50<small>/hr</small></div></div>
+        <div class="rate-tile"><div class="l">Double-time</div><div class="v">$290<small>/hr</small></div></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">💰 Apply now</button>
+      <button class="cta">Add to Watch List</button>
+      <button class="cta">View full contract →</button>
+    </div>
+  </article>
+
+  <!-- 13. REVIEW POSTED (#16) -->
+  <article class="feed-card activity" data-card="review-posted">
+    <div class="who-pic" style="background:linear-gradient(135deg,#FCD34D,#F59E0B);display:grid;place-items:center;color:#fff;font-family:Outfit;font-weight:800;font-size:18px;">B</div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">★★★★★ Review Posted</span>
+        <span class="when">1 day ago</span>
+        <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+      </div>
+      <div class="who-line"><strong>BMW Manufacturing</strong> reviewed <strong>Maria Lopez</strong></div>
+      <div class="what">"Calm under deadline, blunt on root cause. Saved us 3 days on commissioning."</div>
+      <div class="meta">★★★★★ · Body Shop Cell 14 FANUC retrofit · Spartanburg, SC · Jan 2026</div>
+    </div>
+  </article>
+
+  <!-- 14. BUSINESS GROUP (#4) -->
+  <article class="feed-card" data-card="business-group">
+    <div class="card-meta">
+      <span class="card-badge badge-bg">Business Group</span>
+      <span class="when">Recently active · 4 new threads</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#EC4899,#A855F7);">GL</div>
+      <div>
+        <h2 class="hero-name">Great Lakes Automation Network</h2>
+        <p class="hero-sub">Regional integrator group · Detroit / Cleveland / Chicago / Milwaukee</p>
+        <p class="hero-loc">📍 4-state coverage · Founded 2019 · Member-owned</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-tile"><div class="v">138</div><div class="l">Members</div></div>
+        <div class="stat-tile"><div class="v">12</div><div class="l">Open contracts</div></div>
+        <div class="stat-tile"><div class="v">$248K</div><div class="l">Avg comp</div></div>
+        <div class="stat-tile"><div class="v">87%</div><div class="l">Avail</div></div>
+        <div class="stat-tile"><div class="v">7 yr</div><div class="l">Active</div></div>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Group specialties</div>
+      <div class="chips">
+        <span class="chip" style="color:#F9A8D4;background:rgba(236,72,153,0.10);border-color:rgba(236,72,153,0.25);">Body-shop integration</span>
+        <span class="chip" style="color:#F9A8D4;background:rgba(236,72,153,0.10);border-color:rgba(236,72,153,0.25);">Paint shop</span>
+        <span class="chip" style="color:#F9A8D4;background:rgba(236,72,153,0.10);border-color:rgba(236,72,153,0.25);">Assembly automation</span>
+        <span class="chip" style="color:#F9A8D4;background:rgba(236,72,153,0.10);border-color:rgba(236,72,153,0.25);">EV battery commissioning</span>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta primary">Request to join (1 BG max)</button>
+      <button class="cta">Browse 12 open contracts →</button>
+      <button class="cta">Members directory</button>
+      <button class="cta">View full group →</button>
+    </div>
+  </article>
+
+  <!-- 15. JOB MATCH ALERT (#40) -->
+  <article class="feed-card compact" data-card="util-jobmatch">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Job Match · 92%</span>
+      <span class="when">4 hours left to apply</span>
+      <div class="aff"><button class="aff-btn" title="Dismiss">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon match">✦</div>
+      <div>
+        <div class="c-title">92% match: Robot palletizer commissioning · Acme Robotics</div>
+        <div class="c-sub">Matches your skills (FANUC R-2000iC + RoboGuide + Karel) and your geography (Detroit metro). Avg pay match: <strong>$148.50/hr</strong>.</div>
+      </div>
+      <button class="c-cta">Review + apply</button>
+    </div>
+  </article>
+
+  <!-- 16. SCHOOL / TRAINING (#5) -->
+  <article class="feed-card" data-card="school">
+    <div class="card-meta">
+      <span class="card-badge badge-school">Training Program</span>
+      <span class="when">Cohort Apr 14</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#A855F7,#7C3AED);">M</div>
+      <div>
+        <h2 class="hero-name">FANUC R-30iB Operator Certification</h2>
+        <p class="hero-sub"><strong>Macomb Community College</strong> — Continuing Ed · Authorized FANUC Training Partner</p>
+        <p class="hero-loc">📍 Warren, MI · 5-day intensive · $2,400 · Next cohort April 14, 2026 (4 seats left)</p>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Cert details</div>
+      <div class="chips">
+        <span class="chip" style="color:#C4B5FD;background:rgba(168,85,247,0.10);border-color:rgba(168,85,247,0.25);">FANUC OEM cert</span>
+        <span class="chip" style="color:#C4B5FD;background:rgba(168,85,247,0.10);border-color:rgba(168,85,247,0.25);">40 contact hours</span>
+        <span class="chip" style="color:#C4B5FD;background:rgba(168,85,247,0.10);border-color:rgba(168,85,247,0.25);">Hands-on R-30iB lab</span>
+        <span class="chip" style="color:#C4B5FD;background:rgba(168,85,247,0.10);border-color:rgba(168,85,247,0.25);">12 customers prefer-hire</span>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta primary">Enroll · $2,400</button>
+      <button class="cta">Add to Watch List</button>
+      <button class="cta">Tuition financing</button>
+      <button class="cta">View school profile →</button>
+    </div>
+    <p style="margin-top:13px;font-size:11px;color:var(--glass-text-tertiary);"><span class="fixture-flag">FIXTURE NEEDED — Tony confirms canonical school listings</span></p>
+  </article>
+
+  <!-- 17. PROMO: BOOST repeat -->
+  <article class="feed-card compact" data-card="promo-boost-2">
+    <div class="card-meta">
+      <span class="card-badge badge-promo">Promoted</span>
+      <span class="when">Promo · ~7-card cadence</span>
+      <div class="aff"><button class="aff-btn" title="Dismiss">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon boost">⚡</div>
+      <div>
+        <div class="c-title">Featured in Pro searches · Top 1% rate boost</div>
+        <div class="c-sub">14-day premium boost · $79 · Pin to top of every customer search in Detroit / Cleveland / Spartanburg + 3 promoted slots in Acme Robotics' candidate dashboard.</div>
+      </div>
+      <button class="c-cta">Boost · $79</button>
+    </div>
+  </article>
+
+  <!-- 18. HIRE ANNOUNCEMENT repeat -->
+  <article class="feed-card activity" data-card="hire-announce-2">
+    <div class="who-pic" style="background-image:url('https://i.pravatar.cc/100?img=47');"></div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">Hire Announcement</span>
+        <span class="when">3 days ago</span>
+        <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+      </div>
+      <div class="who-line"><strong>Whirlpool</strong> hired <strong>Maria Lopez</strong></div>
+      <div class="what">Robot palletizer commissioning · Clyde, OH · 6-week project</div>
+      <div class="meta">$23,500 invoiced · 100% on-time · Customer rating pending</div>
+    </div>
+  </article>
+
+  <!-- 19. ADMIN POST (#13) -->
+  <article class="feed-card admin-post" data-card="admin-post">
+    <div class="card-meta">
+      <span class="card-badge badge-admin">Admin Post · From Automate America</span>
+      <span class="when">6 hrs ago</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="who">
+      <div class="who-pic">T</div>
+      <div>
+        <div class="who-name">Tony Wallace</div>
+        <div class="who-role">Founder + CEO · Automate America</div>
+      </div>
+    </div>
+    <h2 class="post-h">Direct Hire flows go live next week — what changes for Pros</h2>
+    <div class="post-body">
+      <p>We're rolling out Direct W-2 Hire flows on May 5. If you're an active Pro, three things to know:</p>
+      <ol style="padding-left:21px;line-height:1.8;">
+        <li><strong>Direct Hire postings</strong> appear in your feed alongside hourly contracts. Apply with the same one-click flow.</li>
+        <li><strong>Background checks</strong> for Direct Hire pre-load from your verified Pro profile — no second upload.</li>
+        <li><strong>Salary negotiation</strong> stays platform-side until offer accept. We never share counter-offers without your sign-off.</li>
+      </ol>
+      <p style="margin-top:11px;">Questions? Reply to this card or DM @tony. — TW</p>
+    </div>
+    <p style="margin-top:13px;font-size:11px;color:var(--glass-text-tertiary);"><span class="fixture-flag">FIXTURE NEEDED — Tony approves canonical admin-post copy</span></p>
+  </article>
+
+  <!-- 20. PRODUCT LISTING (#10) -->
+  <article class="feed-card" data-card="product">
+    <div class="card-meta">
+      <span class="card-badge badge-product">Product Listing</span>
+      <span class="when">In stock</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#F59E0B,#FCD34D);color:#0a0a14;">F</div>
+      <div>
+        <h2 class="hero-name">FANUC R-30iB Plus Mate Controller</h2>
+        <p class="hero-sub">Authorized FANUC distributor · A05B-2655-J820 · 3-yr warranty included</p>
+        <p class="hero-loc">📍 Detroit warehouse · Same-day pickup · Free freight to MI/OH/IN/IL</p>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Specs</div>
+      <div class="chips">
+        <span class="chip">7-axis support</span>
+        <span class="chip">EtherNet/IP + DeviceNet</span>
+        <span class="chip">iRVision compatible</span>
+        <span class="chip">3-yr warranty</span>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">$24,500 · Add to quote</button>
+      <button class="cta">Spec sheet PDF</button>
+      <button class="cta">Talk to distributor</button>
+    </div>
+    <p style="margin-top:13px;font-size:11px;color:var(--glass-text-tertiary);"><span class="fixture-flag">FIXTURE NEEDED — products table</span></p>
+  </article>
+
+  <!-- 21. WG repeat -->
+  <article class="feed-card" data-card="contract-wg-2">
+    <div class="card-meta">
+      <span class="card-badge badge-wg"><span class="live-dot"></span>White Glove · Live</span>
+      <span class="row-meta">2 days left</span>
+      <span class="when">8 hrs ago</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button><button class="aff-btn">×</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);">[WG]</div>
+      <div>
+        <h2 class="hero-name">Robot palletizer commissioning</h2>
+        <p class="hero-sub"><strong>Acme Robotics</strong> · Detroit, MI · 4-week onsite · Day shift · NDA required</p>
+        <p class="hero-loc">📍 Detroit metro · 0 mi from your saved location</p>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Pay rates</div>
+      <div class="rate-grid">
+        <div class="rate-tile wg"><div class="l">Base</div><div class="v">$148.50<small>/hr</small></div></div>
+        <div class="rate-tile wg"><div class="l">Overtime</div><div class="v">$222.75<small>/hr</small></div></div>
+        <div class="rate-tile wg"><div class="l">Double-time</div><div class="v">$297<small>/hr</small></div></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">💰 Apply now</button>
+      <button class="cta">Add to Watch List</button>
+      <button class="cta">View full contract →</button>
+    </div>
+  </article>
+
+  <!-- 22. CONNECTION ACTIVITY (#18) -->
+  <article class="feed-card activity" data-card="connection-activity">
+    <div class="who-pic" style="background-image:url('https://i.pravatar.cc/100?img=23');"></div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">In your network</span>
+        <span class="when">7 hrs ago</span>
+        <div class="aff"><button class="aff-btn">♡</button></div>
+      </div>
+      <div class="who-line"><strong>Sarah Kim</strong> (Senior Controls Engineer at GM Lake Orion)</div>
+      <div class="what">Connected with <strong>Bosch Rexroth Detroit</strong></div>
+      <div class="meta">2nd connection in your network this week to join Bosch Rexroth · You may want to follow</div>
+    </div>
+  </article>
+
+  <!-- 23. PROMO: REFER (#26) -->
+  <article class="feed-card compact" data-card="promo-refer">
+    <div class="card-meta">
+      <span class="card-badge badge-promo">Refer & Earn</span>
+      <span class="when">~15-card cadence</span>
+      <div class="aff"><button class="aff-btn" title="Dismiss">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon refer">↗</div>
+      <div>
+        <div class="c-title">Refer a controls engineer · Earn 1 month free Pro Plus</div>
+        <div class="c-sub">When they post their first contract or hit 40 hours, you get 30 days of Pro Plus credited automatically. No cap on referrals.</div>
+      </div>
+      <button class="c-cta">Send invite</button>
+    </div>
+  </article>
+
+  <!-- 24. SERVICE LISTING (#11) -->
+  <article class="feed-card" data-card="service">
+    <div class="card-meta">
+      <span class="card-badge badge-service">Service Listing</span>
+      <span class="when">From $25K · Avail Q2-Q3</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#10B981,#059669);">S</div>
+      <div>
+        <h2 class="hero-name">Production-line commissioning</h2>
+        <p class="hero-sub"><strong>Acme Robotics</strong> · Turnkey commissioning · 14-week typical · Body-shop / paint / assembly</p>
+        <p class="hero-loc">📍 Detroit-based · MI / OH / IN / IL coverage · Travel quoted separately</p>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">What's included</div>
+      <div class="chips">
+        <span class="chip green">FAT site walks</span>
+        <span class="chip green">Robot programming + safety</span>
+        <span class="chip green">PLC tie-in + HMI</span>
+        <span class="chip green">Vision setup + tuning</span>
+        <span class="chip green">Operator training (12 hrs)</span>
+        <span class="chip green">90-day post-launch support</span>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">Request quote · From $25K</button>
+      <button class="cta">Watch this service</button>
+      <button class="cta">View provider profile →</button>
+    </div>
+    <p style="margin-top:13px;font-size:11px;color:var(--glass-text-tertiary);"><span class="fixture-flag">FIXTURE NEEDED — services table</span></p>
+  </article>
+
+  <!-- 25. SPONSORED CONTRACT (#28) -->
+  <article class="feed-card" data-card="sponsored-contract" style="border-color:rgba(245,158,11,0.30);">
+    <div class="card-meta">
+      <span class="card-badge badge-sponsored">★ Sponsored Contract</span>
+      <span class="row-meta">Paid placement · Top of feed for skill match</span>
+      <span class="when">Promoted</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button><button class="aff-btn">×</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#F59E0B,#A855F7);">ST</div>
+      <div>
+        <h2 class="hero-name">Sterling Heights paint shop PLC migration · SPONSORED</h2>
+        <p class="hero-sub"><strong>Stellantis</strong> wants this filled this week · 6-week onsite · $155/hr base</p>
+        <p class="hero-loc">📍 Sterling Heights, MI · Apply within 24 hrs to be top-3 reviewed</p>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">💰 Priority apply</button>
+      <button class="cta">View full contract →</button>
+    </div>
+  </article>
+
+  <!-- 26. USER POST (#12) -->
+  <article class="feed-card user-post" data-card="user-post">
+    <div class="card-meta">
+      <span class="card-badge badge-post">User Post · Question</span>
+      <span class="when">1 day ago</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="who">
+      <div class="who-pic" style="background-image:url('https://i.pravatar.cc/100?img=33');"></div>
+      <div>
+        <div class="who-name">John Park</div>
+        <div class="who-occ">Senior Controls Engineer · GM Lake Orion · 12-yr veteran</div>
+      </div>
+    </div>
+    <div class="post-body">Anyone seen the new Allen-Bradley CompactLogix L8 firmware update break HMI tags? Updated 5 racks last weekend, FactoryTalk View ME (v13) lost ~30% of bound tags after the L8 firmware push to v36.011. Rolling back to v35.013 restored tags. Logging here in case anyone hits the same. AB support said "open a case" — case is open, no fix yet.</div>
+    <p style="margin-top:13px;font-size:11px;color:var(--glass-text-tertiary);"><span class="fixture-flag">FIXTURE NEEDED — user-post table</span></p>
+    <div class="react"><span>❤ 47</span><span>💬 12 replies</span><span>↗ 8 shares</span></div>
+  </article>
+
+  <!-- 27. BADGE EARNED (#17) -->
+  <article class="feed-card" data-card="badge-earned">
+    <div class="card-meta">
+      <span class="card-badge badge-activity">Achievement Unlocked</span>
+      <span class="when">Just now</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#FCD34D,#F59E0B);color:#0a0a14;font-size:42px;">★</div>
+      <div>
+        <h2 class="hero-name">Top 1% Rate</h2>
+        <p class="hero-sub">Diamond tier · Maria Lopez has joined the top 1% of professionals by avg billing rate</p>
+        <p class="hero-loc">$148.50/hr avg · 9-yr career · 34 completed contracts</p>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Your badge collection · 11 of 18 earned</div>
+      <div class="bdg-strip">
+        <div class="bdg-tile"><div class="ic">★</div><div class="l1">Top 1% Rate</div><div class="l2">Diamond</div></div>
+        <div class="bdg-tile"><div class="ic">⏱</div><div class="l1">On-Time</div><div class="l2">96.3%</div></div>
+        <div class="bdg-tile"><div class="ic">✓</div><div class="l1">Verified Pro</div><div class="l2">Diamond</div></div>
+        <div class="bdg-tile"><div class="ic">⚙</div><div class="l1">Multi-Disc</div><div class="l2">Platinum</div></div>
+        <div class="bdg-tile"><div class="ic">10</div><div class="l1">10-yr Vet</div><div class="l2">Gold</div></div>
+        <div class="bdg-tile"><div class="ic">↻</div><div class="l1">Repeat Hire</div><div class="l2">Platinum</div></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta primary">Share to network</button>
+      <button class="cta">View all badges →</button>
+    </div>
+  </article>
+
+  <!-- 28. INDUSTRY NEWS (#34) -->
+  <article class="feed-card compact" data-card="industry-news">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Industry · ABB Robotics</span>
+      <span class="when">Today</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button><button class="aff-btn">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon news">⚡</div>
+      <div>
+        <div class="c-title">ABB releases IRB 1100 collaborative robot — 720mm reach, 4kg payload</div>
+        <div class="c-sub">First sub-1m cobot from ABB. Targeted at electronics + small-parts assembly. Lead-thru programming via wrist-jog. <strong>OPC UA + EtherNet/IP standard.</strong> Ships Q2 from $32K.</div>
+      </div>
+      <button class="c-cta">Read more</button>
+    </div>
+    <p style="margin-top:11px;font-size:11px;color:var(--glass-text-tertiary);"><span class="fixture-flag">FIXTURE NEEDED — industry news pipeline</span></p>
+  </article>
+
+  <!-- 29. GEO SUGGESTION (#36) -->
+  <article class="feed-card compact" data-card="util-geo">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Near You</span>
+      <span class="when">Algorithm</span>
+      <div class="aff"><button class="aff-btn" title="Dismiss">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon geo">📍</div>
+      <div>
+        <div class="c-title">12 contracts within 50 miles of Detroit · Avg $147/hr</div>
+        <div class="c-sub">8 hourly · 3 white glove · 1 direct W-2. Click to filter the feed by your geography.</div>
+      </div>
+      <button class="c-cta">Filter feed</button>
+    </div>
+  </article>
+
+  <!-- 30. FEATURED BUSINESS SPOTLIGHT (#27) -->
+  <article class="feed-card" data-card="featured-biz" style="border-color:rgba(245,158,11,0.35);background:linear-gradient(135deg,rgba(245,158,11,0.05),rgba(15,15,35,0.40));">
+    <div class="card-meta">
+      <span class="card-badge badge-sponsored">★ Featured Business</span>
+      <span class="row-meta">Paid placement · Trending Tier 1</span>
+      <span class="when">Featured</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#F59E0B,#EF4444);">A</div>
+      <div>
+        <h2 class="hero-name">Acme Robotics — 47 active contracts · 138-member team · Hiring 12 roles now</h2>
+        <p class="hero-sub">Featured Tier 1 integrator · Body-shop / paint / assembly · Detroit + 4 regional offices</p>
+        <p class="hero-loc">📍 Dearborn HQ · Cleveland · Spartanburg · Lake Orion · Sterling Heights</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-tile"><div class="v">47</div><div class="l">Open</div></div>
+        <div class="stat-tile"><div class="v">12</div><div class="l">FTE</div></div>
+        <div class="stat-tile"><div class="v">138</div><div class="l">Team</div></div>
+        <div class="stat-tile"><div class="v">$142</div><div class="l">Avg /hr</div></div>
+        <div class="stat-tile"><div class="v">4.91</div><div class="l">Rating</div></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta primary">Follow Acme</button>
+      <button class="cta">Browse all 47 contracts →</button>
+      <button class="cta">View team</button>
+      <button class="cta">View profile →</button>
+    </div>
+  </article>
+
+  <!-- 31. PROFESSIONAL PROFILE (#1) -->
+  <article class="feed-card" data-card="professional-profile">
+    <div class="card-meta">
+      <span class="card-badge badge-pro">Professional Profile · Suggested</span>
+      <span class="when">12 mutual connections</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img round" style="background-image:url('https://i.pravatar.cc/200?img=33');"></div>
+      <div>
+        <h2 class="hero-name">John Park</h2>
+        <p class="hero-sub">Senior Controls Engineer · 12-yr career · ★ 4.92 / 28 reviews</p>
+        <p class="hero-loc">📍 Lake Orion, MI · Available 2 wks notice · Direct W-2 only</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-tile"><div class="v">12 yr</div><div class="l">Exp</div></div>
+        <div class="stat-tile"><div class="v">28</div><div class="l">Contracts</div></div>
+        <div class="stat-tile"><div class="v">4.92</div><div class="l">Rating</div></div>
+        <div class="stat-tile"><div class="v">19</div><div class="l">Endorse</div></div>
+        <div class="stat-tile"><div class="v">$155</div><div class="l">Avg /hr</div></div>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="csec-h">Top skills</div>
+      <div class="mfr-strip">
+        <div class="mfr-tile"><img src="assets/logos/abb.png" alt="ABB"></div>
+        <div class="mfr-tile"><img src="assets/logos/rockwell-automation.png" alt="Rockwell"></div>
+        <div class="mfr-tile"><img src="assets/logos/siemens.png" alt="Siemens"></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">💰 Request John for a contract</button>
+      <button class="cta">Add to Watch List</button>
+      <button class="cta">Connect</button>
+      <button class="cta">View full profile →</button>
+    </div>
+  </article>
+
+  <!-- 32. SPONSORED SERVICE (#29) -->
+  <article class="feed-card compact" data-card="sponsored-svc" style="border-color:rgba(245,158,11,0.30);">
+    <div class="card-meta">
+      <span class="card-badge badge-sponsored">★ Sponsored Service</span>
+      <span class="when">Promoted</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button><button class="aff-btn">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon" style="background:rgba(245,158,11,0.12);border-color:rgba(245,158,11,0.30);color:#FCD34D;">$</div>
+      <div>
+        <div class="c-title">Field-service safety audit · 1-day onsite · From $4,500</div>
+        <div class="c-sub">PMC Industries · ANSI/RIA R15.06 + ISO 10218 audit. 18-month deficiency report. 50+ Tier-1 customers Q1 2026.</div>
+      </div>
+      <button class="c-cta">Quote</button>
+    </div>
+  </article>
+
+  <!-- 33. CERT RENEWAL (#32) -->
+  <article class="feed-card compact" data-card="util-cert" data-owner-only>
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Certification Renewal</span>
+      <span class="when">Expires 67 days</span>
+      <div class="aff"><button class="aff-btn">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon cert">⌛</div>
+      <div>
+        <div class="c-title">Your FANUC R-30iB cert expires June 30, 2026</div>
+        <div class="c-sub">Renewal class at Macomb Community College: $1,800 · 3-day refresher · Next cohort May 12. <strong>14 customers in your area filter for current FANUC cert.</strong></div>
+      </div>
+      <button class="c-cta">Schedule renewal</button>
+    </div>
+  </article>
+
+  <!-- 34. APPLICATION STATUS (#21) -->
+  <article class="feed-card activity" data-card="app-status" data-owner-only>
+    <div class="who-pic" style="background:linear-gradient(135deg,#10B981,#059669);display:grid;place-items:center;color:#fff;font-family:Outfit;font-weight:800;font-size:16px;">✓</div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">Application Status · Shortlisted</span>
+        <span class="when">2 hrs ago</span>
+        <div class="aff"><button class="aff-btn">♡</button></div>
+      </div>
+      <div class="who-line"><strong>Acme Robotics</strong> shortlisted your application</div>
+      <div class="what">Robot palletizer commissioning · Detroit, MI · $148.50/hr</div>
+      <div class="meta">3 of 12 applicants shortlisted · Interview slot offered: Wed 2pm or Thu 10am EST</div>
+    </div>
+  </article>
+
+  <!-- 35. WATCH-LIST UPDATE (#19) -->
+  <article class="feed-card activity" data-card="watchlist-update" data-owner-only>
+    <div class="who-pic" style="background:linear-gradient(135deg,#A855F7,#EC4899);display:grid;place-items:center;color:#fff;font-family:Outfit;font-weight:800;font-size:16px;">♡</div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">Watch-List Update</span>
+        <span class="when">15 min ago</span>
+        <div class="aff"><button class="aff-btn">♡</button></div>
+      </div>
+      <div class="who-line">A pro you're watching, <strong>Sarah Kim</strong>, posted availability</div>
+      <div class="what">Available Mar 16 — June 14 · Open to W-2 + hourly · Detroit metro / Lake Orion</div>
+      <div class="meta">Sarah hasn't been available in 8 months · Last contract: Stellantis Sterling, completed Dec 2025</div>
+    </div>
+  </article>
+
+  <!-- 36. AFFILIATE LISTING (#9) -->
+  <article class="feed-card" data-card="affiliate">
+    <div class="card-meta">
+      <span class="card-badge badge-affiliate">Affiliate · Distributor</span>
+      <span class="when">Verified partner</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#F59E0B,#FCD34D);color:#0a0a14;">RA</div>
+      <div>
+        <h2 class="hero-name">Rockwell Automation Detroit Distributor</h2>
+        <p class="hero-sub">Authorized Rockwell distributor · CompactLogix · ControlLogix · PowerFlex · FactoryTalk</p>
+        <p class="hero-loc">📍 Detroit warehouse · Same-day pickup MI/OH · 24-hr ship MI/OH/IN/IL</p>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta primary">Browse parts</button>
+      <button class="cta">Contact distributor</button>
+      <button class="cta">View affiliate profile →</button>
+    </div>
+    <p style="margin-top:13px;font-size:11px;color:var(--glass-text-tertiary);"><span class="fixture-flag">FIXTURE NEEDED — affiliates table</span></p>
+  </article>
+
+  <!-- 37. MILESTONE (#22) -->
+  <article class="feed-card activity" data-card="milestone">
+    <div class="who-pic" style="background-image:url('https://i.pravatar.cc/100?img=47');"></div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">Milestone · Anniversary</span>
+        <span class="when">Today</span>
+        <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+      </div>
+      <div class="who-line"><strong>Maria Lopez</strong></div>
+      <div class="what">9 years on Automate America · 34 completed contracts · 4.96 ★ avg</div>
+      <div class="meta">Joined March 2017 as a Hourly Pro · Tier-up to Pro Plus 2021 · Top 1% Rate badge today</div>
+    </div>
+  </article>
+
+  <!-- 38. PAYMENT (#39) -->
+  <article class="feed-card activity" data-card="payment" data-owner-only>
+    <div class="who-pic" style="background:linear-gradient(135deg,#10B981,#059669);display:grid;place-items:center;color:#fff;font-family:Outfit;font-weight:800;font-size:14px;">$</div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">Payment · Direct Deposit</span>
+        <span class="when">Cleared 2 hrs ago</span>
+        <div class="aff"><button class="aff-btn">♡</button></div>
+      </div>
+      <div class="who-line"><strong>$24,500.00</strong> deposited from <strong>ADM</strong></div>
+      <div class="what">Cedar Rapids Mill modernization · Final invoice · 14-week project</div>
+      <div class="meta">Net 2-day pay · Available in checking ending ••4711 · YTD earnings: $312,840</div>
+    </div>
+  </article>
+
+  <!-- 39. ADMIN MODERATION QUEUE -->
+  <article class="feed-card compact" data-card="admin-moderation" data-admin-only>
+    <div class="card-meta">
+      <span class="card-badge badge-admin">Admin · Moderation Queue</span>
+      <span class="when">14 pending</span>
+      <div class="aff"><button class="aff-btn">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon" style="background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.30);color:#FCA5A5;">!</div>
+      <div>
+        <div class="c-title">14 user posts pending moderation review</div>
+        <div class="c-sub">3 flagged for off-topic · 2 for vendor solicitation · 9 in standard queue (avg age 4 hrs).</div>
+      </div>
+      <button class="c-cta">Review queue</button>
+    </div>
+  </article>
+
+  <!-- 40. POLL (#38) -->
+  <article class="feed-card" data-card="poll">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Industry Poll · 2 days left</span>
+      <span class="when">412 responses</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero" style="grid-template-columns:1fr;">
+      <div>
+        <h2 class="hero-name" style="font-size:22px;">Which PLC platform are you investing skill hours in this year?</h2>
+        <p class="hero-sub">Industry-wide poll · 412 controls engineers responded so far · Closes Apr 30</p>
+      </div>
+    </div>
+    <div class="csec">
+      <div class="chips" style="flex-direction:column;align-items:stretch;">
+        <button class="chip" style="justify-content:space-between;padding:11px 14px;font-size:13px;">Allen-Bradley CompactLogix L8 <span style="font-family:'JetBrains Mono';color:var(--glass-text-tertiary);">38%</span></button>
+        <button class="chip" style="justify-content:space-between;padding:11px 14px;font-size:13px;">Siemens S7-1500 + TIA Portal <span style="font-family:'JetBrains Mono';color:var(--glass-text-tertiary);">27%</span></button>
+        <button class="chip" style="justify-content:space-between;padding:11px 14px;font-size:13px;">Schneider Modicon <span style="font-family:'JetBrains Mono';color:var(--glass-text-tertiary);">14%</span></button>
+        <button class="chip" style="justify-content:space-between;padding:11px 14px;font-size:13px;">Beckhoff TwinCAT <span style="font-family:'JetBrains Mono';color:var(--glass-text-tertiary);">12%</span></button>
+        <button class="chip" style="justify-content:space-between;padding:11px 14px;font-size:13px;">Other <span style="font-family:'JetBrains Mono';color:var(--glass-text-tertiary);">9%</span></button>
+      </div>
+    </div>
+    <p style="margin-top:13px;font-size:11px;color:var(--glass-text-tertiary);"><span class="fixture-flag">FIXTURE NEEDED — polls table</span></p>
+  </article>
+
+  <!-- 41. EVENT (#35) -->
+  <article class="feed-card compact" data-card="event">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Event · Geo-relevant</span>
+      <span class="when">June 2-5</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon" style="background:rgba(99,102,241,0.12);border-color:rgba(99,102,241,0.30);color:#A5B4FC;">📅</div>
+      <div>
+        <div class="c-title">Automate 2026 — Detroit · June 2-5 · Cobo Center</div>
+        <div class="c-sub">North America's largest automation expo. <strong>147 of your network</strong> attending. Free expo pass for verified Pros.</div>
+      </div>
+      <button class="c-cta">Get free pass</button>
+    </div>
+  </article>
+
+  <!-- 42. COMPLIANCE (#33) -->
+  <article class="feed-card compact" data-card="compliance">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Compliance · Update</span>
+      <span class="when">From Doug · Legal</span>
+      <div class="aff"><button class="aff-btn">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.14);color:var(--glass-text-secondary);">§</div>
+      <div>
+        <div class="c-title">W-9 form refresh due Apr 15 — applies to all 1099 Pros</div>
+        <div class="c-sub">IRS requires annual W-9 refresh for active 1099 contractors. Pre-filled from your existing W-9 — 2 minutes to confirm and re-sign.</div>
+      </div>
+      <button class="c-cta">Refresh W-9</button>
+    </div>
+  </article>
+
+  <!-- 43. TRENDING (#37) -->
+  <article class="feed-card compact" data-card="trending">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Trending · #EVBatteryCommissioning</span>
+      <span class="when">Algorithm</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon" style="background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.30);color:#C4B5FD;">#</div>
+      <div>
+        <div class="c-title">EV battery commissioning · 47 contracts opened this month</div>
+        <div class="c-sub">3x prior month volume. Top customers: Stellantis Brampton, GM Ultium Cells, Ford Cologne. Avg pay $158/hr (hourly) / $172K (W-2). Skills in highest demand: BMS programming, Module-stack assembly, ISO 26262.</div>
+      </div>
+      <button class="c-cta">Browse 47</button>
+    </div>
+  </article>
+
+  <!-- 44. GROUP ACTIVITY (#20) -->
+  <article class="feed-card activity" data-card="group-activity">
+    <div class="who-pic" style="background:linear-gradient(135deg,#EC4899,#A855F7);display:grid;place-items:center;color:#fff;font-family:Outfit;font-weight:800;font-size:18px;">GL</div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">Group · Great Lakes Automation Network</span>
+        <span class="when">2 hrs ago</span>
+        <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+      </div>
+      <div class="who-line">New thread in <strong>Great Lakes Automation Network</strong> (138 members)</div>
+      <div class="what">"Ohio-side member meet — Cleveland · April 22 · Hosted by Mike Volkov"</div>
+      <div class="meta">12 RSVPs in first 2 hours · BG admin pinned · Open to all members</div>
+    </div>
+  </article>
+
+  <!-- 45. SKILL SUGGESTION repeat -->
+  <article class="feed-card compact" data-card="util-skill2">
+    <div class="card-meta">
+      <span class="card-badge badge-utility">Skill Suggestion · 2 of 2</span>
+      <span class="when">Algorithm</span>
+      <div class="aff"><button class="aff-btn">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon" style="background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.30);color:#C4B5FD;">+</div>
+      <div>
+        <div class="c-title">Add "SCADA Wonderware" to your skill list</div>
+        <div class="c-sub">Used in 184 open contracts in your area · Avg rate $164/hr · Acme Robotics + Stellantis + GM all hiring this skill in Q2.</div>
+      </div>
+      <button class="c-cta">Add skill</button>
+    </div>
+  </article>
+
+  <!-- 46. DIRECT W-2 repeat -->
+  <article class="feed-card" data-card="contract-direct-2">
+    <div class="card-meta">
+      <span class="card-badge badge-direct">Direct W-2 Hire</span>
+      <span class="row-meta">$132K base · $20K signing</span>
+      <span class="when">5 hrs ago</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button><button class="aff-btn">×</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img lg-tile" style="background:linear-gradient(135deg,#7C3AED,#1d4ed8);">CR</div>
+      <div>
+        <h2 class="hero-name">Controls Engineer III — EV Battery</h2>
+        <p class="hero-sub"><strong>GM Ultium Cells</strong> · Lordstown, OH · Permanent · 4-on-site / 1 hybrid</p>
+        <p class="hero-loc">📍 Lordstown, OH · 65 mi from Cleveland · Relocation $8K + temp housing 90 days</p>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta money">💰 Apply now</button>
+      <button class="cta">Add to Watch List</button>
+      <button class="cta">View full job →</button>
+    </div>
+  </article>
+
+  <!-- 47. PROMO REFER repeat -->
+  <article class="feed-card compact" data-card="promo-refer2">
+    <div class="card-meta">
+      <span class="card-badge badge-promo">Refer & Earn · Customer side</span>
+      <span class="when">~15-card cadence</span>
+      <div class="aff"><button class="aff-btn">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon refer">↗</div>
+      <div>
+        <div class="c-title">Refer a customer hiring controls engineers · Earn $250 per first contract</div>
+        <div class="c-sub">When a customer you refer posts their first paid contract over $5K, $250 deposits to your account. No cap.</div>
+      </div>
+      <button class="c-cta">Send invite</button>
+    </div>
+  </article>
+
+  <!-- 48. ENDORSEMENT repeat -->
+  <article class="feed-card activity" data-card="endorsement2">
+    <div class="who-pic" style="background-image:url('https://i.pravatar.cc/100?img=11');"></div>
+    <div class="body">
+      <div class="card-meta">
+        <span class="card-badge badge-activity">Endorsement</span>
+        <span class="when">1 day ago</span>
+        <div class="aff"><button class="aff-btn">♡</button></div>
+      </div>
+      <div class="who-line"><strong>Mike Volkov</strong> (Bosch Rexroth Detroit) endorsed</div>
+      <div class="what">Maria Lopez for <em>Body-shop body-in-white</em> and <em>Calm under deadline</em></div>
+      <div class="meta">14th endorsement total · Brings your "calm under deadline" trait endorsement count to 9</div>
+    </div>
+  </article>
+
+  <!-- 49. CUSTOMER PROFILE repeat -->
+  <article class="feed-card" data-card="customer-profile2">
+    <div class="card-meta">
+      <span class="card-badge badge-cust">Customer Profile · Suggested</span>
+      <span class="when">In your area</span>
+      <div class="aff"><button class="aff-btn">♡</button><button class="aff-btn">↗</button></div>
+    </div>
+    <div class="hero">
+      <div class="hero-img round" style="background-image:url('https://i.pravatar.cc/200?img=51');"></div>
+      <div>
+        <h2 class="hero-name">David Reyes</h2>
+        <p class="hero-sub">Operations Director · <strong>Magna International</strong> · Troy, MI</p>
+        <p class="hero-loc">📍 Troy, MI · 27 mi from Detroit · Hires 8-12 contracts / quarter</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-tile"><div class="v">23</div><div class="l">Hires</div></div>
+        <div class="stat-tile"><div class="v">$1.4M</div><div class="l">Spent</div></div>
+        <div class="stat-tile"><div class="v">4.88</div><div class="l">Rating</div></div>
+        <div class="stat-tile"><div class="v">71%</div><div class="l">Repeat</div></div>
+        <div class="stat-tile"><div class="v">3 yr</div><div class="l">Tenure</div></div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <button class="cta primary">Connect</button>
+      <button class="cta">Follow Magna</button>
+      <button class="cta">View full profile →</button>
+    </div>
+  </article>
+
+  <!-- 50. PROMO BOOST repeat -->
+  <article class="feed-card compact" data-card="promo-boost3">
+    <div class="card-meta">
+      <span class="card-badge badge-promo">Promoted</span>
+      <span class="when">~7-card cadence</span>
+      <div class="aff"><button class="aff-btn">×</button></div>
+    </div>
+    <div class="c-row">
+      <div class="c-icon boost">⚡</div>
+      <div>
+        <div class="c-title">Quick Boost · 24 hrs · $19</div>
+        <div class="c-sub">Affordable mini-boost. Pin to top of customer searches in Detroit metro for 24 hours. Last 14 customers searched: <strong>FANUC + body-shop + 5+ yrs.</strong></div>
+      </div>
+      <button class="c-cta">Boost · $19</button>
+    </div>
+  </article>
+
+  <!-- LAZY-LOAD SENTINEL -->
+  <div class="lazy-sentinel" id="lazy-sentinel">
+    <span class="pulse"></span>Loading more · 11,188 entities ranked below this point
   </div>
+
 </main>
 
-<script src="scripts/glass-shell.js" data-active="feed"></script>
+<!-- FULLSCREEN POPOUT -->
+<div class="popout-overlay" id="popout">
+  <button class="popout-close" id="popout-close">×</button>
+  <div class="popout-card" id="popout-card"></div>
+</div>
+
+<script>
+  // Role toggle — switches CSS attribute on :root for visibility cascade
+  document.querySelectorAll('.role-tabs button').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.role-tabs button').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.documentElement.setAttribute('data-role', btn.getAttribute('data-r'));
+    });
+  });
+
+  // Fullscreen popout — clone the clicked card into the overlay (cloneNode = safe DOM, no innerHTML)
+  var popout = document.getElementById('popout');
+  var popoutCard = document.getElementById('popout-card');
+  document.querySelectorAll('.feed-card').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('.aff-btn') || e.target.closest('.cta') || e.target.closest('.c-cta') || e.target.closest('button')) return;
+      while (popoutCard.firstChild) { popoutCard.removeChild(popoutCard.firstChild); }
+      popoutCard.appendChild(card.cloneNode(true));
+      popout.classList.add('open');
+    });
+  });
+  document.getElementById('popout-close').addEventListener('click', function() { popout.classList.remove('open'); });
+  popout.addEventListener('click', function(e) { if (e.target === popout) popout.classList.remove('open'); });
+
+  // IntersectionObserver — lazy-load scaffolding (createElement + textContent = safe DOM, no innerHTML)
+  var sentinel = document.getElementById('lazy-sentinel');
+  var batchCount = 0;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && batchCount < 5) {
+        batchCount++;
+        var ph = document.createElement('article');
+        ph.className = 'feed-card compact';
+
+        var meta = document.createElement('div'); meta.className = 'card-meta';
+        var b = document.createElement('span'); b.className = 'card-badge badge-utility'; b.textContent = 'Lazy-Loaded Batch ' + batchCount;
+        var w = document.createElement('span'); w.className = 'when'; w.textContent = 'IntersectionObserver fired';
+        meta.appendChild(b); meta.appendChild(w);
+
+        var row = document.createElement('div'); row.className = 'c-row';
+        var ic = document.createElement('div'); ic.className = 'c-icon';
+        ic.style.background = 'rgba(99,102,241,0.12)'; ic.style.borderColor = 'rgba(99,102,241,0.30)'; ic.style.color = '#A5B4FC';
+        ic.textContent = '↓';
+        var body = document.createElement('div');
+        var title = document.createElement('div'); title.className = 'c-title'; title.textContent = 'Batch ' + batchCount + ' of next 10 cards loaded';
+        var sub = document.createElement('div'); sub.className = 'c-sub'; sub.textContent = 'In production this fetches the next 10 algorithm-ranked cards from /api/feed?cursor=… Mockup proves the pattern wires and the sentinel re-positions correctly so the next batch fires.';
+        body.appendChild(title); body.appendChild(sub);
+
+        row.appendChild(ic); row.appendChild(body);
+        ph.appendChild(meta); ph.appendChild(row);
+        sentinel.parentNode.insertBefore(ph, sentinel);
+      }
+    });
+  }, { rootMargin: '200px' });
+  observer.observe(sentinel);
+</script>
+
 </body>
 </html>
