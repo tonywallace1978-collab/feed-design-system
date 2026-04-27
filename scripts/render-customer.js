@@ -100,23 +100,11 @@
   }).join('');
 
   // WATCHED PROS
-  const proPhotos = {
-    38291: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces',
-    39102: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=faces',
-    40117: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces',
-    41208: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=faces',
-    41502: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop&crop=faces',
-    41334: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces',
-    41822: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=faces',
-    41709: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?w=200&h=200&fit=crop&crop=faces',
-    42118: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=200&fit=crop&crop=faces',
-    42301: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces',
-  };
   const watchedTop = D.watched_pros.slice(0, 4);
   const watchedOverflow = D.watched_pros.length - watchedTop.length;
   $('#watched-list').innerHTML = watchedTop.map(p => `
     <div class="pro-card${p.available?' avail':''}">
-      <div class="pro-avatar" style="background-image:url('${proPhotos[p.id]||''}')">
+      <div class="pro-avatar" style="background-image:url('${p.avatar||''}')">
         ${p.available ? '<span class="avail-dot" title="Available"></span>' : ''}
       </div>
       <div class="pro-meta">

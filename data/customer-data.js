@@ -131,16 +131,16 @@ window.CUSTOMER_DATA = {
   ],
 
   "watched_pros": [
-    { "id": 38291, "name": "Maria Lopez",     "occupation": "Senior Controls Engineer", "city": "Detroit, MI",      "rating": 4.96, "available": true,  "added_at": "2025-12-04", "times_hired": 8 },
-    { "id": 39102, "name": "Karen Mitchell",  "occupation": "Electrical Engineer",      "city": "Spartanburg, SC",  "rating": 4.88, "available": false, "added_at": "2025-09-18", "times_hired": 3 },
-    { "id": 40117, "name": "Tony Rivera",     "occupation": "ABB Robot Programmer",     "city": "Spartanburg, SC",  "rating": 4.91, "available": true,  "added_at": "2025-07-22", "times_hired": 2 },
-    { "id": 41208, "name": "Sarah Bennett",   "occupation": "KUKA Robot Programmer",    "city": "Louisville, KY",   "rating": 4.85, "available": true,  "added_at": "2025-06-10", "times_hired": 1 },
-    { "id": 41502, "name": "Lisa Park",       "occupation": "Vision Systems Specialist","city": "Detroit, MI",      "rating": 4.92, "available": false, "added_at": "2025-04-30", "times_hired": 2 },
-    { "id": 41334, "name": "Derek Simmons",   "occupation": "PLC Programmer",            "city": "Detroit, MI",      "rating": 4.79, "available": false, "added_at": "2025-03-15", "times_hired": 0 },
-    { "id": 41822, "name": "Jake Morrison",   "occupation": "FANUC Robot Programmer",    "city": "Detroit, MI",      "rating": 4.87, "available": true,  "added_at": "2025-02-04", "times_hired": 1 },
-    { "id": 41709, "name": "Alicia Reyes",    "occupation": "HMI / SCADA Engineer",      "city": "Louisville, KY",   "rating": 4.81, "available": true,  "added_at": "2024-12-20", "times_hired": 0 },
-    { "id": 42118, "name": "Megan Torres",    "occupation": "Safety Systems Tech",       "city": "Spartanburg, SC",  "rating": 4.74, "available": false, "added_at": "2024-10-08", "times_hired": 0 },
-    { "id": 42301, "name": "Victor Huang",    "occupation": "Welding Engineer",          "city": "Louisville, KY",   "rating": 4.69, "available": false, "added_at": "2024-08-19", "times_hired": 0 }
+    { "id": 38291, "name": "Maria Lopez",     "occupation": "Senior Controls Engineer", "city": "Detroit, MI",      "rating": 4.96, "available": true,  "added_at": "2025-12-04", "times_hired": 8, "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces" },
+    { "id": 39102, "name": "Karen Mitchell",  "occupation": "Electrical Engineer",      "city": "Spartanburg, SC",  "rating": 4.88, "available": false, "added_at": "2025-09-18", "times_hired": 3, "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=faces" },
+    { "id": 40117, "name": "Tony Rivera",     "occupation": "ABB Robot Programmer",     "city": "Spartanburg, SC",  "rating": 4.91, "available": true,  "added_at": "2025-07-22", "times_hired": 2, "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces" },
+    { "id": 41208, "name": "Sarah Bennett",   "occupation": "KUKA Robot Programmer",    "city": "Louisville, KY",   "rating": 4.85, "available": true,  "added_at": "2025-06-10", "times_hired": 1, "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=faces" },
+    { "id": 41502, "name": "Lisa Park",       "occupation": "Vision Systems Specialist","city": "Detroit, MI",      "rating": 4.92, "available": false, "added_at": "2025-04-30", "times_hired": 2, "avatar": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop&crop=faces" },
+    { "id": 41334, "name": "Derek Simmons",   "occupation": "PLC Programmer",            "city": "Detroit, MI",      "rating": 4.79, "available": false, "added_at": "2025-03-15", "times_hired": 0, "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces" },
+    { "id": 41822, "name": "Jake Morrison",   "occupation": "FANUC Robot Programmer",    "city": "Detroit, MI",      "rating": 4.87, "available": true,  "added_at": "2025-02-04", "times_hired": 1, "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=faces" },
+    { "id": 41709, "name": "Alicia Reyes",    "occupation": "HMI / SCADA Engineer",      "city": "Louisville, KY",   "rating": 4.81, "available": true,  "added_at": "2024-12-20", "times_hired": 0, "avatar": "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=200&h=200&fit=crop&crop=faces" },
+    { "id": 42118, "name": "Megan Torres",    "occupation": "Safety Systems Tech",       "city": "Spartanburg, SC",  "rating": 4.74, "available": false, "added_at": "2024-10-08", "times_hired": 0, "avatar": "https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=200&fit=crop&crop=faces" },
+    { "id": 42301, "name": "Victor Huang",    "occupation": "Welding Engineer",          "city": "Louisville, KY",   "rating": 4.69, "available": false, "added_at": "2024-08-19", "times_hired": 0, "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces" }
   ],
 
   "preferred_business_groups": [
