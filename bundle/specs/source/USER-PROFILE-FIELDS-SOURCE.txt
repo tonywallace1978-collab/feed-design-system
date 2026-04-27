@@ -1,0 +1,434 @@
+Profile Fields and Subfields
+Personal Information
+* First Name (Mandatory)
+o Tooltip: "Please enter your legal first name. This will help us identify you correctly and ensure that your profile is unique to you."
+* Last Name (Mandatory)
+o Tooltip: "Please enter your legal last name. Accurate information helps maintain the integrity of our platform and makes it easier for others to find and connect with you."
+* Email Address (Mandatory)
+o Tooltip: "Enter your primary email address. This is crucial for account verification, communication, and receiving important updates from us."
+* Phone Number (Mandatory, for two-factor authentication)
+o Tooltip: "Enter your phone number to enable two-factor authentication. This extra layer of security helps protect your account from unauthorized access."
+* Profile Picture (Optional)
+o Tooltip: "Upload a professional profile picture. A clear, professional photo can make your profile more appealing and help you stand out to potential clients."
+* Short Bio (Optional)
+o Tooltip: "Write a brief introduction about yourself. Share a little about your background, interests, and what you bring to the table."
+* Availability (Mandatory: Yes/No, stays available for one week, then notifies user to renew availability)
+o Tooltip: "Indicate if you are currently available for work. Keeping this updated helps you get matched with relevant opportunities."
+* Citizenship (Mandatory)
+o Tooltip: "Select your country of citizenship. This information is important for job eligibility and compliance with local laws."
+* Emergency Contact (Optional Until Engagement in White Glove Contract)
+o Tooltip: "Provide details of someone we can contact in case of an emergency. This helps ensure your safety while working."
+o Name
+* Tooltip: "Enter the name of your emergency contact. This person should be someone reliable and easy to reach."
+o Phone Number
+* Tooltip: "Enter the phone number of your emergency contact to ensure they can be reached quickly if needed."
+o Relationship
+* Tooltip: "Specify your relationship with the emergency contact (e.g., spouse, parent, friend). This provides context for their role."
+* Languages Spoken (Optional)
+o Tooltip: "List the languages you are proficient in. This can be a valuable asset for international opportunities and clients who prefer communication in their native language."
+Professional Information
+* Primary Occupation (Mandatory)
+o Tooltip: "Specify your primary occupation or job title. This defines your main area of expertise and helps match you with relevant jobs."
+* Additional Occupations (Optional, up to 5)
+o Tooltip: "You can add up to 5 additional occupations. This showcases your versatility and breadth of skills."
+o Occupation 2
+* Tooltip: "Add another occupation or job title."
+o Occupation 3
+* Tooltip: "Add another occupation or job title."
+o Occupation 4
+* Tooltip: "Add another occupation or job title."
+o Occupation 5
+* Tooltip: "Add another occupation or job title."
+* Top Skill (Mandatory)
+o Skill Name
+* Tooltip: "Enter the name of your top skill. Most used options are at the top of the dropdown list, or you can select 'Other' to type in a skill not listed."
+o About Skill (Blurb)
+* Tooltip: "Provide details about your experience with this skill. Mention any relevant projects, achievements, or certifications."
+o Self Rating (5 Circles, user can choose half circles)
+* Tooltip: "Rate your proficiency in this skill from 1 to 5 circles, with half-circle increments. Be honest to help others understand your expertise level."
+o Manufacturer (Optional)
+* Tooltip: "Specify the manufacturer associated with this skill, if applicable. Most used options are at the top of the dropdown list, or you can select 'Other' to type in a manufacturer not listed."
+o Model/Version/Controller (Optional)
+* Tooltip: "Specify the model, version, or controller related to this skill, if applicable. Most used options are at the top of the dropdown list, or you can select 'Other' to type in a model/version/controller not listed."
+o Manufacturer Image
+* Tooltip: "Manufacturers have images that are either automatically added if already available and admin approved or the user can upload their own image."
+* Second Skill (Optional)
+o Skill Name
+* Tooltip: "Enter the name of your second skill. Most used options are at the top of the dropdown list, or you can select 'Other' to type in a skill not listed."
+o About Skill (Blurb)
+* Tooltip: "Provide details about your experience with this skill. Highlight relevant achievements or projects."
+o Self Rating (5 Circles, user can choose half circles)
+* Tooltip: "Rate your proficiency in this skill from 1 to 5 circles, with half-circle increments. This helps others gauge your skill level."
+o Manufacturer (Optional)
+* Tooltip: "Specify the manufacturer associated with this skill, if applicable. Most used options are at the top of the dropdown list, or you can select 'Other' to type in a manufacturer not listed."
+o Model/Version/Controller (Optional)
+* Tooltip: "Specify the model, version, or controller related to this skill, if applicable. Most used options are at the top of the dropdown list, or you can select 'Other' to type in a model/version/controller not listed."
+o Manufacturer Image
+* Tooltip: "Manufacturers have images that are either automatically added if already available and admin approved or the user can upload their own image."
+* Other Skills (Optional, up to 10)
+o Skill Name
+* Tooltip: "Enter the name of an additional skill. Most used options are at the top of the dropdown list, or you can select 'Other' to type in a skill not listed."
+o About Skill (Blurb)
+* Tooltip: "Provide details about your experience with this skill. Explain your proficiency and significant achievements."
+o Self Rating (5 Circles, user can choose half circles)
+* Tooltip: "Rate your proficiency in this skill from 1 to 5 circles, with half-circle increments. This helps in understanding your skill level."
+o Manufacturer (Optional)
+* Tooltip: "Specify the manufacturer associated with this skill, if applicable. Choose from the dropdown list or enter a new one."
+o Model/Version/Controller (Optional)
+* Tooltip: "Specify the model, version, or controller related to this skill, if applicable. Select from the dropdown list or type in your own."
+o Manufacturer Image
+* Tooltip: "Manufacturers have images that are either automatically added if already available and admin approved or the user can upload their own image."
+Professional Experience
+* Work Experience (Optional, can add multiple entries)
+o Tooltip: "Provide detailed information about your past jobs. This helps potential clients see your professional history."
+o Job Title
+* Tooltip: "Enter your job title for this position. Be specific to give a clear understanding of your role."
+o Company Name
+* Tooltip: "Enter the name of the company you worked for. This adds credibility to your experience."
+o Start Date
+* Tooltip: "Enter the start date of this position. Providing accurate dates helps in validating your experience."
+o End Date
+* Tooltip: "Enter the end date of this position. If you are currently employed, select 'Present'."
+o Responsibilities
+* Tooltip: "Describe your key responsibilities in this position. Highlight major tasks and achievements."
+o Company Image/Icon
+* Tooltip: "Users can upload an image or icon associated with the company. This visual detail can enhance your profile."
+* Education (Optional, can add multiple entries)
+o Tooltip: "List your educational background. This can include degrees, certifications, and relevant training."
+o Degree
+* Tooltip: "Enter the degree or certification you obtained. This highlights your educational qualifications."
+o Institution
+* Tooltip: "Enter the name of the institution where you obtained the degree. This helps verify your educational background."
+o Graduation Year
+* Tooltip: "Enter the year you graduated or completed the program. Accurate dates help validate your education."
+o Institution Image/Icon
+* Tooltip: "Users can upload an image or icon associated with the institution. This visual detail can enhance your profile."
+* Certifications (Optional, can add multiple entries)
+o Tooltip: "List any certifications you have earned. This adds to your professional qualifications."
+o Certification Name
+* Tooltip: "Enter the name of the certification. This should be specific to what you have achieved."
+o Issuing Organization
+* Tooltip: "Enter the name of the organization that issued the certification. This helps verify the certification."
+o Issue Date
+* Tooltip: "Enter the date when the certification was issued. This adds a timeline to your qualifications."
+o Expiry Date (Optional)
+* Tooltip: "Enter the expiration date of the certification, if applicable. This helps keep your profile up-to-date."
+o Certification Image/Icon
+* Tooltip: "Users can upload an image or icon associated with the certification. This visual detail can enhance your profile."
+* Endorsements (Optional)
+o Tooltip: "Automatically list any endorsements you have received from connections, indicating your expertise in occupations, industries, applications, or skills."
+Financial Information
+* Pay Rate (Optional)
+o Tooltip: "Provide your pay rate details to let potential clients know your expected compensation."
+o Base Rate (0-40 hours)
+* Tooltip: "Enter your desired hourly rate for up to 40 hours per week. This helps clients understand your standard rate."
+o Overtime Rate (41+ hours)
+* Tooltip: "Enter your desired hourly rate for overtime (more than 40 hours per week). This is useful for projects that may require extra hours."
+o Sunday and Holiday Rate
+* Tooltip: "Enter your desired hourly rate for Sundays and holidays. This ensures you are compensated fairly for work on these days."
+o Flat Rate (All-inclusive, no overtime)
+* Tooltip: "Enter your all-inclusive flat rate, applicable if there is no overtime. This provides a straightforward option for clients."
+* Banking Information (Admin Only, Optional Until Engagement in White Glove Contract)
+o Tooltip: "Provide your banking details securely to facilitate payments."
+o Bank Name
+* Tooltip: "Enter the name of your bank. This helps us direct your payments correctly."
+o Routing #
+* Tooltip: "Enter the routing number of your bank. This ensures payments are processed accurately."
+o Account #
+* Tooltip: "Enter your bank account number. This information is crucial for direct deposits."
+o Account Name
+* Tooltip: "Enter the name associated with your bank account. This ensures payments are made to the correct account."
+References (Optional, can add multiple entries)
+* Reference Name
+o Tooltip: "Enter the name of your reference. This should be someone who can vouch for your professional skills."
+* Relationship
+o Tooltip: "Specify your relationship with the reference (e.g., former manager, colleague). This provides context for their endorsement."
+* Contact Information
+o Tooltip: "Provide the contact details of your reference."
+o Phone Number
+* Tooltip: "Enter the phone number of your reference. This allows potential clients to contact them for verification."
+o Email
+* Tooltip: "Enter the email address of your reference. This provides another means for verification."
+* Reference Letter (Optional)
+o Tooltip: "Upload a reference letter if available. This adds credibility to your profile."
+Secure Personal Files (Mandatory for certain processes, secure access)
+* Resume (Upload/Download)
+o Tooltip: "Upload your latest resume. This is crucial for clients to understand your background and qualifications."
+* Background Check (Upload/Download)
+o Tooltip: "Upload a copy of your background check. This adds an extra layer of trust for potential clients."
+* Drug Test (Upload/Download)
+o Tooltip: "Upload a copy of your drug test results. This can be important for certain types of work."
+* Photo ID (Upload/Download)
+o Tooltip: "Upload a copy of your photo ID. This helps verify your identity."
+* W9 Form, W-8BEN, or W-8BEN-E Forms (Downloadable version must be available for upload)
+o W9 Form
+* Tooltip: "Upload your completed W9 form if you are a U.S. citizen or resident. Used by U.S. citizens or residents to provide their taxpayer identification number (TIN) to clients or employers. This form is used for tax reporting purposes."
+o W-8BEN Form
+* Tooltip: "Upload your completed W-8BEN form if you are a non-U.S. individual. Used by non-U.S. individuals to certify their foreign status and claim any applicable benefits under an income tax treaty. This form is provided to clients or employers for tax reporting purposes."
+o W-8BEN-E Form
+* Tooltip: "Upload your completed W-8BEN-E form if you are a non-U.S. entity. Used by non-U.S. entities (such as corporations) to certify their foreign status and claim any applicable benefits under an income tax treaty. This form is provided to clients or employers for tax reporting purposes."
+* Certificate of Insurance (Business Liability Insurance, upload/download, dates of validity, notifications for renewal)
+o Tooltip: "Upload your business liability insurance certificate. This is important for ensuring you are covered while working."
+Professional Social Media Information (Admin Only, Optional)
+* LinkedIn
+o Tooltip: "Enter your LinkedIn profile URL. This can help you connect with other professionals and showcase your professional achievements."
+* YouTube
+o Tooltip: "Enter your YouTube channel URL. This can be used to share your professional videos and presentations."
+* Facebook
+o Tooltip: "Enter your Facebook profile URL. This can help you connect with others and share your professional updates."
+* Instagram
+o Tooltip: "Enter your Instagram profile URL. This can be used to share visual content related to your professional work."
+* Twitter
+o Tooltip: "Enter your Twitter profile URL. This can help you share professional updates and connect with others in your industry."
+Company Information (Mandatory for job postings)
+* Company Name (Not shown until engaged in work together)
+o Tooltip: "Enter the name of your company. This helps in building trust and transparency with potential contractors."
+* Company Address
+o Tooltip: "Enter the address of your company. This provides a physical location for your business."
+* Company Phone
+o Tooltip: "Enter the phone number of your company. This allows potential contractors to contact your business."
+* Company Email
+o Tooltip: "Enter the email address of your company. This provides a way for contractors to communicate with your business."
+* Business Classification (Independent Contractor, Service Company, Systems Integrator, Part Supplier, OEM, Staffing Company, Recruiter, Other)
+o Tooltip: "Select the appropriate business classification for your company. This helps in categorizing your business correctly."
+* Company Website (Optional)
+o Tooltip: "Enter the URL of your company's website. This provides additional information about your business."
+* Company Social Media Links (Optional, Admin needs to export links for marketing)
+o Tooltip: "Enter the social media profiles of your company to showcase your online presence and activities."
+o LinkedIn
+* Tooltip: "Enter your company's LinkedIn profile URL."
+o YouTube
+* Tooltip: "Enter your company's YouTube channel URL."
+o Facebook
+* Tooltip: "Enter your company's Facebook profile URL."
+o Instagram
+* Tooltip: "Enter your company's Instagram profile URL."
+o Twitter
+* Tooltip: "Enter your company's Twitter profile URL."
+* Products Offered (Admin needs to sort/filter and export, can add multiple entries)
+o Tooltip: "List the products your company offers. This helps potential clients understand what you provide."
+o Product Name
+* Tooltip: "Enter the name of the product your company offers."
+o Product Description
+* Tooltip: "Provide a description of the product. Explain what it does and its benefits."
+o Price
+* Tooltip: "Enter the price of the product. This helps clients understand the cost."
+o SKU (Optional)
+* Tooltip: "Enter the SKU of the product, if applicable. This helps in tracking and inventory management."
+o Image (Optional)
+* Tooltip: "Upload an image of the product. Visuals can help attract potential clients."
+* Services Offered (Admin needs to sort/filter and export, can add multiple entries)
+o Tooltip: "List the services your company offers. This helps potential clients understand what you provide."
+o Service Name
+* Tooltip: "Enter the name of the service your company offers."
+o Service Description
+* Tooltip: "Provide a description of the service. Explain what it entails and its benefits."
+o Hourly Rate
+* Tooltip: "Enter the hourly rate for the service. This helps clients understand the cost."
+o Image (Optional)
+* Tooltip: "Upload an image representing the service. Visuals can help attract potential clients."
+* Industries Served (Automotive, Aerospace, Pharmaceutical, etc., can add multiple entries)
+o Tooltip: "Select the industries your company serves. This helps in categorizing your business."
+* Other Business Locations (Optional, Admin Only, can add multiple entries)
+o Tooltip: "List other business locations of your company. This helps in providing a complete picture of your business."
+o Name of Facility
+* Tooltip: "Enter the name of the business location."
+o Country
+* Tooltip: "Enter the country where the business location is situated."
+o Street
+* Tooltip: "Enter the street address of the business location."
+o City
+* Tooltip: "Enter the city where the business location is situated."
+o Contact Name
+* Tooltip: "Enter the name of the contact person at the business location."
+o Contact Email
+* Tooltip: "Enter the email address of the contact person at the business location."
+o Contact Phone
+* Tooltip: "Enter the phone number of the contact person at the business location."
+Business Group (Shared)
+* Group Name (Admin Only)
+o Tooltip: "Enter the name of the business group. This helps in identifying the group within the platform."
+* Group Members (Admin Only)
+o Tooltip: "List the members of the business group. This helps in managing the group effectively."
+o Member Name
+* Tooltip: "Enter the name of the group member."
+o Role
+* Tooltip: "Enter the role of the group member."
+o Email
+* Tooltip: "Enter the email address of the group member."
+* Shared Data (Contracts, Job Postings, Timesheets, Expense Reports, Employee Profiles)
+o Tooltip: "Specify the data shared within the business group. This helps in collaborative working."
+* Permissions (View Only, Edit, Admin)
+o Tooltip: "Set the permissions for each group member. This helps in managing access and responsibilities."
+Company Accounting Contacts (Admin Only)
+* Accounts Payable Contact (Mandatory if Company Name exists)
+o Tooltip: "Provide the contact details for accounts payable. This helps in managing payments."
+o Name
+* Tooltip: "Enter the name of the accounts payable contact."
+o Email
+* Tooltip: "Enter the email address of the accounts payable contact."
+o Phone
+* Tooltip: "Enter the phone number of the accounts payable contact."
+* Accounts Receivable Contact (Optional)
+o Tooltip: "Provide the contact details for accounts receivable. This helps in managing incoming payments."
+o Name
+* Tooltip: "Enter the name of the accounts receivable contact."
+o Email
+* Tooltip: "Enter the email address of the accounts receivable contact."
+o Phone
+* Tooltip: "Enter the phone number of the accounts receivable contact."
+* Marketing Contact (Optional)
+o Tooltip: "Provide the contact details for the marketing department. This helps in managing marketing activities."
+o Name
+* Tooltip: "Enter the name of the marketing contact."
+o Email
+* Tooltip: "Enter the email address of the marketing contact."
+o Phone
+* Tooltip: "Enter the phone number of the marketing contact."
+* Human Resources Contact (Optional)
+o Tooltip: "Provide the contact details for human resources. This helps in managing HR activities."
+o Name
+* Tooltip: "Enter the name of the human resources contact."
+o Email
+* Tooltip: "Enter the email address of the human resources contact."
+o Phone
+* Tooltip: "Enter the phone number of the human resources contact."
+Flow
+Creating a Profile:
+1. The user fills out a registration form with their email, password, first name, last name, and phone number for two-factor authentication.
+2. The user receives a verification code via SMS to complete the two-factor authentication process.
+3. Upon verification, the user logs in and is prompted to complete their profile by filling in personal, professional, and financial information.
+4. The user can upload secure personal files (ID Proof, Background Check, Drug Test, etc.) for verification.
+Editing a Profile:
+1. The user navigates to their profile settings.
+2. The user updates the necessary fields and saves changes.
+3. For sensitive information, like phone number or secure personal files, the user must verify changes through two-factor authentication.
+Profile Completion:
+1. Users are prompted to complete additional fields when they attempt to post jobs or apply for contracts.
+2. Incomplete profiles are flagged, and users receive notifications to complete their profiles.
+Availability Management:
+1. Users mark themselves as available or unavailable.
+2. If marked available, the status remains active for one week.
+3. Users receive notifications to renew their availability status after one week.
+Deleting a Profile:
+1. Users have the option to delete their profile permanently.
+2. Users must confirm the deletion multiple times and are warned that they will not be able to recover any profile data once deleted.
+3. A final confirmation step includes a message stating: "Are you sure you want to permanently delete your profile? This action cannot be undone."
+Interview Questions:
+* Willing to work more than 60 miles from home (Yes/No)
+o Tooltip: "Indicate if you are willing to work more than 60 miles from your home."
+* I am willing to take emergency contracts (Yes/No)
+o Tooltip: "Indicate if you are willing to take emergency contracts."
+* I have a work VISA that allows me to work legally in the US (Yes/No)
+o Tooltip: "Indicate if you have a work VISA that allows you to work legally in the US."
+* I require VISA sponsorship from a US Company (Yes/No)
+o Tooltip: "Indicate if you require VISA sponsorship from a US company."
+* I have a Valid Passport (Yes/No)
+o Tooltip: "Indicate if you have a valid passport."
+* I am willing to work nights and afternoon shifts (Yes/No)
+o Tooltip: "Indicate if you are willing to work nights and afternoon shifts."
+* I am willing to work Saturdays (Yes/No)
+o Tooltip: "Indicate if you are willing to work Saturdays."
+* I am willing to work Sundays (Yes/No)
+o Tooltip: "Indicate if you are willing to work Sundays."
+
+Turning Products/Services into Paid Ads:
+1. Users can select any product or service they have listed.
+2. With the push of a button, the product or service can be turned into a paid advertisement.
+3. Users are prompted to set the budget and duration for the ad.
+* Tooltip: "Promote your products or services by turning them into paid advertisements with just a click."
+Boosting Profiles:
+1. Users can boost their profiles for $50 per week.
+2. Boosted profiles receive increased exposure by appearing once every time any person scrolls through the complete feed.
+* Tooltip: "Boost your profile for increased visibility and exposure."
+Use Case
+Scenario: John, a skilled contractor, wants to find new job opportunities on AutomateAmerica.com. He creates a detailed profile, including his skills, work experience, and certifications. This helps potential clients understand his qualifications and consider him for their projects. Additionally, John lists his specialized consulting service and converts it into a paid ad to increase visibility. He also boosts his profile for a week to ensure it gets maximum exposure. Benefit: Having a comprehensive profile increases John’s visibility and attractiveness to potential clients, leading to more job offers and opportunities. The ability to turn services into paid ads and boost his profile helps John market his consulting services effectively and ensures his profile stands out to potential clients.
+Related Notifications
+* Profile Completion Reminder
+o Recipient: User
+o Frequency: Weekly until profile is complete
+o Message: "Complete your profile to increase your chances of getting hired!"
+* Availability Expiry Reminder
+o Recipient: User
+o Frequency: 1 day before availability expires
+o Message: "Your availability status is about to expire. Renew it to stay visible to potential clients."
+* Ad Creation Confirmation
+o Recipient: User
+o Frequency: Immediate upon ad creation
+o Message: "Your product/service ad has been created and is now live."
+* Profile Boost Confirmation
+o Recipient: User
+o Frequency: Immediate upon boosting
+o Message: "Your profile has been boosted for one week and will receive increased exposure."
+Suggested Enhancements
+1. Profile Analytics
+* Provide users with analytics on how many views their profile has received, which sections are viewed the most, and tips on how to improve profile visibility.
+2. Endorsements
+* Allow users to endorse each other for skills, providing social proof and increasing credibility.
+3. Profile Badges
+* Introduce badges for completing profile sections, receiving positive feedback, or achieving milestones, making profiles more engaging and rewarding users for their activity.
+Card View
+Fields Shown in Card View:
+* Profile Picture
+* First Name
+* Last Name
+* Primary Occupation
+* Top Skill
+* Second Skill
+* About Me Blurb
+* Availability Status
+Calls to Action:
+* View Profile
+* Connect
+* Message
+* Endorse
+* Request this Professional
+* Share
+
+
+Each Section when clicked will expand to a full screen.  (all of these fields exist in the current site)
+Examples of the Full Screen Pop Outs. 
+	Skill / Manufacture Logo pop out will include - 
+       Manufacturer Name
+       Model / Controller / Version
+		Years of Experience
+       Self rating
+		Skill Details
+	About Me
+		The full blurb in large text
+	Customer Reviews (Clicking a logo)
+		Will bring up a full screen view of all of the reviews
+Company Logo, Company Name, The Star Rating, and The actual review verbiage
+	Work Experience
+		Company Logo
+		Company Name
+		Primary Occupation
+		From and To Dates or Current
+		Responsibilities and Accomplishments Blurb
+	Interview Questions
+		No Pop Out Needed.
+	Education / Training / Certificates pop outs will include
+		School Icon
+		School Name
+		Degree or Certificate Name
+		Year of Completion
+		Specialization
+		Comments
+	Industries Served pop our will include
+		Industry Logo (Does Not Exist yet), can you use standard icons?  
+		Industry Name
+		Self Rating
+		Blurb, Your Experience, Abilities and Accomplishments in this industry.  
+	Languages (No Pop Out)
+	Pictures / Video Pop Out
+This will be a gallery of all of the users pictures and videos, remember, videos are just hyperlinks to videos, with a thumb nail optional.  Pictures should have a description Blurb.  
+	Endorsements Popout
+		A list of all of the professionals who endorse the professional will pop out and 
+And you will be able to scroll through them and click any of the profile photos to go to that users profile.  It will show what the user said about them.  No names shown.  
+	Facilities That I have Worked At Pop out will show.  
+		Company Logo
+		Company Name
+		Location 
+		From and To or Current
+		Comments
+

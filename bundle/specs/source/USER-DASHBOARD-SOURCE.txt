@@ -1,0 +1,375 @@
+USER DASHBOARDS
+At the top, we need to Display the words User Dashboard so that they understand what page they are on.  
+First Row CTA Cards, Time Sheets, Expense Reports, Invoices, Purchase Orders.  
+Second Row CTA’s, View as Business, Search Work, Seach Customers, Edit Profile
+Third Row is a Summary Card of The Users Profile, It shows his profile image, # of connections, Primary Occupation, State and Country, Users Email, Users Phone Number, Boost My Profile CTA, and a Share option that uses the arrow icon and gives the options of Copy link, Send to Text, Send to Email, Share on Facebook, Share on LinkedIn, and Share on WhatsApp.  I am available switch, that shows Green When Available and Red When Not Available.  
+Next we have a row that is divided into two sections, Work Being Done By Me or My Employees and another section called Work Being Done For Me.
+
+Work Being Done By Me or My Employees is selected, the sections are as follows – 
+	Work Being Done By Me or My Employees is selected, the sections are as follows – 
+       Contracts Section
+       Ongoing Contracts
+       	Contract Header
+Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
+       		CTA’s – Copy, End Contract
+Note:  Below the professional information, we have a section for Timesheets, Expense Reports, Invoices, and Purchase Orders.  These are only shown for White Glove Hourly Contracts.
+Timesheet (Only for White Glove Hourly Contracts, Not Standard Hourly Contracts)
+       Current Timesheet, No Number
+Due Timesheet (these are due and past due)  I need to turn these time sheets in as soon as possible.  
+Pending Customer Approval (timesheets that me or my employees have submitted and are waiting for customer approval)
+Approved Timesheets
+Expense Reports  (Only for White Glove Hourly Contracts, Not Standard Hourly Contracts) 
+       Current Expense Report, No Number
+       Due Expense Reports (these are due and past due)
+Pending Customer Approval (Expense Reports that me or my employees have submitted and are waiting for customer approval)
+Approved Expense Reports (Customer Has Approved these Expense Reports)
+Invoices (Only for White Glove Hourly Contracts) (Shows the number of the total invoices for the contract) These are invoices from you to the customer.  
+When the user clicks on this icon, they are shown the invoices categorized into: 
+Due Invoices:  Invoices that you sent to Automate America and we have not paid yet.  (Automate America automatically generates the invoice to themselves when the time sheets fo you or your employee are approved)
+Past Due Invoices: (These are invoices that Automate America is past due on paying you).  This should never be the case.    
+Paid Invoices:  Invoices that Automate America has paid you for.    
+Pending Applications (Lists all the Hourly Contracts that I applied to or that I applied my Employees to)  
+Users can view the summary cards of the contracts that they applied to.  They can      view full contract and Withdraw their applications here as well.     
+Shortlisted Applications (These are the Hourly Contracts customers have shortlisted me or my employees for, but have not hired us yet)
+Users can view the summary cards of the contracts that they applied to.  They can view full contract and Withdraw their applications here as well.  
+Offers Pending (The customer has Hired / Sent you an Offer for you or one of your employees!  It is now up to you to accept or reject the offer.)
+       Professionals or their employees need to accept or reject the offers.  
+Applications Rejected (These are Hourly Contracts that I applied myself or one of my employees to and the customer chose to hire another engineer for one reason or another)
+The professionals can view the contract summary cards and the full contract, but there is nothing that they can do here.    
+`	Rejected Offers (These are applications that I made for me or my employee, the customer sent an offer and hired us, but we rejected the offer.)
+The professionals can view the contract summary cards and the full contract, but there is nothing that they can do here.
+Completed / Closed Contracts – This design is very similar to the Open and Ongoing Contract Section.
+       Contract Header
+Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
+CTA’s – Copy 
+       	Contract Summary
+       		Location of Contract (if Onsite) - State and City
+       		Completed Date (When you closed the contract)
+       		About Contract (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+			Sun / Holidays
+Contract Record Section contains the following, Invoices, Purchase Orders, Timesheets, Expense Reports, Contractors Hired
+Invoices (Only for White Glove Hourly Contracts) (Shows the number of the total invoices for the contract) These are invoices that you sent to Automate America (the system does it automatically for you).  
+When the user clicks on this icon, they are shown the invoices categorized into: 
+Due Invoices:  Invoices that Automate America will pay soon, but are not late yet.  
+Past Due Invoices:  If there is any late invoices, this section should flash Red, But there should never be any invoices here.  
+Paid Invoices:  Invoices that Automate America paid you for.
+Timesheets (Only for White Glove Hourly Contracts)
+When the user clicks this icon, they are taken to a page with all of the timesheets for this contract categorized as follows:
+Due Timesheet (these are due and past due, I need to do these as soon as absolutely possible)
+Pending Customer Approval (timesheets that the customer needs to approve)
+Approved Time Sheets (time sheets that the customer has approved)
+			Expense Report (Only for White Glove Hourly Contracts)
+Due Expense Reports (these are due and past due, I need to complete these and submit them for approval immediately)
+Pending Customer Approval (Expense Reports that me or my business group members need to turn in immediately)
+Approved Expense Reports (expense reports that the customer has approved)  
+       Request From Customers (Section)
+Note:  Professionals Requested Section is needed to track any requests from customer for a users services or the services of one of their available employees.  The Sub Sections are "Open Requests” and “Rejected Requests”.  If the professional approves the requested work, it goes into their Ongoing Contracts section and is tracked and maintained as an Hourly Contract.  When a user requests a professional directly, a contract is made automatically based on the rates in the users profile, the start date that customer needs the professional, the duration of the contract and what work is required.  When the customer requests a professional we will start asking them the mandatory fields just like an hourly contract.  The only difference with a Direct Request is that it is a private contract between the customer and contractor.  It is not open for others to apply to.  The customer will be given the option at the end of the Direct Request Process to Make the request an Open Contract to the Public to get more applicants, and if they say yes, they will be asked if they want White Glove Hourly Contract Options or Standard Hourly Contract Options.  	
+Open Requests (Request from customer for me or my employees that I or one of my business group members need Accept or Reject as soon as possible)
+If a professional accepts a request, the request becomes a contract and is saved in the Ongoing Contracts section for both the professional and customer.  
+Rejected Requests (The customer requested me or one of my employees, but myself or on of the members of my business group rejected the request) 
+Users can view the Contract Summary card and click full view, but they cannot do anything else.  
+Direct In-House Jobs (Section).  Keep in mind that a user will never apply their employees to a direct inhouse job, only to hourly contracts.
+       Ongoing Direct In-House Job (This cannot be more than one job per users)
+       	Job Header
+Primary Occupation, Start Date 
+       		CTA’s – Copy, Close Job (I am no longer employed by this company)
+Job Offers Pending (The customer has Hired / Sent Offers to you for a job that you applied to, now it is up to you to accept or reject the offer)  
+       My Applications to Jobs (Lists all the Direct Jobs that I have applied myself to)  
+Users can view the Job Summary or the full Job Posting and Retract their application is desired.  
+Shortlisted Job Applications (These are the jobs that I applied to and the customer has shortlisted me which is good, but they have not yet hired me.)
+Users can view the Job Summary Card and a full view, and they can retract their application, but that is all that they can do at this stage.      
+Job Offers I Rejected (These are jobs that I applied to, and the customer sent me an offer, then I rejected the offer).
+The user can view the Job Posts but that is it.  They can never re apply to a job that they rejected or that the customer rejected them for.      
+	`	
+Completed / Closed Direct In-House Jobs – This design is very similar to the Open and Ongoing Job Section.  These are Jobs that I was hired for, and the job has ended and I am no longer employed by this company.  
+       Job Header
+Primary Occupation, Start Date, Onsite or Remote Job.
+CTA’s – Copy 
+       	Job Summary
+       		Location of Job (if Onsite) - State and City
+       		Completed Date (When you closed the job)
+       		About Job (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+			Sun / Holidays
+	
+Work Being Done For Me is selected, the following sections are shown- 
+       Contracts Section
+       Ongoing Contracts
+       	Contract Header
+Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
+       		CTA’s – Copy, End Contract
+       	Professional Details (the professionals that have been hired)
+Left Side / Full Name, Primary Occupation, State and City of Professional, # of Reviews, Rating
+Right Side / Top Skill, Second Skill, Work Experience, Member Since  
+       		CTA’s – View Profile
+Note:  Below the professional information, we have a section for Timesheets, Expense Reports, Invoices, and Purchase Orders.  These are only shown for White Glove Hourly Contracts.
+Timesheet (Only for White Glove Hourly Contracts)
+       Current Timesheet, No Number
+       Due Timesheet (these are due and past due)
+Pending My Approval (timesheets that me or my business group members need to approve.)
+Approved Timesheets
+			Expense Report (Only for White Glove Hourly Contracts)
+       Current Expense Report, No Number
+       Due Expense Reports (these are due and past due)
+Pending My Approval (timesheets that me or my business group members need to approve.)
+Approved Expense Reports
+Invoices (Only for White Glove Hourly Contracts) (Shows the number of the total invoices for the contract) These are invoices to you the customer who received for the work done.  
+When the user clicks on this icon, they are shown the invoices categorized into: 
+Due Invoices:  Invoices that you have received and need to pay, but are not late yet.  
+Give the user a pay not option here.  Credit Card or Direct Deposit / Transfer.    
+Past Due Invoices:  If there is any late invoices, this section should flash Red. 
+Give the user a pay not option here.  Credit Card or Direct Deposit / Transfer.
+Paid Invoices:  Invoices that you the customer have paid  
+
+Purchase Orders (Only for White Glove Hourly Contracts) (Shows the number of the total purchase orders for the contract) These purchase orders created by you the customer.
+				In Progress (Plenty of Hours Remaining)
+Less than %XX Remaining (When a PO has 20% or less remaining it shows here)
+Completed (Purchase Orders that have been fully used up and paid out for this contract)
+Note:  Below the section for Timesheets, Expense Reports, Invoices, and Purchase Orders.  We have a section for Applications Received, Shortlisted Applicants, Offers Pending, Offers Accepted, Offers Rejected, and Rejected Applicants.  This area is shown to both White Glove Hourly Contracts and Standard Hourly Contracts.
+Applications Received (Lists all of the professionals who applied to the contract and were not Hired or Rejected)  
+Customers can view the profile on any applicant here and are still given the ability to hire them (send them an offer), Shortlist or Reject them.  
+Shortlisted Applicants (These are all of the professionals that were considered for the project but not hired)
+Customers can view the profile on any shortlisted applicants here and are still given the ability to Hire them (send them an offer), or Reject them.  
+Offers Pending (The customer has Hired / Sent Offers to these Professionals, but they have not accepted or Rejected)
+The customer can retract the offer at this time and they can reject the Applicant.  
+Offers Accepted (These are the professionals that the customer sent an offer to and the professional Accepted, they are considered hired professionals, they have accepted the SSA and should be working.  Their profiles are the ones shown at the top.)
+Customers can view the profiles here.  If we allowed them to also see the timesheets and expense reports when they click on the users profile, that would be great.  
+Offers Rejected (These are applicants that applied to the contract, but then rejected the offer when you hired them)
+The customer can view the profiles of these professionals but that is it.    
+	`		Rejected Applicants (These are applicants that you the customer rejected)
+The customer can view the profiles of the professionals and revert the rejected applicants to Applications Received, Shortlisted or Hire them / Send them an offer.
+Draft Contracts (You or someone in your business group have started these contracts, you need to finish them and submit them for approval)
+       Contract Header
+Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
+       		CTA’s – Copy, Delete Draft
+       	Contract Summary
+       		Location of Contract (if Onsite) - State and City
+       		Initiated Date (When did you start the draft)
+       		About Contract (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+       			Sun / Holidays
+       	Bottom CTA’s – Edit Contract, Submit for Approval
+       
+Contracts Pending Admin Approval (You have submitted these contracts to Automate America Administration and are awaiting their approval)
+       Contract Header
+Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
+       		CTA’s – Copy, Delete
+       	Contract Summary
+       		Location of Contract (if Onsite) - State and City
+       		Sent For Approval Date (When did you submit for approval)
+       		About Contract (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+       			Sun / Holidays
+       	Bottom CTA’s – Boost This Contract
+       
+       Open Contracts
+       Contract Header
+Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
+CTA’s – Copy, Unpublish (this will take it back to draft), Delete (a warning should be given, If you delete this contract it will be unavailable to you and Automate America admin, are you sure you want to permanently delete this contract?  Unpublishing will take it back to draft.)
+       	Contract Summary
+       		Location of Contract (if Onsite) - State and City
+       		Sent For Approval Date (When did you submit for approval)
+       		About Contract (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+       			Sun / Holidays
+Application Management Section contains the following, Applications Received, Shortlisted Applicants, Pending Offers, Rejected Applicants
+Applications Received (Shows a number) 
+When the user clicks this section, the user is taken to a page with Summary Cards for all of the applicants.  The user will be able to view full profiles, shortlist, reject or Hire / Send and Offer to the professionals.  
+Shortlisted Applicants (Shows a number)  The customer is considering hiring these individuals, but wants to give more time. 
+When the user clicks this section, the user is taken to a page with Summary Cards for all of the applicants that they have shortlisted.  The user will be able to view full profiles, reject, or Hire / Send and Offer to the professionals.  
+Pending Offers (Shows a number) The customer has hired these individuals / sent them an offer and is waiting for them to accept the offer or reject the offer.   
+When the user clicks this section, the user is taken to a page with Summary Cards for all the applicants that they have sent offers to.  The user will be able to view full profiles and retract the offer.  They will be able to retract the offer from the summary view without having to view the entire profile.
+Rejected Offers (Shows a number) These professionals applied to the contract, the customer has sent an offer to these individuals / and the professional rejected the offer.   
+When the user clicks this section, the user is taken to a page with Summary Cards for all the applicants that rejected the offer.  The user will be able to view full profiles.    
+Rejected Applicants (Shows a number) These professionals applied to the contract, and the customer rejected their applications. 
+When the user clicks this section, the user is taken to a page with Summary Cards for all of the applicants that they have Rejected.  The user will be able to view full profiles, Shortlist, or Hire / Send and Offer to the professionals.  
+       Bottom CTA’s – Boost This Contract
+       
+Completed / Closed Contracts – This design is very similar to the Open and Ongoing Contract Section.
+       Contract Header
+Primary Occupation, Start Date and End Date, Type of Contract (White Glove Hourly Contract or Standard Hourly Contract), Onsite or Remote Contract.
+CTA’s – Copy 
+       	Contract Summary
+       		Location of Contract (if Onsite) - State and City
+       		Completed Date (When you closed the contract)
+       		About Contract (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+			Sun / Holidays
+Contract Record Section contains the following, Invoices, Purchase Orders, Timesheets, Expense Reports, Contractors Hired
+Invoices (Only for White Glove Hourly Contracts) (Shows the number of the total invoices for the contract) These are invoices to you the customer who received for the work done.  
+When the user clicks on this icon, they are shown the invoices categorized into: 
+Due Invoices:  Invoices that you have received and need to pay, but are not late yet.  
+Give the user a pay not option here.  Credit Card or Direct Deposit / Transfer.    
+Past Due Invoices:  If there is any late invoices, this section should flash Red. 
+Give the user a pay not option here.  Credit Card or Direct Deposit / Transfer.
+Paid Invoices:  Invoices that you the customer have paid  
+Purchase Orders (Only for White Glove Hourly Contracts) (Shows the number of the total purchase orders for the contract) These purchase orders created by you the customer.    
+When the user clicks on this icon, they are shown the Purchase Orders categorized into: 
+				In Progress (Plenty of Hours Remaining)
+Less than %XX Remaining (When a PO has 20% or less remaining it shows here)
+Completed (Purchase Orders that have been fully used up and paid out for this contract)
+Timesheets (Only for White Glove Hourly Contracts)
+When the user clicks this icon, they are taken to a page with all of the timesheets for this contract categorized as follows:
+       Due Timesheet (these are due and past due)
+Pending My Approval (timesheets that me or my business group members need to approve.)
+Approved Time Sheets (time sheets that you the customer have approved)
+			Expense Report (Only for White Glove Hourly Contracts)
+       Due Expense Reports (these are due and past due)
+Pending My Approval (timesheets that me or my business group members need to approve.)
+Approved Expense Reports (expense reports that you the customer have approved)  
+Contractors Hired (for Both White Glove Hourly Contracts and Standard Hourly Contracts) This section will take you to a page with the Summary Cards for all the professionals that you hired for this contract.  You will be given the call to action to view full profile and Request This Contractor Again.
+       
+       Professionals Requested (Section)
+Note:  Professionals Requested Section is needed to track any professionals that were requested by customers.  The Sub Sections are "Open Requested” and “Rejected Requests”.  If the professional approves the requested work, it goes into the customers Ongoing Contracts section and is tracked and maintained as an Hourly Contract.  When a user requests a professional directly, a contract is made automatically based on the rates in the users profile, the start date that customer needs the professional, the duration of the contract and what work is required.  When the customer requests a professional we will start asking them the mandatory fields just like an hourly contract.  The only difference with a Direct Request is that it is a private contract between the customer and contractor.  It is not open for others to apply to.  The customer will be given the option at the end of the Direct Request Process to Make the request an Open Contract to the Public to get more applicants, and if they say yes, they will be asked if they want White Glove Hourly Contract Options or Standard Hourly Contract Options.  	
+Open Requests (Professionals that I the customer Requested but they have not accepted or rejected)
+If a professional accepts a request, the request becomes a contract and is saved in the Ongoing Contracts section for both the professional and customer.  
+Rejected Requests (I the customer requested these professionals and they rejected the request.) 
+Customer can view the professionals summary cards with an option to view full profile.  The customer will also be able to view the view the professionals comment (when a professional rejects a requests, they are asked to give the customer a brief explanation of why).
+		Bottom Footer Calls to Action:  Search and Request Available Professionals Now. 
+       
+       Direct In-House Jobs (Section)
+       Ongoing Direct In-House Jobs
+       	Job Header
+Primary Occupation, Start Date 
+       		CTA’s – Copy, Close Job
+       	Professional Details (the professionals that have been hired)
+Left Side / Full Name, Primary Occupation, State and City of Professional, # of Reviews, Rating
+Right Side / Top Skill, Second Skill, Work Experience, Member Since  
+       		CTA’s – View Profile
+Note:  Below we have a section for Applications Received, Shortlisted Applicants, Offers Pending, Offers Accepted, Offers Rejected, and Rejected Applicants.  
+Applications Received (Lists all the professionals who applied to the job and were not Hired or Rejected)  
+Customers can view the profile on any applicant here and are still given the ability to hire them (send them an offer), Shortlist or Reject them.  
+Shortlisted Applicants (These are all of the professionals that were considered for the project but not hired)
+Customers can view the profile on any shortlisted applicants here and are still given the ability to Hire them (send them an offer), or Reject them.  
+Offers Pending (The customer has Hired / Sent Offers to these Professionals, but they have not accepted or Rejected)
+The customer can retract the offer at this time and they can reject the Applicant.  
+Offers Accepted (These are the professionals that the customer sent an offer to and the professional Accepted, they are considered hired professionals, and should be working.  Their profiles are the ones shown at the top.)
+Customers can view the profiles here.    
+Offers Rejected (These are applicants that applied to the job, but then rejected the offer when you sent it to them).
+The customer can view the profiles of these professionals but that is it.    
+	`		Rejected Applicants (These are applicants that you the customer rejected)
+The customer can view the profiles of the professionals and revert the rejected applicants to Applications Received, Shortlisted or Hire them / Send them an offer.
+Draft Direct In-House Jobs (You or someone in your business group have started these Direct In-House Jobs, you need to finish them and submit them for approval)
+       Job Header
+Primary Occupation, Start Date and End Date, Type of Job (White Glove Hourly Job or Standard Hourly Job), Onsite or Remote Job.
+       		CTA’s – Copy, Delete Draft
+       	Job Summary
+       		Location of Job (if Onsite) - State and City
+       		Initiated Date (When did you start the draft)
+       		About Job (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+       			Sun / Holidays
+       	Bottom CTA’s – Edit Job, Submit for Approval
+       
+Direct In-House Jobs Pending Admin Approval (You have submitted these Direct In-House Jobs to Automate America Administration and are awaiting their approval)
+       Job Header
+Primary Occupation, Start Date, Onsite or Remote Job.
+       		CTA’s – Copy, Delete
+       	Job Summary
+       		Location of Job (if Onsite) - State and City
+       		Sent For Approval Date (When did you submit for approval)
+       		About Job (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+       			Sun / Holidays
+       	Bottom CTA’s – Boost This Job
+       
+       Open Direct In-House Jobs
+       Job Header
+Primary Occupation, Start Date and End Date, Onsite or Remote Job.
+CTA’s – Copy, Unpublish (this will take it back to draft), Delete (a warning should be given, If you delete this job it will be unavailable to you and Automate America admin, are you sure you want to permanently delete this job?  Unpublishing will take it back to draft.)
+       	Job Summary
+       		Location of Job (if Onsite) - State and City
+       		Sent For Approval Date (When did you submit for approval)
+       		About Job (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+       			Sun / Holidays
+Application Management Section contains the following, Applications Received, Shortlisted Applicants, Pending Offers, Rejected Applicants
+Applications Received (Shows a number) 
+When the user clicks this section, the user is taken to a page with Summary Cards for all of the applicants.  The user will be able to view full profiles, shortlist, reject or Hire / Send and Offer to the professionals.  
+Shortlisted Applicants (Shows a number)  The customer is considering hiring these individuals, but wants to give more time. 
+When the user clicks this section, the user is taken to a page with Summary Cards for all of the applicants that they have shortlisted.  The user will be able to view full profiles, reject, or Hire / Send and Offer to the professionals.  
+Pending Offers (Shows a number) The customer has hired these individuals / sent them an offer and is waiting for them to accept the offer or reject the offer.   
+When the user clicks this section, the user is taken to a page with Summary Cards for all the applicants that they have sent offers to.  The user will be able to view full profiles and retract the offer.  They will be able to retract the offer from the summary view without having to view the entire profile.
+Rejected Offers (Shows a number) These professionals applied to the job, the customer has sent an offer to these individuals / and the professional rejected the offer.   
+When the user clicks this section, the user is taken to a page with Summary Cards for all the applicants that rejected the offer.  The user will be able to view full profiles.    
+Rejected Applicants (Shows a number) These professionals applied to the job, and the customer rejected their applications. 
+When the user clicks this section, the user is taken to a page with Summary Cards for all of the applicants that they have Rejected.  The user will be able to view full profiles, Shortlist, or Hire / Send and Offer to the professionals.  
+       Bottom CTA’s – Boost This Job
+       
+Completed / Closed Direct In-House Jobs – This design is very similar to the Open and Ongoing Job Section.
+       Job Header
+Primary Occupation, Start Date, Onsite or Remote Job.
+CTA’s – Copy 
+       	Job Summary
+       		Location of Job (if Onsite) - State and City
+       		Completed Date (When you closed the job)
+       		About Job (Character limited)
+       		Top Skill
+       		Second Skill (if entered)
+       		Pay Rates
+       			Base 
+       			Overtime 
+			Sun / Holidays
+Employees Hired, 
+This section will take you to a page with the Summary Cards for all the professionals that you hired for this job.  You will be given the call to action to view full profile and Request This Employee Again.
+
+
+Add Professionals to My Team – CTA
+My Professionals Section (This is where the user can manage any professionals that they have added to their team) They can manage the profiles of their professionals.  Time Sheet, Expense Reports, Invoices are all managed from the section above called work being done by me or my employees.  
+My Calendar Section 
+Professionals that I have Hired In The Past (Dashboard Section) -
+This will take the user to a page with the summary cards of all of the professionals that they have worked with in the past, allow them to view the full profile and request that professional now.  
+
+Customers That Have Hired me in the Past (Section)-
+This will take the user to a page with the summary cards of all of the customers that they have worked with in the past, allow them to see any open work that the customer has.  
+
+Professional Profile.  The professionals profile comes at the end of the Users Dashboard.  All users have a profile and we are always trying to collect more information on the users so that we can serve them better.  Here is the link to the User Profile Overview that was created 7/18/24
+https://docs.google.com/document/d/1cypQFGkRzPRl9HVTQEGKSl3WDBLaP59F/edit?usp=sharing&ouid=108947085492279970761&rtpof=true&sd=true
+
+Notes to the Designers and Developers:
+When a contract is rejected by admin, it must go back into the users Draft Contracts section and they must be given a note.  
+The Chat With Admin Comment Bubble is small and floating on the right side of every page.  
+At the end of the user dashboard, the user will seamlessly flow into the Feed section of the website.  
+Related Notifications:  Include any Notifications related to each feature and section.  Detail who the notification is to and the wording of the notification.  
+
+
+
+
+
