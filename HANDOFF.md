@@ -26,8 +26,10 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 
 ## CURRENT STATE — UPDATE THIS BEFORE EVERY PUSH
 
-**Last session:** Claude Code · 2026-04-26 (last code `619b328` V2 buttons; last HANDOFF backfill `e2d9842` for #33)
-**Mode:** AUDIT PARKED at #33; VISUAL ELEVATION PASS active (V1+V2 shipped); WIZARDS in flight on other-account canvas (NOT in repo).
+**Last session:** Claude Code · 2026-04-27 (Maria Pro v2 standalone landed — 6.23 MB self-contained from Claude Design canvas; 17-item feedback captured below)
+**Mode:** AUDIT PARKED at #33; VISUAL ELEVATION PASS active (V1+V2 buttons shipped); MARIA PRO v2 first ship landed (Q&A strip + 3 bug fixes per RELAY block); 17-item Tony feedback queued for v3.
+
+**`Maria Lopez · Professional v2.html`** = standalone HTML (everything inlined, base64 assets). Sibling to v1's modular `Maria Lopez · Professional.html`+`scripts/render-professional.js`. v1 = audit surface (deviation #1-#25 applied here); v2 = Claude Design canvas-built ship (Q&A strip + rates-panel/reviews-banner/active-app fixes). Both files live in repo; Tony reviews v2 by serving locally + clicking. Future deviations against v2 either patch standalone OR back-port to modular — Tony product call.
 **Standing rule (CEO 2026-04-26):** every visual deviation ships 2–3 variants — Variant B active, A + C as commented-alt blocks above. Toggle to swap. Same shape applies to wizard variants and any future "test screen / prototype" ask.
 **Naming correction:** commit-mirror role is **Claude Code** (this account). "Marcus" is a Feed-Project PM agent on a separate workspace — do NOT conflate in deviation reports.
 
