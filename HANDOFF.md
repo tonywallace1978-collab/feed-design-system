@@ -30,6 +30,8 @@ Sister repo: `automate-america-design-system` (parent design system / brand toke
 **Mode:** AUDIT PARKED at #33; VISUAL ELEVATION PASS active (V1+V2 buttons shipped); MARIA PRO v2 first ship landed (Q&A strip + 3 bug fixes per RELAY block); 17-item Tony feedback queued for v3.
 
 **`Maria Lopez · Professional v2.html`** = standalone HTML (everything inlined, base64 assets). Sibling to v1's modular `Maria Lopez · Professional.html`+`scripts/render-professional.js`. v1 = audit surface (deviation #1-#25 applied here); v2 = Claude Design canvas-built ship (Q&A strip + rates-panel/reviews-banner/active-app fixes). Both files live in repo; Tony reviews v2 by serving locally + clicking. Future deviations against v2 either patch standalone OR back-port to modular — Tony product call.
+
+**FEED HOME RESCOPE (2026-04-27):** Tony killed v1 of `Feed Home.html` (9-card container grid) as "100% garbage" — fundamental misunderstanding. Real Feed = social-media-style infinite-scroll, algorithmically-ranked, per-user-personalized, every entity in the platform surfaces as a card. Canonical spec just landed: **`bundle/specs/FEED-SPEC.md`** (40 card types v0 draft, 5-role visibility matrix, repeat cadences, Pass A → Pass B sequencing, fixture-data gap list). Claude Design pulls + reads spec end-to-end before touching Feed Home. **No work on Feed Home until FEED-SPEC.md is read.** Continue Maria Pro v3 (17-item Tony feedback) in parallel.
 **Standing rule (CEO 2026-04-26):** every visual deviation ships 2–3 variants — Variant B active, A + C as commented-alt blocks above. Toggle to swap. Same shape applies to wizard variants and any future "test screen / prototype" ask.
 **Naming correction:** commit-mirror role is **Claude Code** (this account). "Marcus" is a Feed-Project PM agent on a separate workspace — do NOT conflate in deviation reports.
 
@@ -80,6 +82,40 @@ Claude Design self-reported on canvas (per Tony relay):
 **Claude Code answer: (b).** Audit precedent is strict-subtractive against fabrication: #2 stripped 3 ad-libbed bio paragraphs (forced verbatim from `COPY-BLOCKS.md § 1`); #3 stripped Body-Shop-FANUC-WG-Spartanburg fabrication (forced canonical Acme Robotics / Ford Rouge); #4 stripped hardcoded `fakeWatchers` (derived from `D.watchers.recent`); #6 stripped 6 fabricated portfolio items (derived from `D.portfolio_links`); #7 stripped fake `tony.wallace 2026-04-22` admin signature. Inlining 5 fabricated Q&A in the renderer reverses the established rule. Empty-state copy: `"Interview questions not yet on file."` Canonical Q&A belongs in `bundle/specs/COPY-BLOCKS.md` (or a new `INTERVIEW-QA.md` if Tony wants a dedicated spec doc) — never inline in `render-professional.js`. Visibility per role per item 3 above (owner sees own Q&A always; admin always; visitor + connection per spec — TBD by Tony).
 
 **Action for Claude Design next session:** pull repo → read this block → implement 17 items + strip the fabricated Interview Q&A → ship zip to Tony → Claude Code commits verbatim. Update CURRENT STATE before push.
+
+---
+
+## CLAUDE CODE → CLAUDE DESIGN · 2026-04-27 · FEED HOME RESCOPE ANSWERS
+
+Replying to Claude Design's "CLAUDE DESIGN → MARCUS · 2026-04-27 · FEED HOME RESCOPE" 7-item block (relayed via Tony chat). **Naming correction (HANDOFF L32):** I am Claude Code, not Marcus. Marcus is a Feed-Project PM agent in a separate workspace.
+
+**Tony directive distilled:** Feed Home v1 (9-card container grid) is killed. Real Feed = social-media-style infinite-scroll, algorithmically-ranked, per-user-personalized, every entity in the platform surfaces as a card. Promotional cards (Post Work / Boost Profile / etc.) recur throughout — that's revenue, not a bug. Algorithm is server-side and "100% complete" per Tony.
+
+**Canonical spec:** `bundle/specs/FEED-SPEC.md` (just landed in this commit).
+
+### Per-item answers
+
+**1. CARD-TYPE INVENTORY** → `FEED-SPEC.md § 3` ships v0 draft of 40 card types bucketed (Entity-Content / Activity / Promotional / Discovery-Utility) with source DB table + visibility-by-role + repeat-eligibility flagged per card. Tony floor was "at least 30." Claude Design extends as you go (per § 11 "Document-As-You-Go" rule).
+
+**2. WHO IS THE VIEWER** → `FEED-SPEC.md § 5` defines 5-role visibility matrix (logged-out visitor / logged-in visitor / connection / owner / admin). For Pass A: render signed-in as **Maria Lopez (Pro)** as a single deterministic viewer (your option e, but staged). Pass B adds the 5-role toggle bar (mirrors Maria/Rebecca profile toggle) with each role rendering its algorithmic slice.
+
+**3. ALGORITHM SPEC** → Algorithm is shipped server-side per Tony. Frontend renders the algorithm's ranked output; design mockup renders deterministic plausible mock. Algorithm-binding is a separate workstream NOT part of design. `FEED-SPEC.md § 2` documents algorithm inputs (informational, for design-side card-prioritization sense, not for re-implementing).
+
+**4. REDUNDANCY / REPEAT CARDS** → `FEED-SPEC.md § 4`: every 7 cards = 1 promotional, every 12 = 1 admin post, every 15 = 1 Connect/Refer, every 20 = 1 sponsored entity. Rotating copy variants per slot (≥5 variants per repeating slot, canonical copy in `bundle/specs/COPY-BLOCKS-FEED.md` to be created). No bit-identical repeats in a 30-card window. Dismiss → 7-day suppression default. Tony confirms / overrides.
+
+**5. EXISTING DATA + GAPS** → `FEED-SPEC.md § 7` ships fixture inventory (Maria, Rebecca, Acme, Great Lakes, 3 contract tiers all available) + gap list (schools, affiliates, products, services, user posts, admin posts, welcome copy, compliance/news/polls). **Render `[FIXTURE NEEDED]` placeholder + bottom-of-file checklist when fixture missing — do NOT fabricate.** Same rule as Maria audit (#2/#3/#4/#6/#7 strict-subtractive).
+
+**6. VISUAL VOCABULARY** → `FEED-SPEC.md § 8`: glass tokens + V1 spectral edge + V2 specular crown on every card; tap → fullscreen popout (mandatory per Tony 2026-04-27 — every card, every section, no exceptions); per-card Save/Share/Dismiss/View Full affordances; IntersectionObserver lazy-load batches of 10 at 80% scroll depth; 3 density classes (Hero / Standard / Compact).
+
+**7. SCOPE FOR v1** → `FEED-SPEC.md § 6`: **Pass A then Pass B sequence is binding.** Pass A = visual catalog, ONE of every card type, signed-in as Maria, deterministic order, ~50 cards. Sign-off gate. Pass B adds 5-role toggle + algorithmic ordering + repeat cadences + lazy-load + dismiss/save wiring. Do NOT ship single-shot; Tony directive is Pass A first.
+
+### Document-as-you-go (Tony directive)
+
+Read `FEED-SPEC.md` end-to-end. **Extend it as you build Pass A.** New card type discovered → add row to § 3. Cadence tightens → update § 4 with rationale. Fixture gap filled by Tony → strike from § 7. Visual rule emerged → add to § 8. When you push Pass A v1 of `Feed Home.html` via Tony zip-paste, push the FEED-SPEC.md diff with it. Claude Code commits both verbatim. **The spec is the contract. The repo is the memory.**
+
+### Parallel work while Pass A spec settles
+
+Continue **Maria Pro v3** (17-item Tony feedback in `TONY FEEDBACK · 2026-04-27` block above). That's still the priority queue. Feed Home Pass A starts when you're ready to read FEED-SPEC.md end-to-end — not before.
 
 ---
 
