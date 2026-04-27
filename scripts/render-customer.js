@@ -66,7 +66,6 @@
   $('#contracts-list').innerHTML = D.open_contracts.map(j => {
     const wg = j.white_glove;
     const w2 = j.type.includes('Direct');
-    const rateText = j.rate ? `$${j.rate}/hr` : (j.salary_band ? `$${j.salary_band}/yr` : '—');
     return `
       <div class="contract-row${wg?' wg':''}${w2?' w2':''}">
         <div class="contract-tag">
@@ -76,7 +75,7 @@
         </div>
         <div>
           <div class="contract-title">${esc(j.title)}</div>
-          <div class="contract-sub">${esc(j.type)} · ${rateText} · Posted ${fmtDate(j.posted_at)} · Closes ${fmtDate(j.closes_at)}</div>
+          <div class="contract-sub">${esc(j.type)}</div>
         </div>
         <div class="contract-applicants">
           <div class="kpi-val" style="font-size:24px !important;">${j.applicants}</div>
