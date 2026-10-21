@@ -15,7 +15,9 @@ Two orthogonal classifications govern every contract on Automate America. Claude
 | Tier | Visibility | Premium | Concierge | NDA | Boost | Customer pays |
 |---|---|---|---|---|---|---|
 | **Standard** | Customer name + plant location visible to all | none | self-serve | not required | optional ($) | base fee |
-| **White Glove** | Anonymous-bid · customer hidden until applicant shortlisted + NDA signed | +30% premium | AA WG Concierge owns scheduling, payment, dispute escalation | mandatory mutual 2-yr NDA on application | always boosted top of feed for 7 days | base fee + 30% WG premium |
+| **White Glove** | Anonymous-bid · customer hidden until applicant shortlisted + NDA signed | ~~+30% premium~~ | AA WG Concierge owns scheduling, payment, dispute escalation | mandatory mutual 2-yr NDA on application | always boosted top of feed for 7 days | ~~base fee + 30% WG premium~~ |
+
+Commercial terms are never set here — Feed-Project reference/product-truth/THE-PROMISE-CANONICAL.md (2026-10-20).
 
 ## Visual differentiation Claude Design must render
 
@@ -71,12 +73,14 @@ Sections marked `[T3]` in `SECTIONS.md` collapse by default for visitors and exp
 
 ## Why the differentiation matters (CEO P678B)
 
-White Glove customers pay a 30% premium because:
+Commercial terms are never set here — Feed-Project reference/product-truth/THE-PROMISE-CANONICAL.md (2026-10-20).
+
+~~White Glove customers pay a 30% premium because:~~
 - Anonymity protects competitive intelligence (an OEM doesn't want competitors knowing they're retrofitting Cell 14 with FANUC R-30iD).
 - Concierge service reduces customer's admin overhead.
 - Boost guarantees top-of-feed placement for 7 days = faster fill.
 
-Contractors who bid white-glove are effectively earning the same hourly rate as standard — the premium goes to AA, not to the contractor — but they get:
+Contractors who bid white-glove ~~are effectively earning the same hourly rate as standard — the premium goes to AA, not to the contractor — but they~~ get:
 - Higher-trust customer (only verified Tier-1 OEMs and major manufacturers can post WG).
 - Guaranteed payment (1-week escrow up front).
 - Anonymous reviews (their public reviews don't disclose customer name, protecting both sides).
